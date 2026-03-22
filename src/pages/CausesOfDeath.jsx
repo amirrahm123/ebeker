@@ -1,0 +1,72 @@
+import { Link } from 'react-router-dom'
+import useRevealOnScroll from '../hooks/useRevealOnScroll'
+import Breadcrumb from '../components/Breadcrumb'
+import CTASection from '../components/CTASection'
+
+export default function CausesOfDeath() {
+  useRevealOnScroll()
+
+  return (
+    <>
+      <Breadcrumb items={[
+        { label: 'תחומי עיסוק', to: '/#areas' },
+        { label: 'חקירת סיבות מוות' }
+      ]} />
+
+      <section className="hero">
+        <div className="hero-inner">
+          <p className="hero-eyebrow">תחום עיסוק &middot; הליך משפטי ייחודי</p>
+          <h1>חקירת<span className="accent">סיבות מוות</span></h1>
+          <p className="hero-sub">ייצוג משפחות בהליכי חקירת סיבות מוות — כאשר נרצה לדעת את האמת על נסיבות פטירת יקירנו.</p>
+          <div className="hero-btns">
+            <Link to="/#contact" className="btn-teal">קבעו ייעוץ חינם &#8592;</Link>
+            <a href="tel:049001056" className="btn-outline-white">&#128222; 04-9001056</a>
+          </div>
+        </div>
+      </section>
+
+      <section className="content-section">
+        <div className="content-container">
+
+          <div className="reveal">
+            <h2>חוק חקירת סיבות מוות</h2>
+            <p>הסמכות בדין הישראלי לגילוי סיבת המוות וביצוע ניתוח פתולוגי מקורה ב<strong>חוק חקירת סיבות מוות, שחוקק בשנת 1958</strong>, והסתמך על הפקודה המנדטורית Coroners Ordinance משנת 1926.</p>
+            <p>החוק ייחודי ויוצא דופן, שכן הוא הופך את השופט היושב בדין לחוקר לכל דבר ועניין — מוטלת עליו מלאכת איסוף הראיות וחקירת עדים. בכך סוטה שיטת המשפט הישראלית מהשיטה ה"אדוורסרית" לשיטה ה"אינקוויזיטורית".</p>
+          </div>
+
+          <div className="highlight-box reveal">
+            <h3>&#128269; מהי מטרת ההליך?</h3>
+            <p>חקירת סיבת המוות ביוזמת אדם מעוניין מיועדת בעיקרה למקרים יוצאי דופן — כגון מקרים שבהם אין, לדעת האדם המעוניין, חקירה נאותה או אין חקירה כלל.</p>
+            <p style={{ marginTop: 10, marginBottom: 0 }}>ציר המרכזי של החוק הוא <strong>סעיף 19</strong>, המקנה את הסמכות השיפוטית לפעולתו של השופט החוקר בסיבות מוות.</p>
+          </div>
+
+          <div className="reveal">
+            <h2>מתי פונים לחקירת סיבות מוות?</h2>
+            <ul>
+              <li>כאשר המשפחה אינה מרוצה מהחקירה הרשמית שנעשתה</li>
+              <li>כאשר קיים חשש שסיבת המוות לא בורה כראוי</li>
+              <li>כאשר יש חשד לרשלנות רפואית שהובילה לפטירה</li>
+              <li>כאשר רוצים לבסס תביעת נזיקין עתידית</li>
+              <li>כאשר יש צורך בתעודת פטירה עם הגדרה ברורה של סיבת המוות</li>
+              <li>כאשר חברת ביטוח מסרבת לשלם בשל אי-בהירות בסיבת המוות</li>
+            </ul>
+          </div>
+
+          <div className="reveal">
+            <h2>כיצד מתנהל ההליך?</h2>
+            <p>לאחר הגשת הבקשה לבית המשפט, השופט החוקר מקיים דיונים, שומע עדויות, בוחן ראיות ומסיק מסקנות בדבר סיבת המוות. בשונה מהליכים אחרים, השופט עצמו פעיל מאוד בחקירה.</p>
+            <p>ייצוג על ידי עורך דין מנוסה בתחום הוא קריטי — עורך דין מוסמך יסייע בניסוח הבקשה, הצגת הראיות ושמירה על האינטרסים של המשפחה לאורך כל ההליך.</p>
+          </div>
+
+          <div className="info-card reveal">
+            <h3>&#128222; ייעוץ ראשוני חינם</h3>
+            <p>ניתן לקבוע שיחת ייעוץ ללא עלות וללא התחייבות. <a href="tel:049001056" style={{ color: 'var(--teal)', fontWeight: 700 }}>04-9001056</a></p>
+          </div>
+
+        </div>
+      </section>
+
+      <CTASection title="רוצים לדעת את האמת?" subtitle="אנחנו לצידכם בהליך הקשה הזה — ייעוץ ראשוני חינם" />
+    </>
+  )
+}

@@ -1,0 +1,79 @@
+import { Link } from 'react-router-dom'
+import useRevealOnScroll from '../hooks/useRevealOnScroll'
+import Breadcrumb from '../components/Breadcrumb'
+import CTASection from '../components/CTASection'
+
+export default function StudentAccidents() {
+  useRevealOnScroll()
+
+  return (
+    <>
+      <Breadcrumb items={[
+        { label: 'תחומי עיסוק', to: '/#areas' },
+        { label: 'תאונות תלמידים' }
+      ]} />
+
+      <section className="hero">
+        <div className="hero-inner">
+          <p className="hero-eyebrow">תחום עיסוק &middot; ילדים ומשפחות</p>
+          <h1>תאונות<span className="accent">תלמידים</span></h1>
+          <p className="hero-sub">ילדכם נפגע בבית הספר? אנחנו כאן לייצג את זכויותיו ולמצות את הפיצויים המגיעים לכם.</p>
+          <div className="hero-btns">
+            <Link to="/#contact" className="btn-teal">קבעו ייעוץ חינם &#8592;</Link>
+            <a href="tel:049001056" className="btn-outline-white">&#128222; 04-9001056</a>
+          </div>
+        </div>
+      </section>
+
+      <section className="content-section">
+        <div className="content-container">
+
+          <div className="reveal">
+            <h2>זכויות תלמיד שנפגע בתאונה</h2>
+            <p>לתלמיד שנפגע בתאונה עומדת לעיתים זכות להגיש תביעת נזיקין בגין התאונה נגד הגורם האחראי. הבסיס לתביעה הוא בדרך כלל טענת רשלנות — בין אם מדובר בתחזוקה לקויה או מבנה פגום (ואז המזיק הוא הרשות המקומית), ובין אם מדובר בסדרי פיקוח לא נאותים מצד גורמי הניהול בבית הספר (ואז המזיק הוא המדינה).</p>
+            <p>עורך דין הבקיא בתחום יוכל לייעץ באשר לצורך בהגשת חוות דעת רפואית מטעם הנפגע. על כן חשוב להגיע לייעוץ משפטי מוקדם בטרם הפנייה לחברת הביטוח.</p>
+          </div>
+
+          <div className="reveal">
+            <h2>היכן יכולה להתרחש תאונת תלמיד?</h2>
+            <ul>
+              <li>בבית הספר — כיתות, מדרגות, חצרות, מגרשי ספורט</li>
+              <li>בטיולים ופעילויות חינוכיות מחוץ לבית הספר</li>
+              <li>בפעילויות ספורט וחינוך גופני</li>
+              <li>בהסעות תלמידים</li>
+              <li>במוסדות חינוך לגיל הרך (גני ילדים, פעוטות)</li>
+              <li>במחנות קיץ ופעילויות נוער</li>
+              <li>בהפסקות ובזמן חופשי בתחומי המוסד</li>
+            </ul>
+          </div>
+
+          <div className="highlight-box reveal">
+            <h3>&#128161; חשוב לדעת — אפיקי תביעה נפרדים</h3>
+            <p>לא יבוצע כל ניכוי או הפחתה מהסכומים שיגיעו לתלמיד/הנפגע מפוליסת התלמידים בכל אחד מאפיקי התביעות האחרות בנזיקין, מאחר שמדובר בתביעות נפרדות ועצמאיות לחלוטין.</p>
+            <p style={{ marginTop: 10, marginBottom: 0 }}>המשמעות: ניתן לתבוע <strong>הן</strong> מפוליסת הביטוח של בית הספר <strong>והן</strong> תביעת נזיקין נפרדת נגד האחראים לתאונה.</p>
+          </div>
+
+          <div className="reveal">
+            <h2>כיצד פועלים לאחר תאונה?</h2>
+            <ul>
+              <li>תיעוד מקום התאונה ואיסוף עדויות</li>
+              <li>שמירת דוחות רפואיים ותיעוד הטיפול</li>
+              <li>הגשת תביעה לפוליסת התלמידים של בית הספר</li>
+              <li>בחינת תביעת נזיקין נגד הרשות המקומית/המדינה/גורם אחר</li>
+              <li>הגשת חוות דעת רפואית במידת הצורך</li>
+              <li>ניהול משא ומתן מול חברות הביטוח</li>
+            </ul>
+          </div>
+
+          <div className="info-card reveal">
+            <h3>&#128222; ייעוץ חינם להורים ותלמידים</h3>
+            <p>ניתן להתקשר ולקבוע שיחת ייעוץ או פגישה ללא עלות וללא התחייבות. <a href="tel:049001056" style={{ color: 'var(--teal)', fontWeight: 700 }}>04-9001056</a></p>
+          </div>
+
+        </div>
+      </section>
+
+      <CTASection title="ילדכם נפגע? אנחנו לצידכם" subtitle="ייעוץ ראשוני ללא עלות וללא התחייבות" />
+    </>
+  )
+}

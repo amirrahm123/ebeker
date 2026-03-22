@@ -1,0 +1,116 @@
+import { Link } from 'react-router-dom'
+import useRevealOnScroll from '../hooks/useRevealOnScroll'
+import Breadcrumb from '../components/Breadcrumb'
+import CTASection from '../components/CTASection'
+import Accordion from '../components/Accordion'
+
+const accidentTypes = [
+  {
+    icon: '\uD83D\uDE97',
+    title: '\u05EA\u05D0\u05D5\u05E0\u05D5\u05EA \u05D3\u05E8\u05DB\u05D9\u05DD',
+    content: '\u05DE\u05D9\u05E6\u05D5\u05D9 \u05E4\u05D9\u05E6\u05D5\u05D9\u05D9\u05DD \u05DE\u05D7\u05D1\u05E8\u05D5\u05EA \u05D4\u05D1\u05D9\u05D8\u05D5\u05D7 \u05DC\u05E0\u05E4\u05D2\u05E2\u05D9 \u05EA\u05D0\u05D5\u05E0\u05D5\u05EA \u05D3\u05E8\u05DB\u05D9\u05DD \u2014 \u05D2\u05DD \u05D1\u05EA\u05D9\u05E7\u05D9\u05DD \u05DE\u05D5\u05E8\u05DB\u05D1\u05D9\u05DD \u05E2\u05DD \u05E0\u05D6\u05E7\u05D9 \u05D2\u05D5\u05E3 \u05D7\u05DE\u05D5\u05E8\u05D9\u05DD. \u05D0\u05E0\u05D5 \u05DE\u05DC\u05D5\u05D5\u05D9\u05DD \u05D0\u05EA \u05D4\u05E0\u05E4\u05D2\u05E2 \u05DE\u05E8\u05D2\u05E2 \u05D4\u05EA\u05D0\u05D5\u05E0\u05D4 \u05D5\u05E2\u05D3 \u05DC\u05E7\u05D1\u05DC\u05EA \u05D4\u05E4\u05D9\u05E6\u05D5\u05D9 \u05D4\u05DE\u05DC\u05D0.'
+  },
+  {
+    icon: '\uD83C\uDFD7\uFE0F',
+    title: '\u05EA\u05D0\u05D5\u05E0\u05D5\u05EA \u05E2\u05D1\u05D5\u05D3\u05D4',
+    content: '\u05DE\u05D9\u05E6\u05D5\u05D9 \u05D6\u05DB\u05D5\u05D9\u05D5\u05EA \u05E2\u05D5\u05D1\u05D3\u05D9\u05DD \u05E9\u05E0\u05E4\u05D2\u05E2\u05D5 \u05D1\u05EA\u05D0\u05D5\u05E0\u05EA \u05E2\u05D1\u05D5\u05D3\u05D4 \u05DE\u05D5\u05DC \u05D4\u05DE\u05D5\u05E1\u05D3 \u05DC\u05D1\u05D9\u05D8\u05D5\u05D7 \u05DC\u05D0\u05D5\u05DE\u05D9 \u05D5\u05DE\u05E2\u05E1\u05D9\u05E7\u05D9\u05DD. \u05DB\u05D5\u05DC\u05DC \u05D4\u05DB\u05E8\u05D4 \u05D1\u05EA\u05D0\u05D5\u05E0\u05D4, \u05E7\u05D1\u05D9\u05E2\u05EA \u05E0\u05DB\u05D5\u05EA \u05D5\u05E7\u05E6\u05D1\u05D0\u05D5\u05EA.'
+  },
+  {
+    icon: '\uD83D\uDEB6',
+    title: '\u05E0\u05E4\u05D9\u05DC\u05D4 \u05D1\u05E8\u05D7\u05D5\u05D1',
+    content: '\u05EA\u05D1\u05D9\u05E2\u05D5\u05EA \u05D1\u05D2\u05D9\u05DF \u05E0\u05E4\u05D9\u05DC\u05D4 \u05D1\u05D2\u05D9\u05DF \u05DE\u05E4\u05D2\u05E2\u05D9\u05DD \u05D1\u05E8\u05D7\u05D5\u05D1, \u05DE\u05D3\u05E8\u05DB\u05D4 \u05E9\u05D1\u05D5\u05E8\u05D4, \u05E8\u05E9\u05D5\u05EA \u05DE\u05E7\u05D5\u05DE\u05D9\u05EA \u05DC\u05D0 \u05D0\u05D7\u05E8\u05D0\u05D9\u05EA. \u05D0\u05E0\u05D5 \u05D3\u05D5\u05D0\u05D2\u05D9\u05DD \u05DC\u05EA\u05D9\u05E2\u05D5\u05D3 \u05D5\u05DC\u05D4\u05D5\u05DB\u05D7\u05EA \u05D0\u05D7\u05E8\u05D9\u05D5\u05EA \u05D4\u05D2\u05D5\u05E8\u05DD \u05D4\u05DE\u05EA\u05D7\u05D6\u05E7.'
+  },
+  {
+    icon: '\uD83D\uDE91',
+    title: '\u05EA\u05D0\u05D5\u05E0\u05D5\u05EA \u05E7\u05D8\u05DC\u05E0\u05D9\u05D5\u05EA',
+    content: '\u05D9\u05D9\u05E6\u05D5\u05D2 \u05DE\u05E9\u05E4\u05D7\u05D5\u05EA \u05E9\u05DB\u05D5\u05DC\u05D5\u05EA \u05D5\u05EA\u05D5\u05D1\u05E2\u05D9\u05DD \u05D1\u05EA\u05D0\u05D5\u05E0\u05D5\u05EA \u05E9\u05D2\u05E8\u05DE\u05D5 \u05DC\u05D0\u05D5\u05D1\u05D3\u05DF \u05D7\u05D9\u05D9\u05DD \u2014 \u05D1\u05E0\u05D7\u05D9\u05E9\u05D5\u05EA \u05D5\u05D1\u05DE\u05E7\u05E6\u05D5\u05E2\u05D9\u05D5\u05EA. \u05DB\u05D5\u05DC\u05DC \u05EA\u05D1\u05D9\u05E2\u05D5\u05EA \u05EA\u05DC\u05D5\u05D9\u05D9\u05DD \u05D5\u05E4\u05D9\u05E6\u05D5\u05D9 \u05DE\u05D5\u05E8\u05D7\u05D1.'
+  },
+  {
+    icon: '\uD83E\uDEC1',
+    title: '\u05DE\u05D7\u05DC\u05D5\u05EA \u05DE\u05E7\u05E6\u05D5\u05E2',
+    content: '\u05D4\u05DB\u05E8\u05D4 \u05D1\u05DE\u05D7\u05DC\u05D5\u05EA \u05E9\u05E0\u05D2\u05E8\u05DE\u05D5 \u05E2\u05E7\u05D1 \u05EA\u05E0\u05D0\u05D9 \u05E2\u05D1\u05D5\u05D3\u05D4 \u05D5\u05DE\u05D9\u05E6\u05D5\u05D9 \u05D6\u05DB\u05D5\u05D9\u05D5\u05EA \u05DE\u05D4\u05DE\u05D5\u05E1\u05D3 \u05DC\u05D1\u05D9\u05D8\u05D5\u05D7 \u05DC\u05D0\u05D5\u05DE\u05D9. \u05DB\u05D5\u05DC\u05DC \u05D7\u05E9\u05D9\u05E4\u05D4 \u05DC\u05D7\u05D5\u05DE\u05E8\u05D9\u05DD \u05DE\u05E1\u05D5\u05DB\u05E0\u05D9\u05DD \u05D5\u05DE\u05D7\u05DC\u05D5\u05EA \u05E8\u05D9\u05D0\u05D4.'
+  },
+  {
+    icon: '\u267F',
+    title: '\u05E0\u05DB\u05D5\u05EA \u05DB\u05DC\u05DC\u05D9\u05EA \u05D5\u05E0\u05D9\u05D9\u05D3\u05D5\u05EA',
+    content: '\u05D9\u05D9\u05E6\u05D5\u05D2 \u05DE\u05D5\u05DC \u05D5\u05E2\u05D3\u05D5\u05EA \u05E8\u05E4\u05D5\u05D0\u05D9\u05D5\u05EA \u05DC\u05E7\u05D1\u05D9\u05E2\u05EA \u05E0\u05DB\u05D5\u05EA \u05D5\u05DE\u05D9\u05E6\u05D5\u05D9 \u05E7\u05E6\u05D1\u05D0\u05D5\u05EA \u05E0\u05D9\u05D9\u05D3\u05D5\u05EA \u05D5\u05E7\u05E6\u05D1\u05D0\u05D5\u05EA \u05DB\u05DC\u05DC\u05D9\u05D5\u05EA. \u05E2\u05E8\u05E2\u05D5\u05E8\u05D9\u05DD \u05E2\u05DC \u05D4\u05D7\u05DC\u05D8\u05D5\u05EA \u05D5\u05E2\u05D3\u05D5\u05EA.'
+  },
+  {
+    icon: '\uD83C\uDF96\uFE0F',
+    title: '\u05E0\u05DB\u05D9 \u05E6\u05D4"\u05DC',
+    content: '\u05D9\u05D9\u05E6\u05D5\u05D2 \u05D7\u05D9\u05D9\u05DC\u05D9\u05DD \u05D5\u05DE\u05E9\u05D5\u05D7\u05E8\u05E8\u05D9\u05DD \u05DE\u05D5\u05DC \u05DE\u05E9\u05E8\u05D3 \u05D4\u05D1\u05D9\u05D8\u05D7\u05D5\u05DF \u05DC\u05E7\u05D1\u05D9\u05E2\u05EA \u05E0\u05DB\u05D5\u05EA \u05D5\u05DE\u05D9\u05E6\u05D5\u05D9 \u05E7\u05E6\u05D1\u05D0\u05D5\u05EA. \u05DB\u05D5\u05DC\u05DC \u05D5\u05E2\u05D3\u05D5\u05EA \u05E8\u05E4\u05D5\u05D0\u05D9\u05D5\u05EA \u05E6\u05D1\u05D0\u05D9\u05D5\u05EA.'
+  },
+  {
+    icon: '\uD83C\uDFDF\uFE0F',
+    title: '\u05EA\u05D0\u05D5\u05E0\u05D5\u05EA \u05D1\u05E1\u05E4\u05D5\u05E8\u05D8',
+    content: '\u05EA\u05D1\u05D9\u05E2\u05D5\u05EA \u05D1\u05D2\u05D9\u05DF \u05E4\u05D2\u05D9\u05E2\u05D5\u05EA \u05D1\u05DE\u05EA\u05E7\u05E0\u05D9 \u05E1\u05E4\u05D5\u05E8\u05D8, \u05D0\u05E6\u05D8\u05D3\u05D9\u05D5\u05E0\u05D9\u05DD, \u05D1\u05E8\u05D9\u05DB\u05D5\u05EA \u05D5\u05E4\u05E2\u05D9\u05DC\u05D5\u05D9\u05D5\u05EA \u05E4\u05E0\u05D0\u05D9. \u05D4\u05D5\u05DB\u05D7\u05EA \u05E8\u05E9\u05DC\u05E0\u05D5\u05EA \u05D4\u05DE\u05E4\u05E2\u05D9\u05DC \u05D0\u05D5 \u05D4\u05D1\u05E2\u05DC\u05D9\u05DD.'
+  }
+]
+
+export default function Damages() {
+  useRevealOnScroll()
+
+  return (
+    <>
+      <Breadcrumb items={[
+        { label: 'תחומי עיסוק', to: '/#areas' },
+        { label: 'נזיקין כללי' }
+      ]} />
+
+      <section className="hero">
+        <div className="hero-inner">
+          <p className="hero-eyebrow">תחום עיסוק &middot; נזיקין</p>
+          <h1>נזיקין<span className="accent">כללי</span></h1>
+          <p className="hero-sub">נפגעתם בתאונה? מגיעים לכם פיצויים. אנחנו כאן להילחם בשבילכם — עם ניסיון של מעל 21 שנה.</p>
+          <div className="hero-btns">
+            <Link to="/#contact" className="btn-teal">קבעו ייעוץ חינם &#8592;</Link>
+            <a href="tel:049001056" className="btn-outline-white">&#128222; 04-9001056</a>
+          </div>
+        </div>
+      </section>
+
+      <section className="content-section">
+        <div className="content-container">
+
+          <div className="reveal">
+            <h2>נזיקין — מה זה ומה הזכויות שלכם?</h2>
+            <p>ברחבי המדינה מתרחשות כל יום תאונות שבמסגרתן אנשים נפגעים בנפילה ברחוב, במהלך העבודה, או בפעולות יומיומיות. אם נפגעתם בתאונה בשל מפגע שהיה קיים במקום — אתם עשויים להיות זכאים לפיצוי בגין הנזק שנגרם לכם.</p>
+            <p>דיני הנזיקין מאפשרים לנפגע לתבוע פיצוי מהגורם האחראי לנזק. הפיצוי יכול לכסות כאב וסבל, הוצאות רפואיות, אובדן שכר, נכות, וכל נזק ממוני ולא ממוני שנגרם כתוצאה מהפגיעה.</p>
+          </div>
+
+          <div className="highlight-box reveal">
+            <p>העצה הראשונית המומלצת לנפגע היא <strong>לצלם ולתעד את מקום אירוע התאונה</strong>. בפגישה הראשונה עם עורך הדין יש להציג את התמונות בצירוף תיאור מפורט בכתב של נסיבות התאונה ופרטי העדים לאירוע.</p>
+          </div>
+
+          <div className="reveal">
+            <h2>סוגי התאונות והתביעות שבהן אנו מטפלים</h2>
+          </div>
+
+          <div className="reveal" style={{ margin: '20px 0 40px' }}>
+            <Accordion items={accidentTypes} defaultOpen={0} />
+          </div>
+
+          <div className="reveal">
+            <h2>מה כוללים הפיצויים?</h2>
+            <ul>
+              <li>כאב וסבל — פיצוי על הכאב הפיזי והנפשי שנגרם</li>
+              <li>הוצאות רפואיות — עבר ועתיד, כולל ניתוחים, פיזיותרפיה וטיפולים</li>
+              <li>אובדן שכר — בתקופת הפגיעה ובעתיד עקב נכות</li>
+              <li>נכות רפואית ותפקודית — פיצוי על ירידה בכושר הגוף ובתפקוד</li>
+              <li>הוצאות נלוות — נסיעות, עזרה בבית, ציוד רפואי</li>
+              <li>עזרת הזולת — אם הנפגע זקוק לעזרה יומיומית</li>
+            </ul>
+          </div>
+
+          <div className="info-card reveal">
+            <h3>&#128222; ייעוץ ראשוני חינם</h3>
+            <p>ניתן להתקשר ולקבוע שיחת ייעוץ או פגישה ללא עלות וללא התחייבות בטלפון <a href="tel:049001056" style={{ color: 'var(--teal)', fontWeight: 700 }}>04-9001056</a>.</p>
+          </div>
+
+        </div>
+      </section>
+
+      <CTASection title="נפגעתם? תנו לנו להילחם בשבילכם" subtitle="ייעוץ ראשוני ללא עלות וללא התחייבות" />
+    </>
+  )
+}
