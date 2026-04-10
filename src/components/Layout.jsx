@@ -28,9 +28,6 @@ export default function Layout() {
     <>
       <ProgressBar />
       <Navbar />
-      <div className="awards-strip">
-        DUNS 100 &middot; BDi CODE &middot; מוביל בישראל מאז 2003
-      </div>
       <Outlet />
       <Footer />
       <StickyCTA />

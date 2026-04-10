@@ -24,11 +24,10 @@
   --color-gold: #C9A84C;
   --logo-filter: brightness(0) invert(1);
 
-  /* Fixed top stack: nav row 1 (logo) + nav row 2 (links) + awards strip */
+  /* Fixed top stack: nav row 1 (logo) + nav row 2 (links) */
   --nav-row1-h: 88px;
   --nav-row2-h: 52px;
-  --awards-h: 30px;
-  --top-offset: 170px; /* sum of the three above */
+  --top-offset: 140px; /* sum of the two above */
 }
 
 html { scroll-behavior: smooth; }
@@ -319,25 +318,6 @@ nav#navbar.scrolled {
   background: rgba(255,255,255,.06);
 }
 .mobile-menu .mob-sub { padding-right: 44px; font-size: 0.9rem; }
-
-/* ── AWARDS STRIP (below navbar, above content) ── */
-.awards-strip {
-  position: fixed;
-  top: calc(var(--nav-row1-h) + var(--nav-row2-h));
-  right: 0; left: 0;
-  z-index: 999;
-  height: var(--awards-h);
-  display: flex; align-items: center; justify-content: center;
-  background: rgba(201, 168, 76, 0.12);
-  border-bottom: 1px solid rgba(201, 168, 76, 0.25);
-  color: var(--color-accent);
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 1.5px;
-  padding: 6px 16px;
-  text-align: center;
-  pointer-events: none;
-}
 
 /* ── BREADCRUMB ── */
 .breadcrumb {
@@ -1193,8 +1173,7 @@ footer::before {
   :root {
     --nav-row1-h: 64px;
     --nav-row2-h: 0px;
-    --awards-h: 26px;
-    --top-offset: 90px;
+    --top-offset: 64px;
   }
   .nav-row-logo { padding: 8px 0; border-bottom: none; }
   .nav-row-links { display: none; }
@@ -1202,7 +1181,6 @@ footer::before {
   .nav-row-inner { padding: 0 18px; }
   .nav-links, .nav-right { display: none; }
   .hamburger { display: flex; left: 14px; }
-  .awards-strip { font-size: 11px; letter-spacing: 1px; padding: 4px 12px; }
   .form-row { grid-template-columns: 1fr; }
 
   /* Hero */

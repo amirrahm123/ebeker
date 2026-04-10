@@ -289,7 +289,6 @@ export default function Home() {
       <section className="section section-alt news-section" id="news">
         <div className="container">
           <div className="reveal">
-            <h2 className="section-title">הצלחות ופסיקות בולטות</h2>
             <div className="teal-rule"></div>
           </div>
           <div className="news-grid">
@@ -304,6 +303,33 @@ export default function Home() {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* TRUST STRIP */}
+      <section className="trust-section">
+        <div className="trust-strip">
+          <div className="trust-strip-item">
+            <span className="trust-strip-icon">&#127942;</span>
+            <div className="trust-strip-text">
+              <span className="trust-strip-num">DUNS 100</span>
+              <span className="trust-strip-label">מדורג בין המובילים בישראל</span>
+            </div>
+          </div>
+          <div className="trust-strip-item">
+            <span className="trust-strip-icon">&#11088;</span>
+            <div className="trust-strip-text">
+              <span className="trust-strip-num">BDi CODE</span>
+              <span className="trust-strip-label">ציון מצוינות משפטית</span>
+            </div>
+          </div>
+          <div className="trust-strip-item">
+            <span className="trust-strip-icon">&#9878;&#65039;</span>
+            <div className="trust-strip-text">
+              <span className="trust-strip-num" data-target="21">0+</span>
+              <span className="trust-strip-label">שנות ניסיון</span>
+            </div>
           </div>
         </div>
       </section>
