@@ -93,39 +93,6 @@ const practiceAreas = [
   },
 ]
 
-const heroSliderArticles = [
-  {
-    img: '/pics/04_מהעיתונות_נזיקין_וביטוח/01_dcd181_04c73d6853ee4c34aa6db355bba3e575~mv2.jpg',
-    source: 'ישראל היום',
-    title: 'אופניים חשמליים אינם רכב מנועי — הלכה חדשה של בית המשפט העליון',
-  },
-  {
-    img: '/pics/04_מהעיתונות_נזיקין_וביטוח/02_dcd181_304013a8411f44b2a67328cdc4c9dab6~mv2.jpg',
-    source: 'ידיעות אחרונות',
-    title: 'כ-6.5 מיליון ₪ לתושב הצפון שנפגע במהלך עבודתו',
-  },
-  {
-    img: '/pics/05_מהעיתונות_ביטוח_לאומי/01_dcd181_f5556a8462a5469fa41dcfe72a181f84~mv2.jpg',
-    source: 'כלכליסט',
-    title: 'מדריך גלישה לקה באירוע מוחי בים — הוכר כנפגע עבודה',
-  },
-  {
-    img: '/pics/05_מהעיתונות_ביטוח_לאומי/02_dcd181_a39280f18b0040fc843753ba4d8b0437~mv2.jpg',
-    source: 'גלובס',
-    title: 'פסיקה תקדימית בנושא הכרה בנכות מעבודה וקצבה חודשית',
-  },
-  {
-    img: '/pics/06_מהעיתונות_משרד_הביטחון/01_dcd181_fb841f1cf79a404cac7f555193af5a63~mv2.jpg',
-    source: 'משרד הביטחון',
-    title: 'נכי צה"ל — הכרה מורחבת בזכויות ובמימוש קצבאות',
-  },
-  {
-    img: '/pics/06_מהעיתונות_משרד_הביטחון/02_dcd181_7f27376b889d46d097bfb7456a291a33~mv2.jpg',
-    source: 'מעריב',
-    title: 'עו"ד ערן בקר מרצה בלשכת עורכי הדין בחיפה — פורום נזיקין וביטוח',
-  },
-]
-
 const newsItems = [
   {
     img: '/pics/01_דף_הבית/01_dcd181_5c5efc732261430f88836392a1f161f7~mv2.jpg',
@@ -160,44 +127,6 @@ export default function Home() {
   const [articleIndex, setArticleIndex] = useState(null)
   const [zoomImg, setZoomImg] = useState(null)
 
-  // Hero article slider
-  const [heroSlide, setHeroSlide] = useState(0)
-  const [slidesPerView, setSlidesPerView] = useState(3)
-  const heroTotal = heroSliderArticles.length
-  const heroMaxIndex = Math.max(0, heroTotal - slidesPerView)
-
-  useEffect(() => {
-    const update = () => {
-      const w = window.innerWidth
-      if (w < 640) setSlidesPerView(1)
-      else if (w < 968) setSlidesPerView(2)
-      else setSlidesPerView(3)
-    }
-    update()
-    window.addEventListener('resize', update)
-    return () => window.removeEventListener('resize', update)
-  }, [])
-
-  useEffect(() => {
-    if (heroSlide > heroMaxIndex) setHeroSlide(heroMaxIndex)
-  }, [heroMaxIndex, heroSlide])
-
-  useEffect(() => {
-    const id = setInterval(() => {
-      setHeroSlide(i => (i >= heroMaxIndex ? 0 : i + 1))
-    }, 5000)
-    return () => clearInterval(id)
-  }, [heroMaxIndex])
-
-  const heroPrev = useCallback(() => {
-    setHeroSlide(i => (i <= 0 ? heroMaxIndex : i - 1))
-  }, [heroMaxIndex])
-  const heroNext = useCallback(() => {
-    setHeroSlide(i => (i >= heroMaxIndex ? 0 : i + 1))
-  }, [heroMaxIndex])
-
-  const activeSlideIdx = heroSlide + Math.floor(slidesPerView / 2)
-
   // Escape key closes modals
   useEffect(() => {
     const handler = (e) => {
@@ -226,57 +155,28 @@ export default function Home() {
 
   return (
     <>
-      {/* HERO — solid navy + article slider */}
-      <section className="hero hero-home" id="home">
-        <div className="hero-inner hero-inner-center">
-          <h1 className="hero-firm-title">ערן בקר</h1>
-          <p className="hero-firm-sub">חברת עורכי דין</p>
-          <div className="hero-firm-divider" aria-hidden="true"></div>
-          <p className="hero-tagline-gold">נפגעתם? חליתם? תנו לנו להילחם בנחישות למיצוי כל זכויותיכם!</p>
+      {/* HERO — framed dark navy with gold corner brackets */}
+      <section className="hero-framed" id="home">
+        <svg className="hero-framed-svg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+          <rect className="hero-border-outer" fill="none" stroke="rgba(201,168,76,0.22)" strokeWidth="1" />
+          <rect className="hero-border-inner" fill="none" stroke="rgba(201,168,76,0.14)" strokeWidth="1" />
+          <circle className="hero-center-glow" fill="rgba(201,168,76,0.04)" />
+          <path className="hero-corner hero-corner-tl" d="M0 45 L0 0 L45 0" stroke="rgba(201,168,76,0.7)" strokeWidth="2" fill="none" strokeLinecap="square" strokeLinejoin="miter" />
+          <path className="hero-corner hero-corner-tr" d="M0 0 L45 0 L45 45" stroke="rgba(201,168,76,0.7)" strokeWidth="2" fill="none" strokeLinecap="square" strokeLinejoin="miter" />
+          <path className="hero-corner hero-corner-bl" d="M0 0 L0 45 L45 45" stroke="rgba(201,168,76,0.7)" strokeWidth="2" fill="none" strokeLinecap="square" strokeLinejoin="miter" />
+          <path className="hero-corner hero-corner-br" d="M0 45 L45 45 L45 0" stroke="rgba(201,168,76,0.7)" strokeWidth="2" fill="none" strokeLinecap="square" strokeLinejoin="miter" />
+        </svg>
 
-          <div className="hero-slider-wrap">
-            <button className="slider-arrow prev" onClick={heroPrev} aria-label="הקודם">&#8594;</button>
-            <button className="slider-arrow next" onClick={heroNext} aria-label="הבא">&#8592;</button>
-
-            <div className="article-slider-viewport">
-              <div
-                className="article-slider-track"
-                style={{
-                  '--total-slides': heroTotal,
-                  '--slides-per-view': slidesPerView,
-                  transform: `translateX(calc(${heroSlide} * (100% / ${heroTotal})))`,
-                }}
-              >
-                {heroSliderArticles.map((a, i) => (
-                  <div key={i} className={`article-slide${i === activeSlideIdx ? ' active' : ''}`}>
-                    <div className="article-slide-inner">
-                      <div className="article-slide-img">
-                        <img src={a.img} alt={a.title} loading="lazy" />
-                      </div>
-                      <div className="article-slide-body">
-                        <span className="article-slide-source">{a.source}</span>
-                        <h3 className="article-slide-title">{a.title}</h3>
-                        <a href="#news" className="article-slide-link">צפה בכתבה &#8592;</a>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="slider-dots">
-              {Array.from({ length: heroMaxIndex + 1 }).map((_, i) => (
-                <button
-                  key={i}
-                  className={`slider-dot${i === heroSlide ? ' active' : ''}`}
-                  onClick={() => setHeroSlide(i)}
-                  aria-label={`עבור לשקף ${i + 1}`}
-                />
-              ))}
-            </div>
-          </div>
-
-          <div className="hero-btns">
+        <div className="hero-framed-content">
+          <p className="hero-framed-intro">נפגעתם? חליתם?</p>
+          <h1 className="hero-framed-headline">
+            תנו לנו להילחם בנחישות
+            <br />
+            <span className="accent">למיצוי כל זכויותיכם!</span>
+          </h1>
+          <div className="hero-framed-divider" aria-hidden="true"></div>
+          <p className="hero-framed-sub">משרד בוטיק מוביל מאז 2003 &middot; נזיקין, ביטוח, רשלנות רפואית וביטוח לאומי &middot; ליווי אישי בכל תיק</p>
+          <div className="hero-framed-btns">
             <a href="#contact" className="btn-teal">קבעו ייעוץ חינם &#8592;</a>
             <a href="tel:049001056" className="btn-outline-white">&#128222; 04-9001056</a>
           </div>
