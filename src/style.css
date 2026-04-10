@@ -2587,7 +2587,7 @@ img { max-width: 100%; height: auto; }
   background: #060e1e;
   min-height: 620px;
   margin-bottom: 0;
-  padding: calc(var(--top-offset) + 130px) 40px 80px;
+  padding: calc(var(--top-offset) + 180px) 40px 80px;
 }
 .hero-framed-canvas {
   position: absolute;
