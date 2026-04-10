@@ -9,128 +9,121 @@ import MediaCards from '../components/MediaCards'
 // Inline SVG icon content per practice area — uses currentColor so card hover
 // restyles it from gold to white. Common viewBox of 0 0 40 40.
 const areaIconPaths = {
-  // נזיקין כללי — stick figure falling down stairs
+  // נזיקין כללי — stick figure tilted 45° falling above 3 L-shaped stairs
   fall: (
     <>
-      <path d="M6 34 L14 34 L14 28 L22 28 L22 22 L30 22 L30 16 L36 16" />
-      <circle cx="11" cy="9" r="2.5" />
-      <path d="M12 11 L14 17" />
-      <path d="M11 13 L6 11" />
-      <path d="M14 12 L17 8" />
-      <path d="M14 17 L11 22" />
-      <path d="M14 17 L17 22" />
+      {/* 3 ascending stair steps (profile line) */}
+      <path d="M4 34 L14 34 L14 28 L22 28 L22 22 L30 22 L30 16 L38 16" />
+      {/* falling figure, body rotated ~45° */}
+      <circle cx="9" cy="9" r="3" />
+      <path d="M11 11 L17 18" />
+      <path d="M10 13 L5 11" />
+      <path d="M13 11 L17 6" />
+      <path d="M17 18 L12 24" />
+      <path d="M17 18 L21 24" />
     </>
   ),
-  // רשלנות רפואית — doctor with coat and stethoscope
+  // רשלנות רפואית — medical plus inside a circle (universal symbol)
   doctor: (
     <>
-      <circle cx="20" cy="8" r="3.5" />
-      <path d="M13 34 L13 18 L16 14 L20 17 L24 14 L27 18 L27 34" />
-      <path d="M20 17 L20 26" />
-      <path d="M16 14 C15 22, 24 22, 24 28" />
-      <circle cx="24" cy="29.5" r="1.8" />
+      <circle cx="20" cy="20" r="14" />
+      <path d="M20 11 L20 29" />
+      <path d="M11 20 L29 20" />
     </>
   ),
-  // ביטוח — shield (kept)
+  // ביטוח — shield
   shield: (
     <path d="M20 4 L32 8 V19 C32 27, 27 33, 20 36 C13 33, 8 27, 8 19 V8 Z" />
   ),
-  // תאונות עבודה — person falling off a ladder
+  // תאונות עבודה — clear ladder (2 rails, 4 rungs) with figure falling off the left
   ladder: (
     <>
-      <path d="M20 6 L20 34" />
-      <path d="M30 6 L30 34" />
-      <path d="M20 12 L30 12" />
-      <path d="M20 19 L30 19" />
-      <path d="M20 26 L30 26" />
-      <circle cx="10" cy="14" r="2.2" />
-      <path d="M11 16 L14 20" />
-      <path d="M9 16 L5 18" />
-      <path d="M12 18 L16 17" />
-      <path d="M14 20 L10 25" />
-      <path d="M14 20 L16 25" />
+      <path d="M22 5 L22 35" />
+      <path d="M32 5 L32 35" />
+      <path d="M22 12 L32 12" />
+      <path d="M22 19 L32 19" />
+      <path d="M22 26 L32 26" />
+      <path d="M22 33 L32 33" />
+      <circle cx="9" cy="12" r="3" />
+      <path d="M11 15 L15 22" />
+      <path d="M9 17 L4 19" />
+      <path d="M13 18 L18 14" />
+      <path d="M15 22 L11 30" />
+      <path d="M15 22 L18 30" />
     </>
   ),
-  // תאונות דרכים — car side view
+  // תאונות דרכים — car side view with larger wheels
   car: (
     <>
-      <path d="M4 26 L4 20 L10 20 L14 13 L28 13 L30 20 L36 20 L36 26" />
-      <path d="M4 26 L36 26" />
-      <path d="M18 13 L18 20" />
-      <circle cx="11" cy="28" r="3" />
-      <circle cx="29" cy="28" r="3" />
+      <path d="M3 26 L3 20 L9 20 L14 11 L28 11 L33 20 L37 20 L37 26" />
+      <path d="M3 26 L37 26" />
+      <path d="M18 11 L18 20" />
+      <circle cx="11" cy="28" r="6" />
+      <circle cx="29" cy="28" r="6" />
     </>
   ),
-  // תאונות ימיות — anchor
+  // תאונות ימיות — bolder anchor (strokeWidth 2.5)
   anchor: (
-    <>
-      <circle cx="20" cy="7" r="2.5" />
-      <path d="M20 10 L20 32" />
-      <path d="M14 14 L26 14" />
-      <path d="M8 22 C8 30, 14 33, 20 33" />
-      <path d="M32 22 C32 30, 26 33, 20 33" />
-    </>
+    <g strokeWidth="2.5">
+      <circle cx="20" cy="7" r="2.8" />
+      <path d="M20 10 L20 34" />
+      <path d="M13 14 L27 14" />
+      <path d="M6 22 C6 30, 13 35, 20 35" />
+      <path d="M34 22 C34 30, 27 35, 20 35" />
+    </g>
   ),
-  // תאונות תלמידים — child with backpack and arm in sling
+  // תאונות תלמידים — child figure with big backpack
   student: (
     <>
-      <circle cx="17" cy="9" r="2.8" />
-      <path d="M17 12 L17 26" />
-      <path d="M17 26 L13 34" />
-      <path d="M17 26 L21 34" />
-      <path d="M22 14 L28 14 L28 22 L22 22 Z" />
-      <path d="M22 14 L18 16" />
-      <path d="M22 22 L18 20" />
-      <path d="M17 15 L13 19" />
-      <path d="M17 15 L12 17 L15 22" />
+      <circle cx="14" cy="9" r="3" />
+      <path d="M14 12 L14 26" />
+      <path d="M14 16 L9 22" />
+      <path d="M14 16 L19 22" />
+      <path d="M14 26 L10 34" />
+      <path d="M14 26 L18 34" />
+      {/* backpack (large rect on back/right) */}
+      <path d="M21 13 L32 13 L32 27 L21 27 Z" />
+      {/* straps */}
+      <path d="M21 13 L15 14" />
+      <path d="M21 27 L15 25" />
     </>
   ),
-  // תאונות קטלניות — two figures doing CPR
+  // תאונות קטלניות — heart with plus inside
   cpr: (
     <>
-      <circle cx="7" cy="28" r="2.2" />
-      <path d="M9 28 L27 28" />
-      <path d="M27 28 L31 25" />
-      <path d="M27 28 L31 31" />
-      <circle cx="18" cy="10" r="2.6" />
-      <path d="M18 13 L19 21" />
-      <path d="M19 18 L16 25" />
-      <path d="M19 18 L22 25" />
+      <path d="M20 34 C4 22, 4 10, 12 10 C16 10, 19 12, 20 15 C21 12, 24 10, 28 10 C36 10, 36 22, 20 34 Z" />
+      <path d="M20 17 L20 27" />
+      <path d="M15 22 L25 22" />
     </>
   ),
-  // מחלות מקצוע — lungs with warning X
+  // מחלות מקצוע — two clear lung blobs with trachea on top
   lungs: (
     <>
-      <path d="M20 8 L20 18" />
-      <path d="M20 18 C14 18, 10 22, 10 28 C10 32, 14 34, 17 33 L17 18" />
-      <path d="M20 18 C26 18, 30 22, 30 28 C30 32, 26 34, 23 33 L23 18" />
-      <path d="M15 25 L21 31" />
-      <path d="M21 25 L15 31" />
+      <path d="M20 5 L20 14" />
+      <path d="M14 14 L26 14" />
+      {/* left lung */}
+      <path d="M16 14 C9 16, 6 22, 7 28 C8 34, 13 35, 16 33 Z" />
+      {/* right lung */}
+      <path d="M24 14 C31 16, 34 22, 33 28 C32 34, 27 35, 24 33 Z" />
     </>
   ),
-  // פטור ממס הכנסה — scissors cutting a document
+  // פטור ממס הכנסה — bold scissors (no document)
   scissors: (
     <>
-      <path d="M10 6 L26 6 L26 26 L10 26 Z" />
-      <path d="M14 12 L22 12" />
-      <path d="M14 17 L22 17" />
-      <path d="M14 22 L20 22" />
-      <circle cx="14" cy="33" r="2" />
-      <circle cx="22" cy="33" r="2" />
-      <path d="M16 31 L30 18" />
-      <path d="M20 31 L28 22" />
+      <circle cx="10" cy="30" r="4" />
+      <circle cx="28" cy="30" r="4" />
+      <path d="M13 28 L32 8" />
+      <path d="M25 28 L6 8" />
     </>
   ),
-  // צוואות וירושות — rolled contract with signature lines and seal dot
+  // צוואות וירושות — document with folded corner and 3 lines
   contract: (
     <>
-      <path d="M10 6 L28 6 L28 34 L10 34 Z" />
-      <path d="M10 6 C8 6, 8 8, 10 8" />
-      <path d="M28 34 C30 34, 30 32, 28 32" />
-      <path d="M14 14 L24 14" />
-      <path d="M14 19 L22 19" />
-      <path d="M14 24 L24 24" />
-      <circle cx="21" cy="29" r="1.8" fill="currentColor" />
+      <path d="M8 4 L24 4 L32 12 L32 36 L8 36 Z" />
+      <path d="M24 4 L24 12 L32 12" />
+      <path d="M12 20 L28 20" />
+      <path d="M12 26 L28 26" />
+      <path d="M12 32 L24 32" />
     </>
   ),
   // ייפוי כוח מתמשך — simple scroll/document (kept)
@@ -142,42 +135,35 @@ const areaIconPaths = {
       <path d="M16 25 L21 25" />
     </>
   ),
-  // חקירת סיבות מוות — magnifying glass over a document
+  // חקירת סיבות מוות — larger magnifying glass (strokeWidth 2.5)
   magnifier: (
-    <>
-      <path d="M8 6 L24 6 L24 28 L8 28 Z" />
-      <path d="M12 12 L20 12" />
-      <path d="M12 17 L20 17" />
-      <path d="M12 22 L18 22" />
-      <circle cx="26" cy="24" r="6" />
-      <path d="M30.5 28.5 L35 33" />
-    </>
+    <g strokeWidth="2.5">
+      <circle cx="17" cy="17" r="10" />
+      <path d="M25 25 L34 34" />
+    </g>
   ),
-  // נכות כללית וניידות — wheelchair figure
+  // נכות כללית וניידות — bolder wheelchair (strokeWidth 2.5)
   wheelchair: (
-    <>
-      <circle cx="19" cy="7" r="2.5" />
-      <path d="M19 10 L21 17" />
-      <path d="M21 15 L26 13" />
-      <path d="M21 17 L29 22" />
-      <circle cx="17" cy="28" r="6.5" />
-      <circle cx="29" cy="32" r="2" />
-      <path d="M23 28 L27 32" />
-    </>
+    <g strokeWidth="2.5">
+      <circle cx="17" cy="6" r="2.8" />
+      <path d="M17 9 L19 17" />
+      <path d="M19 15 L26 13" />
+      <path d="M19 17 L30 22" />
+      <circle cx="15" cy="28" r="8" />
+      <circle cx="30" cy="33" r="2.5" />
+      <path d="M23 28 L28 33" />
+    </g>
   ),
-  // נכי צה"ל — soldier with helmet and rifle
+  // נכי צה"ל — Star of David (two overlapping triangles)
   soldier: (
     <>
-      <path d="M14 10 L14 8 C14 5, 26 5, 26 8 L26 10 Z" />
-      <circle cx="20" cy="14" r="3" />
-      <path d="M14 34 L14 20 L26 20 L26 34" />
-      <path d="M10 22 L30 28" />
-      <path d="M10 22 L8 20" />
+      <path d="M20 4 L34 28 L6 28 Z" />
+      <path d="M20 36 L34 12 L6 12 Z" />
     </>
   ),
 }
 
-function AreaIcon({ iconKey, size = 28 }) {
+function AreaIcon({ iconKey, size = 56 }) {
   const content = areaIconPaths[iconKey]
   if (!content) return null
   return (
@@ -187,7 +173,7 @@ function AreaIcon({ iconKey, size = 28 }) {
       viewBox="0 0 40 40"
       fill="none"
       stroke="currentColor"
-      strokeWidth="1.6"
+      strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
     >
