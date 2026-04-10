@@ -7,8 +7,10 @@ import WhatsAppFloat from './WhatsAppFloat'
 import ScrollTopButton from './ScrollTopButton'
 import StickyCTA from './StickyCTA'
 import ProgressBar from './ProgressBar'
+import useCounterAnimation from '../hooks/useCounterAnimation'
 
 export default function Layout() {
+  useCounterAnimation()
   const { pathname, hash } = useLocation()
 
   useEffect(() => {
@@ -28,6 +30,31 @@ export default function Layout() {
     <>
       <ProgressBar />
       <Navbar />
+      <section className="trust-section">
+        <div className="trust-strip">
+          <div className="trust-strip-item">
+            <span className="trust-strip-icon">&#127942;</span>
+            <div className="trust-strip-text">
+              <span className="trust-strip-num">DUNS 100</span>
+              <span className="trust-strip-label">מדורג בין המובילים בישראל</span>
+            </div>
+          </div>
+          <div className="trust-strip-item">
+            <span className="trust-strip-icon">&#11088;</span>
+            <div className="trust-strip-text">
+              <span className="trust-strip-num">BDi CODE</span>
+              <span className="trust-strip-label">ציון מצוינות משפטית</span>
+            </div>
+          </div>
+          <div className="trust-strip-item">
+            <span className="trust-strip-icon">&#9878;&#65039;</span>
+            <div className="trust-strip-text">
+              <span className="trust-strip-num" data-target="25">0+</span>
+              <span className="trust-strip-label">שנות ניסיון</span>
+            </div>
+          </div>
+        </div>
+      </section>
       <Outlet />
       <Footer />
       <StickyCTA />
