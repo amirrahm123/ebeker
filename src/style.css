@@ -1831,6 +1831,10 @@ footer::before {
 }
 
 /* ── NEWS SECTION (directly below hero) ── */
+.news-section {
+  margin-top: 0;
+  padding-top: 40px;
+}
 .news-section .section-title {
   text-align: right;
 }
@@ -2579,9 +2583,10 @@ img { max-width: 100%; height: auto; }
   position: relative;
   overflow: hidden;
   background: #060e1e;
-  padding: calc(var(--top-offset) + 60px) 40px 60px;
+  padding: calc(var(--top-offset) + 80px) 40px 80px;
   text-align: center;
-  min-height: auto;
+  min-height: 520px;
+  margin-bottom: 0;
 }
 .hero-framed-svg {
   position: absolute;
