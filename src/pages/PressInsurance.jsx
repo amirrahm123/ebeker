@@ -1,7 +1,6 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
 import useRevealOnScroll from '../hooks/useRevealOnScroll'
-import Breadcrumb from '../components/Breadcrumb'
+import PageBanner from '../components/PageBanner'
 import CTASection from '../components/CTASection'
 import ZoomViewer from '../components/ZoomViewer'
 
@@ -34,19 +33,11 @@ export default function PressInsurance() {
 
   return (
     <>
-      <Breadcrumb items={[{ label: 'מהעיתונות', to: '#' }, { label: 'ביטוח לאומי' }]} />
-
-      <section className="hero">
-        <div className="hero-inner">
-          <p className="hero-eyebrow">מהעיתונות</p>
-          <h1>מהעיתונות<span className="accent">ביטוח לאומי</span></h1>
-          <p className="hero-sub">כתבות ופרסומים בנושאי ביטוח לאומי</p>
-          <div className="hero-btns">
-            <Link to="/#contact" className="btn-teal">קבעו ייעוץ חינם &#8592;</Link>
-            <a href="tel:049001056" className="btn-outline-white">&#128222; 04-9001056</a>
-          </div>
-        </div>
-      </section>
+      <PageBanner
+        crumbs={[{ label: 'מהעיתונות', to: '#' }, { label: 'ביטוח לאומי' }]}
+        title="מהעיתונות"
+        accent="ביטוח לאומי"
+      />
 
       <section className="content-section">
         <div className="content-container">

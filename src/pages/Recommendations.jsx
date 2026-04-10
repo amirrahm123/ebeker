@@ -1,7 +1,6 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
 import useRevealOnScroll from '../hooks/useRevealOnScroll'
-import Breadcrumb from '../components/Breadcrumb'
+import PageBanner from '../components/PageBanner'
 import CTASection from '../components/CTASection'
 import ZoomViewer from '../components/ZoomViewer'
 
@@ -47,19 +46,11 @@ export default function Recommendations() {
 
   return (
     <>
-      <Breadcrumb items={[{ label: 'ממליצים עלינו' }]} />
-
-      <section className="hero">
-        <div className="hero-inner">
-          <p className="hero-eyebrow">המלצות לקוחות</p>
-          <h1>ממליצים<span className="accent">עלינו</span></h1>
-          <p className="hero-sub">מכתבי תודה והמלצות מלקוחותינו — העדות הטובה ביותר למקצועיות ולמסירות שלנו.</p>
-          <div className="hero-btns">
-            <Link to="/#contact" className="btn-teal">קבעו ייעוץ חינם &#8592;</Link>
-            <a href="tel:049001056" className="btn-outline-white">&#128222; 04-9001056</a>
-          </div>
-        </div>
-      </section>
+      <PageBanner
+        crumbs={[{ label: 'ממליצים עלינו' }]}
+        title="ממליצים"
+        accent="עלינו"
+      />
 
       <section className="section">
         <div className="container">

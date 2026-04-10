@@ -1,6 +1,5 @@
-import { Link } from 'react-router-dom'
 import useRevealOnScroll from '../hooks/useRevealOnScroll'
-import Breadcrumb from '../components/Breadcrumb'
+import PageBanner from '../components/PageBanner'
 import CTASection from '../components/CTASection'
 
 export default function EransTip() {
@@ -8,19 +7,11 @@ export default function EransTip() {
 
   return (
     <>
-      <Breadcrumb items={[{ label: 'הטיפ של ערן' }]} />
-
-      <section className="hero">
-        <div className="hero-inner">
-          <p className="hero-eyebrow">הטיפ של ערן</p>
-          <h1>טיפים משפטיים<span className="accent">מעו״ד ערן בקר</span></h1>
-          <p className="hero-sub">תובנות, עצות וטיפים מקצועיים מעולם המשפט — ישירות מהניסיון של למעלה מ-21 שנה בתחום הנזיקין והביטוח.</p>
-          <div className="hero-btns">
-            <Link to="/#contact" className="btn-teal">קבעו ייעוץ חינם &#8592;</Link>
-            <a href="tel:049001056" className="btn-outline-white">&#128222; 04-9001056</a>
-          </div>
-        </div>
-      </section>
+      <PageBanner
+        crumbs={[{ label: 'הטיפ של ערן' }]}
+        title="טיפים משפטיים"
+        accent="מעו״ד ערן בקר"
+      />
 
       <section className="content-section">
         <div className="content-container">

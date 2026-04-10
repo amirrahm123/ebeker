@@ -1,7 +1,7 @@
 import { useState, useCallback } from 'react'
 import { Link } from 'react-router-dom'
 import useRevealOnScroll from '../hooks/useRevealOnScroll'
-import Breadcrumb from '../components/Breadcrumb'
+import PageBanner from '../components/PageBanner'
 import CTASection from '../components/CTASection'
 import Modal from '../components/Modal'
 
@@ -87,19 +87,11 @@ export default function LegalTeam() {
 
   return (
     <>
-      <Breadcrumb items={[{ label: 'הצוות המשפטי' }]} />
-
-      <section className="hero">
-        <div className="hero-inner">
-          <p className="hero-eyebrow">הצוות המשפטי</p>
-          <h1>עורכי הדין<span className="accent">שנלחמים בשבילכם</span></h1>
-          <p className="hero-sub">צוות מנוסה ומסור, עם עשרות שנות ניסיון משולב בייצוג נפגעי גוף.</p>
-          <div className="hero-btns">
-            <Link to="/#contact" className="btn-teal">קבעו ייעוץ חינם &#8592;</Link>
-            <a href="tel:049001056" className="btn-outline-white">&#128222; 04-9001056</a>
-          </div>
-        </div>
-      </section>
+      <PageBanner
+        crumbs={[{ label: 'הצוות המשפטי' }]}
+        title="עורכי הדין"
+        accent="שנלחמים בשבילכם"
+      />
 
       <section className="section">
         <div className="container">

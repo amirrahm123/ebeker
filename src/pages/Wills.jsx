@@ -1,6 +1,5 @@
-import { Link } from 'react-router-dom'
 import useRevealOnScroll from '../hooks/useRevealOnScroll'
-import Breadcrumb from '../components/Breadcrumb'
+import PageBanner from '../components/PageBanner'
 import CTASection from '../components/CTASection'
 
 export default function Wills() {
@@ -8,22 +7,14 @@ export default function Wills() {
 
   return (
     <>
-      <Breadcrumb items={[
-        { label: 'תחומי עיסוק', to: '/#areas' },
-        { label: 'צוואות וירושות' }
-      ]} />
-
-      <section className="hero">
-        <div className="hero-inner">
-          <p className="hero-eyebrow">תחום עיסוק &middot; דיני משפחה</p>
-          <h1>צוואות<span className="accent">וירושות</span></h1>
-          <p className="hero-sub">עריכת צוואות, ניהול עיזבונות וייצוג בסכסוכי ירושה — בצורה מקצועית, אמינה ורגישה.</p>
-          <div className="hero-btns">
-            <Link to="/#contact" className="btn-teal">קבעו ייעוץ חינם &#8592;</Link>
-            <a href="tel:049001056" className="btn-outline-white">&#128222; 04-9001056</a>
-          </div>
-        </div>
-      </section>
+      <PageBanner
+        crumbs={[
+          { label: 'תחומי עיסוק', to: '/#areas' },
+          { label: 'צוואות וירושות' }
+        ]}
+        title="צוואות"
+        accent="וירושות"
+      />
 
       <section className="content-section">
         <div className="content-container">

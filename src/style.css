@@ -2682,3 +2682,98 @@ img { max-width: 100%; height: auto; }
   .hero-framed-sub { font-size: 0.78rem; }
   .hero-framed-btns { gap: 10px; }
 }
+
+/* ══════════════════════════════════════
+   PAGE BANNER — inner page title banner
+   ══════════════════════════════════════ */
+.page-banner {
+  position: relative;
+  overflow: hidden;
+  background: #060e1e;
+  padding: calc(var(--top-offset) + 50px) 40px 44px;
+  text-align: right;
+}
+.page-banner-corner {
+  position: absolute;
+  width: 36px;
+  height: 36px;
+  pointer-events: none;
+}
+.page-banner-corner-tl {
+  top: 20px;
+  left: 20px;
+  border-top: 1.5px solid rgba(201,168,76,0.4);
+  border-left: 1.5px solid rgba(201,168,76,0.4);
+}
+.page-banner-corner-tr {
+  top: 20px;
+  right: 20px;
+  border-top: 1.5px solid rgba(201,168,76,0.4);
+  border-right: 1.5px solid rgba(201,168,76,0.4);
+}
+.page-banner-corner-bl {
+  bottom: 20px;
+  left: 20px;
+  border-bottom: 1.5px solid rgba(201,168,76,0.4);
+  border-left: 1.5px solid rgba(201,168,76,0.4);
+}
+.page-banner-corner-br {
+  bottom: 20px;
+  right: 20px;
+  border-bottom: 1.5px solid rgba(201,168,76,0.4);
+  border-right: 1.5px solid rgba(201,168,76,0.4);
+}
+.page-banner-content {
+  position: relative;
+  z-index: 2;
+  max-width: 700px;
+  margin-right: auto;
+}
+.page-banner-breadcrumb {
+  color: rgba(201,168,76,0.6);
+  font-size: 0.78rem;
+  margin-bottom: 14px;
+  letter-spacing: 0.3px;
+}
+.page-banner-breadcrumb a {
+  color: rgba(201,168,76,0.6);
+  text-decoration: none;
+  transition: color .2s ease;
+}
+.page-banner-breadcrumb a:hover {
+  color: var(--color-accent);
+}
+.page-banner-breadcrumb .sep {
+  margin: 0 6px;
+  opacity: .55;
+}
+.page-banner-breadcrumb .current {
+  color: rgba(201,168,76,0.9);
+  font-weight: 600;
+}
+.page-banner-title {
+  color: #fff;
+  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+  font-weight: 900;
+  line-height: 1.15;
+  margin: 0;
+  letter-spacing: -0.3px;
+}
+.page-banner-title .accent {
+  color: var(--color-accent);
+}
+.page-banner-divider {
+  width: 48px;
+  height: 2px;
+  background: rgba(201,168,76,0.45);
+  margin-top: 12px;
+}
+
+@media (max-width: 640px) {
+  .page-banner { padding: calc(var(--top-offset) + 34px) 22px 32px; }
+  .page-banner-corner { width: 28px; height: 28px; }
+  .page-banner-corner-tl, .page-banner-corner-tr { top: 14px; }
+  .page-banner-corner-bl, .page-banner-corner-br { bottom: 14px; }
+  .page-banner-corner-tl, .page-banner-corner-bl { left: 14px; }
+  .page-banner-corner-tr, .page-banner-corner-br { right: 14px; }
+}

@@ -1,6 +1,5 @@
-import { Link } from 'react-router-dom'
 import useRevealOnScroll from '../hooks/useRevealOnScroll'
-import Breadcrumb from '../components/Breadcrumb'
+import PageBanner from '../components/PageBanner'
 import CTASection from '../components/CTASection'
 
 export default function MarineAccidents() {
@@ -8,22 +7,14 @@ export default function MarineAccidents() {
 
   return (
     <>
-      <Breadcrumb items={[
-        { label: 'תחומי עיסוק', to: '/#areas' },
-        { label: 'תאונות ימיות' }
-      ]} />
-
-      <section className="hero">
-        <div className="hero-inner">
-          <p className="hero-eyebrow">תחום עיסוק &middot; התמחות ייחודית</p>
-          <h1>תאונות<span className="accent">ימיות</span></h1>
-          <p className="hero-sub">מומחיות ייחודית בתביעות נפגעים בים ובכנרת — לעו"ד ערן בקר ניסיון של כ-21 שנים בתחום.</p>
-          <div className="hero-btns">
-            <Link to="/#contact" className="btn-teal">קבעו ייעוץ חינם &#8592;</Link>
-            <a href="tel:049001056" className="btn-outline-white">&#128222; 04-9001056</a>
-          </div>
-        </div>
-      </section>
+      <PageBanner
+        crumbs={[
+          { label: 'תחומי עיסוק', to: '/#areas' },
+          { label: 'תאונות ימיות' }
+        ]}
+        title="תאונות"
+        accent="ימיות"
+      />
 
       <section className="content-section">
         <div className="content-container">

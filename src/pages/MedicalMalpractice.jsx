@@ -1,6 +1,5 @@
-import { Link } from 'react-router-dom'
 import useRevealOnScroll from '../hooks/useRevealOnScroll'
-import Breadcrumb from '../components/Breadcrumb'
+import PageBanner from '../components/PageBanner'
 import CTASection from '../components/CTASection'
 
 export default function MedicalMalpractice() {
@@ -8,22 +7,14 @@ export default function MedicalMalpractice() {
 
   return (
     <>
-      <Breadcrumb items={[
-        { label: 'תחומי עיסוק', to: '/#areas' },
-        { label: 'רשלנות רפואית' }
-      ]} />
-
-      <section className="hero">
-        <div className="hero-inner">
-          <p className="hero-eyebrow">תחום עיסוק &middot; נזיקין</p>
-          <h1>רשלנות<span className="accent">רפואית</span></h1>
-          <p className="hero-sub">נפגעתם מטיפול רפואי כושל? לעו"ד ערן בקר ניסיון של כ-21 שנים בהצלחה בתביעות רשלנות רפואית.</p>
-          <div className="hero-btns">
-            <Link to="/#contact" className="btn-teal">קבעו ייעוץ חינם &#8592;</Link>
-            <a href="tel:049001056" className="btn-outline-white">&#128222; 04-9001056</a>
-          </div>
-        </div>
-      </section>
+      <PageBanner
+        crumbs={[
+          { label: 'תחומי עיסוק', to: '/#areas' },
+          { label: 'רשלנות רפואית' }
+        ]}
+        title="רשלנות"
+        accent="רפואית"
+      />
 
       <section className="content-section">
         <div className="content-container">

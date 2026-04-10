@@ -1,6 +1,5 @@
-import { Link } from 'react-router-dom'
 import useRevealOnScroll from '../hooks/useRevealOnScroll'
-import Breadcrumb from '../components/Breadcrumb'
+import PageBanner from '../components/PageBanner'
 import CTASection from '../components/CTASection'
 
 export default function About() {
@@ -8,19 +7,11 @@ export default function About() {
 
   return (
     <>
-      <Breadcrumb items={[{ label: 'אודות הפירמה' }]} />
-
-      <section className="hero">
-        <div className="hero-inner">
-          <p className="hero-eyebrow">אודות הפירמה</p>
-          <h1>מעל 21 שנה של<span className="accent">נחישות משפטית</span></h1>
-          <p className="hero-sub">משרד בוטיק מוביל המתמחה במימוש זכויות נפגעי גוף — עם ניסיון, מצוינות ודיסקרטיות.</p>
-          <div className="hero-btns">
-            <Link to="/#contact" className="btn-teal">קבעו ייעוץ חינם &#8592;</Link>
-            <a href="tel:049001056" className="btn-outline-white">&#128222; 04-9001056</a>
-          </div>
-        </div>
-      </section>
+      <PageBanner
+        crumbs={[{ label: 'אודות הפירמה' }]}
+        title="מעל 21 שנה של"
+        accent="נחישות משפטית"
+      />
 
       <section className="content-section">
         <div className="content-container">

@@ -1,6 +1,5 @@
-import { Link } from 'react-router-dom'
 import useRevealOnScroll from '../hooks/useRevealOnScroll'
-import Breadcrumb from '../components/Breadcrumb'
+import PageBanner from '../components/PageBanner'
 import CTASection from '../components/CTASection'
 
 export default function PowerOfAttorney() {
@@ -8,22 +7,14 @@ export default function PowerOfAttorney() {
 
   return (
     <>
-      <Breadcrumb items={[
-        { label: 'תחומי עיסוק', to: '/#areas' },
-        { label: 'ייפוי כוח מתמשך' }
-      ]} />
-
-      <section className="hero">
-        <div className="hero-inner">
-          <p className="hero-eyebrow">תחום עיסוק &middot; כשרות משפטית</p>
-          <h1>ייפוי כוח מתמשך<span className="accent">וצו אפוטרופסות</span></h1>
-          <p className="hero-sub">הכינו את העתיד — בחרו מי ידאג לאינטרסים שלכם כאשר לא תוכלו לעשות זאת בעצמכם.</p>
-          <div className="hero-btns">
-            <Link to="/#contact" className="btn-teal">קבעו ייעוץ חינם &#8592;</Link>
-            <a href="tel:049001056" className="btn-outline-white">&#128222; 04-9001056</a>
-          </div>
-        </div>
-      </section>
+      <PageBanner
+        crumbs={[
+          { label: 'תחומי עיסוק', to: '/#areas' },
+          { label: 'ייפוי כוח מתמשך' }
+        ]}
+        title="ייפוי כוח מתמשך"
+        accent="וצו אפוטרופסות"
+      />
 
       <section className="content-section">
         <div className="content-container">

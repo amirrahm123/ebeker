@@ -1,6 +1,5 @@
-import { Link } from 'react-router-dom'
 import useRevealOnScroll from '../hooks/useRevealOnScroll'
-import Breadcrumb from '../components/Breadcrumb'
+import PageBanner from '../components/PageBanner'
 import CTASection from '../components/CTASection'
 
 export default function TaxExemption() {
@@ -8,22 +7,14 @@ export default function TaxExemption() {
 
   return (
     <>
-      <Breadcrumb items={[
-        { label: 'תחומי עיסוק', to: '/#areas' },
-        { label: 'פטור ממס הכנסה' }
-      ]} />
-
-      <section className="hero">
-        <div className="hero-inner">
-          <p className="hero-eyebrow">תחום עיסוק &middot; זכויות נפגעים</p>
-          <h1>פטור ממס<span className="accent">הכנסה</span></h1>
-          <p className="hero-sub">נפגעים הסובלים מנכות עשויים להיות זכאים לפטור ממס הכנסה — חסכון כספי משמעותי שכדאי לממש.</p>
-          <div className="hero-btns">
-            <Link to="/#contact" className="btn-teal">קבעו ייעוץ חינם &#8592;</Link>
-            <a href="tel:049001056" className="btn-outline-white">&#128222; 04-9001056</a>
-          </div>
-        </div>
-      </section>
+      <PageBanner
+        crumbs={[
+          { label: 'תחומי עיסוק', to: '/#areas' },
+          { label: 'פטור ממס הכנסה' }
+        ]}
+        title="פטור ממס"
+        accent="הכנסה"
+      />
 
       <section className="content-section">
         <div className="content-container">
