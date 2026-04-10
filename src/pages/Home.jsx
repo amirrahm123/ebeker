@@ -231,6 +231,9 @@ export default function Home() {
       {/* HERO — solid navy + article slider */}
       <section className="hero hero-home" id="home">
         <div className="hero-inner hero-inner-center">
+          <h1 className="hero-firm-title">ערן בקר</h1>
+          <p className="hero-firm-sub">חברת עורכי דין</p>
+          <div className="hero-firm-divider" aria-hidden="true"></div>
           <p className="hero-tagline-gold">נפגעתם? חליתם? תנו לנו להילחם בנחישות למיצוי כל זכויותיכם!</p>
 
           <div className="hero-slider-wrap">
