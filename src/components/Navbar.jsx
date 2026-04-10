@@ -75,38 +75,45 @@ export default function Navbar() {
   return (
     <>
       <nav id="navbar" className={scrolled ? 'scrolled' : ''}>
-        <div className="nav-inner">
-          <Link to="/" className="nav-logo">
-            <img src="/pics/logo.avif" alt="ערן בקר - חברת עורכי דין" className="nav-logo-img" />
-          </Link>
-          <ul className="nav-links">
-            <li><Link to="/about">אודות</Link></li>
-            <li><Link to="/legal-team">הצוות המשפטי</Link></li>
-            <NavDropdown label="תחומי עיסוק" href="/#areas" items={practiceAreas} />
-            <NavDropdown label="מהעיתונות" href="#" items={pressLinks} />
-            <li><Link to="/recommendations">ממליצים</Link></li>
-            <li><Link to="/eranstip">הטיפ של ערן</Link></li>
-            <li><a href={newsLink}>חדשות</a></li>
-            <li><a href={contactLink}>צור קשר</a></li>
-          </ul>
-          <div className="nav-right">
-            <div className="nav-palette">
-              {palettes.map(p => (
-                <button
-                  key={p.id}
-                  title={p.label}
-                  onClick={() => switchPalette(p.id)}
-                  className={`nav-palette-btn${activePalette === p.id ? ' active' : ''}`}
-                  style={{ background: `linear-gradient(135deg, ${p.colors[0]} 50%, ${p.colors[1]} 50%)` }}
-                />
-              ))}
-            </div>
-            <a href="tel:049001056" className="nav-phone-link">04-9001056</a>
-            <a href={contactLink} className="nav-cta">ייעוץ חינם</a>
+        <div className="nav-row nav-row-logo">
+          <div className="nav-row-inner">
+            <Link to="/" className="nav-logo">
+              <img src="/pics/logo.avif" alt="ערן בקר - חברת עורכי דין" className="nav-logo-img" />
+              <span className="nav-logo-text">ערן בקר &middot; חברת עורכי דין</span>
+            </Link>
+            <button className={`hamburger ${mobileOpen ? 'open' : ''}`} onClick={toggleMobile} aria-label="תפריט">
+              <span></span><span></span><span></span>
+            </button>
           </div>
-          <button className={`hamburger ${mobileOpen ? 'open' : ''}`} onClick={toggleMobile} aria-label="תפריט">
-            <span></span><span></span><span></span>
-          </button>
+        </div>
+        <div className="nav-row nav-row-links">
+          <div className="nav-row-inner">
+            <ul className="nav-links">
+              <li><Link to="/about">אודות</Link></li>
+              <li><Link to="/legal-team">הצוות המשפטי</Link></li>
+              <NavDropdown label="תחומי עיסוק" href="/#areas" items={practiceAreas} />
+              <NavDropdown label="מהעיתונות" href="#" items={pressLinks} />
+              <li><Link to="/recommendations">ממליצים</Link></li>
+              <li><Link to="/eranstip">הטיפ של ערן</Link></li>
+              <li><a href={newsLink}>חדשות</a></li>
+              <li><a href={contactLink}>צור קשר</a></li>
+            </ul>
+            <div className="nav-right">
+              <div className="nav-palette">
+                {palettes.map(p => (
+                  <button
+                    key={p.id}
+                    title={p.label}
+                    onClick={() => switchPalette(p.id)}
+                    className={`nav-palette-btn${activePalette === p.id ? ' active' : ''}`}
+                    style={{ background: `linear-gradient(135deg, ${p.colors[0]} 50%, ${p.colors[1]} 50%)` }}
+                  />
+                ))}
+              </div>
+              <a href="tel:049001056" className="nav-phone-link">04-9001056</a>
+              <a href={contactLink} className="nav-cta">ייעוץ חינם</a>
+            </div>
+          </div>
         </div>
       </nav>
 
