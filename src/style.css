@@ -25,9 +25,9 @@
   --logo-filter: brightness(0) invert(1);
 
   /* Fixed top stack: nav row 1 (logo) + nav row 2 (links) */
-  --nav-row1-h: 88px;
+  --nav-row1-h: 114px;
   --nav-row2-h: 52px;
-  --top-offset: 140px; /* sum of the two above */
+  --top-offset: 166px; /* sum of the two above */
 }
 
 html { scroll-behavior: smooth; }
@@ -216,7 +216,7 @@ nav#navbar.scrolled {
 }
 .nav-logo:hover { transform: scale(1.03); }
 .nav-logo-img {
-  height: 64px; width: auto;
+  height: 90px; width: auto;
   object-fit: contain;
   filter: var(--logo-filter, brightness(0) invert(1));
   transition: filter .4s ease;
