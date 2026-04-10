@@ -80,6 +80,17 @@ export default function Navbar() {
             <div className="nav-row-left">
               <a href={contactLink} className="nav-cta">ייעוץ חינם</a>
               <a href="tel:049001056" className="nav-phone-link">04-9001056</a>
+              <div className="nav-palette">
+                {palettes.map(p => (
+                  <button
+                    key={p.id}
+                    title={p.label}
+                    onClick={() => switchPalette(p.id)}
+                    className={`nav-palette-btn${activePalette === p.id ? ' active' : ''}`}
+                    style={{ background: `linear-gradient(135deg, ${p.colors[0]} 50%, ${p.colors[1]} 50%)` }}
+                  />
+                ))}
+              </div>
             </div>
             <Link to="/" className="nav-logo">
               <img src="/pics/logo.avif" alt="ערן בקר - חברת עורכי דין" className="nav-logo-img" />
@@ -115,19 +126,6 @@ export default function Navbar() {
               <li><a href={newsLink}>חדשות</a></li>
               <li><a href={contactLink}>צור קשר</a></li>
             </ul>
-            <div className="nav-right">
-              <div className="nav-palette">
-                {palettes.map(p => (
-                  <button
-                    key={p.id}
-                    title={p.label}
-                    onClick={() => switchPalette(p.id)}
-                    className={`nav-palette-btn${activePalette === p.id ? ' active' : ''}`}
-                    style={{ background: `linear-gradient(135deg, ${p.colors[0]} 50%, ${p.colors[1]} 50%)` }}
-                  />
-                ))}
-              </div>
-            </div>
           </div>
         </div>
       </nav>
