@@ -94,6 +94,39 @@ const practiceAreas = [
   },
 ]
 
+const heroSliderArticles = [
+  {
+    img: '/pics/04_מהעיתונות_נזיקין_וביטוח/01_dcd181_04c73d6853ee4c34aa6db355bba3e575~mv2.jpg',
+    source: 'ישראל היום',
+    title: 'אופניים חשמליים אינם רכב מנועי — הלכה חדשה של בית המשפט העליון',
+  },
+  {
+    img: '/pics/04_מהעיתונות_נזיקין_וביטוח/02_dcd181_304013a8411f44b2a67328cdc4c9dab6~mv2.jpg',
+    source: 'ידיעות אחרונות',
+    title: 'כ-6.5 מיליון ₪ לתושב הצפון שנפגע במהלך עבודתו',
+  },
+  {
+    img: '/pics/05_מהעיתונות_ביטוח_לאומי/01_dcd181_f5556a8462a5469fa41dcfe72a181f84~mv2.jpg',
+    source: 'כלכליסט',
+    title: 'מדריך גלישה לקה באירוע מוחי בים — הוכר כנפגע עבודה',
+  },
+  {
+    img: '/pics/05_מהעיתונות_ביטוח_לאומי/02_dcd181_a39280f18b0040fc843753ba4d8b0437~mv2.jpg',
+    source: 'גלובס',
+    title: 'פסיקה תקדימית בנושא הכרה בנכות מעבודה וקצבה חודשית',
+  },
+  {
+    img: '/pics/06_מהעיתונות_משרד_הביטחון/01_dcd181_fb841f1cf79a404cac7f555193af5a63~mv2.jpg',
+    source: 'משרד הביטחון',
+    title: 'נכי צה"ל — הכרה מורחבת בזכויות ובמימוש קצבאות',
+  },
+  {
+    img: '/pics/06_מהעיתונות_משרד_הביטחון/02_dcd181_7f27376b889d46d097bfb7456a291a33~mv2.jpg',
+    source: 'מעריב',
+    title: 'עו"ד ערן בקר מרצה בלשכת עורכי הדין בחיפה — פורום נזיקין וביטוח',
+  },
+]
+
 const newsItems = [
   {
     img: '/pics/01_דף_הבית/01_dcd181_5c5efc732261430f88836392a1f161f7~mv2.jpg',
@@ -129,6 +162,44 @@ export default function Home() {
   const [articleIndex, setArticleIndex] = useState(null)
   const [zoomImg, setZoomImg] = useState(null)
 
+  // Hero article slider
+  const [heroSlide, setHeroSlide] = useState(0)
+  const [slidesPerView, setSlidesPerView] = useState(3)
+  const heroTotal = heroSliderArticles.length
+  const heroMaxIndex = Math.max(0, heroTotal - slidesPerView)
+
+  useEffect(() => {
+    const update = () => {
+      const w = window.innerWidth
+      if (w < 640) setSlidesPerView(1)
+      else if (w < 968) setSlidesPerView(2)
+      else setSlidesPerView(3)
+    }
+    update()
+    window.addEventListener('resize', update)
+    return () => window.removeEventListener('resize', update)
+  }, [])
+
+  useEffect(() => {
+    if (heroSlide > heroMaxIndex) setHeroSlide(heroMaxIndex)
+  }, [heroMaxIndex, heroSlide])
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      setHeroSlide(i => (i >= heroMaxIndex ? 0 : i + 1))
+    }, 5000)
+    return () => clearInterval(id)
+  }, [heroMaxIndex])
+
+  const heroPrev = useCallback(() => {
+    setHeroSlide(i => (i <= 0 ? heroMaxIndex : i - 1))
+  }, [heroMaxIndex])
+  const heroNext = useCallback(() => {
+    setHeroSlide(i => (i >= heroMaxIndex ? 0 : i + 1))
+  }, [heroMaxIndex])
+
+  const activeSlideIdx = heroSlide + Math.floor(slidesPerView / 2)
+
   // Escape key closes modals
   useEffect(() => {
     const handler = (e) => {
@@ -157,28 +228,58 @@ export default function Home() {
 
   return (
     <>
-      {/* HERO — cinematic full-viewport */}
+      {/* HERO — solid navy + article slider */}
       <section className="hero hero-home" id="home">
-        <img
-          src="/pics/01_דף_הבית/03_dcd181_1b2acefdc90d4a6baa839e1f40abbae4~mv2.jpg"
-          alt='עו"ד ערן בקר מרצה בפני עורכי דין'
-          className="hero-cinema-bg"
-        />
-        <div className="hero-cinema-overlay"></div>
         <div className="hero-inner hero-inner-center">
-          <img src="/pics/logo.avif" alt="ערן בקר - חברת עורכי דין" className="hero-logo-img" />
-          <h1>ערן בקר<span className="accent">חברת עורכי דין</span></h1>
-          <p className="hero-sub">נזיקין &middot; ביטוח &middot; רשלנות רפואית &middot; ביטוח לאומי &middot; תאונות דרכים ועוד</p>
-          <p className="hero-tagline">נפגעתם? חליתם? תנו לנו להילחם בנחישות למיצוי כל זכויותיכם!</p>
+          <p className="hero-tagline-gold">נפגעתם? חליתם? תנו לנו להילחם בנחישות למיצוי כל זכויותיכם!</p>
+
+          <div className="hero-slider-wrap">
+            <button className="slider-arrow prev" onClick={heroPrev} aria-label="הקודם">&#8594;</button>
+            <button className="slider-arrow next" onClick={heroNext} aria-label="הבא">&#8592;</button>
+
+            <div className="article-slider-viewport">
+              <div
+                className="article-slider-track"
+                style={{
+                  '--total-slides': heroTotal,
+                  '--slides-per-view': slidesPerView,
+                  transform: `translateX(calc(${heroSlide} * (100% / ${heroTotal})))`,
+                }}
+              >
+                {heroSliderArticles.map((a, i) => (
+                  <div key={i} className={`article-slide${i === activeSlideIdx ? ' active' : ''}`}>
+                    <div className="article-slide-inner">
+                      <div className="article-slide-img">
+                        <img src={a.img} alt={a.title} loading="lazy" />
+                      </div>
+                      <div className="article-slide-body">
+                        <span className="article-slide-source">{a.source}</span>
+                        <h3 className="article-slide-title">{a.title}</h3>
+                        <a href="#news" className="article-slide-link">צפה בכתבה &#8592;</a>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="slider-dots">
+              {Array.from({ length: heroMaxIndex + 1 }).map((_, i) => (
+                <button
+                  key={i}
+                  className={`slider-dot${i === heroSlide ? ' active' : ''}`}
+                  onClick={() => setHeroSlide(i)}
+                  aria-label={`עבור לשקף ${i + 1}`}
+                />
+              ))}
+            </div>
+          </div>
+
           <div className="hero-btns">
             <a href="#contact" className="btn-teal">קבעו ייעוץ חינם &#8592;</a>
             <a href="tel:049001056" className="btn-outline-white">&#128222; 04-9001056</a>
           </div>
         </div>
-        <a href="#news" className="hero-scroll-indicator" aria-label="גללו למטה">
-          <span className="hero-scroll-text">גללו למטה</span>
-          <span className="hero-scroll-arrow" aria-hidden="true">&#8595;</span>
-        </a>
       </section>
 
       {/* NEWS — directly below hero */}
