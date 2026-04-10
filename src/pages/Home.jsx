@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from 'react'
+import { useEffect, useState, useCallback, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import useRevealOnScroll from '../hooks/useRevealOnScroll'
 import TestimonialsCarousel from '../components/TestimonialsCarousel'
@@ -23,12 +23,16 @@ const areaIconPaths = {
       <path d="M17 18 L21 24" />
     </>
   ),
-  // רשלנות רפואית — medical plus inside a circle (universal symbol)
+  // רשלנות רפואית — doctor with white coat and stethoscope
   doctor: (
     <>
-      <circle cx="20" cy="20" r="14" />
-      <path d="M20 11 L20 29" />
-      <path d="M11 20 L29 20" />
+      <circle cx="20" cy="8" r="5" />
+      <path d="M13 13 L10 32 L30 32 L27 13 Q20 17 13 13 Z" />
+      <path d="M16 20 C14 26, 14 30, 20 30 C26 30, 26 26, 24 20" />
+      <circle cx="16" cy="20" r="2" />
+      <circle cx="24" cy="20" r="2" />
+      <path d="M19 23 L19 27" />
+      <path d="M17 25 L21 25" />
     </>
   ),
   // ביטוח — shield
@@ -72,28 +76,30 @@ const areaIconPaths = {
       <path d="M34 22 C34 30, 27 35, 20 35" />
     </g>
   ),
-  // תאונות תלמידים — child figure with big backpack
+  // תאונות תלמידים — large backpack
   student: (
     <>
-      <circle cx="14" cy="9" r="3" />
-      <path d="M14 12 L14 26" />
-      <path d="M14 16 L9 22" />
-      <path d="M14 16 L19 22" />
-      <path d="M14 26 L10 34" />
-      <path d="M14 26 L18 34" />
-      {/* backpack (large rect on back/right) */}
-      <path d="M21 13 L32 13 L32 27 L21 27 Z" />
-      {/* straps */}
-      <path d="M21 13 L15 14" />
-      <path d="M21 27 L15 25" />
+      <rect x="12" y="14" width="16" height="18" rx="2" />
+      <path d="M17 14 L17 10 Q20 7 23 10 L23 14" />
+      <path d="M14 22 L26 22" />
+      <path d="M14 27 L26 27" />
+      <path d="M12 16 Q8 20 10 26" />
+      <path d="M28 16 Q32 20 30 26" />
     </>
   ),
-  // תאונות קטלניות — heart with plus inside
+  // תאונות קטלניות — ambulance side view
   cpr: (
     <>
-      <path d="M20 34 C4 22, 4 10, 12 10 C16 10, 19 12, 20 15 C21 12, 24 10, 28 10 C36 10, 36 22, 20 34 Z" />
-      <path d="M20 17 L20 27" />
-      <path d="M15 22 L25 22" />
+      <rect x="4" y="16" width="28" height="14" rx="2" />
+      <rect x="26" y="18" width="8" height="12" rx="1" />
+      <circle cx="10" cy="30" r="4" />
+      <circle cx="28" cy="30" r="4" />
+      <path d="M14 18 L14 28" />
+      <path d="M10 23 L18 23" />
+      <rect x="16" y="12" width="6" height="4" rx="1" />
+      <path d="M17 12 L17 9" />
+      <path d="M19 12 L19 9" />
+      <path d="M21 12 L21 9" />
     </>
   ),
   // מחלות מקצוע — two clear lung blobs with trachea on top
@@ -107,13 +113,16 @@ const areaIconPaths = {
       <path d="M24 14 C31 16, 34 22, 33 28 C32 34, 27 35, 24 33 Z" />
     </>
   ),
-  // פטור ממס הכנסה — bold scissors (no document)
+  // פטור ממס הכנסה — scissors cutting a document
   scissors: (
     <>
-      <circle cx="10" cy="30" r="4" />
-      <circle cx="28" cy="30" r="4" />
-      <path d="M13 28 L32 8" />
-      <path d="M25 28 L6 8" />
+      <rect x="18" y="8" width="16" height="22" rx="1" />
+      <path d="M22 14 L30 14" />
+      <path d="M22 18 L30 18" />
+      <circle cx="8" cy="28" r="4" />
+      <circle cx="8" cy="14" r="4" />
+      <path d="M12 26 L20 16" />
+      <path d="M12 16 L20 18" />
     </>
   ),
   // צוואות וירושות — document with folded corner and 3 lines
@@ -126,13 +135,17 @@ const areaIconPaths = {
       <path d="M12 32 L24 32" />
     </>
   ),
-  // ייפוי כוח מתמשך — simple scroll/document (kept)
+  // ייפוי כוח מתמשך — scales of justice
   scroll: (
     <>
-      <path d="M12 6 L28 6 L28 34 L12 34 Z" />
-      <path d="M16 13 L24 13" />
-      <path d="M16 19 L24 19" />
-      <path d="M16 25 L21 25" />
+      <circle cx="20" cy="6" r="2" />
+      <path d="M20 8 L20 36" />
+      <path d="M8 12 L32 12" />
+      <path d="M8 12 L8 20" />
+      <path d="M32 12 L32 20" />
+      <path d="M4 20 Q8 26 12 20" />
+      <path d="M28 20 Q32 26 36 20" />
+      <path d="M14 36 L26 36" />
     </>
   ),
   // חקירת סיבות מוות — larger magnifying glass (strokeWidth 2.5)
@@ -142,23 +155,33 @@ const areaIconPaths = {
       <path d="M25 25 L34 34" />
     </g>
   ),
-  // נכות כללית וניידות — bolder wheelchair (strokeWidth 2.5)
+  // נכות כללית וניידות — clearer ISA wheelchair symbol
   wheelchair: (
     <g strokeWidth="2.5">
-      <circle cx="17" cy="6" r="2.8" />
-      <path d="M17 9 L19 17" />
-      <path d="M19 15 L26 13" />
-      <path d="M19 17 L30 22" />
-      <circle cx="15" cy="28" r="8" />
-      <circle cx="30" cy="33" r="2.5" />
-      <path d="M23 28 L28 33" />
+      <circle cx="28" cy="6" r="4" />
+      <path d="M28 10 L22 20" />
+      <path d="M28 14 L34 16" />
+      <path d="M14 20 L26 20" />
+      <path d="M26 20 L26 12" />
+      <path d="M14 20 L10 28" />
+      <circle cx="18" cy="28" r="10" />
+      <circle cx="18" cy="28" r="5" />
+      <circle cx="8" cy="28" r="3" />
     </g>
   ),
-  // נכי צה"ל — Star of David (two overlapping triangles)
+  // נכי צה"ל — soldier figure with helmet and rifle
   soldier: (
     <>
-      <path d="M20 4 L34 28 L6 28 Z" />
-      <path d="M20 36 L34 12 L6 12 Z" />
+      <rect x="14" y="4" width="12" height="7" rx="1" />
+      <path d="M12 11 L28 11" />
+      <circle cx="20" cy="15" r="4" />
+      <rect x="15" y="19" width="10" height="10" rx="1" />
+      <path d="M15 22 L8 30" />
+      <path d="M25 22 L28 26" />
+      <path d="M8 30 L4 34" />
+      <path d="M17 29 L15 38" />
+      <path d="M23 29 L25 38" />
+      <path d="M20 20 L21.5 22.5 L20 25 L18.5 22.5 Z" />
     </>
   ),
 }
@@ -296,6 +319,133 @@ export default function Home() {
   const [areaPopup, setAreaPopup] = useState(null)
   const [articleIndex, setArticleIndex] = useState(null)
   const [zoomImg, setZoomImg] = useState(null)
+  const heroCanvasRef = useRef(null)
+
+  // Animated hero background — diagonal gold lines + swinging scales of justice
+  useEffect(() => {
+    const canvas = heroCanvasRef.current
+    if (!canvas) return
+    const ctx = canvas.getContext('2d')
+    let raf = 0
+    let start = performance.now()
+
+    const resize = () => {
+      const dpr = window.devicePixelRatio || 1
+      const rect = canvas.getBoundingClientRect()
+      canvas.width = Math.floor(rect.width * dpr)
+      canvas.height = Math.floor(rect.height * dpr)
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
+    }
+    resize()
+    window.addEventListener('resize', resize)
+
+    const draw = (now) => {
+      const t = (now - start) / 1000
+      const w = canvas.clientWidth
+      const h = canvas.clientHeight
+      ctx.clearRect(0, 0, w, h)
+
+      // Diagonal gold lines: spacing 36px, every 3rd thicker
+      const spacing = 36
+      const diag = w + h
+      for (let i = -h; i < diag; i += spacing) {
+        const idx = Math.floor((i + h) / spacing)
+        const isThick = idx % 3 === 0
+        ctx.beginPath()
+        ctx.strokeStyle = isThick ? 'rgba(201,168,76,0.18)' : 'rgba(201,168,76,0.09)'
+        ctx.lineWidth = isThick ? 1.2 : 0.7
+        ctx.moveTo(i, 0)
+        ctx.lineTo(i + h, h)
+        ctx.stroke()
+      }
+
+      // Scales of justice on the LEFT
+      const cx = w * 0.25
+      const cy = h * 0.5
+
+      // Radial glow behind scales
+      const glow = ctx.createRadialGradient(cx, cy, 0, cx, cy, 260)
+      glow.addColorStop(0, 'rgba(201,168,76,0.22)')
+      glow.addColorStop(0.5, 'rgba(201,168,76,0.07)')
+      glow.addColorStop(1, 'rgba(201,168,76,0)')
+      ctx.fillStyle = glow
+      ctx.beginPath()
+      ctx.arc(cx, cy, 260, 0, Math.PI * 2)
+      ctx.fill()
+
+      // Animated swing
+      const swing = Math.sin(t * 0.9) * 0.12 // radians
+      const armLen = 110
+      const beamY = cy - 70
+
+      ctx.strokeStyle = 'rgba(201,168,76,0.85)'
+      ctx.lineWidth = 2.4
+      ctx.lineCap = 'round'
+      ctx.lineJoin = 'round'
+
+      // Center pole
+      ctx.beginPath()
+      ctx.moveTo(cx, cy - 140)
+      ctx.lineTo(cx, cy + 130)
+      ctx.stroke()
+
+      // Top finial
+      ctx.beginPath()
+      ctx.arc(cx, cy - 144, 5, 0, Math.PI * 2)
+      ctx.stroke()
+
+      // Base
+      ctx.beginPath()
+      ctx.moveTo(cx - 48, cy + 130)
+      ctx.lineTo(cx + 48, cy + 130)
+      ctx.stroke()
+      ctx.beginPath()
+      ctx.moveTo(cx - 30, cy + 140)
+      ctx.lineTo(cx + 30, cy + 140)
+      ctx.stroke()
+
+      // Beam (rotated by swing around pivot at cx, beamY)
+      const cosS = Math.cos(swing)
+      const sinS = Math.sin(swing)
+      const lx = cx - armLen * cosS
+      const ly = beamY - armLen * sinS
+      const rx = cx + armLen * cosS
+      const ry = beamY + armLen * sinS
+      ctx.beginPath()
+      ctx.moveTo(lx, ly)
+      ctx.lineTo(rx, ry)
+      ctx.stroke()
+
+      // Hanging chains + pans
+      const drawPan = (px, py) => {
+        // chain
+        ctx.beginPath()
+        ctx.moveTo(px, py)
+        ctx.lineTo(px, py + 56)
+        ctx.stroke()
+        // pan arc
+        ctx.beginPath()
+        ctx.moveTo(px - 36, py + 56)
+        ctx.quadraticCurveTo(px, py + 92, px + 36, py + 56)
+        ctx.stroke()
+        // pan rim
+        ctx.beginPath()
+        ctx.moveTo(px - 36, py + 56)
+        ctx.lineTo(px + 36, py + 56)
+        ctx.stroke()
+      }
+      drawPan(lx, ly)
+      drawPan(rx, ry)
+
+      raf = requestAnimationFrame(draw)
+    }
+    raf = requestAnimationFrame(draw)
+
+    return () => {
+      cancelAnimationFrame(raf)
+      window.removeEventListener('resize', resize)
+    }
+  }, [])
 
   // Escape key closes modals
   useEffect(() => {
@@ -325,17 +475,15 @@ export default function Home() {
 
   return (
     <>
-      {/* HERO — framed dark navy with gold corner brackets */}
+      {/* HERO — animated canvas background with scales of justice + gold lines */}
       <section className="hero-framed" id="home">
-        <svg className="hero-framed-svg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
-          <rect className="hero-border-outer" fill="none" stroke="rgba(201,168,76,0.22)" strokeWidth="1" />
-          <rect className="hero-border-inner" fill="none" stroke="rgba(201,168,76,0.14)" strokeWidth="1" />
-          <circle className="hero-center-glow" fill="rgba(201,168,76,0.04)" />
-          <path className="hero-corner hero-corner-tl" d="M0 45 L0 0 L45 0" stroke="rgba(201,168,76,0.7)" strokeWidth="2" fill="none" strokeLinecap="square" strokeLinejoin="miter" />
-          <path className="hero-corner hero-corner-tr" d="M0 0 L45 0 L45 45" stroke="rgba(201,168,76,0.7)" strokeWidth="2" fill="none" strokeLinecap="square" strokeLinejoin="miter" />
-          <path className="hero-corner hero-corner-bl" d="M0 0 L0 45 L45 45" stroke="rgba(201,168,76,0.7)" strokeWidth="2" fill="none" strokeLinecap="square" strokeLinejoin="miter" />
-          <path className="hero-corner hero-corner-br" d="M0 45 L45 45 L45 0" stroke="rgba(201,168,76,0.7)" strokeWidth="2" fill="none" strokeLinecap="square" strokeLinejoin="miter" />
-        </svg>
+        <canvas ref={heroCanvasRef} className="hero-framed-canvas" aria-hidden="true" />
+        <div className="hero-framed-overlay" aria-hidden="true" />
+
+        <span className="hf-corner hf-corner-tl" aria-hidden="true" />
+        <span className="hf-corner hf-corner-tr" aria-hidden="true" />
+        <span className="hf-corner hf-corner-bl" aria-hidden="true" />
+        <span className="hf-corner hf-corner-br" aria-hidden="true" />
 
         <div className="hero-framed-content">
           <p className="hero-framed-intro">נפגעתם? חליתם?</p>
@@ -347,8 +495,8 @@ export default function Home() {
           <div className="hero-framed-divider" aria-hidden="true"></div>
           <p className="hero-framed-sub">משרד בוטיק מוביל מאז 2003 &middot; נזיקין, ביטוח, רשלנות רפואית וביטוח לאומי &middot; ליווי אישי בכל תיק</p>
           <div className="hero-framed-btns">
-            <a href="#contact" className="btn-teal">קבעו ייעוץ חינם &#8592;</a>
-            <a href="tel:049001056" className="btn-outline-white">&#128222; 04-9001056</a>
+            <a href="#contact" className="btn-hero-solid">קבעו ייעוץ חינם &#8592;</a>
+            <a href="tel:049001056" className="btn-hero-ghost">&#128222; 04-9001056</a>
           </div>
         </div>
       </section>

@@ -2,7 +2,8 @@
   "permissions": {
     "allow": [
       "Bash(npx vite:*)",
-      "Bash(grep -l \"className=\\\\\"hero\\\\\"\" src/pages/*.jsx)"
+      "Bash(grep -l \"className=\\\\\"hero\\\\\"\" src/pages/*.jsx)",
+      "Bash(npm run:*)"
     ]
   }
 }
