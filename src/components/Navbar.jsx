@@ -77,9 +77,27 @@ export default function Navbar() {
       <nav id="navbar" className={scrolled ? 'scrolled' : ''}>
         <div className="nav-row nav-row-logo">
           <div className="nav-row-inner">
+            <div className="nav-row-left">
+              <a href={contactLink} className="nav-cta">ייעוץ חינם</a>
+              <a href="tel:049001056" className="nav-phone-link">04-9001056</a>
+            </div>
             <Link to="/" className="nav-logo">
               <img src="/pics/logo.avif" alt="ערן בקר - חברת עורכי דין" className="nav-logo-img" />
             </Link>
+            <div className="nav-row-right nav-trust-items">
+              <div className="nav-trust-item">
+                <span className="nav-trust-num">DUNS 100</span>
+                <span className="nav-trust-label">מדורג מוביל</span>
+              </div>
+              <div className="nav-trust-item">
+                <span className="nav-trust-num">BDi CODE</span>
+                <span className="nav-trust-label">מצוינות משפטית</span>
+              </div>
+              <div className="nav-trust-item">
+                <span className="nav-trust-num" data-target="25">0+</span>
+                <span className="nav-trust-label">שנות ניסיון</span>
+              </div>
+            </div>
             <button className={`hamburger ${mobileOpen ? 'open' : ''}`} onClick={toggleMobile} aria-label="תפריט">
               <span></span><span></span><span></span>
             </button>
@@ -109,8 +127,6 @@ export default function Navbar() {
                   />
                 ))}
               </div>
-              <a href="tel:049001056" className="nav-phone-link">04-9001056</a>
-              <a href={contactLink} className="nav-cta">ייעוץ חינם</a>
             </div>
           </div>
         </div>
