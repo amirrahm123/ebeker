@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 
 export default function PageBanner({ crumbs = [], title, accent }) {
   return (
-    <section className="page-banner">
+    <section className="page-banner" dir="rtl">
       <span className="page-banner-corner page-banner-corner-tl" aria-hidden="true" />
       <span className="page-banner-corner page-banner-corner-tr" aria-hidden="true" />
       <span className="page-banner-corner page-banner-corner-bl" aria-hidden="true" />

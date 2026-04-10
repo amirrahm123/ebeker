@@ -2692,6 +2692,7 @@ img { max-width: 100%; height: auto; }
   background: #060e1e;
   padding: calc(var(--top-offset) + 50px) 40px 44px;
   text-align: right;
+  direction: rtl;
 }
 .page-banner-corner {
   position: absolute;
@@ -2727,13 +2728,15 @@ img { max-width: 100%; height: auto; }
   position: relative;
   z-index: 2;
   max-width: 700px;
-  margin-right: auto;
+  margin-left: auto;
+  text-align: right;
 }
 .page-banner-breadcrumb {
   color: rgba(201,168,76,0.6);
   font-size: 0.78rem;
   margin-bottom: 14px;
   letter-spacing: 0.3px;
+  text-align: right;
 }
 .page-banner-breadcrumb a {
   color: rgba(201,168,76,0.6);
