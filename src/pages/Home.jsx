@@ -6,38 +6,221 @@ import ContactForm from '../components/ContactForm'
 import ZoomViewer from '../components/ZoomViewer'
 import MediaCards from '../components/MediaCards'
 
-// Clean SVG icons for each practice area
-const Icon = ({ d, size = 28 }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-    <path d={d} />
-  </svg>
-)
+// Inline SVG icon content per practice area — uses currentColor so card hover
+// restyles it from gold to white. Common viewBox of 0 0 40 40.
+const areaIconPaths = {
+  // נזיקין כללי — stick figure falling down stairs
+  fall: (
+    <>
+      <path d="M6 34 L14 34 L14 28 L22 28 L22 22 L30 22 L30 16 L36 16" />
+      <circle cx="11" cy="9" r="2.5" />
+      <path d="M12 11 L14 17" />
+      <path d="M11 13 L6 11" />
+      <path d="M14 12 L17 8" />
+      <path d="M14 17 L11 22" />
+      <path d="M14 17 L17 22" />
+    </>
+  ),
+  // רשלנות רפואית — doctor with coat and stethoscope
+  doctor: (
+    <>
+      <circle cx="20" cy="8" r="3.5" />
+      <path d="M13 34 L13 18 L16 14 L20 17 L24 14 L27 18 L27 34" />
+      <path d="M20 17 L20 26" />
+      <path d="M16 14 C15 22, 24 22, 24 28" />
+      <circle cx="24" cy="29.5" r="1.8" />
+    </>
+  ),
+  // ביטוח — shield (kept)
+  shield: (
+    <path d="M20 4 L32 8 V19 C32 27, 27 33, 20 36 C13 33, 8 27, 8 19 V8 Z" />
+  ),
+  // תאונות עבודה — person falling off a ladder
+  ladder: (
+    <>
+      <path d="M20 6 L20 34" />
+      <path d="M30 6 L30 34" />
+      <path d="M20 12 L30 12" />
+      <path d="M20 19 L30 19" />
+      <path d="M20 26 L30 26" />
+      <circle cx="10" cy="14" r="2.2" />
+      <path d="M11 16 L14 20" />
+      <path d="M9 16 L5 18" />
+      <path d="M12 18 L16 17" />
+      <path d="M14 20 L10 25" />
+      <path d="M14 20 L16 25" />
+    </>
+  ),
+  // תאונות דרכים — car side view
+  car: (
+    <>
+      <path d="M4 26 L4 20 L10 20 L14 13 L28 13 L30 20 L36 20 L36 26" />
+      <path d="M4 26 L36 26" />
+      <path d="M18 13 L18 20" />
+      <circle cx="11" cy="28" r="3" />
+      <circle cx="29" cy="28" r="3" />
+    </>
+  ),
+  // תאונות ימיות — anchor
+  anchor: (
+    <>
+      <circle cx="20" cy="7" r="2.5" />
+      <path d="M20 10 L20 32" />
+      <path d="M14 14 L26 14" />
+      <path d="M8 22 C8 30, 14 33, 20 33" />
+      <path d="M32 22 C32 30, 26 33, 20 33" />
+    </>
+  ),
+  // תאונות תלמידים — child with backpack and arm in sling
+  student: (
+    <>
+      <circle cx="17" cy="9" r="2.8" />
+      <path d="M17 12 L17 26" />
+      <path d="M17 26 L13 34" />
+      <path d="M17 26 L21 34" />
+      <path d="M22 14 L28 14 L28 22 L22 22 Z" />
+      <path d="M22 14 L18 16" />
+      <path d="M22 22 L18 20" />
+      <path d="M17 15 L13 19" />
+      <path d="M17 15 L12 17 L15 22" />
+    </>
+  ),
+  // תאונות קטלניות — two figures doing CPR
+  cpr: (
+    <>
+      <circle cx="7" cy="28" r="2.2" />
+      <path d="M9 28 L27 28" />
+      <path d="M27 28 L31 25" />
+      <path d="M27 28 L31 31" />
+      <circle cx="18" cy="10" r="2.6" />
+      <path d="M18 13 L19 21" />
+      <path d="M19 18 L16 25" />
+      <path d="M19 18 L22 25" />
+    </>
+  ),
+  // מחלות מקצוע — lungs with warning X
+  lungs: (
+    <>
+      <path d="M20 8 L20 18" />
+      <path d="M20 18 C14 18, 10 22, 10 28 C10 32, 14 34, 17 33 L17 18" />
+      <path d="M20 18 C26 18, 30 22, 30 28 C30 32, 26 34, 23 33 L23 18" />
+      <path d="M15 25 L21 31" />
+      <path d="M21 25 L15 31" />
+    </>
+  ),
+  // פטור ממס הכנסה — scissors cutting a document
+  scissors: (
+    <>
+      <path d="M10 6 L26 6 L26 26 L10 26 Z" />
+      <path d="M14 12 L22 12" />
+      <path d="M14 17 L22 17" />
+      <path d="M14 22 L20 22" />
+      <circle cx="14" cy="33" r="2" />
+      <circle cx="22" cy="33" r="2" />
+      <path d="M16 31 L30 18" />
+      <path d="M20 31 L28 22" />
+    </>
+  ),
+  // צוואות וירושות — rolled contract with signature lines and seal dot
+  contract: (
+    <>
+      <path d="M10 6 L28 6 L28 34 L10 34 Z" />
+      <path d="M10 6 C8 6, 8 8, 10 8" />
+      <path d="M28 34 C30 34, 30 32, 28 32" />
+      <path d="M14 14 L24 14" />
+      <path d="M14 19 L22 19" />
+      <path d="M14 24 L24 24" />
+      <circle cx="21" cy="29" r="1.8" fill="currentColor" />
+    </>
+  ),
+  // ייפוי כוח מתמשך — simple scroll/document (kept)
+  scroll: (
+    <>
+      <path d="M12 6 L28 6 L28 34 L12 34 Z" />
+      <path d="M16 13 L24 13" />
+      <path d="M16 19 L24 19" />
+      <path d="M16 25 L21 25" />
+    </>
+  ),
+  // חקירת סיבות מוות — magnifying glass over a document
+  magnifier: (
+    <>
+      <path d="M8 6 L24 6 L24 28 L8 28 Z" />
+      <path d="M12 12 L20 12" />
+      <path d="M12 17 L20 17" />
+      <path d="M12 22 L18 22" />
+      <circle cx="26" cy="24" r="6" />
+      <path d="M30.5 28.5 L35 33" />
+    </>
+  ),
+  // נכות כללית וניידות — wheelchair figure
+  wheelchair: (
+    <>
+      <circle cx="19" cy="7" r="2.5" />
+      <path d="M19 10 L21 17" />
+      <path d="M21 15 L26 13" />
+      <path d="M21 17 L29 22" />
+      <circle cx="17" cy="28" r="6.5" />
+      <circle cx="29" cy="32" r="2" />
+      <path d="M23 28 L27 32" />
+    </>
+  ),
+  // נכי צה"ל — soldier with helmet and rifle
+  soldier: (
+    <>
+      <path d="M14 10 L14 8 C14 5, 26 5, 26 8 L26 10 Z" />
+      <circle cx="20" cy="14" r="3" />
+      <path d="M14 34 L14 20 L26 20 L26 34" />
+      <path d="M10 22 L30 28" />
+      <path d="M10 22 L8 20" />
+    </>
+  ),
+}
 
-const icons = {
-  scale: 'M12 3v18m-7-7l7-7 7 7M3 13h4m10 0h4M5 21h14',
-  medical: 'M12 2a5 5 0 015 5v1H7V7a5 5 0 015-5zM7 8h10v6a5 5 0 01-10 0V8zm5 14v-4m-3 0h6',
-  shield: 'M12 2l8 4v6c0 5.25-3.5 10-8 12-4.5-2-8-6.75-8-12V6l8-4z',
-  hardhat: 'M4 18v-1a8 8 0 0116 0v1M2 18h20M12 2v5M7.5 4.2L9 8m7-3.8L15 8',
-  car: 'M5 17h14M5 17a2 2 0 01-2-2V9l3-5h12l3 5v6a2 2 0 01-2 2M5 17a2 2 0 002 2h1a2 2 0 002-2m4 0a2 2 0 002 2h1a2 2 0 002-2M7 9h10',
-  anchor: 'M12 2a3 3 0 100 6 3 3 0 000-6zm0 6v14m-7-4a7 7 0 0014 0M5 12H2m20 0h-3',
-  book: 'M4 4h16v16H4zM4 4l8 4 8-4M12 8v12',
-  alert: 'M12 9v4m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z',
-  lungs: 'M12 4v8m-4-4C5 8 3 11 3 14s2 6 5 6 4-2 4-4V8m0 8c0 2 1 4 4 4s5-3 5-6-2-6-5-6',
-  coins: 'M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83',
-  document: 'M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm-2 0v6h6M8 13h8m-8 4h8m-8-8h2',
-  scroll: 'M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zM8 13h8m-8 4h4',
-  search: 'M11 4a7 7 0 100 14 7 7 0 000-14zm10 17l-4.35-4.35',
-  wheelchair: 'M12 8a2 2 0 100-4 2 2 0 000 4zm-2 4v6a4 4 0 008 0m-6-8l6 2m-10 0h4',
-  medal: 'M12 2l2 4 4.5.7-3.3 3.1.8 4.5L12 12.3 8 14.3l.8-4.5L5.5 6.7 10 6l2-4zm-4 14l-4 6h16l-4-6',
+function AreaIcon({ iconKey, size = 28 }) {
+  const content = areaIconPaths[iconKey]
+  if (!content) return null
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 40 40"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.6"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      {content}
+    </svg>
+  )
+}
+
+// Small "ביטוח לאומי" mark — two overlapping arcs (second dashed).
+// Uses currentColor so it inherits the gold .area-sub color.
+function BlSymbol() {
+  return (
+    <svg
+      width="12"
+      height="12"
+      viewBox="0 0 24 24"
+      fill="none"
+      aria-hidden="true"
+      style={{ display: 'inline-block', verticalAlign: 'middle', marginLeft: 4, flexShrink: 0 }}
+    >
+      <path d="M12 3 C7 3 3 7 3 12 C3 17 7 21 12 21 C17 21 21 17 21 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+      <path d="M12 21 C17 21 21 17 21 12 C21 7 17 3 12 3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeDasharray="3 3" />
+    </svg>
+  )
 }
 
 const practiceAreas = [
   {
-    iconKey: 'scale', label: 'נזיקין כללי', desc: 'ייצוג נפגעי גוף בתביעות פיצויים בגין נזקי גוף מכל סוג — עם ניסיון של עשרות שנים.', to: '/damages',
+    iconKey: 'fall', label: 'נזיקין כללי', desc: 'ייצוג נפגעי גוף בתביעות פיצויים בגין נזקי גוף מכל סוג — עם ניסיון של עשרות שנים.', to: '/damages',
     points: ['תאונות דרכים ונזקי גוף', 'נפילות ברחוב ובמקום הציבורי', 'תאונות עבודה ומחלות מקצוע', 'פיצויים על כאב וסבל, אובדן שכר ונכות'],
   },
   {
-    iconKey: 'medical', label: 'רשלנות רפואית', desc: 'תביעות כנגד בתי חולים, רופאים וגורמים רפואיים בגין טיפול רשלני שגרם לנזק.', to: '/medical-malpractice',
+    iconKey: 'doctor', label: 'רשלנות רפואית', desc: 'תביעות כנגד בתי חולים, רופאים וגורמים רפואיים בגין טיפול רשלני שגרם לנזק.', to: '/medical-malpractice',
     points: ['אבחון שגוי או מאוחר', 'רשלנות בניתוח או בטיפול', 'חוסר במתן מידע והסכמה מדעת', 'נזק ליילוד ורשלנות בלידה'],
   },
   {
@@ -45,7 +228,7 @@ const practiceAreas = [
     points: ['תביעות אובדן כושר עבודה', 'ביטוח חיים ומחלות קשות', 'ביטוח תאונות אישיות', 'דחיית תביעת ביטוח'],
   },
   {
-    iconKey: 'hardhat', label: 'תאונות עבודה', sub: 'ביטוח לאומי', desc: 'מיצוי זכויות עובדים שנפגעו בתאונת עבודה מול המוסד לביטוח לאומי וגורמים נוספים.', to: '/damages',
+    iconKey: 'ladder', label: 'תאונות עבודה', sub: 'ביטוח לאומי', desc: 'מיצוי זכויות עובדים שנפגעו בתאונת עבודה מול המוסד לביטוח לאומי וגורמים נוספים.', to: '/damages',
     points: ['הכרה בתאונת עבודה', 'קצבאות נכות מעבודה', 'תביעות נגד מעסיקים', 'ועדות רפואיות'],
   },
   {
@@ -57,11 +240,11 @@ const practiceAreas = [
     points: ['תאונות ספורט ימי', 'פגיעות בחופי רחצה', 'תאונות צלילה וגלישה', 'אחריות מפעילי פעילות ימית'],
   },
   {
-    iconKey: 'book', label: 'תאונות תלמידים', desc: 'ייצוג ילדים ומשפחותיהם שנפגעו בתאונות בבית הספר או בפעילויות חינוכיות.', to: '/student-accidents',
+    iconKey: 'student', label: 'תאונות תלמידים', desc: 'ייצוג ילדים ומשפחותיהם שנפגעו בתאונות בבית הספר או בפעילויות חינוכיות.', to: '/student-accidents',
     points: ['פגיעות בשטח בית הספר', 'טיולים ופעילויות חוץ', 'ביטוח תלמידים', 'אחריות מוסדות חינוך'],
   },
   {
-    iconKey: 'alert', label: 'תאונות קטלניות', desc: 'ייצוג משפחות שכולות ותובעים בתאונות שגרמו לאובדן חיים — בנחישות ובמקצועיות.', to: '/damages',
+    iconKey: 'cpr', label: 'תאונות קטלניות', sub: 'נזיקין', desc: 'ייצוג משפחות שכולות ותובעים בתאונות שגרמו לאובדן חיים — בנחישות ובמקצועיות.', to: '/damages',
     points: ['תביעות תלויים', 'פיצוי על אובדן חיים', 'ייצוג משפחות שכולות', 'חקירת נסיבות המוות'],
   },
   {
@@ -69,11 +252,11 @@ const practiceAreas = [
     points: ['מחלות ריאה תעסוקתיות', 'חשיפה לחומרים מסוכנים', 'לחץ ושחיקה בעבודה', 'ועדות רפואיות'],
   },
   {
-    iconKey: 'coins', label: 'פטור ממס הכנסה', desc: 'קבלת פטור ממס הכנסה על פיצויים ומענקים לנפגעים — חסכון כספי משמעותי.', to: '/tax-exemption',
+    iconKey: 'scissors', label: 'פטור ממס הכנסה', desc: 'קבלת פטור ממס הכנסה על פיצויים ומענקים לנפגעים — חסכון כספי משמעותי.', to: '/tax-exemption',
     points: ['פטור לנכי עבודה', 'פטור לנכי תאונות דרכים', 'ערעור על החלטות', 'חישוב הטבות מס'],
   },
   {
-    iconKey: 'document', label: 'צוואות וירושות', desc: 'עריכת צוואות, ניהול עיזבונות וייצוג בסכסוכי ירושה בצורה מקצועית ורגישה.', to: '/wills',
+    iconKey: 'contract', label: 'צוואות וירושות', desc: 'עריכת צוואות, ניהול עיזבונות וייצוג בסכסוכי ירושה בצורה מקצועית ורגישה.', to: '/wills',
     points: ['עריכת צוואה', 'קיום צוואה', 'סכסוכי ירושה', 'ניהול עיזבונות'],
   },
   {
@@ -81,7 +264,7 @@ const practiceAreas = [
     points: ['ייפוי כוח מתמשך', 'צווי אפוטרופסות', 'הנחיות רפואיות מקדימות', 'הגנה על הזכויות שלכם'],
   },
   {
-    iconKey: 'search', label: 'חקירת סיבות מוות', desc: 'ייצוג משפחות בהליכי חקירת סיבות מוות בפני השופט החוקר, בסמכות חוק ייחודי.', to: '/causes-of-death',
+    iconKey: 'magnifier', label: 'חקירת סיבות מוות', desc: 'ייצוג משפחות בהליכי חקירת סיבות מוות בפני השופט החוקר, בסמכות חוק ייחודי.', to: '/causes-of-death',
     points: ['חקירות בפני שופט חוקר', 'בירור נסיבות מוות', 'ייצוג משפחות', 'הליכים לפי חוק חקירת סיבות מוות'],
   },
   {
@@ -89,7 +272,7 @@ const practiceAreas = [
     points: ['ועדות רפואיות', 'קצבת ניידות', 'נכות כללית', 'ערעורים על החלטות'],
   },
   {
-    iconKey: 'medal', label: 'נכי צה"ל', sub: 'ומשרד הביטחון', desc: 'ייצוג חיילים ומשוחררים מול משרד הביטחון לקביעת נכות ומיצוי קצבאות.', to: '/damages',
+    iconKey: 'soldier', label: 'נכי צה"ל', sub: 'ומשרד הביטחון', desc: 'ייצוג חיילים ומשוחררים מול משרד הביטחון לקביעת נכות ומיצוי קצבאות.', to: '/damages',
     points: ['תביעות למשרד הביטחון', 'ועדות רפואיות צבאיות', 'קצבאות ומענקים', 'הכרה בנכות'],
   },
 ]
@@ -223,9 +406,14 @@ export default function Home() {
           <div className="areas-grid stagger-reveal">
             {practiceAreas.map((area, i) => (
               <div className="area-card" key={i} onClick={() => setAreaPopup(area)} style={{ cursor: 'pointer' }}>
-                <span className="area-icon"><Icon d={icons[area.iconKey]} /></span>
+                <span className="area-icon"><AreaIcon iconKey={area.iconKey} /></span>
                 <div className="area-label">{area.label}</div>
-                {area.sub && <div className="area-sub">{area.sub}</div>}
+                {area.sub && (
+                  <div className="area-sub">
+                    {area.sub === 'ביטוח לאומי' && <BlSymbol />}
+                    {area.sub}
+                  </div>
+                )}
                 <div className="area-desc">{area.desc}</div>
                 <span className="area-link">למידע נוסף &#8592;</span>
               </div>
@@ -239,9 +427,14 @@ export default function Home() {
         <div className="area-popup-overlay active" onClick={(e) => { if (e.target === e.currentTarget) setAreaPopup(null) }}>
           <div className="area-popup">
             <button className="area-popup-close" onClick={() => setAreaPopup(null)} aria-label="סגור">&times;</button>
-            <span className="area-popup-icon"><Icon d={icons[areaPopup.iconKey]} size={40} /></span>
+            <span className="area-popup-icon"><AreaIcon iconKey={areaPopup.iconKey} size={40} /></span>
             <h3 className="area-popup-title">{areaPopup.label}</h3>
-            {areaPopup.sub && <div className="area-popup-sub">{areaPopup.sub}</div>}
+            {areaPopup.sub && (
+              <div className="area-popup-sub">
+                {areaPopup.sub === 'ביטוח לאומי' && <BlSymbol />}
+                {areaPopup.sub}
+              </div>
+            )}
             <p className="area-popup-desc">{areaPopup.desc}</p>
             <ul className="area-popup-points">
               {areaPopup.points.map((p, i) => <li key={i}>{p}</li>)}
