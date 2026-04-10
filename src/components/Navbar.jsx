@@ -79,7 +79,6 @@ export default function Navbar() {
           <div className="nav-row-inner">
             <Link to="/" className="nav-logo">
               <img src="/pics/logo.avif" alt="ערן בקר - חברת עורכי דין" className="nav-logo-img" />
-              <span className="nav-logo-text">ערן בקר &middot; חברת עורכי דין</span>
             </Link>
             <button className={`hamburger ${mobileOpen ? 'open' : ''}`} onClick={toggleMobile} aria-label="תפריט">
               <span></span><span></span><span></span>

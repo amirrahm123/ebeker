@@ -94,39 +94,6 @@ const practiceAreas = [
   },
 ]
 
-const heroSlides = [
-  {
-    img: '/pics/04_מהעיתונות_נזיקין_וביטוח/01_dcd181_04c73d6853ee4c34aa6db355bba3e575~mv2.jpg',
-    source: 'מהעיתונות · נזיקין וביטוח',
-    headline: 'אופניים חשמליים אינם רכב מנועי — הלכה חדשה בבית המשפט העליון',
-  },
-  {
-    img: '/pics/04_מהעיתונות_נזיקין_וביטוח/05_dcd181_3b92bddcd29449c6a39adccf27efd4a1~mv2.jpg',
-    source: 'מהעיתונות · נזיקין וביטוח',
-    headline: 'פיצויי עתק לנפגעי תאונות — פסיקות מובילות בייצוג המשרד',
-  },
-  {
-    img: '/pics/05_מהעיתונות_ביטוח_לאומי/01_dcd181_f5556a8462a5469fa41dcfe72a181f84~mv2.jpg',
-    source: 'מהעיתונות · ביטוח לאומי',
-    headline: 'מדריך גלישה לקה באירוע מוחי בים — הוכר כנפגע עבודה',
-  },
-  {
-    img: '/pics/05_מהעיתונות_ביטוח_לאומי/07_dcd181_9111a86889224e98b7f19f31312f0516~mv2.jpg',
-    source: 'מהעיתונות · ביטוח לאומי',
-    headline: 'מיצוי זכויות מול המוסד לביטוח לאומי — תקדים נוסף',
-  },
-  {
-    img: '/pics/06_מהעיתונות_משרד_הביטחון/01_dcd181_fb841f1cf79a404cac7f555193af5a63~mv2.jpg',
-    source: 'מהעיתונות · משרד הביטחון',
-    headline: 'הכרה בנכות לחיילים ומשוחררים מול משרד הביטחון',
-  },
-  {
-    img: '/pics/06_מהעיתונות_משרד_הביטחון/03_dcd181_d66d7bf1791240118efafc12ace231a5~mv2.jpg',
-    source: 'מהעיתונות · משרד הביטחון',
-    headline: 'ייצוג נכי צה"ל — קצבאות, מענקים והכרה מלאה בזכויות',
-  },
-]
-
 const newsItems = [
   {
     img: '/pics/01_דף_הבית/01_dcd181_5c5efc732261430f88836392a1f161f7~mv2.jpg',
@@ -161,15 +128,6 @@ export default function Home() {
   const [areaPopup, setAreaPopup] = useState(null)
   const [articleIndex, setArticleIndex] = useState(null)
   const [zoomImg, setZoomImg] = useState(null)
-  const [heroSlide, setHeroSlide] = useState(0)
-
-  // Hero carousel auto-rotate (5s)
-  useEffect(() => {
-    const id = setInterval(() => {
-      setHeroSlide(s => (s + 1) % heroSlides.length)
-    }, 5000)
-    return () => clearInterval(id)
-  }, [])
 
   // Escape key closes modals
   useEffect(() => {
@@ -199,20 +157,16 @@ export default function Home() {
 
   return (
     <>
-      {/* HERO */}
+      {/* HERO — cinematic full-viewport */}
       <section className="hero hero-home" id="home">
-        <div className="hero-carousel">
-          {heroSlides.map((s, i) => (
-            <img
-              key={i}
-              src={s.img}
-              alt={s.headline}
-              className={`hero-carousel-slide${i === heroSlide ? ' active' : ''}`}
-            />
-          ))}
-        </div>
-        <div className="hero-gradient-overlay"></div>
-        <div className="hero-inner">
+        <img
+          src="/pics/01_דף_הבית/03_dcd181_1b2acefdc90d4a6baa839e1f40abbae4~mv2.jpg"
+          alt='עו"ד ערן בקר מרצה בפני עורכי דין'
+          className="hero-cinema-bg"
+        />
+        <div className="hero-cinema-overlay"></div>
+        <div className="hero-inner hero-inner-center">
+          <img src="/pics/logo.avif" alt="ערן בקר - חברת עורכי דין" className="hero-logo-img" />
           <h1>ערן בקר<span className="accent">חברת עורכי דין</span></h1>
           <p className="hero-sub">נזיקין &middot; ביטוח &middot; רשלנות רפואית &middot; ביטוח לאומי &middot; תאונות דרכים ועוד</p>
           <p className="hero-tagline">נפגעתם? חליתם? תנו לנו להילחם בנחישות למיצוי כל זכויותיכם!</p>
@@ -221,29 +175,34 @@ export default function Home() {
             <a href="tel:049001056" className="btn-outline-white">&#128222; 04-9001056</a>
           </div>
         </div>
-        <div className="hero-slide-caption">
-          <span className="hero-slide-source">{heroSlides[heroSlide].source}</span>
-          <span className="hero-slide-headline">{heroSlides[heroSlide].headline}</span>
-        </div>
-        <div className="hero-dots" role="tablist" aria-label="קרוסלת כתבות">
-          {heroSlides.map((_, i) => (
-            <button
-              key={i}
-              type="button"
-              className={`hero-dot${i === heroSlide ? ' active' : ''}`}
-              onClick={() => setHeroSlide(i)}
-              aria-label={`עבור לשקף ${i + 1}`}
-              aria-selected={i === heroSlide}
-              role="tab"
-            />
-          ))}
-        </div>
+        <a href="#news" className="hero-scroll-indicator" aria-label="גללו למטה">
+          <span className="hero-scroll-text">גללו למטה</span>
+          <span className="hero-scroll-arrow" aria-hidden="true">&#8595;</span>
+        </a>
       </section>
 
-      {/* RECENT ARTICLES BAR */}
-      <Link to="/press-tort" className="hero-recent-articles-bar">
-        כתבות אחרונות מהעיתונות &#8592;
-      </Link>
+      {/* NEWS — directly below hero */}
+      <section className="section section-alt news-section" id="news">
+        <div className="container">
+          <div className="reveal">
+            <h2 className="section-title">הצלחות ופסיקות בולטות</h2>
+            <div className="teal-rule"></div>
+          </div>
+          <div className="news-grid">
+            {newsItems.map((item, i) => (
+              <div className="news-card reveal" key={i} style={{ transitionDelay: `${i * 0.1}s`, cursor: 'pointer' }} onClick={() => openArticle(i)}>
+                <div className="news-img"><img src={item.img} alt={item.title} /></div>
+                <div className="news-body">
+                  <p className="news-tag">{item.tag}</p>
+                  <h3 className="news-title">{item.title}</h3>
+                  <p className="news-text">{item.text}</p>
+                  <span className="news-link">צפה בכתבה &#8592;</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* TRUST STRIP */}
       <section className="trust-section">
@@ -328,28 +287,6 @@ export default function Home() {
           </div>
         </div>
       )}
-
-      {/* NEWS */}
-      <section className="section section-alt" id="news">
-        <div className="container">
-          <div className="reveal">
-            <h2 className="section-title">הצלחות ופסיקות בולטות</h2>
-          </div>
-          <div className="news-grid">
-            {newsItems.map((item, i) => (
-              <div className="news-card reveal" key={i} style={{ transitionDelay: `${i * 0.1}s`, cursor: 'pointer' }} onClick={() => openArticle(i)}>
-                <div className="news-img"><img src={item.img} alt={item.title} /></div>
-                <div className="news-body">
-                  <p className="news-tag">{item.tag}</p>
-                  <h3 className="news-title">{item.title}</h3>
-                  <p className="news-text">{item.text}</p>
-                  <span className="news-link">צפה בכתבה &#8592;</span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* ARTICLE POPUP */}
       {currentArticle && (
