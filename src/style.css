@@ -2585,9 +2585,9 @@ img { max-width: 100%; height: auto; }
   position: relative;
   overflow: hidden;
   background: #060e1e;
-  min-height: 700px;
+  min-height: 580px;
   margin-bottom: 0;
-  padding: calc(var(--top-offset) + 180px) 40px 80px;
+  padding: calc(var(--top-offset) + 40px) 40px 40px;
 }
 .hero-framed-canvas {
   position: absolute;
@@ -2621,8 +2621,8 @@ img { max-width: 100%; height: auto; }
 .hero-framed-content {
   position: absolute;
   right: 5%;
-  top: auto;
-  margin-top: calc(var(--top-offset) + 60px);
+  top: 50%;
+  transform: translateY(-50%);
   z-index: 6;
   width: 460px;
   max-width: calc(100% - 10%);
