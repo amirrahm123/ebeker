@@ -4,6 +4,7 @@ import useRevealOnScroll from '../hooks/useRevealOnScroll'
 import TestimonialsCarousel from '../components/TestimonialsCarousel'
 import ContactForm from '../components/ContactForm'
 import ZoomViewer from '../components/ZoomViewer'
+import MediaCards from '../components/MediaCards'
 
 // Clean SVG icons for each practice area
 const Icon = ({ d, size = 28 }) => (
@@ -204,6 +205,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* MEDIA CARDS — סיקור תקשורתי */}
+      <MediaCards />
 
       {/* PRACTICE AREAS */}
       <section className="section section-light" id="areas">
