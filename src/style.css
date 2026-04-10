@@ -163,6 +163,11 @@ nav#navbar.scrolled {
   gap: 20px;
   position: relative;
 }
+.nav-row-links .nav-row-inner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .nav-row-left {
   display: flex;
   align-items: center;
