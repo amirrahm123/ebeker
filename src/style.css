@@ -2585,7 +2585,7 @@ img { max-width: 100%; height: auto; }
   position: relative;
   overflow: hidden;
   background: #060e1e;
-  min-height: 520px;
+  min-height: 600px;
   margin-bottom: 0;
   padding: calc(var(--top-offset) + 20px) 40px 40px;
 }
