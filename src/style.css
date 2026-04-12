@@ -2737,7 +2737,7 @@ img { max-width: 100%; height: auto; }
 .hero-framed-content {
   position: absolute;
   right: 5%;
-  top: calc(50% + 55px);
+  top: calc(50% + 75px);
   transform: translateY(-50%);
   z-index: 6;
   width: 460px;
