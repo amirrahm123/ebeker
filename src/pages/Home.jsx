@@ -23,18 +23,25 @@ const areaIconPaths = {
       <path d="M17 18 L21 24" />
     </>
   ),
-  // רשלנות רפואית — doctor with stethoscope and medical cross hat
+  // רשלנות רפואית — doctor with patient, two figures
   doctor: (
     <>
-      <circle cx="20" cy="9" r="5" />
-      <path d="M14 6 Q20 2 26 6" />
-      <path d="M20 4 L20 8" />
-      <path d="M18.5 6 L21.5 6" />
-      <path d="M13 14 L10 34 L30 34 L27 14 Q20 18 13 14 Z" />
-      <path d="M15 20 Q15 30 20 30 Q25 30 25 20" />
-      <circle cx="20" cy="31" r="2.5" />
-      <circle cx="15" cy="20" r="1.5" />
-      <circle cx="25" cy="20" r="1.5" />
+      {/* Doctor */}
+      <circle cx="26" cy="7" r="3.5" />
+      <line x1="26" y1="10.5" x2="26" y2="22" />
+      <line x1="26" y1="14" x2="20" y2="18" />
+      <line x1="26" y1="14" x2="32" y2="16" />
+      <line x1="26" y1="22" x2="23" y2="32" />
+      <line x1="26" y1="22" x2="29" y2="32" />
+      <path d="M20 18 Q17 22 20 26 Q23 28 24 25" />
+      <circle cx="24" cy="25" r="1.5" />
+      {/* Patient */}
+      <circle cx="12" cy="10" r="3.5" />
+      <line x1="12" y1="13.5" x2="12" y2="24" />
+      <line x1="12" y1="17" x2="7" y2="20" />
+      <line x1="12" y1="17" x2="17" y2="20" />
+      <line x1="12" y1="24" x2="9" y2="32" />
+      <line x1="12" y1="24" x2="15" y2="32" />
     </>
   ),
   // ביטוח — shield
@@ -78,19 +85,18 @@ const areaIconPaths = {
       <path d="M34 22 C34 30, 27 35, 20 35" />
     </g>
   ),
-  // תאונות תלמידים — child with backpack
+  // תאונות תלמידים — student walking with backpack and book
   student: (
     <>
-      <circle cx="20" cy="7" r="4" />
-      <line x1="20" y1="11" x2="20" y2="24" />
-      <line x1="20" y1="15" x2="13" y2="20" />
-      <line x1="20" y1="15" x2="25" y2="19" />
-      <line x1="20" y1="24" x2="16" y2="34" />
-      <line x1="20" y1="24" x2="24" y2="34" />
-      <rect x="21" y="12" width="9" height="12" rx="2" />
-      <line x1="21" y1="13" x2="20" y2="11" />
-      <line x1="21" y1="23" x2="20" y2="24" />
-      <line x1="22" y1="20" x2="29" y2="20" />
+      <circle cx="20" cy="5" r="4" />
+      <line x1="20" y1="9" x2="18" y2="22" />
+      <line x1="20" y1="13" x2="27" y2="17" />
+      <rect x="27" y="15" width="7" height="9" rx="1" />
+      <line x1="20" y1="13" x2="14" y2="16" />
+      <rect x="12" y="10" width="7" height="10" rx="1.5" />
+      <line x1="19" y1="10" x2="20" y2="9" />
+      <line x1="18" y1="22" x2="14" y2="34" />
+      <line x1="18" y1="22" x2="22" y2="34" />
     </>
   ),
   // תאונות קטלניות — ambulance side view
@@ -123,13 +129,14 @@ const areaIconPaths = {
   // פטור ממס הכנסה — scissors cutting a document
   scissors: (
     <>
-      <rect x="18" y="8" width="16" height="22" rx="1" />
-      <path d="M22 14 L30 14" />
-      <path d="M22 18 L30 18" />
-      <circle cx="8" cy="28" r="4" />
-      <circle cx="8" cy="14" r="4" />
-      <path d="M12 26 L20 16" />
-      <path d="M12 16 L20 18" />
+      <rect x="20" y="8" width="14" height="18" rx="1" />
+      <line x1="22" y1="14" x2="32" y2="14" />
+      <line x1="22" y1="18" x2="32" y2="18" />
+      <circle cx="9" cy="28" r="4" />
+      <circle cx="9" cy="16" r="4" />
+      <line x1="9" y1="24" x2="22" y2="14" />
+      <line x1="9" y1="20" x2="22" y2="22" />
+      <circle cx="14" cy="22" r="1.5" />
     </>
   ),
   // צוואות וירושות — document with folded corner and 3 lines
@@ -162,35 +169,31 @@ const areaIconPaths = {
       <path d="M25 25 L34 34" />
     </g>
   ),
-  // נכות כללית וניידות — ISA wheelchair symbol
+  // נכות כללית וניידות — wheelchair symbol
   wheelchair: (
-    <g strokeWidth="2">
-      <circle cx="28" cy="5" r="3.5" />
-      <line x1="28" y1="8" x2="22" y2="18" />
-      <line x1="26" y1="12" x2="33" y2="15" />
-      <line x1="13" y1="18" x2="26" y2="18" />
-      <line x1="26" y1="18" x2="26" y2="10" />
-      <line x1="13" y1="18" x2="9" y2="26" />
-      <circle cx="18" cy="28" r="10" />
-      <circle cx="18" cy="28" r="2" />
-      <circle cx="8" cy="28" r="2.5" />
-      <line x1="26" y1="10" x2="30" y2="8" />
-    </g>
+    <>
+      <circle cx="28" cy="4" r="3.5" />
+      <line x1="28" y1="7.5" x2="28" y2="18" />
+      <line x1="14" y1="18" x2="28" y2="18" />
+      <line x1="28" y1="18" x2="28" y2="10" />
+      <line x1="14" y1="18" x2="14" y2="26" />
+      <line x1="28" y1="26" x2="34" y2="26" />
+      <circle cx="20" cy="28" r="10" />
+    </>
   ),
-  // נכי צה"ל — IDF soldier with helmet and rifle
+  // נכי צה"ל — soldier saluting with rifle
   soldier: (
     <>
-      <path d="M13 10 Q13 4 20 4 Q27 4 27 10 L27 13 L13 13 Z" />
-      <line x1="11" y1="13" x2="29" y2="13" />
-      <circle cx="20" cy="17" r="4" />
-      <rect x="15" y="21" width="10" height="10" rx="1" />
-      <line x1="15" y1="24" x2="9" y2="28" />
-      <line x1="25" y1="24" x2="31" y2="28" />
-      <line x1="9" y1="28" x2="5" y2="33" />
-      <rect x="6" y="27" width="5" height="2" rx="0.5" />
-      <line x1="17" y1="31" x2="15" y2="38" />
-      <line x1="23" y1="31" x2="25" y2="38" />
-      <path d="M20 23 L21.5 25 L20 27 L18.5 25 Z" />
+      <circle cx="20" cy="7" r="4" />
+      <path d="M14 7 Q14 1 20 1 Q26 1 26 7" />
+      <rect x="14" y="11" width="12" height="12" rx="1" />
+      <line x1="26" y1="14" x2="32" y2="9" />
+      <line x1="30" y1="8" x2="34" y2="10" />
+      <line x1="14" y1="14" x2="8" y2="18" />
+      <line x1="26" y1="11" x2="14" y2="23" />
+      <line x1="26" y1="9" x2="30" y2="6" />
+      <line x1="17" y1="23" x2="15" y2="34" />
+      <line x1="23" y1="23" x2="25" y2="34" />
     </>
   ),
 }
