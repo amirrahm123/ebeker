@@ -130,8 +130,8 @@ export default function CausesOfDeath() {
           { label: 'תחומי עיסוק', to: '/#areas' },
           { label: 'חקירת סיבות מוות' }
         ]}
-        title="חקירת"
-        accent="סיבות מוות"
+        title="נזיקין · תאונות"
+        accent="קטלניות"
       />
 
       {/* Section 1 — Intro */}
