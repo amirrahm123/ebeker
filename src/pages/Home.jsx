@@ -361,7 +361,7 @@ export default function Home() {
 
       // Scales of justice on the LEFT
       const cx = w * 0.25
-      const cy = h * 0.5
+      const cy = h * 0.62
 
       // Radial glow behind scales
       const glow = ctx.createRadialGradient(cx, cy, 0, cx, cy, 260)
