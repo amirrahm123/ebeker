@@ -38,11 +38,11 @@ const goldCallout = {
   padding: '20px 24px',
   borderRadius: 4,
   margin: '24px 0',
-  color: '#fff',
   fontWeight: 700,
   fontSize: '1.1rem',
   lineHeight: 1.7,
 }
+const goldCalloutDark = { ...goldCallout, color: '#fff' }
 const ctaPhoneLine = {
   color: 'rgba(255,255,255,0.78)',
   fontSize: '1rem',
@@ -90,34 +90,13 @@ const ctaBtn = {
 const ctaWrap = { textAlign: 'center', marginTop: 8 }
 
 const caseTypes = [
-  {
-    title: 'תביעות נגד חברת חשמל',
-    text: 'התחשמלות ומותם של בני אדם כתוצאה מטיפוס על עמודי חשמל.',
-  },
-  {
-    title: 'תביעות נגד רשויות מקומיות ורשויות ציבור',
-    text: 'קריסת עצים שגרמו למותם של עוברי אורח ברחובות.',
-  },
-  {
-    title: 'תביעות נגד המדינה ורשויות ציבור',
-    text: 'טביעת רוחצים למוות בים בכלל וב׳מערת המוות׳ באכזיב בפרט.',
-  },
-  {
-    title: 'תביעות נגד משרד החינוך ובתי ספר',
-    text: 'מוות של תלמיד במהלך טיול שנתי של בית הספר. מתוך הכתבה בערוץ 2: ״הסכום הגבוה ביותר ששולם בישראל להורים שבנם נהרג באסון במסגרת בית ספרית״.',
-  },
-  {
-    title: 'תביעות נגד משרד הבריאות וקופות חולים',
-    text: 'מוות כתוצאה מרשלנות רפואית.',
-  },
-  {
-    title: 'תביעות נגד מעסיקים — תאונות עבודה',
-    text: 'מוות של עובדים באתרי בנייה, במפעלים, וחשיפה לחומרים מסוכנים, מחלות סרטן, מחלת סרטן מזותוליומה / אסבסט במקומות עבודה.',
-  },
-  {
-    title: 'תביעות נגד מעסיקים — פגיעות אנושות',
-    text: 'פגיעות אנושות של עובדים במהלך עבודתם.',
-  },
+  { title: 'תביעות נגד חברת חשמל', text: 'התחשמלות ומותם של בני אדם כתוצאה מטיפוס על עמודי חשמל.' },
+  { title: 'תביעות נגד רשויות מקומיות ורשויות ציבור', text: 'קריסת עצים שגרמו למותם של עוברי אורח ברחובות.' },
+  { title: 'תביעות נגד המדינה ורשויות ציבור', text: 'טביעת רוחצים למוות בים בכלל וב׳מערת המוות׳ באכזיב בפרט.' },
+  { title: 'תביעות נגד משרד החינוך ובתי ספר', text: 'מוות של תלמיד במהלך טיול שנתי של בית הספר. מתוך הכתבה בערוץ 2: ׳הסכום הגבוה ביותר ששולם בישראל להורים שבנם נהרג באסון במסגרת בית ספרית׳.' },
+  { title: 'תביעות נגד משרד הבריאות וקופות חולים', text: 'מוות כתוצאה מרשלנות רפואית.' },
+  { title: 'תביעות נגד מעסיקים — תאונות עבודה', text: 'מוות של עובדים באתרי בנייה, במפעלים, וחשיפה לחומרים מסוכנים, מחלות סרטן, מחלת סרטן מזותוליומה / אסבסט במקומות עבודה.' },
+  { title: 'תביעות נגד מעסיקים — פגיעות אנושות', text: 'פגיעות אנושות של עובדים במהלך עבודתם.' },
 ]
 
 export default function CausesOfDeath() {
@@ -128,7 +107,7 @@ export default function CausesOfDeath() {
       <PageBanner
         crumbs={[
           { label: 'תחומי עיסוק', to: '/#areas' },
-          { label: 'חקירת סיבות מוות' }
+          { label: 'נזיקין · תאונות קטלניות' }
         ]}
         title="נזיקין · תאונות"
         accent="קטלניות"
@@ -140,7 +119,7 @@ export default function CausesOfDeath() {
           <p style={{ ...bodyDark, fontSize: '1.15rem', lineHeight: 1.9 }}>
             לצערנו מתרחשות לא פעם ברחבי המדינה תאונות קטלניות שגורמות לנכות קשה ולמוות של נפגעים. תאונות אלה דורשות יידע וטיפול ייחודי בתביעות עיזבון ונפגעים קשים ומתנהלות בערכאות המשפטיות הגבוהות. למשרדנו ניסיון עשיר ומוכח בייצוג תביעות אלה של משפחות שיקיריהם נפגעו או נהרגו בתאונות קטלניות.
           </p>
-          <div style={goldCallout}>
+          <div style={goldCalloutDark}>
             לעו״ד ערן בקר ניסיון משפטי של כ-20 שנים בהצלחה בניהול תיקי תלויים או עזבון עקב תאונות קטלניות.
           </div>
           <p style={ctaPhoneLine}>
@@ -153,10 +132,10 @@ export default function CausesOfDeath() {
         </div>
       </section>
 
-      {/* Section 2 — Case types */}
+      {/* Section 2 — תחומי טיפול */}
       <section style={sectionLight}>
         <div style={container} className="reveal">
-          <h2 style={{ ...headingGold, color: 'var(--color-accent)' }}>תחומי הטיפול שלנו בתביעות קטלניות</h2>
+          <h2 style={headingGold}>תחומי הטיפול שלנו בתביעות קטלניות</h2>
           {caseTypes.map((c, i) => (
             <div key={i} style={caseCard}>
               <h3 style={caseTitle}>{c.title}</h3>
@@ -169,7 +148,7 @@ export default function CausesOfDeath() {
       {/* Section 3 — Closing */}
       <section style={sectionDark}>
         <div style={container} className="reveal">
-          <div style={goldCallout}>
+          <div style={goldCalloutDark}>
             אם חלילה איבדתם את יקירכם — אל תהססו לפנות לייעוץ משפטי במשרדנו.
           </div>
           <p style={ctaPhoneLine}>
