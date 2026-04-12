@@ -16,6 +16,7 @@ import PressTort from './pages/PressTort'
 import PressInsurance from './pages/PressInsurance'
 import PressDefense from './pages/PressDefense'
 import PressCarAccidents from './pages/PressCarAccidents'
+import CarAccidents from './pages/CarAccidents'
 import Recommendations from './pages/Recommendations'
 import EransTip from './pages/EransTip'
 import Admin from './pages/Admin'
@@ -39,6 +40,7 @@ export default function App() {
         <Route path="press-tort" element={<PressTort />} />
         <Route path="press-insurance" element={<PressInsurance />} />
         <Route path="press-defense" element={<PressDefense />} />
+        <Route path="car-accidents" element={<CarAccidents />} />
         <Route path="press-car-accidents" element={<PressCarAccidents />} />
         <Route path="recommendations" element={<Recommendations />} />
         <Route path="eranstip" element={<EransTip />} />
