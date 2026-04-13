@@ -30,6 +30,14 @@ const images = [
   '23_dcd181_fe4dfa19d0944aeb95923fe0ed8bfaca~mv2.jpg',
   '24_dcd181_04b93bb34df4441eb533b2bdf3a95d59~mv2.jpg',
   '25_dcd181_74009429c1a94deaafd661641fd7130c~mv2.jpg',
+  '26 2.jpg',
+  '27 2.jpg',
+  '28 2.jpg',
+  '29 2.jpg',
+  '30 2.jpg',
+  '31 2.jpg',
+  '32 2.jpg',
+  '33 2.jpg',
 ]
 
 const BASE = '/pics/תאונות רכב/'
