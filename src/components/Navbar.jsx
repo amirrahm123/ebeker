@@ -12,12 +12,16 @@ const practiceAreas = [
   { to: '/damages', label: 'נזיקין כללי' },
   { to: '/medical-malpractice', label: 'רשלנות רפואית' },
   { to: '/insurance', label: 'ביטוח' },
+  { to: '/work-accidents', label: 'תאונות עבודה · ביטוח לאומי' },
+  { to: '/car-accidents', label: 'תאונות דרכים' },
   { to: '/marine-accidents', label: 'תאונות ימיות' },
   { to: '/student-accidents', label: 'תאונות תלמידים' },
-  { to: '/wills', label: 'צוואות וירושות' },
+  { to: '/occupational-diseases', label: 'מחלות מקצוע · ביטוח לאומי' },
   { to: '/tax-exemption', label: 'פטור ממס הכנסה' },
+  { to: '/wills', label: 'צוואות וירושות' },
   { to: '/power-of-attorney', label: 'ייפוי כוח מתמשך' },
-  { to: '/causes-of-death', label: 'חקירת סיבות מוות' },
+  { to: '/disabilities', label: 'נכות כללית וניידות · ביטוח לאומי' },
+  { to: '/idf-disabilities', label: 'נכי צה"ל ומשרד הביטחון' },
 ]
 
 const pressLinks = [
