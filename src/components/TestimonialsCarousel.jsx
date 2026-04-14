@@ -98,7 +98,7 @@ export default function TestimonialsCarousel() {
           aria-label="הקודם"
         >&#8594;</button>
 
-        <div className="testi-cards">
+        <div className="testi-cards" key={current}>
           {renderCard(testimonials[prevIdx], 'side')}
           {renderCard(testimonials[current], 'center')}
           {renderCard(testimonials[nextIdx], 'side')}
