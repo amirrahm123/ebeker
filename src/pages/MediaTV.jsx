@@ -3,10 +3,22 @@ import PageBanner from '../components/PageBanner'
 import CTASection from '../components/CTASection'
 
 const videos = [
-  { title: '2.3 מיליון ש"ח פיצויים להורי הנער שנהרג בטיול שנתי' },
-  { title: 'תביעת נזיקין נגד הרשויות בגין רשלנות מותם של אזרחים במערת המוות באכזיב' },
-  { title: 'תחקיר מותו של הנער יפתח ספיר בטיול שנתי של בית הספר בערבה' },
-  { title: 'אבחון שגוי וכריתת שד מיותרת (רשלנות רפואית)' },
+  {
+    title: 'תחקיר מותו של הנער יפתח ספיר בטיול שנתי של בית הספר בערבה',
+    src: 'https://www.youtube.com/embed/N5AAJ29ir4c',
+  },
+  {
+    title: '2.3 מיליון ש"ח פיצויים להורי הנער שנהרג בטיול שנתי',
+    src: 'https://www.youtube.com/embed/8CbYTSP0Y7A',
+  },
+  {
+    title: 'אבחון שגוי וכריתת שד מיותרת (רשלנות רפואית)',
+    src: 'https://www.youtube.com/embed/JSB1z-yH85A',
+  },
+  {
+    title: 'תביעת נזיקין נגד הרשויות בגין רשלנות מותם של אזרחים במערת המוות באכזיב',
+    src: 'https://www.youtube.com/embed/-cUeFROaKK0',
+  },
 ]
 
 export default function MediaTV() {
@@ -26,54 +38,31 @@ export default function MediaTV() {
             <p>מבחר כתבות ותחקירים בטלוויזיה המציגים תיקים מרכזיים שניהל עו״ד ערן בקר — תביעות מורכבות בתחומי הנזיקין, רשלנות רפואית וחקירת סיבות מוות.</p>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: 28 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))', gap: 28 }}>
             {videos.map((v, i) => (
               <article key={i} className="reveal" style={{
-                background: 'var(--color-card-bg)',
-                border: '1px solid var(--color-card-border)',
+                background: '#0d1b3e',
+                border: '1px solid var(--color-accent)',
                 borderRadius: 14,
                 overflow: 'hidden',
-                boxShadow: '0 2px 12px rgba(0,0,0,.07)',
+                boxShadow: '0 4px 18px rgba(0,0,0,.15)',
                 display: 'flex',
                 flexDirection: 'column',
               }}>
-                <div style={{
-                  position: 'relative',
-                  paddingBottom: '56.25%',
-                  background: '#1a1a1a',
-                  overflow: 'hidden',
-                }}>
-                  <div style={{
-                    position: 'absolute',
-                    inset: 0,
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    background: 'linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%)',
-                  }}>
-                    <div style={{
-                      width: 68,
-                      height: 48,
-                      borderRadius: 10,
-                      background: 'rgba(0,0,0,.75)',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      border: '2px solid rgba(255,255,255,.15)',
-                    }}>
-                      <span style={{
-                        width: 0,
-                        height: 0,
-                        borderTop: '10px solid transparent',
-                        borderBottom: '10px solid transparent',
-                        borderRight: '16px solid #fff',
-                        marginLeft: 4,
-                      }} />
-                    </div>
-                  </div>
-                </div>
-                <div style={{ padding: '18px 20px 22px', flex: 1, display: 'flex', alignItems: 'flex-start' }}>
-                  <h3 style={{ margin: 0, fontSize: '1rem', lineHeight: 1.5, color: 'var(--color-text)' }}>{v.title}</h3>
+                <iframe
+                  src={v.src}
+                  title={v.title}
+                  width="100%"
+                  height="280"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  style={{ display: 'block', border: 'none', background: '#000' }}
+                />
+                <div style={{ padding: '18px 22px 22px', flex: 1 }}>
+                  <h3 style={{ margin: 0, fontSize: '1rem', lineHeight: 1.55, color: '#fff' }}>
+                    <span style={{ color: 'var(--color-accent)' }}>▸</span> {v.title}
+                  </h3>
                 </div>
               </article>
             ))}
