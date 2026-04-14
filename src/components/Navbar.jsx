@@ -128,7 +128,7 @@ export default function Navbar() {
             <ul className="nav-links">
               <li><Link to="/about">אודות</Link></li>
               <li><Link to="/legal-team">הצוות המשפטי</Link></li>
-              <NavDropdown label="תחומי עיסוק" href="/#areas" items={practiceAreas} />
+              <NavDropdown label="תחומי עיסוק" href="/#areas" items={practiceAreas} wide />
               <NavDropdown label="מהעיתונות" href="#" items={pressLinks} />
               <li><Link to="/recommendations">ממליצים</Link></li>
               <li><Link to="/eranstip">הטיפ של ערן</Link></li>
@@ -175,7 +175,7 @@ export default function Navbar() {
   )
 }
 
-function NavDropdown({ label, href, items }) {
+function NavDropdown({ label, href, items, wide }) {
   const timeoutRef = useRef(null)
   const [open, setOpen] = useState(false)
 
@@ -190,7 +190,7 @@ function NavDropdown({ label, href, items }) {
   return (
     <li className={`has-dropdown ${open ? 'dropdown-open' : ''}`} onMouseEnter={onEnter} onMouseLeave={onLeave}>
       <a href={href}>{label}</a>
-      <div className="nav-dropdown">
+      <div className={`nav-dropdown${wide ? ' nav-dropdown-wide' : ''}`}>
         {items.map(item => (
           <Link key={item.to} to={item.to} onClick={() => setOpen(false)}>{item.label}</Link>
         ))}

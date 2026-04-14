@@ -280,6 +280,13 @@ nav#navbar.scrolled {
 .nav-dropdown a:last-child { border-bottom: none; }
 .nav-dropdown a:hover { background: rgba(255,255,255,.06); padding-right: 28px; color: var(--color-accent); }
 
+.nav-dropdown-wide { grid-template-columns: 1fr 1fr; min-width: 400px; }
+.has-dropdown:hover .nav-dropdown.nav-dropdown-wide,
+.has-dropdown .nav-dropdown.nav-dropdown-wide:hover,
+.has-dropdown.dropdown-open .nav-dropdown.nav-dropdown-wide { display: grid; }
+.nav-dropdown-wide a { border-bottom: 1px solid var(--color-border); }
+.nav-dropdown-wide a:last-child { border-bottom: 1px solid var(--color-border); }
+
 .nav-right { display: flex; align-items: center; gap: 16px; }
 .nav-phone-link {
   color: var(--color-nav-text); font-weight: 800; font-size: 0.85rem;
