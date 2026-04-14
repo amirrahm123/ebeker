@@ -830,9 +830,10 @@ nav#navbar.scrolled {
 }
 .attorney-card-photo {
   height: 300px;
-  width: 100%;
+  width: 110%;
+  margin-left: -5%;
   object-fit: cover;
-  object-position: 50% 20%;
+  object-position: center 15%;
   display: block;
 }
 .attorney-card-body {
