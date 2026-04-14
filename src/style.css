@@ -834,8 +834,8 @@ nav#navbar.scrolled {
 .attorney-card-photo {
   height: 320px;
   width: 100%;
-  object-fit: contain;
-  object-position: center top;
+  object-fit: cover;
+  object-position: center 15%;
   background: #0d1b3e;
   display: block;
 }
