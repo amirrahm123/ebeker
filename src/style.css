@@ -775,6 +775,7 @@ nav#navbar.scrolled {
   box-shadow: 0 4px 24px rgba(201,168,76,.12);
   display: flex;
   flex-direction: row;
+  align-items: stretch;
   cursor: pointer;
   transition: box-shadow .3s, transform .3s;
 }
@@ -792,7 +793,8 @@ nav#navbar.scrolled {
 }
 .attorney-card-featured .attorney-card-body {
   padding: 36px 40px;
-  flex: 1;
+  flex: 1 1 0;
+  min-width: 0;
   display: flex;
   flex-direction: column;
   text-align: right;
@@ -830,10 +832,9 @@ nav#navbar.scrolled {
 }
 .attorney-card-photo {
   height: 300px;
-  width: 110%;
-  margin-left: -5%;
+  width: 100%;
   object-fit: cover;
-  object-position: center 15%;
+  object-position: top center;
   display: block;
 }
 .attorney-card-body {
