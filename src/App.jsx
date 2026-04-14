@@ -23,6 +23,9 @@ import Disabilities from './pages/Disabilities'
 import IdfDisabilities from './pages/IdfDisabilities'
 import Recommendations from './pages/Recommendations'
 import EransTip from './pages/EransTip'
+import MediaTV from './pages/MediaTV'
+import MediaRadio from './pages/MediaRadio'
+import MediaLectures from './pages/MediaLectures'
 import Admin from './pages/Admin'
 
 export default function App() {
@@ -52,6 +55,9 @@ export default function App() {
         <Route path="press-car-accidents" element={<PressCarAccidents />} />
         <Route path="recommendations" element={<Recommendations />} />
         <Route path="eranstip" element={<EransTip />} />
+        <Route path="media/tv" element={<MediaTV />} />
+        <Route path="media/radio" element={<MediaRadio />} />
+        <Route path="media/lectures" element={<MediaLectures />} />
       </Route>
       <Route path="admin" element={<Admin />} />
     </Routes>

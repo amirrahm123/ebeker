@@ -27,6 +27,12 @@ const pressLinks = [
   { to: '/press-car-accidents', label: 'תאונות רכב' },
 ]
 
+const mediaLinks = [
+  { to: '/media/tv', label: 'כתבות בטלוויזיה' },
+  { to: '/media/radio', label: 'ראיונות ברדיו' },
+  { to: '/media/lectures', label: 'הרצאות וכנסים' },
+]
+
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
@@ -70,7 +76,6 @@ export default function Navbar() {
   }, [])
 
   const contactLink = '/#contact'
-  const newsLink = '/#news'
 
   return (
     <>
@@ -123,7 +128,7 @@ export default function Navbar() {
               <NavDropdown label="מהעיתונות" href="#" items={pressLinks} />
               <li><Link to="/recommendations">ממליצים</Link></li>
               <li><Link to="/eranstip">הטיפ של ערן</Link></li>
-              <li><a href={newsLink}>מרכז מדיה</a></li>
+              <NavDropdown label="מרכז מדיה" href="#" items={mediaLinks} />
               <li><a href={contactLink}>צור קשר</a></li>
             </ul>
           </div>
@@ -143,7 +148,10 @@ export default function Navbar() {
         ))}
         <Link to="/recommendations" onClick={closeMobile}>ממליצים</Link>
         <Link to="/eranstip" onClick={closeMobile}>הטיפ של ערן</Link>
-        <a href="/#news" onClick={closeMobile}>מרכז מדיה</a>
+        <span className="mob-section-title">מרכז מדיה</span>
+        {mediaLinks.map(a => (
+          <Link key={a.to} to={a.to} onClick={closeMobile} className="mob-sub">{a.label}</Link>
+        ))}
         <a href="/#contact" onClick={closeMobile}>צור קשר</a>
         <a href="tel:049001056" onClick={closeMobile}>📞 04-9001056</a>
         <a href="/#contact" onClick={closeMobile} className="mob-cta">ייעוץ חינם</a>
