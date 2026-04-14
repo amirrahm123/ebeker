@@ -627,9 +627,8 @@ export default function Home() {
                 <Link to="/about" className="btn-teal">קראו עוד אודות הפירמה &#8592;</Link>
               </div>
             </div>
-            <div className="about-visual reveal-left" style={{ transitionDelay: '.15s', overflow: 'hidden', height: 450 }}>
+            <div className="about-visual reveal-left" style={{ transitionDelay: '.15s', overflow: 'hidden', padding: 0, margin: 0 }}>
               <img src="/pics/2.jpeg" alt='עו"ד ערן בקר — מייסד ושותף בכיר' style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 15%', display: 'block' }} />
-              <div className="big-text" style={{ marginTop: 16 }}>ערן בקר — חברת עורכי דין</div>
             </div>
           </div>
         </div>
