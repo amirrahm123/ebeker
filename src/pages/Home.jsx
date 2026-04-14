@@ -612,7 +612,7 @@ export default function Home() {
           <div className="about-grid">
             <div className="about-text reveal-right">
               <p className="section-eyebrow">אודות הפירמה</p>
-              <h2 className="section-title">מעל 21 שנה של נחישות משפטית</h2>
+              <h2 className="section-title">מעל 25 שנה של נחישות משפטית</h2>
               <div className="teal-rule" style={{ marginBottom: 28 }}></div>
               <p>ערן בקר חברת עורכי-דין הינו משרד בוטיק מוביל ומוכר שנוסד בשנת 2003, המתמחה במימוש זכויות נפגעי גוף — נזיקין, ביטוח, רשלנות רפואית וביטוח לאומי.</p>
               <p>המשרד מלווה את לקוחותיו החל משלב בדיקת היתכנות הגשת התביעה, דרך מיצוי ומימוש זכויותיהם, ניהול משא ומתן מקצועי ועיקש, וכלה בייצוג בפני הערכאות המשפטיות.</p>
@@ -628,7 +628,7 @@ export default function Home() {
               </div>
             </div>
             <div className="about-visual reveal-left" style={{ transitionDelay: '.15s' }}>
-              <img src="/pics/2.jpg" alt='עו"ד ערן בקר — מייסד ושותף בכיר' style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top center', display: 'block', borderRadius: 16, boxShadow: '0 8px 32px rgba(0,0,0,.2)' }} />
+              <img src="/pics/2.jpeg" alt='עו"ד ערן בקר — מייסד ושותף בכיר' style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top center', display: 'block', borderRadius: 16, boxShadow: '0 8px 32px rgba(0,0,0,.2)' }} />
               <div className="big-text" style={{ marginTop: 16 }}>ערן בקר — חברת עורכי דין</div>
             </div>
           </div>
