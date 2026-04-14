@@ -100,10 +100,6 @@ export default function LegalTeam() {
 
       <section className="section">
         <div className="container">
-          <div className="reveal" style={{ textAlign: 'center', marginBottom: 56 }}>
-            <h2 className="section-title">מומחים בייצוג נפגעי גוף</h2>
-          </div>
-
           <div className="team-grid">
             {/* Featured — Eran Beker */}
             <div className="attorney-card-featured reveal" onClick={() => setPopup(eran)}>
