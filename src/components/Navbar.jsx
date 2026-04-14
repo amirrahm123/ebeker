@@ -123,7 +123,7 @@ export default function Navbar() {
               <NavDropdown label="מהעיתונות" href="#" items={pressLinks} />
               <li><Link to="/recommendations">ממליצים</Link></li>
               <li><Link to="/eranstip">הטיפ של ערן</Link></li>
-              <li><a href={newsLink}>חדשות</a></li>
+              <li><a href={newsLink}>מרכז מדיה</a></li>
               <li><a href={contactLink}>צור קשר</a></li>
             </ul>
           </div>
@@ -143,7 +143,7 @@ export default function Navbar() {
         ))}
         <Link to="/recommendations" onClick={closeMobile}>ממליצים</Link>
         <Link to="/eranstip" onClick={closeMobile}>הטיפ של ערן</Link>
-        <a href="/#news" onClick={closeMobile}>חדשות</a>
+        <a href="/#news" onClick={closeMobile}>מרכז מדיה</a>
         <a href="/#contact" onClick={closeMobile}>צור קשר</a>
         <a href="tel:049001056" onClick={closeMobile}>📞 04-9001056</a>
         <a href="/#contact" onClick={closeMobile} className="mob-cta">ייעוץ חינם</a>
