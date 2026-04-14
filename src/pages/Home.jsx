@@ -628,7 +628,7 @@ export default function Home() {
               </div>
             </div>
             <div className="about-visual reveal-left" style={{ transitionDelay: '.15s' }}>
-              <img src="/pics/03_הצוות_המשפטי/03_dcd181_6838d586917e45cd9c3647aa83459cbe~mv2.jpg" alt='עו"ד ערן בקר — מייסד ושותף בכיר' style={{ width: '100%', maxWidth: 350, borderRadius: 16, border: '2px solid var(--border2)', boxShadow: '0 8px 32px rgba(0,0,0,.2)' }} />
+              <img src="/pics/2.jpg" alt='עו"ד ערן בקר — מייסד ושותף בכיר' style={{ width: '100%', maxWidth: 350, borderRadius: 16, border: '2px solid var(--border2)', boxShadow: '0 8px 32px rgba(0,0,0,.2)' }} />
               <div className="big-text" style={{ marginTop: 16 }}>ערן בקר — חברת עורכי דין</div>
             </div>
           </div>
