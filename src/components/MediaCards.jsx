@@ -215,8 +215,8 @@ export default function MediaCards() {
 
   return (
     <section className="media-cards-section" dir="rtl">
-      <p className="mc-section-eyebrow">MEDIA COVERAGE</p>
-      <h2 className="mc-section-title">סיקור תקשורתי</h2>
+      <p className="mc-section-eyebrow">עדכונים</p>
+      <h2 className="mc-section-title">חדשות ועדכונים</h2>
       <div className="mc-section-line" aria-hidden="true" />
 
       <div className="mc-slider-wrap">
