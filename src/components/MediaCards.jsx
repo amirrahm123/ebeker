@@ -3,61 +3,32 @@ import { useState, useEffect, useCallback } from 'react'
 const cards = [
   {
     id: 1,
-    cat: 'נזיקין · תאונות עבודה',
-    title: 'פיצוי של 6.5 מיליון ₪ לנפגע תאונת עבודה — פסיקה תקדימית',
-    source: 'ידיעות אחרונות',
-    date: 'מרץ 2024',
-    reads: '4,200 קריאות',
-    type: 'article',
+    cat: 'נזיקין · אוקטובר השחור',
+    title: 'ייצוג משפחות חטופים בכנסת',
+    source: 'כנסת ישראל',
+    type: 'video',
+    thumbnail: '/videos/יצוג_משפחות_חטופים_בכנסת.mp4',
+    thumbKind: 'video',
   },
   {
     id: 2,
-    cat: 'רשלנות רפואית · ערוץ 12',
-    title: 'ע"ד ערן בקר בראיון על זכויות נפגעי רשלנות רפואית',
-    source: 'ערוץ 12',
-    date: 'ינואר 2024',
-    reads: '8,100 צפיות',
-    type: 'video',
-    duration: '4:32',
+    cat: 'נזיקין · לשכת עורכי הדין',
+    title: 'ערן בקר מנחה פאנל בפסגת המשפט — פיצויים לנפגעי 7 באוקטובר',
+    source: 'לשכת עורכי הדין',
+    type: 'article',
+    description: 'עו״ד ערן בקר הנחה פאנל בכנס פסגת המשפט באילת בנושא פיצויים לנפגעי 7 באוקטובר — כנס מחוז דרום של לשכת עורכי הדין',
+    thumbnail: '/pics/481776223_1162275738569300_7026142654963745400_n.jpg',
+    thumbKind: 'image',
   },
   {
     id: 3,
-    cat: 'ביטוח לאומי · כאן 11',
-    title: 'אופניים חשמליים — הלכה חדשה שמשנה את כל כללי הפיצוי',
-    source: 'כאן 11',
-    date: 'פברואר 2024',
-    reads: '11,400 צפיות',
-    type: 'both',
-    duration: '6:15',
-  },
-  {
-    id: 4,
-    cat: 'ביטוח · גלי צה"ל',
-    title: 'ראיון רדיו — איך חברות הביטוח מונעות פיצויים מנפגעים',
-    source: 'גלי צה"ל',
-    date: 'דצמבר 2023',
-    reads: '2,800 האזנות',
-    type: 'audio',
-    duration: '12:10',
-  },
-  {
-    id: 5,
-    cat: 'נזיקין · ynet',
-    title: 'תאונת דרכים קשה — כך תממשו את מלוא זכויותיכם',
-    source: 'ynet',
-    date: 'נובמבר 2023',
-    reads: '6,500 קריאות',
+    cat: 'חטופים · לשכת עורכי הדין מחוז חיפה',
+    title: 'ערן בקר בכנס תמיכה בחטופים ומשפחותיהם',
+    source: 'לשכת עורכי הדין',
     type: 'article',
-  },
-  {
-    id: 6,
-    cat: 'רשלנות רפואית · מako',
-    title: 'ניתוח שהשתבש — משפחה קיבלה פיצוי של 3.2 מיליון ₪',
-    source: 'מako',
-    date: 'אוקטובר 2023',
-    reads: '5,100 צפיות',
-    type: 'both',
-    duration: '3:45',
+    description: 'עו״ד ערן בקר נאם באירוע תמיכה בחטופים ומשפחותיהם שנערך בלשכת עורכי הדין מחוז חיפה',
+    thumbnail: '/pics/549888778_3116542425178919_1714678307204409653_n.jpg',
+    thumbKind: 'image',
   },
 ]
 
@@ -135,26 +106,37 @@ function Modal({ card, activeTab, setActiveTab, onClose }) {
 
         <div className="mc-modal-body">
           {showVideo && (
-            <div className="mc-vplayer">
-              <div className="mc-vplayer-play" aria-hidden="true">▶</div>
-              <div className="mc-vplayer-info">
-                <h4>{card.title}</h4>
-                <p>{card.source} {card.duration && `· ${card.duration}`}</p>
+            card.thumbKind === 'video' && card.thumbnail ? (
+              <video src={card.thumbnail} controls autoPlay playsInline className="mc-vplayer-real" />
+            ) : (
+              <div className="mc-vplayer">
+                <div className="mc-vplayer-play" aria-hidden="true">▶</div>
+                <div className="mc-vplayer-info">
+                  <h4>{card.title}</h4>
+                  <p>{card.source} {card.duration && `· ${card.duration}`}</p>
+                </div>
               </div>
-            </div>
+            )
           )}
           {showArticle && (
-            <div className="mc-article">
-              <div className="mc-article-line" />
-              <div className="mc-article-line" />
-              <div className="mc-article-line short" />
-              <blockquote className="mc-pullquote">
-                "פסק דין תקדימי שיקבע את הדרך לעתיד בתביעות של נפגעי גוף ויאפשר מימוש זכויות מלא."
-              </blockquote>
-              <div className="mc-article-line" />
-              <div className="mc-article-line" />
-              <div className="mc-article-line short" />
-            </div>
+            card.thumbKind === 'image' && card.thumbnail ? (
+              <div className="mc-article-real">
+                <img src={card.thumbnail} alt={card.title} className="mc-article-image" />
+                {card.description && <p className="mc-article-desc">{card.description}</p>}
+              </div>
+            ) : (
+              <div className="mc-article">
+                <div className="mc-article-line" />
+                <div className="mc-article-line" />
+                <div className="mc-article-line short" />
+                <blockquote className="mc-pullquote">
+                  "פסק דין תקדימי שיקבע את הדרך לעתיד בתביעות של נפגעי גוף ויאפשר מימוש זכויות מלא."
+                </blockquote>
+                <div className="mc-article-line" />
+                <div className="mc-article-line" />
+                <div className="mc-article-line short" />
+              </div>
+            )
           )}
         </div>
 
@@ -228,7 +210,13 @@ export default function MediaCards() {
             {cards.map((c) => (
               <button type="button" key={c.id} className={`mc-card mc-card-${c.type}`} onClick={() => openCard(c)}>
                 <div className="mc-thumb">
-                  <ThumbSvg type={c.type} />
+                  {c.thumbKind === 'image' ? (
+                    <img src={c.thumbnail} alt={c.title} className="mc-thumb-media" />
+                  ) : c.thumbKind === 'video' ? (
+                    <video src={c.thumbnail} className="mc-thumb-media" muted playsInline preload="metadata" />
+                  ) : (
+                    <ThumbSvg type={c.type} />
+                  )}
                   <div className="mc-thumb-overlay" aria-hidden="true" />
                   <div className="mc-source-badge">
                     <span className="mc-source-dot" aria-hidden="true" />
@@ -245,10 +233,13 @@ export default function MediaCards() {
                 <div className="mc-card-body">
                   <p className="mc-card-cat">{c.cat}</p>
                   <h3 className="mc-card-title">{c.title}</h3>
-                  <div className="mc-card-meta">
-                    <span>{c.date}</span>
-                    <span>{c.reads}</span>
-                  </div>
+                  {c.description && <p className="mc-card-desc">{c.description}</p>}
+                  {(c.date || c.reads) && (
+                    <div className="mc-card-meta">
+                      {c.date && <span>{c.date}</span>}
+                      {c.reads && <span>{c.reads}</span>}
+                    </div>
+                  )}
                 </div>
               </button>
             ))}
