@@ -3144,6 +3144,52 @@ img { max-width: 100%; height: auto; }
   color: rgba(255,255,255,0.85);
   margin: 0;
 }
+.mc-vc {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.mc-vc-stage {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #000;
+}
+.mc-vc-stage .mc-arr-btn {
+  z-index: 3;
+  background: rgba(13,27,62,0.85);
+}
+.mc-vc-stage .mc-arr-prev { right: 10px; }
+.mc-vc-stage .mc-arr-next { left: 10px; }
+.mc-vc-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.9);
+  text-align: center;
+  margin: 0;
+}
+.mc-vc-count {
+  color: rgba(201,168,76,0.8);
+  font-weight: 400;
+  font-size: 12px;
+  margin-inline-start: 6px;
+}
+.mc-photos-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 14px;
+}
+.mc-photos-item {
+  width: 100%;
+  max-height: 320px;
+  object-fit: cover;
+  border-radius: 8px;
+  background: #091530;
+}
+@media (max-width: 640px) {
+  .mc-photos-row { grid-template-columns: 1fr; }
+}
 .mc-thumb-overlay {
   position: absolute;
   inset: 0;

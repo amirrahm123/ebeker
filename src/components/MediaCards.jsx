@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 
 const cards = [
   {
@@ -12,6 +12,26 @@ const cards = [
     extraImage: '/pics/549888778_3116542425178919_1714678307204409653_n.jpg',
     description: 'עו״ד ערן בקר ייצג משפחות חטופים בכנסת ישראל ונאם באירוע תמיכה בחטופים ומשפחותיהם בלשכת עורכי הדין מחוז חיפה',
   },
+  {
+    id: 2,
+    cat: 'נזיקין · אסון מירון',
+    title: 'ייצוג משפחות נפגעי אסון מירון',
+    source: 'ערוץ 12 / ערוץ 14 / הצהרה',
+    type: 'videoCarousel',
+    thumbnail: '/pics/WhatsApp_Image_2026-04-10_at_11_10_25.jpeg',
+    thumbKind: 'image',
+    description: 'עו״ד ערן בקר מייצג משפחות נפגעי אסון מירון — ראיונות בערוץ 12 ו-14 על מסקנות ועדת החקירה הממלכתית, והצהרות לעיתונות מחוץ לבית המשפט',
+    videos: [
+      { src: '/videos/ראיון_ערן_בערוץ_12_ועדת_חקירה_אסון_מירון.mp4', label: 'ראיון ערוץ 12 — ועדת חקירה' },
+      { src: '/videos/ראיון_ערן_ערוץ_14_אסון_מירון.mp4', label: 'ראיון ערוץ 14' },
+      { src: '/videos/הצהרה_אסון_מירון_מסיבת_עיתונאים.mp4', label: 'הצהרה — מסיבת עיתונאים' },
+      { src: '/videos/הצהרה_באנדלית_אסון_מירון.mp4', label: 'הצהרה באנגלית' },
+    ],
+    images: [
+      '/pics/WhatsApp_Image_2026-04-10_at_11_10_25.jpeg',
+      '/pics/תמונה-_הצהרה_מסיבת_עיתונאים_אסון_מירון.png',
+    ],
+  },
 ]
 
 const typeBadges = {
@@ -20,6 +40,7 @@ const typeBadges = {
   audio: ['רדיו'],
   both: ['וידאו', 'כתבה'],
   videoImage: ['וידאו', 'תמונה'],
+  videoCarousel: ['וידאו', 'תמונות'],
 }
 
 function ThumbSvg({ type }) {
@@ -65,8 +86,38 @@ function ThumbSvg({ type }) {
   return null
 }
 
+function VideoCarousel({ videos }) {
+  const [i, setI] = useState(0)
+  const videoRef = useRef(null)
+  const current = videos[i]
+
+  useEffect(() => {
+    const v = videoRef.current
+    if (v) {
+      try { v.pause() } catch {}
+      v.currentTime = 0
+      try { v.load() } catch {}
+    }
+  }, [i])
+
+  const goPrev = () => setI((n) => (n === 0 ? videos.length - 1 : n - 1))
+  const goNext = () => setI((n) => (n === videos.length - 1 ? 0 : n + 1))
+
+  return (
+    <div className="mc-vc">
+      <div className="mc-vc-stage">
+        <button type="button" className="mc-arr-btn mc-arr-prev" onClick={goPrev} aria-label="הקודם">&#8594;</button>
+        <button type="button" className="mc-arr-btn mc-arr-next" onClick={goNext} aria-label="הבא">&#8592;</button>
+        <video ref={videoRef} key={current.src} src={current.src} controls autoPlay playsInline className="mc-vplayer-real" />
+      </div>
+      <p className="mc-vc-label">{current.label} <span className="mc-vc-count">({i + 1}/{videos.length})</span></p>
+    </div>
+  )
+}
+
 function Modal({ card, activeTab, setActiveTab, onClose }) {
   const isCombo = card.type === 'videoImage'
+  const isCarousel = card.type === 'videoCarousel'
   const showVideo = card.type === 'video' || card.type === 'audio' || isCombo || (card.type === 'both' && activeTab === 'video')
   const showArticle = card.type === 'article' || (card.type === 'both' && activeTab === 'article')
 
@@ -89,7 +140,22 @@ function Modal({ card, activeTab, setActiveTab, onClose }) {
         )}
 
         <div className="mc-modal-body">
-          {showVideo && (
+          {isCarousel && (
+            <>
+              <VideoCarousel videos={card.videos} />
+              {card.images && card.images.length > 0 && (
+                <div className="mc-photos-row">
+                  {card.images.map((src) => (
+                    <img key={src} src={src} alt={card.title} className="mc-photos-item" />
+                  ))}
+                </div>
+              )}
+              {card.description && (
+                <p className="mc-article-desc" style={{ marginTop: 14 }}>{card.description}</p>
+              )}
+            </>
+          )}
+          {!isCarousel && showVideo && (
             card.thumbKind === 'video' && card.thumbnail ? (
               <video src={card.thumbnail} controls autoPlay playsInline className="mc-vplayer-real" />
             ) : (
