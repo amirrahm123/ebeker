@@ -6,37 +6,20 @@ const cards = [
     cat: 'נזיקין · אוקטובר השחור',
     title: 'ייצוג משפחות חטופים בכנסת',
     source: 'כנסת ישראל',
-    type: 'video',
+    type: 'videoImage',
     thumbnail: '/videos/יצוג_משפחות_חטופים_בכנסת.mp4',
     thumbKind: 'video',
-  },
-  {
-    id: 2,
-    cat: 'נזיקין · לשכת עורכי הדין',
-    title: 'ערן בקר מנחה פאנל בפסגת המשפט — פיצויים לנפגעי 7 באוקטובר',
-    source: 'לשכת עורכי הדין',
-    type: 'article',
-    description: 'עו״ד ערן בקר הנחה פאנל בכנס פסגת המשפט באילת בנושא פיצויים לנפגעי 7 באוקטובר — כנס מחוז דרום של לשכת עורכי הדין',
-    thumbnail: '/pics/481776223_1162275738569300_7026142654963745400_n.jpg',
-    thumbKind: 'image',
-  },
-  {
-    id: 3,
-    cat: 'חטופים · לשכת עורכי הדין מחוז חיפה',
-    title: 'ערן בקר בכנס תמיכה בחטופים ומשפחותיהם',
-    source: 'לשכת עורכי הדין',
-    type: 'article',
-    description: 'עו״ד ערן בקר נאם באירוע תמיכה בחטופים ומשפחותיהם שנערך בלשכת עורכי הדין מחוז חיפה',
-    thumbnail: '/pics/549888778_3116542425178919_1714678307204409653_n.jpg',
-    thumbKind: 'image',
+    extraImage: '/pics/549888778_3116542425178919_1714678307204409653_n.jpg',
+    description: 'עו״ד ערן בקר ייצג משפחות חטופים בכנסת ישראל ונאם באירוע תמיכה בחטופים ומשפחותיהם בלשכת עורכי הדין מחוז חיפה',
   },
 ]
 
-const typeLabels = {
-  article: 'כתבה',
-  video: 'וידאו',
-  audio: 'רדיו',
-  both: 'וידאו + כתבה',
+const typeBadges = {
+  article: ['כתבה'],
+  video: ['וידאו'],
+  audio: ['רדיו'],
+  both: ['וידאו', 'כתבה'],
+  videoImage: ['וידאו', 'תמונה'],
 }
 
 function ThumbSvg({ type }) {
@@ -83,7 +66,8 @@ function ThumbSvg({ type }) {
 }
 
 function Modal({ card, activeTab, setActiveTab, onClose }) {
-  const showVideo = card.type === 'video' || card.type === 'audio' || (card.type === 'both' && activeTab === 'video')
+  const isCombo = card.type === 'videoImage'
+  const showVideo = card.type === 'video' || card.type === 'audio' || isCombo || (card.type === 'both' && activeTab === 'video')
   const showArticle = card.type === 'article' || (card.type === 'both' && activeTab === 'article')
 
   return (
@@ -118,6 +102,12 @@ function Modal({ card, activeTab, setActiveTab, onClose }) {
               </div>
             )
           )}
+          {isCombo && card.extraImage && (
+            <img src={card.extraImage} alt={card.title} className="mc-article-image" style={{ marginTop: 14 }} />
+          )}
+          {isCombo && card.description && (
+            <p className="mc-article-desc" style={{ marginTop: 14 }}>{card.description}</p>
+          )}
           {showArticle && (
             card.thumbKind === 'image' && card.thumbnail ? (
               <div className="mc-article-real">
@@ -141,7 +131,7 @@ function Modal({ card, activeTab, setActiveTab, onClose }) {
         </div>
 
         <div className="mc-modal-footer">
-          <span className="mc-modal-source">{card.source} · {card.date}</span>
+          <span className="mc-modal-source">{card.source}{card.date && ` · ${card.date}`}</span>
           <div className="mc-modal-actions">
             <button type="button">שתף</button>
             <button type="button" className="primary">פתח מקור</button>
@@ -202,8 +192,12 @@ export default function MediaCards() {
       <div className="mc-section-line" aria-hidden="true" />
 
       <div className="mc-slider-wrap">
-        <button className="mc-arr-btn mc-arr-prev" onClick={prev} aria-label="הקודם">&#8594;</button>
-        <button className="mc-arr-btn mc-arr-next" onClick={next} aria-label="הבא">&#8592;</button>
+        {cards.length > 1 && (
+          <>
+            <button className="mc-arr-btn mc-arr-prev" onClick={prev} aria-label="הקודם">&#8594;</button>
+            <button className="mc-arr-btn mc-arr-next" onClick={next} aria-label="הבא">&#8592;</button>
+          </>
+        )}
 
         <div className="mc-viewport">
           <div className="mc-track" style={trackStyle}>
@@ -223,7 +217,9 @@ export default function MediaCards() {
                     <span>{c.source}</span>
                   </div>
                   <div className="mc-type-badge">
-                    <span className="mc-tbadge">{typeLabels[c.type]}</span>
+                    {(typeBadges[c.type] || []).map((label) => (
+                      <span key={label} className="mc-tbadge">{label}</span>
+                    ))}
                     {c.duration && <span className="mc-tbadge">{c.duration}</span>}
                   </div>
                   {c.type !== 'article' && (
@@ -246,16 +242,18 @@ export default function MediaCards() {
           </div>
         </div>
 
-        <div className="mc-dots">
-          {Array.from({ length: maxIndex + 1 }).map((_, i) => (
-            <button
-              key={i}
-              className={`mc-dot${i === index ? ' active' : ''}`}
-              onClick={() => setIndex(i)}
-              aria-label={`עבור לשקף ${i + 1}`}
-            />
-          ))}
-        </div>
+        {cards.length > 1 && (
+          <div className="mc-dots">
+            {Array.from({ length: maxIndex + 1 }).map((_, i) => (
+              <button
+                key={i}
+                className={`mc-dot${i === index ? ' active' : ''}`}
+                onClick={() => setIndex(i)}
+                aria-label={`עבור לשקף ${i + 1}`}
+              />
+            ))}
+          </div>
+        )}
       </div>
 
       {selected && (
