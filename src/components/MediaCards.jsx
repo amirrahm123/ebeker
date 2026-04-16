@@ -32,6 +32,36 @@ const cards = [
       '/pics/תמונה-_הצהרה_מסיבת_עיתונאים_אסון_מירון.png',
     ],
   },
+  {
+    id: 3,
+    cat: 'נזיקין · פסיקה תקדימית',
+    title: 'תקדים בעליון: אופניים חשמליים אינם רכב מנועי',
+    source: 'גלובס',
+    date: 'אוקטובר 2020',
+    type: 'article',
+    thumbnail: '/pics/כתבה_גלובס_תקדים_בעליון_-_אופניים_חשמליים_אינם_רכב_מנועי.jpg',
+    thumbKind: 'image',
+    description: 'בית המשפט העליון קבע בהלכה תקדימית כי אופניים חשמליים אינם רכב מנועי — פסיקה שמשנה את מצב הרוכבים הנפגעים לטובה ומאפשרת פיצוי מלא כמו הולכי רגל. עו״ד ערן בקר ייצג בתיק התקדימי.',
+    badges: ['כתבה', 'תקדים'],
+    links: [
+      { label: 'ישראל היום', url: 'https://www.israelhayom.co.il/article/809325' },
+      { label: 'וואלה חדשות', url: 'https://news.walla.co.il/item/3391989' },
+      { label: 'גלובס', url: 'https://www.globes.co.il/news/article.aspx?did=1001345714' },
+      { label: 'ynet', url: 'https://www.ynet.co.il/wheels/news/article/r17ifJfwP' },
+      { label: 'פוסטה', url: 'https://posta.co.il/article/89780787-2/' },
+    ],
+  },
+  {
+    id: 4,
+    cat: 'נזיקין · תאונה אישית',
+    title: 'בת 70 שהחליקה על תרמיל פול — פוצתה ב-165,000 ₪',
+    source: 'וואלה חדשות',
+    date: '2024',
+    type: 'article',
+    description: 'תביעה מאתגרת נגד חברת הביטוח הסתיימה בפיצוי של 165,000 ₪. המשרד פועל למקסם את הפיצוי ללקוחות ובמקביל להביא את המזיק להכרה ברשלנותו — כדי למנוע פגיעה באנשים נוספים.',
+    badges: ['כתבה'],
+    primaryLink: { label: 'לכתבה המלאה ←', url: 'https://news.walla.co.il/item/3560494' },
+  },
 ]
 
 const typeBadges = {
@@ -179,18 +209,40 @@ function Modal({ card, activeTab, setActiveTab, onClose }) {
               <div className="mc-article-real">
                 <img src={card.thumbnail} alt={card.title} className="mc-article-image" />
                 {card.description && <p className="mc-article-desc">{card.description}</p>}
+                {card.links && card.links.length > 0 && (
+                  <div className="mc-article-links">
+                    <p className="mc-article-links-title">כיסוי תקשורתי:</p>
+                    <ul>
+                      {card.links.map((l) => (
+                        <li key={l.url}>
+                          <a href={l.url} target="_blank" rel="noopener noreferrer">{l.label}</a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+                {card.primaryLink && (
+                  <a href={card.primaryLink.url} target="_blank" rel="noopener noreferrer" className="mc-article-cta">{card.primaryLink.label}</a>
+                )}
               </div>
             ) : (
-              <div className="mc-article">
-                <div className="mc-article-line" />
-                <div className="mc-article-line" />
-                <div className="mc-article-line short" />
-                <blockquote className="mc-pullquote">
-                  "פסק דין תקדימי שיקבע את הדרך לעתיד בתביעות של נפגעי גוף ויאפשר מימוש זכויות מלא."
-                </blockquote>
-                <div className="mc-article-line" />
-                <div className="mc-article-line" />
-                <div className="mc-article-line short" />
+              <div className="mc-article-real">
+                {card.description && <p className="mc-article-desc">{card.description}</p>}
+                {card.primaryLink && (
+                  <a href={card.primaryLink.url} target="_blank" rel="noopener noreferrer" className="mc-article-cta">{card.primaryLink.label}</a>
+                )}
+                {card.links && card.links.length > 0 && (
+                  <div className="mc-article-links">
+                    <p className="mc-article-links-title">כיסוי תקשורתי:</p>
+                    <ul>
+                      {card.links.map((l) => (
+                        <li key={l.url}>
+                          <a href={l.url} target="_blank" rel="noopener noreferrer">{l.label}</a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
               </div>
             )
           )}
@@ -279,7 +331,7 @@ export default function MediaCards() {
                     <span>{c.source}</span>
                   </div>
                   <div className="mc-type-badge">
-                    {(typeBadges[c.type] || []).map((label) => (
+                    {(c.badges || typeBadges[c.type] || []).map((label) => (
                       <span key={label} className="mc-tbadge">{label}</span>
                     ))}
                     {c.duration && <span className="mc-tbadge">{c.duration}</span>}
