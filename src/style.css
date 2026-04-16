@@ -1095,7 +1095,7 @@ nav#navbar.scrolled {
 /* ── CTA SECTION ── */
 .cta-section {
   background-image: url('/pics/481673924_1161978765265664_7287541767626097250_n.jpg');
-  background-size: cover;
+  background-size: 110%;
   background-position: center top;
   background-repeat: no-repeat;
   padding: 72px 32px 56px; text-align: center;
@@ -1153,8 +1153,8 @@ nav#navbar.scrolled {
 /* ── FOOTER ── */
 footer {
   background-image: url('/pics/481673924_1161978765265664_7287541767626097250_n.jpg');
-  background-size: cover;
-  background-position: center bottom;
+  background-size: 110%;
+  background-position: center center;
   background-repeat: no-repeat;
   padding: 56px 32px 28px;
   position: relative;
