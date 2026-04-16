@@ -1094,13 +1094,26 @@ nav#navbar.scrolled {
 
 /* ── CTA SECTION ── */
 .cta-section {
-  background: var(--color-accent);
+  background-image: url('/pics/481673924_1161978765265664_7287541767626097250_n.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   padding: 72px 32px; text-align: center;
   position: relative; overflow: hidden;
 }
-.cta-section h2 { font-size: clamp(1.8rem, 3vw, 2.5rem); font-weight: 900; color: var(--color-btn-text); margin-bottom: 14px; }
+.cta-section::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: rgba(0,0,0,0.55);
+  z-index: 0;
+  pointer-events: none;
+}
+.cta-section > * { position: relative; z-index: 1; }
+.cta-section h2 { font-size: clamp(1.8rem, 3vw, 2.5rem); font-weight: 900; color: #ffffff; margin-bottom: 14px; text-shadow: 0 2px 8px rgba(0,0,0,0.7); }
 .cta-section h2::after { display: none; }
-.cta-section p { font-size: 1rem; color: var(--color-btn-text); opacity: .8; margin-bottom: 36px; max-width: 500px; margin-left: auto; margin-right: auto; }
+.cta-section p { font-size: 1rem; color: #ffffff; opacity: .95; margin-bottom: 36px; max-width: 500px; margin-left: auto; margin-right: auto; text-shadow: 0 2px 8px rgba(0,0,0,0.7); }
+.cta-section .btn-outline-dark { color: #ffffff; border-color: rgba(255,255,255,0.8); }
+.cta-section .btn-outline-dark:hover { border-color: var(--color-accent); background: rgba(255,255,255,0.12); color: #ffffff; }
 .cta-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
 
 /* ── FLOATING WHATSAPP ── */
@@ -3531,33 +3544,6 @@ img { max-width: 100%; height: auto; }
   color: rgba(255,255,255,0.55);
   font-weight: 600;
 }
-.mc-modal-actions {
-  display: flex;
-  gap: 8px;
-}
-.mc-modal-actions button {
-  background: rgba(201,168,76,0.08);
-  border: 1px solid rgba(201,168,76,0.3);
-  color: #c9a84c;
-  padding: 7px 14px;
-  border-radius: 8px;
-  font-size: 10px;
-  font-weight: 800;
-  cursor: pointer;
-  font-family: inherit;
-  transition: background .2s ease;
-}
-.mc-modal-actions button:hover {
-  background: rgba(201,168,76,0.18);
-}
-.mc-modal-actions .primary {
-  background: #c9a84c;
-  color: #060e1e;
-  border-color: #c9a84c;
-}
-.mc-modal-actions .primary:hover {
-  background: #e0bb55;
-}
 
 @media (max-width: 768px) {
   .media-cards-section { padding: 56px 22px; }
@@ -3568,7 +3554,6 @@ img { max-width: 100%; height: auto; }
   .mc-modal-body { padding: 18px; }
   .mc-modal-footer { padding: 12px 18px 16px; flex-direction: column; align-items: stretch; }
   .mc-modal-source { text-align: center; }
-  .mc-modal-actions { justify-content: center; }
 }
 
 /* === BOTTOM CTA SECTION === */

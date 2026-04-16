@@ -198,10 +198,6 @@ function Modal({ card, activeTab, setActiveTab, onClose }) {
 
         <div className="mc-modal-footer">
           <span className="mc-modal-source">{card.source}{card.date && ` · ${card.date}`}</span>
-          <div className="mc-modal-actions">
-            <button type="button">שתף</button>
-            <button type="button" className="primary">פתח מקור</button>
-          </div>
         </div>
       </div>
     </div>
