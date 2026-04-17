@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback, useRef } from 'react'
+import ZoomViewer from './ZoomViewer'
 
 const cards = [
   {
@@ -39,7 +40,7 @@ const cards = [
     source: 'גלובס',
     date: 'אוקטובר 2020',
     type: 'article',
-    thumbnail: '/pics/כתבה_גלובס_תקדים_בעליון_-_אופניים_חשמליים_אינם_רכב_מנועי.jpg',
+    thumbnail: '/pics/5-550x880.20201014T171252.png',
     thumbKind: 'image',
     description: 'בית המשפט העליון קבע בהלכה תקדימית כי אופניים חשמליים אינם רכב מנועי — פסיקה שמשנה את מצב הרוכבים הנפגעים לטובה ומאפשרת פיצוי מלא כמו הולכי רגל. עו״ד ערן בקר ייצג בתיק התקדימי.',
     badges: ['כתבה', 'תקדים'],
@@ -145,26 +146,12 @@ function VideoCarousel({ videos }) {
   )
 }
 
-function Lightbox({ src, alt, onClose }) {
-  useEffect(() => {
-    const onKey = (e) => { if (e.key === 'Escape') onClose() }
-    document.addEventListener('keydown', onKey)
-    return () => document.removeEventListener('keydown', onKey)
-  }, [onClose])
-
-  return (
-    <div className="mc-lightbox" onClick={onClose} role="dialog" aria-modal="true">
-      <img src={src} alt={alt} className="mc-lightbox-img" onClick={(e) => e.stopPropagation()} />
-    </div>
-  )
-}
-
 function Modal({ card, activeTab, setActiveTab, onClose }) {
   const isCombo = card.type === 'videoImage'
   const isCarousel = card.type === 'videoCarousel'
   const showVideo = card.type === 'video' || card.type === 'audio' || isCombo || (card.type === 'both' && activeTab === 'video')
   const showArticle = card.type === 'article' || (card.type === 'both' && activeTab === 'article')
-  const [lightbox, setLightbox] = useState(null)
+  const [zoomSrc, setZoomSrc] = useState(null)
 
   return (
     <div className="mc-modal-overlay" onClick={(e) => { if (e.target === e.currentTarget) onClose() }}>
@@ -226,7 +213,7 @@ function Modal({ card, activeTab, setActiveTab, onClose }) {
                   src={card.thumbnail}
                   alt={card.title}
                   className="mc-article-image mc-article-image-zoom"
-                  onClick={() => setLightbox({ src: card.thumbnail, alt: card.title })}
+                  onClick={() => setZoomSrc(card.thumbnail)}
                 />
                 {card.description && <p className="mc-article-desc">{card.description}</p>}
                 {card.links && card.links.length > 0 && (
@@ -272,8 +259,8 @@ function Modal({ card, activeTab, setActiveTab, onClose }) {
           <span className="mc-modal-source">{card.source}{card.date && ` · ${card.date}`}</span>
         </div>
       </div>
-      {lightbox && (
-        <Lightbox src={lightbox.src} alt={lightbox.alt} onClose={() => setLightbox(null)} />
+      {zoomSrc && (
+        <ZoomViewer src={zoomSrc} onClose={() => setZoomSrc(null)} />
       )}
     </div>
   )

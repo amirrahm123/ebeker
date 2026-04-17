@@ -1,12 +1,5 @@
-import { useState, useEffect, useRef, useCallback } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-
-const palettes = [
-  { id: 'A', colors: ['#0D1B3E', '#C9A84C'], label: 'כחול זהב' },
-  { id: 'B', colors: ['#FAF6F0', '#4A90D9'], label: 'קרם ותכלת' },
-  { id: 'C', colors: ['#0A0A0A', '#D4AF37'], label: 'שחור זהב' },
-  { id: 'D', colors: ['#1A1A2E', '#E94560'], label: 'חצות ורוד' },
-]
 
 const practiceAreas = [
   { to: '/damages', label: 'נזיקין כללי' },
@@ -65,20 +58,6 @@ export default function Navbar() {
     document.body.style.overflow = ''
   }
 
-  const [activePalette, setActivePalette] = useState('A')
-
-  useEffect(() => {
-    const saved = localStorage.getItem('ebeker-palette') || 'A'
-    document.documentElement.setAttribute('data-palette', saved)
-    setActivePalette(saved)
-  }, [])
-
-  const switchPalette = useCallback((id) => {
-    document.documentElement.setAttribute('data-palette', id)
-    localStorage.setItem('ebeker-palette', id)
-    setActivePalette(id)
-  }, [])
-
   const contactLink = '/#contact'
 
   return (
@@ -89,17 +68,6 @@ export default function Navbar() {
             <div className="nav-row-left">
               <a href={contactLink} className="nav-cta">ייעוץ חינם</a>
               <a href="tel:049001056" className="nav-phone-link">04-9001056</a>
-              <div className="nav-palette">
-                {palettes.map(p => (
-                  <button
-                    key={p.id}
-                    title={p.label}
-                    onClick={() => switchPalette(p.id)}
-                    className={`nav-palette-btn${activePalette === p.id ? ' active' : ''}`}
-                    style={{ background: `linear-gradient(135deg, ${p.colors[0]} 50%, ${p.colors[1]} 50%)` }}
-                  />
-                ))}
-              </div>
             </div>
             <Link to="/" className="nav-logo">
               <img src="/pics/logo.avif" alt="ערן בקר - חברת עורכי דין" className="nav-logo-img" />
@@ -159,17 +127,6 @@ export default function Navbar() {
         <a href="/#contact" onClick={closeMobile}>צור קשר</a>
         <a href="tel:049001056" onClick={closeMobile}>📞 04-9001056</a>
         <a href="/#contact" onClick={closeMobile} className="mob-cta">ייעוץ חינם</a>
-        <div className="mob-palette">
-          {palettes.map(p => (
-            <button
-              key={p.id}
-              title={p.label}
-              onClick={() => switchPalette(p.id)}
-              className={`nav-palette-btn${activePalette === p.id ? ' active' : ''}`}
-              style={{ background: `linear-gradient(135deg, ${p.colors[0]} 50%, ${p.colors[1]} 50%)` }}
-            />
-          ))}
-        </div>
       </div>
     </>
   )
