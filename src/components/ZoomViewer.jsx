@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
+import { createPortal } from 'react-dom'
 
 export default function ZoomViewer({ src, onClose }) {
   const [scale, setScale] = useState(1)
@@ -48,7 +49,7 @@ export default function ZoomViewer({ src, onClose }) {
     }
   }, [handleWheel, onClose])
 
-  return (
+  return createPortal(
     <div className="zoom-overlay">
       <div className="zoom-toolbar">
         <button className="zoom-btn" onClick={() => setScale(s => Math.min(5, s + 0.3))}>+</button>
@@ -83,6 +84,7 @@ export default function ZoomViewer({ src, onClose }) {
           }}
         />
       </div>
-    </div>
+    </div>,
+    document.body
   )
 }
