@@ -1,19 +1,26 @@
 import { useState, useEffect } from 'react'
+import { createPortal } from 'react-dom'
 import useRevealOnScroll from '../hooks/useRevealOnScroll'
 import PageBanner from '../components/PageBanner'
 import CTASection from '../components/CTASection'
 
 const videos = [
-  { file: 'ראיון_ערן_בערוץ_12_ועדת_חקירה_אסון_מירון.mp4', title: 'ראיון ערוץ 12 — ועדת חקירה אסון מירון' },
-  { file: 'ראיון_ערן_ערוץ_14_אסון_מירון.mp4', title: 'ראיון ערוץ 14 — אסון מירון' },
-  { file: 'יצוג_משפחות_חטופים_בכנסת.mp4', title: 'ייצוג משפחות חטופים בכנסת' },
-  { file: 'הצהרה_אסון_מירון_מסיבת_עיתונאים.mp4', title: 'מסיבת עיתונאים — הצהרה בנושא אסון מירון' },
-  { file: 'הצהרה_באנדלית_אסון_מירון.mp4', title: 'הצהרה באנגלית — אסון מירון' },
+  { type: 'mp4', file: 'ראיון_ערן_בערוץ_12_ועדת_חקירה_אסון_מירון.mp4', title: 'ראיון ערוץ 12 — ועדת חקירה אסון מירון' },
+  { type: 'mp4', file: 'ראיון_ערן_ערוץ_14_אסון_מירון.mp4', title: 'ראיון ערוץ 14 — אסון מירון' },
+  { type: 'mp4', file: 'יצוג_משפחות_חטופים_בכנסת.mp4', title: 'ייצוג משפחות חטופים בכנסת' },
+  { type: 'mp4', file: 'הצהרה_אסון_מירון_מסיבת_עיתונאים.mp4', title: 'מסיבת עיתונאים — הצהרה בנושא אסון מירון' },
+  { type: 'mp4', file: 'הצהרה_באנדלית_אסון_מירון.mp4', title: 'הצהרה באנגלית — אסון מירון' },
+  { type: 'youtube', src: 'https://www.youtube.com/embed/N5AAJ29ir4c', title: 'תחקיר מותו של הנער יפתח ספיר בטיול שנתי של בית הספר בערבה' },
+  { type: 'youtube', src: 'https://www.youtube.com/embed/8CbYTSP0Y7A', title: '2.3 מיליון ש״ח פיצויים להורי הנער שנהרג בטיול שנתי' },
+  { type: 'youtube', src: 'https://www.youtube.com/embed/JSB1z-yH85A', title: 'אבחון שגוי וכריתת שד מיותרת (רשלנות רפואית)' },
+  { type: 'youtube', src: 'https://www.youtube.com/embed/-cUeFROaKK0', title: 'תביעת נזיקין נגד הרשויות בגין רשלנות מותם של אזרחים במערת המוות באכזיב' },
 ]
 
-const BASE = '/videos/'
+function getYouTubeId(embedUrl) {
+  return embedUrl.split('/embed/')[1]
+}
 
-function VideoModal({ src, onClose }) {
+function MediaModal({ item, onClose }) {
   useEffect(() => {
     const onKey = (e) => { if (e.key === 'Escape') onClose() }
     document.addEventListener('keydown', onKey)
@@ -24,19 +31,30 @@ function VideoModal({ src, onClose }) {
     }
   }, [onClose])
 
-  return (
+  return createPortal(
     <div className="lec-video-overlay" onClick={(e) => { if (e.target === e.currentTarget) onClose() }}>
       <div className="lec-video-modal">
         <button className="lec-video-close" onClick={onClose} aria-label="סגור">&times;</button>
-        <video src={src} controls autoPlay playsInline className="lec-video-player" />
+        {item.type === 'mp4' ? (
+          <video src={encodeURI('/videos/' + item.file)} controls autoPlay playsInline className="lec-video-player" />
+        ) : (
+          <iframe
+            src={item.src + '?autoplay=1'}
+            title={item.title}
+            className="tv-yt-iframe"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          />
+        )}
       </div>
-    </div>
+    </div>,
+    document.body
   )
 }
 
 export default function MediaTV() {
   useRevealOnScroll()
-  const [videoSrc, setVideoSrc] = useState(null)
+  const [openVideo, setOpenVideo] = useState(null)
 
   return (
     <>
@@ -54,9 +72,13 @@ export default function MediaTV() {
 
           <div className="press-grid tv-grid reveal">
             {videos.map((item, i) => (
-              <div className="press-clipping" key={i} onClick={() => setVideoSrc(encodeURI(BASE + item.file))}>
+              <div className="press-clipping" key={i} onClick={() => setOpenVideo(item)}>
                 <div className="press-img-wrap">
-                  <video src={encodeURI(BASE + item.file)} className="lec-video-thumb" muted playsInline preload="metadata" />
+                  {item.type === 'mp4' ? (
+                    <video src={encodeURI('/videos/' + item.file)} className="lec-video-thumb" muted playsInline preload="metadata" />
+                  ) : (
+                    <img src={`https://img.youtube.com/vi/${getYouTubeId(item.src)}/hqdefault.jpg`} alt={item.title} className="lec-video-thumb" loading="lazy" />
+                  )}
                   <span className="lec-play-icon" aria-hidden="true">▶</span>
                 </div>
                 <div className="press-card-body">
@@ -72,7 +94,7 @@ export default function MediaTV() {
 
       <CTASection title="רוצים לדבר עם עורך דין?" subtitle="ייעוץ ראשוני חינם — ללא עלות וללא התחייבות" />
 
-      {videoSrc && <VideoModal src={videoSrc} onClose={() => setVideoSrc(null)} />}
+      {openVideo && <MediaModal item={openVideo} onClose={() => setOpenVideo(null)} />}
     </>
   )
 }
