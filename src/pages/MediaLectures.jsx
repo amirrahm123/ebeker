@@ -71,7 +71,7 @@ export default function MediaLectures() {
             <p>עו״ד ערן בקר נושא הרצאות ומנחה פאנלים מקצועיים בכנסים של לשכת עורכי הדין ובפורומים מובילים בתחום הנזיקין, רשלנות רפואית וביטוח לאומי.</p>
           </div>
 
-          <div className="press-grid reveal">
+          <div className="press-grid lectures-grid reveal">
             {lectures.map((item, i) => (
               <div className="press-clipping" key={i} onClick={() => handleClick(item)}>
                 <div className="press-img-wrap">

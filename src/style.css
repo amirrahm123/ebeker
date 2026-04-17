@@ -1854,6 +1854,12 @@ footer > * { position: relative; z-index: 1; width: 100%; }
   opacity: 1;
 }
 
+/* ── LECTURES GRID — crop from top to show speaker ── */
+.lectures-grid .press-img-wrap img,
+.lectures-grid .lec-video-thumb {
+  object-position: top center;
+}
+
 /* ── LECTURES VIDEO THUMB + MODAL ── */
 .lec-video-thumb {
   width: 100%; height: 100%; object-fit: cover; display: block;
