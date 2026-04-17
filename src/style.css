@@ -1152,10 +1152,8 @@ nav#navbar.scrolled {
 
 /* ── FOOTER ── */
 footer {
-  background-image: url('/pics/481673924_1161978765265664_7287541767626097250_n.jpg');
-  background-size: 110%;
-  background-position: center center;
-  background-repeat: no-repeat;
+  background: #0a1628 url('/pics/481673924_1161978765265664_7287541767626097250_n.jpg') no-repeat center center;
+  background-size: contain;
   padding: 56px 32px 28px;
   position: relative;
   overflow: hidden;
