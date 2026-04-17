@@ -1154,9 +1154,14 @@ nav#navbar.scrolled {
 footer {
   background: #0a1628 url('/pics/481673924_1161978765265664_7287541767626097250_n.jpg') no-repeat center center;
   background-size: cover;
+  aspect-ratio: 2.4 / 1;
   padding: 56px 32px 28px;
   position: relative;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 footer::before {
   content: '';
@@ -1165,7 +1170,7 @@ footer::before {
   pointer-events: none;
   z-index: 0;
 }
-footer > * { position: relative; z-index: 1; }
+footer > * { position: relative; z-index: 1; width: 100%; }
 .footer-inner {
   max-width: 1240px; margin: 0 auto;
   display: grid; grid-template-columns: 2fr 1fr 1fr;
@@ -1354,7 +1359,7 @@ footer > * { position: relative; z-index: 1; }
   /* Footer */
   .footer-inner { grid-template-columns: 1fr; gap: 28px; text-align: center; }
   .footer-brand { text-align: center; }
-  footer { padding: 40px 18px 90px; }
+  footer { padding: 40px 18px 90px; aspect-ratio: auto; min-height: auto; display: block; }
   .footer-divider { margin: 0 0 16px; }
   .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
 
@@ -1391,6 +1396,11 @@ footer > * { position: relative; z-index: 1; }
 
   /* About page grids */
   .about-grid { grid-template-columns: 1fr; gap: 32px; }
+}
+
+/* Tablet footer aspect */
+@media (max-width: 1100px) and (min-width: 769px) {
+  footer { aspect-ratio: 3 / 1; }
 }
 
 /* Extra small screens */
