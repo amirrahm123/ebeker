@@ -1448,6 +1448,34 @@ footer > * { position: relative; z-index: 1; }
 }
 .modal-points li:last-child { border-bottom: none; }
 .modal-points li::before { content: '◆'; color: var(--color-accent); font-size: 0.55rem; position: absolute; right: 0; top: 12px; }
+.attorney-contact-line {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.88rem;
+  color: var(--color-text);
+  margin: 18px 0 8px;
+  padding: 14px 16px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  direction: rtl;
+}
+.attorney-contact-line a {
+  color: var(--color-accent);
+  text-decoration: none;
+  font-weight: 700;
+  transition: color .2s ease;
+}
+.attorney-contact-line a:hover {
+  color: #e0bb55;
+  text-decoration: underline;
+}
+.attorney-contact-sep {
+  color: var(--color-border);
+  margin: 0 4px;
+}
 .modal-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 8px; }
 .modal-wa { background: var(--color-surface) !important; border: 2px solid var(--color-border) !important; color: var(--color-text) !important; }
 
