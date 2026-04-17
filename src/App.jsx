@@ -26,6 +26,7 @@ import EransTip from './pages/EransTip'
 import MediaTV from './pages/MediaTV'
 import MediaRadio from './pages/MediaRadio'
 import MediaLectures from './pages/MediaLectures'
+import AccessibilityStatement from './pages/AccessibilityStatement'
 import Admin from './pages/Admin'
 
 export default function App() {
@@ -58,6 +59,7 @@ export default function App() {
         <Route path="media/tv" element={<MediaTV />} />
         <Route path="media/radio" element={<MediaRadio />} />
         <Route path="media/lectures" element={<MediaLectures />} />
+        <Route path="accessibility" element={<AccessibilityStatement />} />
       </Route>
       <Route path="admin" element={<Admin />} />
     </Routes>

@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react'
 import { createPortal } from 'react-dom'
+import { Link } from 'react-router-dom'
 
 const STORAGE_KEY = 'ebeker-a11y'
 
@@ -124,6 +125,10 @@ export default function AccessibilityWidget() {
               <button className="a11y-reset-btn" onClick={reset}>
                 ↺ איפוס הגדרות
               </button>
+
+              <Link to="/accessibility" className="a11y-statement-link" onClick={close}>
+                למידע נוסף — הצהרת נגישות
+              </Link>
             </div>
           </div>
         </div>,

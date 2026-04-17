@@ -29,6 +29,7 @@ export default function Footer() {
       <hr className="footer-divider" />
       <div className="footer-bottom">
         <p>© 2026 ערן בקר חברת עורכי דין. כל הזכויות שמורות.</p>
+        <p><Link to="/accessibility" style={{ color: 'rgba(255,255,255,0.6)', textDecoration: 'none', fontSize: '0.78rem' }}>הצהרת נגישות</Link></p>
         <p><span>DUNS 100 · BDi CODE</span></p>
       </div>
     </footer>
