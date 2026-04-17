@@ -6,6 +6,7 @@ import Footer from './Footer'
 import WhatsAppFloat from './WhatsAppFloat'
 import FacebookFloat from './FacebookFloat'
 import ScrollTopButton from './ScrollTopButton'
+import AccessibilityWidget from './AccessibilityWidget'
 import StickyCTA from './StickyCTA'
 import ProgressBar from './ProgressBar'
 import useCounterAnimation from '../hooks/useCounterAnimation'
@@ -61,6 +62,7 @@ export default function Layout() {
       <StickyCTA />
       <WhatsAppFloat />
       <FacebookFloat />
+      <AccessibilityWidget />
       <ScrollTopButton />
     </>
   )
