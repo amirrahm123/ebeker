@@ -4,7 +4,8 @@ import PageBanner from '../components/PageBanner'
 import CTASection from '../components/CTASection'
 import ZoomViewer from '../components/ZoomViewer'
 
-const images = [
+/* White posts — Facebook text-based recommendations (white background) */
+const whitePosts = [
   '01_dcd181_dd4a5c2ccc8c4215809771d366445164~mv2.jpg',
   '02_dcd181_5790ab61a1ba41b3ae6ebf376396058f~mv2.jpg',
   '03_dcd181_02be190de73345cfa51199a5394bd8e8~mv2.jpg',
@@ -19,6 +20,10 @@ const images = [
   '12_dcd181_99693c81ba98494486d4be3a20986958~mv2.jpg',
   '13_dcd181_86709cd50aeb4685be4b5b5120035a5e~mv2.jpg',
   '14_dcd181_8e6eba445d32481eb66d5c8e7bd43db9~mv2.jpg',
+]
+
+/* Physical items — plaques, trophies, letters, decorative cards */
+const physicalItems = [
   '15_dcd181_49512e750fec49f6a66110a670045d95~mv2.jpg',
   '16_dcd181_87ca8465dc8346ed85e95b86903c5f68~mv2.jpg',
   '17_dcd181_783aecde627c4caaacf6d0110432bf1a~mv2.jpg',
@@ -59,9 +64,16 @@ export default function Recommendations() {
             <p className="section-sub" style={{ marginTop: 16 }}>לחצו על כל המלצה להגדלה</p>
           </div>
           <div className="testimonials-grid stagger-reveal">
-            {images.map((img, i) => (
-              <div className="testimonial-clipping reveal" key={i} onClick={() => setLightbox(BASE + img)}>
+            {whitePosts.map((img, i) => (
+              <div className="testimonial-clipping reveal" key={`w${i}`} onClick={() => setLightbox(BASE + img)}>
                 <img src={BASE + img} alt={`המלצת לקוח ${String(i + 1).padStart(2, '0')}`} loading="lazy" />
+              </div>
+            ))}
+          </div>
+          <div className="testimonials-grid stagger-reveal" style={{ marginTop: 0 }}>
+            {physicalItems.map((img, i) => (
+              <div className="testimonial-clipping reveal" key={`p${i}`} onClick={() => setLightbox(BASE + img)}>
+                <img src={BASE + img} alt={`מכתב תודה ${String(i + 1).padStart(2, '0')}`} loading="lazy" />
               </div>
             ))}
           </div>
