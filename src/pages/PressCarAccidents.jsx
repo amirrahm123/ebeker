@@ -49,9 +49,9 @@ export default function PressCarAccidents() {
   return (
     <>
       <PageBanner
-        crumbs={[{ label: 'מהעיתונות', to: '#' }, { label: 'תאונות רכב' }]}
+        crumbs={[{ label: 'מהעיתונות', to: '#' }, { label: 'תאונות דרכים' }]}
         title="מהעיתונות"
-        accent="תאונות רכב"
+        accent="תאונות דרכים"
       />
 
       <section className="content-section">
@@ -63,7 +63,7 @@ export default function PressCarAccidents() {
                   <img src={BASE + img.file} alt={img.title} loading="lazy" />
                 </div>
                 <div className="press-card-body">
-                  <span className="press-card-tag">תאונות רכב</span>
+                  <span className="press-card-tag">תאונות דרכים</span>
                   <div className="press-card-title">{img.title}</div>
                   <span className="press-card-link">צפה בכתבה &#8592;</span>
                 </div>
