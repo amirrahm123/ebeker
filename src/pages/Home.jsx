@@ -648,7 +648,7 @@ export default function Home() {
                 <div className="contact-icon">&#128205;</div>
                 <div className="contact-detail">
                   <span className="clabel">כתובת</span>
-                  <span className="cvalue">רח' הרצל 75, נהריה 22446<br />בסמוך לעיריית נהריה</span>
+                  <span className="cvalue">הגעתון 26, נהריה 2240117</span>
                 </div>
               </div>
               <div className="contact-item">
@@ -690,9 +690,9 @@ export default function Home() {
             <h3 style={{ textAlign: 'center', marginBottom: 20, fontSize: '1.5rem', color: '#fff', fontWeight: 800 }}>המשרד שלנו</h3>
             <div style={{ width: 60, height: 3, background: '#4A90D9', borderRadius: 2, margin: '0 auto 24px' }}></div>
             <div className="map-container">
-              <iframe src="https://maps.google.com/maps?q=%D7%94%D7%A8%D7%A6%D7%9C+75+%D7%A0%D7%94%D7%A8%D7%99%D7%94&t=&z=16&ie=UTF8&iwloc=&output=embed" width="100%" height="350" style={{ border: 0, borderRadius: 12 }} allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade" title="מפת המשרד"></iframe>
+              <iframe src="https://www.google.com/maps?q=%D7%94%D7%92%D7%A2%D7%AA%D7%95%D7%9F+26,+%D7%A0%D7%94%D7%A8%D7%99%D7%94&output=embed" width="100%" height="350" style={{ border: 0, borderRadius: 12 }} allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade" title="מפת המשרד"></iframe>
             </div>
-            <p style={{ textAlign: 'center', marginTop: 16, color: '#94a3b8', fontSize: '0.95rem' }}>&#128205; רח' הרצל 75, נהריה 22446 — בסמוך לעיריית נהריה</p>
+            <p style={{ textAlign: 'center', marginTop: 16, color: '#94a3b8', fontSize: '0.95rem' }}>&#128205; הגעתון 26, נהריה 2240117</p>
           </div>
         </div>
       </section>

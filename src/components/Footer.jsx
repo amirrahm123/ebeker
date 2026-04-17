@@ -6,7 +6,7 @@ export default function Footer() {
       <div className="footer-inner">
         <div className="footer-brand">
           <div className="fl">ערן בקר — חברת עורכי דין</div>
-          <p>רח' הרצל 75, נהריה 22446 | בסמוך לעיריית נהריה<br />מדורג DUNS 100 ו-BDi CODE — ממשרדי עורכי הדין המובילים בישראל.</p>
+          <p>הגעתון 26, נהריה 2240117<br />מדורג DUNS 100 ו-BDi CODE — ממשרדי עורכי הדין המובילים בישראל.</p>
         </div>
         <div className="footer-col">
           <h4>תחומים</h4>

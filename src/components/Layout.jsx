@@ -4,6 +4,7 @@ import { useLocation } from 'react-router-dom'
 import Navbar from './Navbar'
 import Footer from './Footer'
 import WhatsAppFloat from './WhatsAppFloat'
+import FacebookFloat from './FacebookFloat'
 import ScrollTopButton from './ScrollTopButton'
 import StickyCTA from './StickyCTA'
 import ProgressBar from './ProgressBar'
@@ -59,6 +60,7 @@ export default function Layout() {
       <Footer />
       <StickyCTA />
       <WhatsAppFloat />
+      <FacebookFloat />
       <ScrollTopButton />
     </>
   )
