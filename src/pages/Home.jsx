@@ -5,7 +5,6 @@ import TestimonialsCarousel from '../components/TestimonialsCarousel'
 import ContactForm from '../components/ContactForm'
 import ZoomViewer from '../components/ZoomViewer'
 import MediaCards from '../components/MediaCards'
-const officeImg = '/pics/02_אודות/02_dcd181_264931d61f6344c4bf682d619fafef86~mv2.jpg'
 
 // Inline SVG icon content per practice area — uses currentColor so card hover
 // restyles it from gold to white. Common viewBox of 0 0 40 40.
@@ -631,32 +630,6 @@ export default function Home() {
               <img src="/pics/2.jpeg" alt='עו"ד ערן בקר — מייסד ושותף בכיר' style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 15%', display: 'block' }} />
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* === BOTTOM CTA SECTION === */}
-      <section className="cta-office-section">
-        <div className="cta-office-inner">
-          <div className="cta-office-text">
-            <span className="cta-overline">בואו נדבר</span>
-            <h2 className="cta-heading">
-              רוצים לדעת<br />
-              <span className="cta-heading-gold">את האמת?</span>
-            </h2>
-            <p className="cta-sub">נשמח לבחון את המקרה שלכם<br />ולתת לכם תשובות ברורות.</p>
-            <div className="cta-buttons">
-              <a href="/contact" className="btn-cta-primary">לייעוץ ראשוני חינם</a>
-              <a href="tel:049001056" className="btn-cta-secondary">לחייג עכשיו ←</a>
-            </div>
-          </div>
-          <div className="cta-office-img-wrap">
-            <div className="cta-office-img-fade"></div>
-            <img src={officeImg} alt="משרד ערן בקר" className="cta-office-img" />
-          </div>
-        </div>
-        <div className="cta-gold-strip">
-          <span className="cta-strip-main">משרד בוטיק מוביל · נזיקין, ביטוח, רשלנות רפואית וביטוח לאומי · 25 שנות ניסיון</span>
-          <span className="cta-strip-badges">DUNS 100 · BDi CODE</span>
         </div>
       </section>
 
