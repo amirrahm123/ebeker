@@ -42,6 +42,7 @@ const cards = [
     type: 'article',
     thumbnail: '/pics/5-550x880.20201014T171252.png',
     thumbKind: 'image',
+    articleImage: '/pics/כתבה_גלובס_תקדים_בעליון_-_אופניים_חשמליים_אינם_רכב_מנועי.jpg',
     description: 'בית המשפט העליון קבע בהלכה תקדימית כי אופניים חשמליים אינם רכב מנועי — פסיקה שמשנה את מצב הרוכבים הנפגעים לטובה ומאפשרת פיצוי מלא כמו הולכי רגל. עו״ד ערן בקר ייצג בתיק התקדימי.',
     badges: ['כתבה', 'תקדים'],
     links: [
@@ -210,10 +211,10 @@ function Modal({ card, activeTab, setActiveTab, onClose }) {
             card.thumbKind === 'image' && card.thumbnail ? (
               <div className="mc-article-real">
                 <img
-                  src={card.thumbnail}
+                  src={card.articleImage || card.thumbnail}
                   alt={card.title}
                   className="mc-article-image mc-article-image-zoom"
-                  onClick={() => setZoomSrc(card.thumbnail)}
+                  onClick={() => setZoomSrc(card.articleImage || card.thumbnail)}
                 />
                 {card.description && <p className="mc-article-desc">{card.description}</p>}
                 {card.links && card.links.length > 0 && (
