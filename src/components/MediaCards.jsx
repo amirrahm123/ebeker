@@ -42,6 +42,7 @@ const cards = [
     type: 'article',
     thumbnail: '/pics/5-550x880.20201014T171252.png',
     thumbKind: 'image',
+    thumbBg: '#ffffff',
     articleImage: '/pics/כתבה_גלובס_תקדים_בעליון_-_אופניים_חשמליים_אינם_רכב_מנועי.jpg',
     description: 'בית המשפט העליון קבע בהלכה תקדימית כי אופניים חשמליים אינם רכב מנועי — פסיקה שמשנה את מצב הרוכבים הנפגעים לטובה ומאפשרת פיצוי מלא כמו הולכי רגל. עו״ד ערן בקר ייצג בתיק התקדימי.',
     badges: ['כתבה', 'תקדים'],
@@ -328,9 +329,9 @@ export default function MediaCards() {
           <div className="mc-track" style={trackStyle}>
             {cards.map((c) => (
               <button type="button" key={c.id} className={`mc-card mc-card-${c.type}`} onClick={() => openCard(c)}>
-                <div className="mc-thumb">
+                <div className={`mc-thumb${c.thumbBg ? ' mc-thumb--light' : ''}`} style={c.thumbBg ? { background: c.thumbBg } : undefined}>
                   {c.thumbKind === 'image' ? (
-                    <img src={c.thumbnail} alt={c.title} className="mc-thumb-media" />
+                    <img src={c.thumbnail} alt={c.title} className={`mc-thumb-media${c.thumbBg ? ' mc-thumb-media--contain' : ''}`} />
                   ) : c.thumbKind === 'video' ? (
                     <video src={c.thumbnail} className="mc-thumb-media" muted playsInline preload="metadata" />
                   ) : (

@@ -2901,6 +2901,11 @@ img { max-width: 100%; height: auto; }
   display: block;
   object-fit: cover;
 }
+.mc-thumb-media--contain {
+  object-fit: contain;
+  padding: 10px;
+  box-sizing: border-box;
+}
 .mc-card-desc {
   font-size: 13px;
   line-height: 1.55;
