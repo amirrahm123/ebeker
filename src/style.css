@@ -1859,6 +1859,12 @@ footer > * { position: relative; z-index: 1; width: 100%; }
 .lectures-grid .lec-video-thumb {
   object-position: top center;
 }
+.lectures-grid .press-card-title {
+  -webkit-line-clamp: 4;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
 
 /* ── LECTURES VIDEO THUMB + MODAL ── */
 .lec-video-thumb {

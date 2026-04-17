@@ -13,7 +13,7 @@ const lectures = [
   { type: 'image', file: '572145089_3156490007850827_6726175283099896459_n.jpg', title: 'הרצאה בכנס נזיקין וביטוח — לשכת עורכי הדין מחוז חיפה' },
   { type: 'image', file: '615147239_3235785403254620_303771753383780442_n.jpg', title: 'השתלמות ליטיגציה: בניית התיק לבית המשפט — לשכת עורכי הדין חיפה, ינואר 2026' },
   { type: 'image', file: 'הרצאה באוניברסיטה.jpg', title: 'כנס חיפה למשפט — אוניברסיטת חיפה' },
-  { type: 'image', file: 'הרצאה בטכניון לרופאים.jpg', title: 'הרצאה לרופאים בטכניון' },
+  { type: 'image', file: 'הרצאה בטכניון לרופאים.jpg', title: 'הרצאה לרופאים בטכניון', imgPosition: 'center center' },
   { type: 'image', file: 'הרצאה הלשכה בחיפה.jpg', title: 'הרצאה בלשכת עורכי הדין — מחוז חיפה' },
   { type: 'image', file: 'הרצאה טכניון 2.jpg', title: 'הרצאה בטכניון' },
   { type: 'image', file: 'הרצאה רשלנות רפואית במחוז צפון.jpg', title: 'הרצאה: רשלנות רפואית בחדרי מיון — מחוז צפון' },
@@ -81,7 +81,7 @@ export default function MediaLectures() {
                       <span className="lec-play-icon" aria-hidden="true">▶</span>
                     </>
                   ) : (
-                    <img src={encodeURI(BASE + item.file)} alt={item.title} loading="lazy" />
+                    <img src={encodeURI(BASE + item.file)} alt={item.title} loading="lazy" style={item.imgPosition ? { objectPosition: item.imgPosition } : undefined} />
                   )}
                 </div>
                 <div className="press-card-body">
