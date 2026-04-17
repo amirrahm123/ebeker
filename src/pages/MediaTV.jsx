@@ -1,28 +1,42 @@
+import { useState, useEffect } from 'react'
 import useRevealOnScroll from '../hooks/useRevealOnScroll'
 import PageBanner from '../components/PageBanner'
 import CTASection from '../components/CTASection'
 
 const videos = [
-  {
-    title: 'תחקיר מותו של הנער יפתח ספיר בטיול שנתי של בית הספר בערבה',
-    src: 'https://www.youtube.com/embed/N5AAJ29ir4c',
-  },
-  {
-    title: '2.3 מיליון ש"ח פיצויים להורי הנער שנהרג בטיול שנתי',
-    src: 'https://www.youtube.com/embed/8CbYTSP0Y7A',
-  },
-  {
-    title: 'אבחון שגוי וכריתת שד מיותרת (רשלנות רפואית)',
-    src: 'https://www.youtube.com/embed/JSB1z-yH85A',
-  },
-  {
-    title: 'תביעת נזיקין נגד הרשויות בגין רשלנות מותם של אזרחים במערת המוות באכזיב',
-    src: 'https://www.youtube.com/embed/-cUeFROaKK0',
-  },
+  { file: 'ראיון_ערן_בערוץ_12_ועדת_חקירה_אסון_מירון.mp4', title: 'ראיון ערוץ 12 — ועדת חקירה אסון מירון' },
+  { file: 'ראיון_ערן_ערוץ_14_אסון_מירון.mp4', title: 'ראיון ערוץ 14 — אסון מירון' },
+  { file: 'יצוג_משפחות_חטופים_בכנסת.mp4', title: 'ייצוג משפחות חטופים בכנסת' },
+  { file: 'הצהרה_אסון_מירון_מסיבת_עיתונאים.mp4', title: 'מסיבת עיתונאים — הצהרה בנושא אסון מירון' },
+  { file: 'הצהרה_באנדלית_אסון_מירון.mp4', title: 'הצהרה באנגלית — אסון מירון' },
 ]
+
+const BASE = '/videos/'
+
+function VideoModal({ src, onClose }) {
+  useEffect(() => {
+    const onKey = (e) => { if (e.key === 'Escape') onClose() }
+    document.addEventListener('keydown', onKey)
+    document.body.style.overflow = 'hidden'
+    return () => {
+      document.removeEventListener('keydown', onKey)
+      document.body.style.overflow = ''
+    }
+  }, [onClose])
+
+  return (
+    <div className="lec-video-overlay" onClick={(e) => { if (e.target === e.currentTarget) onClose() }}>
+      <div className="lec-video-modal">
+        <button className="lec-video-close" onClick={onClose} aria-label="סגור">&times;</button>
+        <video src={src} controls autoPlay playsInline className="lec-video-player" />
+      </div>
+    </div>
+  )
+}
 
 export default function MediaTV() {
   useRevealOnScroll()
+  const [videoSrc, setVideoSrc] = useState(null)
 
   return (
     <>
@@ -35,42 +49,30 @@ export default function MediaTV() {
       <section className="content-section">
         <div className="content-container">
           <div className="reveal" style={{ marginBottom: 32 }}>
-            <p>מבחר כתבות ותחקירים בטלוויזיה המציגים תיקים מרכזיים שניהל עו״ד ערן בקר — תביעות מורכבות בתחומי הנזיקין, רשלנות רפואית וחקירת סיבות מוות.</p>
+            <p>מבחר כתבות, ראיונות והצהרות בטלוויזיה — ערוץ 12, ערוץ 14 וכנסת ישראל. עו״ד ערן בקר מייצג נפגעים ומשפחות בתיקים מרכזיים בתחומי הנזיקין.</p>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))', gap: 28 }}>
-            {videos.map((v, i) => (
-              <article key={i} className="reveal" style={{
-                background: '#0d1b3e',
-                border: '1px solid var(--color-accent)',
-                borderRadius: 14,
-                overflow: 'hidden',
-                boxShadow: '0 4px 18px rgba(0,0,0,.15)',
-                display: 'flex',
-                flexDirection: 'column',
-              }}>
-                <iframe
-                  src={v.src}
-                  title={v.title}
-                  width="100%"
-                  height="280"
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                  style={{ display: 'block', border: 'none', background: '#000' }}
-                />
-                <div style={{ padding: '18px 22px 22px', flex: 1 }}>
-                  <h3 style={{ margin: 0, fontSize: '1rem', lineHeight: 1.55, color: '#fff' }}>
-                    <span style={{ color: 'var(--color-accent)' }}>▸</span> {v.title}
-                  </h3>
+          <div className="press-grid tv-grid reveal">
+            {videos.map((item, i) => (
+              <div className="press-clipping" key={i} onClick={() => setVideoSrc(encodeURI(BASE + item.file))}>
+                <div className="press-img-wrap">
+                  <video src={encodeURI(BASE + item.file)} className="lec-video-thumb" muted playsInline preload="metadata" />
+                  <span className="lec-play-icon" aria-hidden="true">▶</span>
                 </div>
-              </article>
+                <div className="press-card-body">
+                  <span className="press-card-tag">וידאו</span>
+                  <div className="press-card-title">{item.title}</div>
+                  <span className="press-card-link">צפה בוידאו &#8592;</span>
+                </div>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      <CTASection title="מעוניינים להתייעץ?" subtitle="פנו אלינו לייעוץ ראשוני ללא עלות — נשמח לעזור." />
+      <CTASection title="רוצים לדבר עם עורך דין?" subtitle="ייעוץ ראשוני חינם — ללא עלות וללא התחייבות" />
+
+      {videoSrc && <VideoModal src={videoSrc} onClose={() => setVideoSrc(null)} />}
     </>
   )
 }
