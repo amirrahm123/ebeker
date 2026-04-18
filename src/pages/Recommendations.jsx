@@ -64,6 +64,16 @@ export default function Recommendations() {
             <p className="section-sub" style={{ marginTop: 16 }}>לחצו על כל המלצה להגדלה</p>
           </div>
           <div className="testimonials-grid stagger-reveal">
+            <div className="testimonial-clipping reveal" style={{ cursor: 'default' }} onClick={(e) => e.stopPropagation()}>
+              <video
+                src="/videos/client-recommendation.mp4"
+                poster="/pics/client-recommendation-thumb.jpg"
+                controls
+                preload="metadata"
+                playsInline
+                style={{ width: '100%', height: 'auto', display: 'block' }}
+              />
+            </div>
             {whitePosts.map((img, i) => (
               <div className="testimonial-clipping reveal" key={`w${i}`} onClick={() => setLightbox(BASE + img)}>
                 <img src={BASE + img} alt={`המלצת לקוח ${String(i + 1).padStart(2, '0')}`} loading="lazy" />
