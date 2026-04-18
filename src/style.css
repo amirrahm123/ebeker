@@ -3054,6 +3054,7 @@ img { max-width: 100%; height: auto; }
 }
 .mc-track {
   display: flex;
+  align-items: stretch;
   gap: 16px;
   transition: transform .4s cubic-bezier(.4, 0, .2, 1);
   will-change: transform;
@@ -3061,7 +3062,8 @@ img { max-width: 100%; height: auto; }
 
 .mc-card {
   flex: 0 0 calc(33.333% - 11px);
-  min-height: 360px;
+  display: flex;
+  flex-direction: column;
   background: #060e1e;
   border-radius: 14px;
   border: 1px solid rgba(201,168,76,0.18);
@@ -3099,7 +3101,8 @@ img { max-width: 100%; height: auto; }
 
 .mc-thumb {
   position: relative;
-  height: 200px;
+  flex: 1;
+  min-height: 200px;
   overflow: hidden;
   background: #091530;
 }
@@ -3142,6 +3145,10 @@ img { max-width: 100%; height: auto; }
   line-height: 1.55;
   color: rgba(255,255,255,0.72);
   margin: 8px 0 10px;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 .mc-vplayer-real {
   width: 100%;
