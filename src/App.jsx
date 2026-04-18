@@ -1,4 +1,5 @@
-import { Routes, Route } from 'react-router-dom'
+import { useEffect } from 'react'
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom'
 import Layout from './components/Layout'
 import Home from './pages/Home'
 import About from './pages/About'
@@ -29,13 +30,28 @@ import MediaLectures from './pages/MediaLectures'
 import AccessibilityStatement from './pages/AccessibilityStatement'
 import Admin from './pages/Admin'
 
+function RouteTracker() {
+  const location = useLocation()
+  useEffect(() => {
+    if (window.gtag) {
+      window.gtag('config', 'G-1VQ4L8M74D', {
+        page_path: location.pathname + location.search,
+      })
+    }
+  }, [location])
+  return null
+}
+
 export default function App() {
   return (
+    <>
+      <RouteTracker />
     <Routes>
       <Route element={<Layout />}>
         <Route index element={<Home />} />
         <Route path="about" element={<About />} />
         <Route path="legal-team" element={<LegalTeam />} />
+        <Route path="team" element={<Navigate to="/legal-team" replace />} />
         <Route path="damages" element={<Damages />} />
         <Route path="medical-malpractice" element={<MedicalMalpractice />} />
         <Route path="insurance" element={<Insurance />} />
@@ -63,5 +79,6 @@ export default function App() {
       </Route>
       <Route path="admin" element={<Admin />} />
     </Routes>
+    </>
   )
 }
