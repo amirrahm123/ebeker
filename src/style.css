@@ -3124,6 +3124,19 @@ img { max-width: 100%; height: auto; }
   padding: 10px;
   box-sizing: border-box;
 }
+.mc-thumb img,
+.mc-thumb video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.mc-thumb img.mc-thumb-media--contain {
+  object-fit: contain;
+  padding: 10px;
+  box-sizing: border-box;
+}
 .mc-card-desc {
   font-size: 13px;
   line-height: 1.55;
@@ -3277,8 +3290,7 @@ img { max-width: 100%; height: auto; }
 .mc-source-badge {
   position: absolute;
   top: 10px;
-  left: 10px;
-  right: auto;
+  right: 10px;
   background: rgba(6,14,30,0.82);
   border: 1px solid rgba(201,168,76,0.3);
   color: rgba(255,255,255,0.88);
