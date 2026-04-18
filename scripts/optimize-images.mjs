@@ -14,6 +14,9 @@ function walk(dir) {
   return out
 }
 
+const OVERWRITE = process.argv.includes('--overwrite')
+const MAX_WIDTH = 800
+
 const files = walk(picsDir)
 
 let converted = 0
@@ -26,12 +29,12 @@ for (const file of files) {
   if (!['.jpg', '.jpeg', '.png'].includes(ext)) continue
 
   const out = file.replace(/\.(jpg|jpeg|png)$/i, '.webp')
-  if (fs.existsSync(out)) { skipped++; continue }
+  if (fs.existsSync(out) && !OVERWRITE) { skipped++; continue }
 
   try {
     const inStat = fs.statSync(file)
     await sharp(file)
-      .resize(1200, null, { withoutEnlargement: true, fit: 'inside' })
+      .resize(MAX_WIDTH, null, { withoutEnlargement: true, fit: 'inside' })
       .webp({ quality: 82 })
       .toFile(out)
     const outStat = fs.statSync(out)
