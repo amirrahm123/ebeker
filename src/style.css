@@ -1072,7 +1072,7 @@ nav#navbar.scrolled {
 
 /* ── CTA SECTION ── */
 .cta-section {
-  background-image: url('/pics/481673924_1161978765265664_7287541767626097250_n.jpg');
+  background-image: url('/pics/481673924_1161978765265664_7287541767626097250_n.webp');
   background-size: 110%;
   background-position: center top;
   background-repeat: no-repeat;
@@ -1303,7 +1303,7 @@ html.a11y-cursor, html.a11y-cursor * {
 
 /* ── FOOTER ── */
 footer {
-  background: #0a1628 url('/pics/481673924_1161978765265664_7287541767626097250_n.jpg') no-repeat center center;
+  background: #0a1628 url('/pics/481673924_1161978765265664_7287541767626097250_n.webp') no-repeat center center;
   background-size: cover;
   aspect-ratio: 2.4 / 1;
   padding: 56px 32px 28px;

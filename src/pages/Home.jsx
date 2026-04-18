@@ -278,25 +278,25 @@ const practiceAreas = [
 
 const newsItems = [
   {
-    img: '/pics/01_דף_הבית/01_dcd181_5c5efc732261430f88836392a1f161f7~mv2.jpg',
+    img: '/pics/01_דף_הבית/01_dcd181_5c5efc732261430f88836392a1f161f7~mv2.webp',
     tag: 'ביטוח לאומי · תאונות עבודה',
     title: 'מדריך גלישה לקה באירוע מוחי בים — הוכר כנפגע עבודה',
     text: 'בית הדין לעבודה קבע כי יש להכיר באירוע מוחי שנגרם למדריך גלישה כתאונת עבודה. ועדה רפואית קבעה נכות רפואית צמיתה בשיעור 64% המזכה אותו בקצבה חודשית.',
   },
   {
-    img: '/pics/01_דף_הבית/02_dcd181_de7fc8d3ea464a6bbb9fc16ccb194920~mv2.jpeg',
+    img: '/pics/01_דף_הבית/02_dcd181_de7fc8d3ea464a6bbb9fc16ccb194920~mv2.webp',
     tag: 'פסק דין תקדימי · בית המשפט העליון',
     title: 'אופניים חשמליים אינם רכב מנועי — הלכה חדשה!',
     text: 'בית המשפט העליון קיבל את טענותינו וקבע הלכה חדשה: רוכבים שנפגעו מרכב יוכלו לתבוע פיצויים ישירות מחברות הביטוח של הרכב הפוגע. פורסם בישראל היום.',
   },
   {
-    img: '/pics/01_דף_הבית/03_dcd181_1b2acefdc90d4a6baa839e1f40abbae4~mv2.jpg',
+    img: '/pics/01_דף_הבית/03_dcd181_1b2acefdc90d4a6baa839e1f40abbae4~mv2.webp',
     tag: 'הרצאה · לשכת עורכי הדין חיפה',
     title: 'עו"ד ערן בקר מרצה בנושא רשלנות רפואית בפני 200 עו"ד',
     text: 'עו"ד בקר הרצה בהשתלמות "תביעות נזיקין — רשלנות רפואית בחדרי מיון" בלשכת עורכי הדין בחיפה, בריכוזו כיו"ר פורום נזיקין, ביטוח וביטוח לאומי.',
   },
   {
-    img: '/pics/01_דף_הבית/04_dcd181_ec5e655e9db04fc2841312e8a4fbe6eb~mv2.jpg',
+    img: '/pics/northern-resident-6-5-million.webp',
     tag: 'פיצויים · תאונות עבודה',
     title: 'כ-6.5 מיליון ₪ לתושב הצפון שנפגע במהלך עבודתו',
     text: 'בית המשפט המחוזי קיבל את דרישתנו לחשוף את כל חומר החקירה שנאסף על ידי אגף הפיקוח על העבודה — בניגוד לעמדת המדינה — ופסק פיצויים חריגים.',
@@ -627,7 +627,7 @@ export default function Home() {
               </div>
             </div>
             <div className="about-visual reveal-left" style={{ transitionDelay: '.15s', overflow: 'hidden', padding: 0, margin: 0 }}>
-              <img src="/pics/2.jpeg" alt='עו"ד ערן בקר — מייסד ושותף בכיר' style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 15%', display: 'block' }} />
+              <img src="/pics/2.webp" alt='עו"ד ערן בקר — מייסד ושותף בכיר' style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 15%', display: 'block' }} />
             </div>
           </div>
         </div>

@@ -9,7 +9,7 @@ const cards = [
     source: 'מהעיתונות',
     date: '2025',
     type: 'article',
-    thumbnail: '/pics/northern-resident-6-5-million.jpg',
+    thumbnail: '/pics/northern-resident-6-5-million.webp',
     thumbKind: 'image',
     thumbBg: '#ffffff',
     description: 'במסגרת ניהול ההליכים המשפטיים הן בשאלת הנזק והן בשאלת החבות קיבל ביהמ"ש המחוזי בהחלטה אמיצה וחריגה את דרישתנו העיקשת לחשוף בפנינו את כל חומר החקירה שנאסף ע"י אגף הפיקוח על העבודה במשרד העבודה וזאת למרות טענות המדינה כי מדובר בבקשה חריגה לא מקובלת שסותרת את הנחיות פרקליט המדינה.',
@@ -23,7 +23,7 @@ const cards = [
     type: 'videoImage',
     thumbnail: '/videos/יצוג_משפחות_חטופים_בכנסת.mp4',
     thumbKind: 'video',
-    extraImage: '/pics/549888778_3116542425178919_1714678307204409653_n.jpg',
+    extraImage: '/pics/549888778_3116542425178919_1714678307204409653_n.webp',
     description: 'עו״ד ערן בקר ייצג משפחות חטופים בכנסת ישראל ונאם באירוע תמיכה בחטופים ומשפחותיהם בלשכת עורכי הדין מחוז חיפה',
   },
   {
@@ -32,7 +32,7 @@ const cards = [
     title: 'ייצוג משפחות נפגעי אסון מירון',
     source: 'ערוץ 12 / ערוץ 14 / הצהרה',
     type: 'videoCarousel',
-    thumbnail: '/pics/WhatsApp_Image_2026-04-10_at_11_10_25.jpeg',
+    thumbnail: '/pics/WhatsApp_Image_2026-04-10_at_11_10_25.webp',
     thumbKind: 'image',
     description: 'עו״ד ערן בקר מייצג משפחות נפגעי אסון מירון — ראיונות בערוץ 12 ו-14 על מסקנות ועדת החקירה הממלכתית, והצהרות לעיתונות מחוץ לבית המשפט',
     videos: [
@@ -42,8 +42,8 @@ const cards = [
       { src: '/videos/הצהרה_באנדלית_אסון_מירון.mp4', label: 'הצהרה באנגלית' },
     ],
     images: [
-      '/pics/WhatsApp_Image_2026-04-10_at_11_10_25.jpeg',
-      '/pics/תמונה-_הצהרה_מסיבת_עיתונאים_אסון_מירון.png',
+      '/pics/WhatsApp_Image_2026-04-10_at_11_10_25.webp',
+      '/pics/תמונה-_הצהרה_מסיבת_עיתונאים_אסון_מירון.webp',
     ],
   },
   {
@@ -53,10 +53,10 @@ const cards = [
     source: 'גלובס',
     date: 'אוקטובר 2020',
     type: 'article',
-    thumbnail: '/pics/5-550x880.20201014T171252.png',
+    thumbnail: '/pics/5-550x880.20201014T171252.webp',
     thumbKind: 'image',
     thumbBg: '#ffffff',
-    articleImage: '/pics/כתבה_גלובס_תקדים_בעליון_-_אופניים_חשמליים_אינם_רכב_מנועי.jpg',
+    articleImage: '/pics/כתבה_גלובס_תקדים_בעליון_-_אופניים_חשמליים_אינם_רכב_מנועי.webp',
     description: 'בית המשפט העליון קבע בהלכה תקדימית כי אופניים חשמליים אינם רכב מנועי — פסיקה שמשנה את מצב הרוכבים הנפגעים לטובה ומאפשרת פיצוי מלא כמו הולכי רגל. עו״ד ערן בקר ייצג בתיק התקדימי.',
     badges: ['כתבה', 'תקדים'],
     links: [
