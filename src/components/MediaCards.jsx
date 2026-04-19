@@ -54,10 +54,10 @@ const cards = [
     source: 'גלובס',
     date: 'אוקטובר 2020',
     type: 'article',
-    thumbnail: '/pics/5-550x880.20201014T171252.webp',
+    thumbnail: '/pics/supreme-court-electric-bikes.webp',
     thumbKind: 'image',
     thumbBg: '#ffffff',
-    articleImage: '/pics/כתבה_גלובס_תקדים_בעליון_-_אופניים_חשמליים_אינם_רכב_מנועי.webp',
+    articleImage: '/pics/supreme-court-electric-bikes.webp',
     description: 'בית המשפט העליון קבע בהלכה תקדימית כי אופניים חשמליים אינם רכב מנועי — פסיקה שמשנה את מצב הרוכבים הנפגעים לטובה ומאפשרת פיצוי מלא כמו הולכי רגל. עו״ד ערן בקר ייצג בתיק התקדימי.',
     badges: ['כתבה', 'תקדים'],
     links: [
