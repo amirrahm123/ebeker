@@ -184,9 +184,6 @@ export default function TaxExemption() {
           <p style={bodyLight}>
             לצורך פתיחת ההליך מחדש, על התובע להמציא כמובן אישור רפואי המעיד על ההחמרה שחלה במצבו הרפואי. ללא אישור רפואי שכזה לא תתקבל בקשתו לדיון מחדש.
           </p>
-          <div style={ctaWrap}>
-            <a href="#contact" style={ctaBtn}>לייעוץ ראשוני חינם ←</a>
-          </div>
         </div>
       </section>
 

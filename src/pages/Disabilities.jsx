@@ -183,9 +183,6 @@ export default function Disabilities() {
           <p style={bodyDark}>
             עורכי הדין של משרדנו יילוו אתכם בכל ההליך, מאיסוף החומר, הגשת התביעה, הכנתכם לקראת הוועדות הרפואיות בפניהם אתם צפויים לעמוד, לווי לוועדה ועד למיצוי כל זכויותיכם.
           </p>
-          <div style={ctaWrap}>
-            <a href="#contact" style={ctaBtn}>לייעוץ ראשוני חינם ←</a>
-          </div>
         </div>
       </section>
 

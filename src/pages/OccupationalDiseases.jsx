@@ -198,15 +198,6 @@ export default function OccupationalDiseases() {
         </div>
       </section>
 
-      {/* Section 4 — Closing */}
-      <section style={sectionLight}>
-        <div style={container} className="reveal">
-          <div style={ctaWrap}>
-            <a href="#contact" style={ctaBtn}>לייעוץ ראשוני חינם ←</a>
-          </div>
-        </div>
-      </section>
-
       <CTASection title="חולה במחלת מקצוע?" subtitle="ייעוץ ראשוני ללא עלות וללא התחייבות — פנו אלינו היום" />
     </>
   )

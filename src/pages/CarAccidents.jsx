@@ -225,9 +225,6 @@ export default function CarAccidents() {
           <div style={goldCalloutDark}>
             אם נפגעת בתאונת דרכים, אתה מוזמן לפנות לפגישת ייעוץ ראשוני במשרדנו, ללא עלות, על מנת שנוכל להעריך את מלוא הזכויות העומדות בפניך.
           </div>
-          <div style={ctaWrap}>
-            <a href="#contact" style={ctaBtn}>לייעוץ ראשוני חינם ←</a>
-          </div>
         </div>
       </section>
 

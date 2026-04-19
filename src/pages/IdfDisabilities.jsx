@@ -196,9 +196,6 @@ export default function IdfDisabilities() {
               <p style={caseText}>{l.text}</p>
             </div>
           ))}
-          <div style={ctaWrap}>
-            <a href="#contact" style={ctaBtn}>לייעוץ ראשוני חינם ←</a>
-          </div>
         </div>
       </section>
 

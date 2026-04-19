@@ -155,9 +155,6 @@ export default function CausesOfDeath() {
             לקביעת שיחת ייעוץ או פגישה ללא עלות וללא התחייבות{' '}
             <a href="tel:049001056" style={phoneLink}>04-9001056</a>
           </p>
-          <div style={ctaWrap}>
-            <a href="#contact" style={ctaBtn}>לייעוץ ראשוני חינם ←</a>
-          </div>
         </div>
       </section>
 

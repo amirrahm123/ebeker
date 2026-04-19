@@ -215,9 +215,6 @@ export default function StudentAccidents() {
           <div style={goldCalloutLight}>
             לא יבוצע כל ניכוי או הפחתה מהסכומים שיגיעו לתלמיד / הנפגע מפוליסת התלמידים בכל אחד מאפיקי התביעות האחרות בנזיקין מאחר שמדובר בתביעות שהינן נפרדות ועצמאיות לחלוטין.
           </div>
-          <div style={ctaWrap}>
-            <a href="#contact" style={ctaBtn}>לייעוץ ראשוני חינם ←</a>
-          </div>
         </div>
       </section>
 

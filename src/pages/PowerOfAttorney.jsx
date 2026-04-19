@@ -160,9 +160,6 @@ export default function PowerOfAttorney() {
           <div style={goldCalloutLight}>
             חשוב להדגיש כי המשיב בכל סוגי הבקשות למינוי אפוטרופוס הוא נציג היועץ המשפטי לממשלה במשרדי האפוטרופוס הכללי.
           </div>
-          <div style={ctaWrap}>
-            <a href="#contact" style={ctaBtn}>לייעוץ ראשוני חינם ←</a>
-          </div>
         </div>
       </section>
 

@@ -266,9 +266,6 @@ export default function MarineAccidents() {
           <div style={goldCalloutDark}>
             חשוב לדעת, שבמהלך גרירת אבוב, סקי מים, בננה, וויקבורד וכו׳ ע״י סירה או אופנוע ים חובה למנות ׳צופה׳ שישהה בכלי השייט בנוסף למשיט כלי השייט.
           </div>
-          <div style={ctaWrap}>
-            <a href="#contact" style={ctaBtn}>לייעוץ ראשוני חינם ←</a>
-          </div>
         </div>
       </section>
 

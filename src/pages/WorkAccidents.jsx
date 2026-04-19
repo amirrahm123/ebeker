@@ -210,9 +210,6 @@ export default function WorkAccidents() {
           <div style={goldCalloutDark}>
             פניה למשרדנו לצורך ייצוגכם בהליכים מול המוסד לביטוח לאומי (ובמידת הצורך מול ביה״ד לעבודה) מבטיח כי תקבלו ליווי מקצועי ומדוייק, לאורך כל שלבי ההליך, שימקסם את סיכוייכם למיצויי מלוא זכויותיכם בצורה המיטבית.
           </div>
-          <div style={ctaWrap}>
-            <a href="#contact" style={ctaBtn}>לייעוץ ראשוני חינם ←</a>
-          </div>
         </div>
       </section>
 
