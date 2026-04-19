@@ -23,6 +23,7 @@ const cards = [
     type: 'videoImage',
     thumbnail: '/videos/יצוג_משפחות_חטופים_בכנסת.mp4',
     thumbKind: 'video',
+    poster: '/pics/ייצוג_משפחות_חטופים_בכנסת-thumb.webp',
     extraImage: '/pics/549888778_3116542425178919_1714678307204409653_n.webp',
     description: 'עו״ד ערן בקר ייצג משפחות חטופים בכנסת ישראל ונאם באירוע תמיכה בחטופים ומשפחותיהם בלשכת עורכי הדין מחוז חיפה',
   },
@@ -346,7 +347,7 @@ export default function MediaCards() {
                   {c.thumbKind === 'image' ? (
                     <img src={c.thumbnail} alt={c.title} className={`mc-thumb-media${c.thumbBg ? ' mc-thumb-media--contain' : ''}`} />
                   ) : c.thumbKind === 'video' ? (
-                    <video src={c.thumbnail} className="mc-thumb-media" muted playsInline preload="metadata" />
+                    <video src={c.thumbnail} poster={c.poster} className="mc-thumb-media" muted playsInline preload="metadata" />
                   ) : (
                     <ThumbSvg type={c.type} />
                   )}

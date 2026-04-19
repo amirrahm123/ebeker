@@ -5,7 +5,7 @@ import CTASection from '../components/CTASection'
 import ZoomViewer from '../components/ZoomViewer'
 
 const lectures = [
-  { type: 'video', file: 'AQMn3mux1xfR6YFcP5v1bt9cTGgKCv_TZovz7wis8r2zArrC5oP_0RYNAN7cb7sIZ-S_639EsiTD3gYvzAjsctJU5LniIL6VX-sgaFZSXQiOYg.mp4', title: 'ערן נואם בכנס לשכת עורכי הדין בישראל' },
+  { type: 'video', file: 'AQMn3mux1xfR6YFcP5v1bt9cTGgKCv_TZovz7wis8r2zArrC5oP_0RYNAN7cb7sIZ-S_639EsiTD3gYvzAjsctJU5LniIL6VX-sgaFZSXQiOYg.mp4', poster: 'eran-lecture-bar-association-thumb.webp', title: 'ערן נואם בכנס לשכת עורכי הדין בישראל' },
   { type: 'image', file: '480242543_2876988112467686_3438289816952955585_n.webp', title: 'הרצאה בכנס דיני ביטוח ונזיקין' },
   { type: 'image', file: '481776223_1162275738569300_7026142654963745400_n.webp', title: 'פאנל בפיסגת המשפט באילת — פיצויים לנפגעי 7 באוקטובר' },
   { type: 'image', file: '506792206_3013470788819417_5117487290563108114_n.webp', title: 'הרצאה: AI בעולם המשפט' },
@@ -77,7 +77,7 @@ export default function MediaLectures() {
                 <div className="press-img-wrap">
                   {item.type === 'video' ? (
                     <>
-                      <video src={encodeURI(BASE + item.file)} className="lec-video-thumb" muted playsInline preload="metadata" />
+                      <video src={encodeURI(BASE + item.file)} poster={item.poster ? encodeURI(BASE + item.poster) : undefined} className="lec-video-thumb" muted playsInline preload="metadata" />
                       <span className="lec-play-icon" aria-hidden="true">▶</span>
                     </>
                   ) : (
