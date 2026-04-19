@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import emailjs from '@emailjs/browser'
 
 export default function ContactForm() {
   const [submitted, setSubmitted] = useState(false)
@@ -16,13 +17,14 @@ export default function ContactForm() {
     setSending(true)
 
     try {
-      await fetch('http://localhost:3002/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ fname, lname, phone, email, message })
-      })
+      await emailjs.send(
+        'service_4gtlju6',
+        'template_dpweehy',
+        { fname, lname, phone, email, message },
+        { publicKey: 'rkpi4VhBWiyvwO6t0' }
+      )
     } catch (err) {
-      console.error('API error:', err)
+      console.error('EmailJS send failed:', err?.status, err?.text || err?.message, err)
     }
 
     const waText = `📩 פנייה חדשה מהאתר:
