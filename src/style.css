@@ -1072,20 +1072,11 @@ nav#navbar.scrolled {
 
 /* ── CTA SECTION ── */
 .cta-section {
-  background-image: url('/pics/481673924_1161978765265664_7287541767626097250_n.webp');
-  background-size: 110%;
-  background-position: center top;
-  background-repeat: no-repeat;
+  background: var(--color-nav-bg);
+  border-top: 3px solid var(--color-accent);
   padding: 72px 32px 56px; text-align: center;
   position: relative; overflow: hidden;
   margin-bottom: 0;
-}
-.cta-section::before {
-  content: '';
-  position: absolute; inset: 0;
-  background: rgba(0,0,0,0.55);
-  z-index: 0;
-  pointer-events: none;
 }
 .cta-section > * { position: relative; z-index: 1; }
 .cta-section h2 { font-size: clamp(1.8rem, 3vw, 2.5rem); font-weight: 900; color: #ffffff; margin-bottom: 14px; text-shadow: 0 2px 8px rgba(0,0,0,0.7); }
