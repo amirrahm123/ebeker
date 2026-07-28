@@ -9,7 +9,7 @@ export default function About() {
     <>
       <PageBanner
         crumbs={[{ label: 'אודות הפירמה' }]}
-        title="מעל 21 שנה של"
+        title="כ-23 שנים של"
         accent="נחישות משפטית"
       />
 

@@ -82,7 +82,7 @@ export default function Navbar() {
                 <span className="nav-trust-label">מצוינות משפטית</span>
               </div>
               <div className="nav-trust-item">
-                <span className="nav-trust-num" data-target="25">0+</span>
+                <span className="nav-trust-num" data-target="23">0</span>
                 <span className="nav-trust-label">שנות ניסיון</span>
               </div>
             </div>

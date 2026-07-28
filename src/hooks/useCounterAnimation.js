@@ -19,9 +19,9 @@ export default function useCounterAnimation() {
           const elapsed = now - start
           const progress = Math.min(elapsed / duration, 1)
           const eased = easeOutExpo(progress)
-          el.textContent = Math.floor(eased * target) + '+'
+          el.textContent = Math.floor(eased * target)
           if (progress < 1) requestAnimationFrame(update)
-          else el.textContent = target + '+'
+          else el.textContent = target
         }
 
         requestAnimationFrame(update)
