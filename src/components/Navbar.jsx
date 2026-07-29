@@ -6,15 +6,15 @@ const practiceAreas = [
   { to: '/causes-of-death', label: 'נזיקין · תאונות קטלניות' },
   { to: '/medical-malpractice', label: 'רשלנות רפואית' },
   { to: '/insurance', label: 'ביטוח' },
-  { to: '/work-accidents', label: 'תאונות עבודה · ביטוח לאומי' },
+  { to: '/work-accidents', label: 'ביטוח לאומי - תאונות עבודה' },
+  { to: '/occupational-diseases', label: 'ביטוח לאומי - מחלת מקצוע ומיקרוטראומה' },
+  { to: '/disabilities', label: 'ביטוח לאומי - נכות כללית וניידות' },
   { to: '/car-accidents', label: 'תאונות דרכים' },
   { to: '/marine-accidents', label: 'תאונות ימיות' },
   { to: '/student-accidents', label: 'תאונות תלמידים' },
-  { to: '/occupational-diseases', label: 'מחלות מקצוע · ביטוח לאומי' },
   { to: '/tax-exemption', label: 'פטור ממס הכנסה' },
   { to: '/wills', label: 'צוואות וירושות' },
   { to: '/power-of-attorney', label: 'ייפוי כוח מתמשך' },
-  { to: '/disabilities', label: 'נכות כללית וניידות · ביטוח לאומי' },
   { to: '/idf-disabilities', label: 'נכי צה"ל ומשרד הביטחון' },
 ]
 
@@ -83,7 +83,7 @@ export default function Navbar() {
                 <span className="nav-trust-label">מצוינות משפטית</span>
               </div>
               <div className="nav-trust-item">
-                <span className="nav-trust-num" data-target="23">0</span>
+                <span className="nav-trust-num" data-target="25">0</span>
                 <span className="nav-trust-label">שנות ניסיון</span>
               </div>
             </div>

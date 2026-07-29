@@ -554,8 +554,6 @@ nav#navbar.scrolled {
 @media (max-width: 600px) {
   .team-grid { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
   .attorney-popup-layout { flex-direction: column; align-items: center; text-align: center; }
-  .attorney-popup-photo { width: 160px; height: 200px; }
-  .attorney-popup-section { text-align: right; }
   .trust-section { padding: 8px 0; }
   .trust-strip-item { padding: 2px 10px; gap: 8px; }
   .trust-strip-icon { font-size: 1.15rem; }
@@ -772,7 +770,7 @@ nav#navbar.scrolled {
   width: 320px;
   min-height: 360px;
   object-fit: cover;
-  object-position: top center;
+  object-position: center 30%;
   display: block;
   flex-shrink: 0;
 }
@@ -817,10 +815,10 @@ nav#navbar.scrolled {
   transform: translateY(-4px);
 }
 .attorney-card-photo {
-  height: 320px;
+  height: 380px;
   width: 100%;
   object-fit: cover;
-  object-position: center 15%;
+  object-position: center 30%;
   background: #0d1b3e;
   display: block;
 }
@@ -897,7 +895,7 @@ nav#navbar.scrolled {
   width: 200px;
   height: 240px;
   object-fit: cover;
-  object-position: center 5%;
+  object-position: center 30%;
   border-radius: 10px;
   border: 2px solid var(--color-accent);
   flex-shrink: 0;

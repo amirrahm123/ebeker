@@ -9,16 +9,12 @@ export default function About() {
     <>
       <PageBanner
         crumbs={[{ label: 'אודות הפירמה' }]}
-        title="כ-23 שנים של"
+        title="כ-25 שנים של"
         accent="נחישות משפטית"
       />
 
       <section className="content-section">
         <div className="content-container">
-          <div className="reveal" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 16, marginBottom: 40, borderRadius: 16, overflow: 'hidden' }}>
-            <img src={`/pics/02_אודות/01_dcd181_79e9cba1842f4ad29e3aca562d164ced~mv2.webp`} alt='עו"ד ערן בקר בפגישה עם לקוח' style={{ width: '100%', height: 250, objectFit: 'cover', borderRadius: 12 }} />
-            <img src={`/pics/02_אודות/02_dcd181_264931d61f6344c4bf682d619fafef86~mv2.webp`} alt="צוות המשרד בפגישה" style={{ width: '100%', height: 250, objectFit: 'cover', borderRadius: 12 }} />
-          </div>
           <div className="reveal" dir="rtl">
             <p>ערן בקר חברת עורכי דין הינו משרד בוטיק ותיק שנוסד בשנת 2003, והינו משרד מוביל ופורץ דרך בתחומי נזיקין, רשלנות רפואית, ביטוח, תאונות דרכים, תאונות אישיות, משרד הביטחון, תאונות עבודה - ביטוח לאומי - מחלות מקצוע, חשיפה לחומרים מסוכנים בעבודה, ריאות, עור, מחלות סרטן, אירועים חריגים בעבודה, אוטם שריר הלב, אירוע מוחי, נזקי עמוד שדרה, מיקרוטראומה, ועוד.</p>
             <p>ערן בקר - חברת עורכי דין מדורג על-ידי דן אנד ברדסטריט (DUNS 100) ובי די אי קוד (BDi CODE) כאחד ממשרדי עורכי דין המובילים והמוערכים בישראל.</p>

@@ -51,7 +51,7 @@ export default function Layout() {
           <div className="trust-strip-item">
             <span className="trust-strip-icon">&#9878;&#65039;</span>
             <div className="trust-strip-text">
-              <span className="trust-strip-num" data-target="23">0</span>
+              <span className="trust-strip-num" data-target="25">0</span>
               <span className="trust-strip-label">שנות ניסיון</span>
             </div>
           </div>
