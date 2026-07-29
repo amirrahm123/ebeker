@@ -534,7 +534,7 @@ export default function Home() {
               </div>
             </div>
             <div className="about-visual reveal-left" style={{ transitionDelay: '.15s', overflow: 'hidden', padding: 0, margin: 0 }}>
-              <img src="/pics/2.webp" alt='עו"ד ערן בקר — מייסד ושותף בכיר' style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 15%', display: 'block' }} />
+              <img src="/pics/eran-becker-about.webp" alt='עו"ד ערן בקר — מייסד ושותף בכיר' style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 15%', display: 'block' }} />
             </div>
           </div>
         </div>

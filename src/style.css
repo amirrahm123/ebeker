@@ -1400,6 +1400,11 @@ footer > * { position: relative; z-index: 1; width: 100%; }
 }
 @media (max-width: 900px) {
   .about-grid { grid-template-columns: 1fr; gap: 40px; }
+  /* Single column makes this full-width, and a fixed 420px height against that
+     width cropped the portrait by ~50% and grew worse as the viewport widened.
+     A ratio holds the crop at ~26% — the same as desktop — at any width, while
+     keeping the box short enough not to push the firm description down. */
+  .about-visual { height: auto; aspect-ratio: 4 / 3; }
   .contact-wrap { grid-template-columns: 1fr; gap: 36px; }
   .trust-cards { grid-template-columns: 1fr; }
 }
