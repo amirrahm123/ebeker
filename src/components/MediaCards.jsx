@@ -290,6 +290,7 @@ function Modal({ card, activeTab, setActiveTab, onClose }) {
    Below 901px the carousel stacks under the hero copy and goes fluid. */
 const CARD_W = 287.7
 const GAP = 16
+const AUTOPLAY_MS = 4500
 
 export default function MediaCards() {
   const [index, setIndex] = useState(0)
@@ -297,6 +298,11 @@ export default function MediaCards() {
   const [stacked, setStacked] = useState(false)
   const [selected, setSelected] = useState(null)
   const [activeTab, setActiveTab] = useState('video')
+  const [hovered, setHovered] = useState(false)
+  const [reducedMotion, setReducedMotion] = useState(false)
+  // Bumped by manual navigation so the interval restarts from a full 6s
+  // instead of firing whatever was left on the clock.
+  const [timerKey, setTimerKey] = useState(0)
 
   useEffect(() => {
     const update = () => {
@@ -312,14 +318,36 @@ export default function MediaCards() {
     return () => window.removeEventListener('resize', update)
   }, [])
 
+  useEffect(() => {
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)')
+    const update = () => setReducedMotion(mq.matches)
+    update()
+    mq.addEventListener('change', update)
+    return () => mq.removeEventListener('change', update)
+  }, [])
+
   const maxIndex = Math.max(0, cards.length - slidesPerView)
 
   useEffect(() => {
     if (index > maxIndex) setIndex(maxIndex)
   }, [maxIndex, index])
 
-  const prev = useCallback(() => setIndex(i => (i <= 0 ? maxIndex : i - 1)), [maxIndex])
-  const next = useCallback(() => setIndex(i => (i >= maxIndex ? 0 : i + 1)), [maxIndex])
+  // Bare movement, no timer reset — the interval drives advance() itself.
+  const advance = useCallback(() => setIndex(i => (i >= maxIndex ? 0 : i + 1)), [maxIndex])
+  const retreat = useCallback(() => setIndex(i => (i <= 0 ? maxIndex : i - 1)), [maxIndex])
+
+  const resetTimer = useCallback(() => setTimerKey(k => k + 1), [])
+  const prev = useCallback(() => { retreat(); resetTimer() }, [retreat, resetTimer])
+  const next = useCallback(() => { advance(); resetTimer() }, [advance, resetTimer])
+  const goTo = useCallback((i) => { setIndex(i); resetTimer() }, [resetTimer])
+
+  const autoplayPaused = reducedMotion || hovered || selected !== null || maxIndex === 0
+
+  useEffect(() => {
+    if (autoplayPaused) return
+    const id = setInterval(advance, AUTOPLAY_MS)
+    return () => clearInterval(id)
+  }, [autoplayPaused, advance, timerKey])
 
   const openCard = useCallback((c) => {
     setSelected(c)
@@ -349,7 +377,16 @@ export default function MediaCards() {
 
   return (
     <div className="mc-in-hero" dir="rtl">
-      <div className="mc-slider-wrap" style={wrapStyle}>
+      {/* onFocus/onBlur are React's focusin/focusout — they bubble, so tabbing
+          to any arrow, dot or card inside pauses the auto-advance. */}
+      <div
+        className="mc-slider-wrap"
+        style={wrapStyle}
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
+        onFocus={() => setHovered(true)}
+        onBlur={() => setHovered(false)}
+      >
         {cards.length > 1 && (
           <>
             <button className="mc-arr-btn mc-arr-prev" onClick={prev} aria-label="הקודם">&#8594;</button>
@@ -406,7 +443,7 @@ export default function MediaCards() {
               <button
                 key={i}
                 className={`mc-dot${i === index ? ' active' : ''}`}
-                onClick={() => setIndex(i)}
+                onClick={() => goTo(i)}
                 aria-label={`עבור לשקף ${i + 1}`}
               />
             ))}
