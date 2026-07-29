@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom'
 
 const practiceAreas = [
   { to: '/damages', label: 'נזיקין כללי' },
+  { to: '/causes-of-death', label: 'נזיקין · תאונות קטלניות' },
   { to: '/medical-malpractice', label: 'רשלנות רפואית' },
   { to: '/insurance', label: 'ביטוח' },
   { to: '/work-accidents', label: 'תאונות עבודה · ביטוח לאומי' },
