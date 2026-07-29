@@ -45,6 +45,18 @@ const physicalItems = [
 
 const BASE = '/pics/07_ממליצים/'
 
+/* Both groups render into one grid — two separate grids left a ragged seam
+   where the second one restarted its own flow. Alt text is preserved per group. */
+const items = [
+  ...whitePosts.map((file, i) => ({ file, alt: `המלצת לקוח ${String(i + 1).padStart(2, '0')}` })),
+  ...physicalItems.map((file, i) => ({ file, alt: `מכתב תודה ${String(i + 1).padStart(2, '0')}` })),
+]
+
+const videos = [
+  { src: '/videos/client-recommendation.mp4', poster: '/pics/client-recommendation-thumb.webp' },
+  { src: '/videos/client-recommendation-2.mp4', poster: '/pics/client-recommendation-2-thumb.webp' },
+]
+
 export default function Recommendations() {
   useRevealOnScroll()
   const [lightbox, setLightbox] = useState(null)
@@ -61,29 +73,21 @@ export default function Recommendations() {
         <div className="container">
           <div className="reveal" style={{ textAlign: 'center', marginBottom: 48 }}>
             <h2 className="section-title">מכתבי תודה והמלצות</h2>
-            <p className="section-sub" style={{ marginTop: 16 }}>לחצו על כל המלצה להגדלה</p>
+            <p className="section-sub" style={{ marginTop: 16 }}>לחצו על מכתב להגדלה &middot; את הסרטונים ניתן להפעיל כאן בעמוד</p>
           </div>
-          <div className="testimonials-grid stagger-reveal">
-            <div className="testimonial-clipping reveal" style={{ cursor: 'default' }} onClick={(e) => e.stopPropagation()}>
-              <video
-                src="/videos/client-recommendation.mp4"
-                poster="/pics/client-recommendation-thumb.webp"
-                controls
-                preload="metadata"
-                playsInline
-                style={{ width: '100%', height: 'auto', display: 'block' }}
-              />
-            </div>
-            {whitePosts.map((img, i) => (
-              <div className="testimonial-clipping reveal" key={`w${i}`} onClick={() => setLightbox(BASE + img)}>
-                <img src={BASE + img} alt={`המלצת לקוח ${String(i + 1).padStart(2, '0')}`} loading="lazy" />
+          <div className="press-grid reveal">
+            {videos.map((v) => (
+              <div className="press-clipping rec-video" key={v.src}>
+                <div className="press-img-wrap">
+                  <video src={v.src} poster={v.poster} controls preload="metadata" playsInline />
+                </div>
               </div>
             ))}
-          </div>
-          <div className="testimonials-grid stagger-reveal" style={{ marginTop: 0 }}>
-            {physicalItems.map((img, i) => (
-              <div className="testimonial-clipping reveal" key={`p${i}`} onClick={() => setLightbox(BASE + img)}>
-                <img src={BASE + img} alt={`מכתב תודה ${String(i + 1).padStart(2, '0')}`} loading="lazy" />
+            {items.map((item) => (
+              <div className="press-clipping" key={item.file} onClick={() => setLightbox(BASE + item.file)}>
+                <div className="press-img-wrap">
+                  <img src={BASE + item.file} alt={item.alt} loading="lazy" />
+                </div>
               </div>
             ))}
           </div>
