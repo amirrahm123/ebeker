@@ -2751,7 +2751,7 @@ img { max-width: 100%; height: auto; }
   position: relative;
   overflow: hidden;
   background: #060e1e;
-  min-height: calc(var(--top-offset) + 360px);
+  min-height: calc(var(--top-offset) + 488px);
   margin-bottom: 0;
   padding: calc(var(--top-offset) + 50px) 40px 50px;
 }
@@ -2790,7 +2790,7 @@ img { max-width: 100%; height: auto; }
   top: calc(50% + 75px);
   transform: translateY(-50%);
   z-index: 6;
-  width: 460px;
+  width: 430px;
   max-width: calc(100% - 10%);
   text-align: right;
 }
@@ -2829,61 +2829,33 @@ img { max-width: 100%; height: auto; }
   margin: 0 0 26px;
   animation: fadeUp .8s .25s both;
 }
-.hero-framed-btns {
-  display: flex;
-  gap: 12px;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-  animation: fadeUp .9s .35s both;
+/* חדשות ועדכונים carousel, in the space the scales used to occupy.
+   No transform here: the card modal is position:fixed and a transformed
+   ancestor would make it a containing block, clipping it against the
+   hero's overflow:hidden. Top is set from the nav offset instead. */
+/* left: 58px puts the outer edge of the -18px arrows on the hero's own 40px
+   padding line, so the first card clears the viewport edge by the same margin
+   the last card clears the headline block by. The card-count breakpoints in
+   MediaCards.jsx are set so this always holds. */
+.mc-in-hero {
+  position: absolute;
+  left: 58px;
+  top: calc(var(--top-offset) + 12px);
+  z-index: 5;
+  direction: rtl;
 }
-.btn-hero-solid {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 13px 26px;
-  background: #fff;
-  color: #060e1e;
-  border: 1px solid #fff;
-  border-radius: 4px;
-  font-weight: 700;
-  font-size: 0.95rem;
-  text-decoration: none;
-  transition: transform .2s ease, background .2s ease, color .2s ease;
-}
-.btn-hero-solid:hover {
-  background: var(--color-accent);
-  border-color: var(--color-accent);
-  color: #060e1e;
-  transform: translateY(-1px);
-}
-.btn-hero-ghost {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 13px 26px;
-  background: transparent;
-  color: #fff;
-  border: 1px solid #fff;
-  border-radius: 4px;
-  font-weight: 700;
-  font-size: 0.95rem;
-  text-decoration: none;
-  transition: transform .2s ease, background .2s ease, color .2s ease;
-}
-.btn-hero-ghost:hover {
-  background: rgba(255,255,255,0.1);
-  transform: translateY(-1px);
-}
+.mc-in-hero .mc-viewport { padding: 6px 0 10px; }
+.mc-in-hero .mc-dots { margin-top: 14px; }
+/* 3 lines instead of 5 — keeps the card short enough to clear the nav
+   at the top and the banner edge at the bottom. */
+.mc-in-hero .mc-card-desc { -webkit-line-clamp: 3; }
 
 @media (max-width: 900px) {
-  .hero-framed { min-height: 560px; }
-  .hero-framed-content { width: 400px; }
-  .hero-framed-overlay {
-    background: linear-gradient(to right, rgba(6,14,30,0) 0%, rgba(6,14,30,0.4) 25%, rgba(6,14,30,0.95) 55%, rgba(6,14,30,0.99) 100%);
+  /* Not enough width to sit beside the copy — stack instead. */
+  .hero-framed {
+    min-height: 560px;
+    padding: var(--top-offset) 24px 40px;
   }
-}
-@media (max-width: 768px) {
-  .hero-framed { min-height: 520px; padding-top: var(--top-offset); }
   .hero-framed-content {
     position: relative;
     right: auto;
@@ -2892,12 +2864,23 @@ img { max-width: 100%; height: auto; }
     width: auto;
     max-width: 100%;
     margin: 0;
-    padding: 80px 24px 60px;
+    padding: 60px 0 36px;
     text-align: right;
   }
   .hero-framed-overlay {
     background: linear-gradient(to bottom, rgba(6,14,30,0.55) 0%, rgba(6,14,30,0.92) 60%, rgba(6,14,30,0.97) 100%);
   }
+  .mc-in-hero {
+    position: static;
+    padding-bottom: 8px;
+  }
+  .mc-in-hero .mc-slider-wrap { width: 100%; max-width: 420px; }
+  .mc-in-hero .mc-arr-prev { right: -12px; }
+  .mc-in-hero .mc-arr-next { left: -12px; }
+  .mc-in-hero .mc-card-desc { -webkit-line-clamp: 5; }
+}
+@media (max-width: 768px) {
+  .hero-framed { min-height: 520px; }
   .hf-corner { width: 32px; height: 32px; }
   .hf-corner-tl, .hf-corner-tr { top: 16px; }
   .hf-corner-bl, .hf-corner-br { bottom: 16px; }
@@ -2905,10 +2888,9 @@ img { max-width: 100%; height: auto; }
   .hf-corner-tr, .hf-corner-br { right: 16px; }
 }
 @media (max-width: 480px) {
-  .hero-framed-content { padding: 60px 18px 44px; }
+  .hero-framed { padding-left: 18px; padding-right: 18px; }
+  .hero-framed-content { padding: 44px 0 28px; }
   .hero-framed-sub { font-size: 0.82rem; }
-  .hero-framed-btns { gap: 10px; }
-  .btn-hero-solid, .btn-hero-ghost { padding: 11px 20px; font-size: 0.88rem; }
 }
 
 /* ══════════════════════════════════════
@@ -3040,37 +3022,6 @@ img { max-width: 100%; height: auto; }
 /* ══════════════════════════════════════
    MEDIA CARDS SECTION — סיקור תקשורתי
    ══════════════════════════════════════ */
-.media-cards-section {
-  background: #0d1b3e;
-  padding: 80px 40px;
-  text-align: center;
-  direction: rtl;
-  position: relative;
-  overflow: hidden;
-}
-.mc-section-eyebrow {
-  color: rgba(201,168,76,0.6);
-  font-size: 10px;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  font-weight: 700;
-  margin: 0 0 6px;
-}
-.mc-section-title {
-  color: #fff;
-  font-size: 22px;
-  font-weight: 900;
-  margin: 0;
-  letter-spacing: -0.3px;
-}
-.mc-section-line {
-  width: 48px;
-  height: 2px;
-  background: #c9a84c;
-  margin: 10px auto 28px;
-  border-radius: 2px;
-}
-
 .mc-slider-wrap {
   position: relative;
   max-width: 900px;
@@ -3089,7 +3040,8 @@ img { max-width: 100%; height: auto; }
 }
 
 .mc-card {
-  flex: 0 0 calc(33.333% - 11px);
+  /* flex-basis is set inline — it depends on how many cards are visible */
+  flex: 0 0 auto;
   display: flex;
   flex-direction: column;
   background: #060e1e;
@@ -3190,13 +3142,16 @@ img { max-width: 100%; height: auto; }
   flex-direction: column;
   gap: 14px;
 }
+/* No negative-margin full bleed here: the global `img { max-width: 100% }`
+   reset clamps the width but not the margins, which in RTL pins the image to
+   the right edge and leans it off centre. Plain centred block instead. */
 .mc-article-image {
+  display: block;
   width: 100%;
   height: auto;
   object-fit: contain;
   border-radius: 0;
-  margin: 0 -22px;
-  width: calc(100% + 44px);
+  margin-inline: auto;
 }
 .mc-article-desc {
   font-size: 15px;
@@ -3659,13 +3614,8 @@ img { max-width: 100%; height: auto; }
 }
 
 @media (max-width: 768px) {
-  .media-cards-section { padding: 56px 22px; }
-  .mc-card { flex: 0 0 100%; }
-  .mc-arr-prev { right: -12px; }
-  .mc-arr-next { left: -12px; }
   .mc-modal-header { padding: 16px 18px 14px; }
   .mc-modal-body { padding: 18px; }
-  .mc-article-image { margin: 0 -18px; width: calc(100% + 36px); }
   .mc-modal-footer { padding: 12px 18px 16px; flex-direction: column; align-items: stretch; }
   .mc-modal-source { text-align: center; }
 }

@@ -311,28 +311,21 @@ export default function Home() {
   const [zoomImg, setZoomImg] = useState(null)
   const heroCanvasRef = useRef(null)
 
-  // Animated hero background — diagonal gold lines + swinging scales of justice
+  // Hero background — diagonal gold lines on canvas, redrawn on resize
   useEffect(() => {
     const canvas = heroCanvasRef.current
     if (!canvas) return
     const ctx = canvas.getContext('2d')
-    let raf = 0
-    let start = performance.now()
 
-    const resize = () => {
+    const draw = () => {
       const dpr = window.devicePixelRatio || 1
       const rect = canvas.getBoundingClientRect()
       canvas.width = Math.floor(rect.width * dpr)
       canvas.height = Math.floor(rect.height * dpr)
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
-    }
-    resize()
-    window.addEventListener('resize', resize)
 
-    const draw = (now) => {
-      const t = (now - start) / 1000
-      const w = canvas.clientWidth
-      const h = canvas.clientHeight
+      const w = rect.width
+      const h = rect.height
       ctx.clearRect(0, 0, w, h)
 
       // Diagonal gold lines: spacing 36px, every 3rd thicker
@@ -348,93 +341,11 @@ export default function Home() {
         ctx.lineTo(i + h, h)
         ctx.stroke()
       }
-
-      // Scales of justice on the LEFT
-      const cx = w * 0.25
-      const cy = h * 0.62
-
-      // Radial glow behind scales
-      const glow = ctx.createRadialGradient(cx, cy, 0, cx, cy, 260)
-      glow.addColorStop(0, 'rgba(201,168,76,0.22)')
-      glow.addColorStop(0.5, 'rgba(201,168,76,0.07)')
-      glow.addColorStop(1, 'rgba(201,168,76,0)')
-      ctx.fillStyle = glow
-      ctx.beginPath()
-      ctx.arc(cx, cy, 260, 0, Math.PI * 2)
-      ctx.fill()
-
-      // Animated swing
-      const swing = Math.sin(t * 0.9) * 0.12 // radians
-      const armLen = 110
-      const beamY = cy - 70
-
-      ctx.strokeStyle = 'rgba(201,168,76,0.85)'
-      ctx.lineWidth = 2.4
-      ctx.lineCap = 'round'
-      ctx.lineJoin = 'round'
-
-      // Center pole
-      ctx.beginPath()
-      ctx.moveTo(cx, cy - 140)
-      ctx.lineTo(cx, cy + 130)
-      ctx.stroke()
-
-      // Top finial
-      ctx.beginPath()
-      ctx.arc(cx, cy - 144, 5, 0, Math.PI * 2)
-      ctx.stroke()
-
-      // Base
-      ctx.beginPath()
-      ctx.moveTo(cx - 48, cy + 130)
-      ctx.lineTo(cx + 48, cy + 130)
-      ctx.stroke()
-      ctx.beginPath()
-      ctx.moveTo(cx - 30, cy + 140)
-      ctx.lineTo(cx + 30, cy + 140)
-      ctx.stroke()
-
-      // Beam (rotated by swing around pivot at cx, beamY)
-      const cosS = Math.cos(swing)
-      const sinS = Math.sin(swing)
-      const lx = cx - armLen * cosS
-      const ly = beamY - armLen * sinS
-      const rx = cx + armLen * cosS
-      const ry = beamY + armLen * sinS
-      ctx.beginPath()
-      ctx.moveTo(lx, ly)
-      ctx.lineTo(rx, ry)
-      ctx.stroke()
-
-      // Hanging chains + pans
-      const drawPan = (px, py) => {
-        // chain
-        ctx.beginPath()
-        ctx.moveTo(px, py)
-        ctx.lineTo(px, py + 56)
-        ctx.stroke()
-        // pan arc
-        ctx.beginPath()
-        ctx.moveTo(px - 36, py + 56)
-        ctx.quadraticCurveTo(px, py + 92, px + 36, py + 56)
-        ctx.stroke()
-        // pan rim
-        ctx.beginPath()
-        ctx.moveTo(px - 36, py + 56)
-        ctx.lineTo(px + 36, py + 56)
-        ctx.stroke()
-      }
-      drawPan(lx, ly)
-      drawPan(rx, ry)
-
-      raf = requestAnimationFrame(draw)
     }
-    raf = requestAnimationFrame(draw)
 
-    return () => {
-      cancelAnimationFrame(raf)
-      window.removeEventListener('resize', resize)
-    }
+    draw()
+    window.addEventListener('resize', draw)
+    return () => window.removeEventListener('resize', draw)
   }, [])
 
   // Escape key closes modals
@@ -484,11 +395,10 @@ export default function Home() {
           </h1>
           <div className="hero-framed-divider" aria-hidden="true"></div>
           <p className="hero-framed-sub">משרד בוטיק מוביל מאז 2003 &middot; נזיקין, ביטוח, רשלנות רפואית וביטוח לאומי &middot; ליווי אישי בכל תיק</p>
-          <div className="hero-framed-btns">
-            <a href="#contact" className="btn-hero-solid">קבעו ייעוץ חינם &#8592;</a>
-            <a href="tel:049001056" className="btn-hero-ghost">&#128222; 04-9001056</a>
-          </div>
         </div>
+
+        {/* חדשות ועדכונים — sits in the space the scales used to occupy */}
+        <MediaCards />
       </section>
 
       {/* NEWS — directly below hero */}
@@ -512,9 +422,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      {/* MEDIA CARDS — סיקור תקשורתי */}
-      <MediaCards />
 
       {/* PRACTICE AREAS */}
       <section className="section section-light" id="areas">

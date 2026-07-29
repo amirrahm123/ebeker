@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback, useRef } from 'react'
+import { createPortal } from 'react-dom'
 import ZoomViewer from './ZoomViewer'
 
 const cards = [
@@ -285,14 +286,27 @@ function Modal({ card, activeTab, setActiveTab, onClose }) {
   )
 }
 
+/* Card width is held fixed across breakpoints; only how many are visible changes.
+   Below 901px the carousel stacks under the hero copy and goes fluid. */
+const CARD_W = 287.7
+const GAP = 16
+
 export default function MediaCards() {
   const [index, setIndex] = useState(0)
   const [slidesPerView, setSlidesPerView] = useState(3)
+  const [stacked, setStacked] = useState(false)
   const [selected, setSelected] = useState(null)
   const [activeTab, setActiveTab] = useState('video')
 
   useEffect(() => {
-    const update = () => setSlidesPerView(window.innerWidth < 768 ? 1 : 3)
+    const update = () => {
+      // clientWidth, not innerWidth: innerWidth counts the scrollbar, but the
+      // hero copy is offset by right: 5% of the narrower layout width. Using
+      // innerWidth overestimates the room and the carousel overflows.
+      const w = document.documentElement.clientWidth
+      setSlidesPerView(w >= 1520 ? 3 : w >= 1185 ? 2 : 1)
+      setStacked(w < 901)
+    }
     update()
     window.addEventListener('resize', update)
     return () => window.removeEventListener('resize', update)
@@ -325,16 +339,17 @@ export default function MediaCards() {
     }
   }, [selected, closeModal])
 
-  const stepCss = slidesPerView === 1 ? 'calc(100% + 16px)' : 'calc(33.3333% + 5px)'
+  const pct = 100 / slidesPerView
+  const stepCss = `calc(${pct.toFixed(4)}% + ${(GAP / slidesPerView).toFixed(4)}px)`
   const trackStyle = { transform: `translateX(calc(${index} * ${stepCss}))` }
+  const cardStyle = { flexBasis: `calc(${pct.toFixed(4)}% - ${(GAP * (slidesPerView - 1) / slidesPerView).toFixed(4)}px)` }
+  const wrapStyle = stacked
+    ? undefined
+    : { width: slidesPerView * CARD_W + (slidesPerView - 1) * GAP }
 
   return (
-    <section className="media-cards-section" dir="rtl">
-      <p className="mc-section-eyebrow">עדכונים</p>
-      <h2 className="mc-section-title">חדשות ועדכונים</h2>
-      <div className="mc-section-line" aria-hidden="true" />
-
-      <div className="mc-slider-wrap">
+    <div className="mc-in-hero" dir="rtl">
+      <div className="mc-slider-wrap" style={wrapStyle}>
         {cards.length > 1 && (
           <>
             <button className="mc-arr-btn mc-arr-prev" onClick={prev} aria-label="הקודם">&#8594;</button>
@@ -345,7 +360,7 @@ export default function MediaCards() {
         <div className="mc-viewport">
           <div className="mc-track" style={trackStyle}>
             {cards.map((c) => (
-              <button type="button" key={c.id} className={`mc-card mc-card-${c.type}`} onClick={() => openCard(c)}>
+              <button type="button" key={c.id} className={`mc-card mc-card-${c.type}`} style={cardStyle} onClick={() => openCard(c)}>
                 <div className={`mc-thumb${c.thumbBg ? ' mc-thumb--light' : ''}`} style={c.thumbBg ? { background: c.thumbBg } : undefined}>
                   {c.thumbKind === 'image' ? (
                     <img src={c.thumbnail} alt={c.title} className={`mc-thumb-media${c.thumbBg ? ' mc-thumb-media--contain' : ''}`} />
@@ -399,9 +414,13 @@ export default function MediaCards() {
         )}
       </div>
 
-      {selected && (
-        <Modal card={selected} activeTab={activeTab} setActiveTab={setActiveTab} onClose={closeModal} />
+      {/* Portalled to body: .mc-in-hero is a stacking context (absolute + z-index),
+          so the modal's z-index would be trapped below the navbar and hero copy,
+          and clipped by the hero's overflow: hidden. Same approach as ZoomViewer. */}
+      {selected && createPortal(
+        <Modal card={selected} activeTab={activeTab} setActiveTab={setActiveTab} onClose={closeModal} />,
+        document.body
       )}
-    </section>
+    </div>
   )
 }
