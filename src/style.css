@@ -280,7 +280,14 @@ nav#navbar.scrolled {
 .nav-dropdown a:last-child { border-bottom: none; }
 .nav-dropdown a:hover { background: rgba(255,255,255,.06); padding-right: 28px; color: var(--color-accent); }
 
-.nav-dropdown-wide { grid-template-columns: 1fr 1fr; min-width: 400px; }
+/* Fill column-by-column, not row-by-row, so the three ביטוח לאומי items stay
+   together in one column. 14 items / 2 columns = 7 rows — update if items change. */
+.nav-dropdown-wide {
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(7, auto);
+  grid-auto-flow: column;
+  min-width: 400px;
+}
 .has-dropdown:hover .nav-dropdown.nav-dropdown-wide,
 .has-dropdown .nav-dropdown.nav-dropdown-wide:hover,
 .has-dropdown.dropdown-open .nav-dropdown.nav-dropdown-wide { display: grid; }
@@ -768,9 +775,10 @@ nav#navbar.scrolled {
 }
 .attorney-card-featured .attorney-card-photo {
   width: 320px;
+  aspect-ratio: 250 / 404;
   min-height: 360px;
   object-fit: cover;
-  object-position: center 30%;
+  object-position: center 20%;
   display: block;
   flex-shrink: 0;
 }
@@ -814,11 +822,13 @@ nav#navbar.scrolled {
   box-shadow: 0 12px 32px rgba(0,0,0,.15);
   transform: translateY(-4px);
 }
+/* Box ratio matches the source photos (250x404) so `cover` crops almost
+   nothing — the full head/shoulders/torso framing, like the live site. */
 .attorney-card-photo {
-  height: 380px;
+  aspect-ratio: 250 / 404;
   width: 100%;
   object-fit: cover;
-  object-position: center 30%;
+  object-position: center 20%;
   background: #0d1b3e;
   display: block;
 }
@@ -893,9 +903,9 @@ nav#navbar.scrolled {
 }
 .attorney-popup-photo {
   width: 200px;
-  height: 240px;
+  aspect-ratio: 250 / 404;
   object-fit: cover;
-  object-position: center 30%;
+  object-position: center 20%;
   border-radius: 10px;
   border: 2px solid var(--color-accent);
   flex-shrink: 0;
