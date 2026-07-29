@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
 import { createPortal } from 'react-dom'
 
-export default function ZoomViewer({ src, onClose }) {
+export default function ZoomViewer({ src, caption, onClose }) {
   const [scale, setScale] = useState(1)
   const [pos, setPos] = useState({ x: 0, y: 0 })
   const dragging = useRef(false)
@@ -50,7 +50,7 @@ export default function ZoomViewer({ src, onClose }) {
   }, [handleWheel, onClose])
 
   return createPortal(
-    <div className="zoom-overlay">
+    <div className={`zoom-overlay${caption ? ' has-caption' : ''}`}>
       <div className="zoom-toolbar">
         <button className="zoom-btn" onClick={() => setScale(s => Math.min(5, s + 0.3))}>+</button>
         <span className="zoom-level">{Math.round(scale * 100)}%</span>
@@ -84,6 +84,7 @@ export default function ZoomViewer({ src, onClose }) {
           }}
         />
       </div>
+      {caption && <p className="zoom-caption" dir="rtl">{caption}</p>}
     </div>,
     document.body
   )
