@@ -6,7 +6,7 @@ const cards = [
   {
     id: 2,
     cat: 'נזיקין · אסון מירון',
-    title: 'ייצוג משפחות נפגעי אסון מירון',
+    title: 'ייצוג משפחות נספי אסון מירון',
     source: 'ערוץ 12',
     type: 'videoCarousel',
     thumbnail: '/pics/WhatsApp_Image_2026-04-10_at_11_10_25.webp',
