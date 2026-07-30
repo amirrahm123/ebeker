@@ -11,7 +11,8 @@ const cards = [
     type: 'videoCarousel',
     thumbnail: '/pics/WhatsApp_Image_2026-04-10_at_11_10_25.webp',
     thumbKind: 'image',
-    description: 'עו״ד ערן בקר מייצג משפחות נפגעי אסון מירון — ראיונות בערוץ 12 על מסקנות ועדת החקירה הממלכתית, והצהרות לעיתונות מחוץ לבית המשפט',
+    description: 'עו״ד ערן בקר מייצג משפחות נפגעי אסון מירון — ראיונות בערוץ 12 ו14 על מסקנות ועדת החקירה הממלכתית, והצהרות לעיתונות מחוץ לבית המשפט',
+
     links: [
   { label: 'ynet', url: 'https://www.ynet.co.il/judaism/article/hk3kwebhxl' },
   { label: 'כאן חדשות', url: 'https://www.kan.org.il/content/kan-news/local/926965/' },
@@ -38,6 +39,7 @@ const cards = [
     thumbnail: '/videos/יצוג_משפחות_חטופים_בכנסת.mp4',
     thumbKind: 'video',
     poster: '/pics/ייצוג_משפחות_חטופים_בכנסת-thumb.webp',
+    extraImage: '/pics/eran-dogtag.webp',
     description: 'עו״ד ערן בקר ייצג משפחות חטופים בכנסת ישראל ונאם באירוע תמיכה בחטופים ומשפחותיהם בלשכת עורכי הדין מחוז חיפה',
     badges: ['וידאו'],
     links: [
