@@ -255,7 +255,13 @@ function Modal({ card, activeTab, setActiveTab, onClose }) {
               {card.images && card.images.length > 0 && (
                 <div className="mc-photos-row">
                   {card.images.map((src) => (
-                    <img key={src} src={src} alt={card.title} className="mc-photos-item" />
+                    <img
+                      key={src}
+                      src={src}
+                      alt={card.title}
+                      className="mc-photos-item mc-article-image-zoom"
+                      onClick={() => setZoomSrc(src)}
+                    />
                   ))}
                 </div>
               )}
