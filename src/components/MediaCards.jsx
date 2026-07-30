@@ -34,6 +34,9 @@ const cards = [
     poster: '/pics/ייצוג_משפחות_חטופים_בכנסת-thumb.webp',
     description: 'עו״ד ערן בקר ייצג משפחות חטופים בכנסת ישראל ונאם באירוע תמיכה בחטופים ומשפחותיהם בלשכת עורכי הדין מחוז חיפה',
     badges: ['וידאו'],
+    links: [
+      { label: 'וואלה', url: 'https://mekomi.walla.co.il/item/3652184' },
+    ],
   },
   {
     id: 5,
@@ -225,6 +228,18 @@ function Modal({ card, activeTab, setActiveTab, onClose }) {
           )}
           {isCombo && card.description && (
             <p className="mc-article-desc" style={{ marginTop: 14 }}>{card.description}</p>
+          )}
+          {isCombo && card.links && card.links.length > 0 && (
+            <div className="mc-article-links" style={{ marginTop: 14 }}>
+              <p className="mc-article-links-title">כיסוי תקשורתי:</p>
+              <ul>
+                {card.links.map((l) => (
+                  <li key={l.url}>
+                    <a href={l.url} target="_blank" rel="noopener noreferrer">{l.label}</a>
+                  </li>
+                ))}
+              </ul>
+            </div>
           )}
           {showArticle && (
             card.thumbKind === 'image' && card.thumbnail ? (
