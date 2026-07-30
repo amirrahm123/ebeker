@@ -14,11 +14,9 @@ const cards = [
     description: 'עו״ד ערן בקר מייצג משפחות נפגעי אסון מירון — ראיונות בערוץ 12 על מסקנות ועדת החקירה הממלכתית, והצהרות לעיתונות מחוץ לבית המשפט',
     links: [
   { label: 'ynet', url: 'https://www.ynet.co.il/judaism/article/hk3kwebhxl' },
-  { label: 'כיכר השבת', url: 'הכתובת המלאה' },
-  { label: 'וואלה', url: 'הכתובת המלאה' },
   { label: 'כאן חדשות', url: 'https://www.kan.org.il/content/kan-news/local/926965/' },
   { label: 'מעריב', url: 'https://www.maariv.co.il/breaking-news/article-1210540' },
-  { label: 'Bizzness', url: 'הכתובת המלאה' },
+  
 ],
     videos: [
       { src: '/videos/ראיון_ערן_בערוץ_12_ועדת_חקירה_אסון_מירון.mp4', label: 'ראיון ערוץ 12 — ועדת חקירה' },
@@ -178,6 +176,24 @@ function VideoCarousel({ videos }) {
   )
 }
 
+/* Shared by all four modal branches — carousel, combo and both article paths.
+   Renders nothing without links, so call sites don't repeat the guard. */
+function ArticleLinks({ links, style }) {
+  if (!links || links.length === 0) return null
+  return (
+    <div className="mc-article-links" style={style}>
+      <p className="mc-article-links-title">כיסוי תקשורתי:</p>
+      <ul>
+        {links.map((l) => (
+          <li key={l.url}>
+            <a href={l.url} target="_blank" rel="noopener noreferrer">{l.label}</a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  )
+}
+
 function Modal({ card, activeTab, setActiveTab, onClose }) {
   const isCombo = card.type === 'videoImage'
   const isCarousel = card.type === 'videoCarousel'
@@ -217,6 +233,7 @@ function Modal({ card, activeTab, setActiveTab, onClose }) {
               {card.description && (
                 <p className="mc-article-desc" style={{ marginTop: 14 }}>{card.description}</p>
               )}
+              <ArticleLinks links={card.links} style={{ marginTop: 14 }} />
             </>
           )}
           {!isCarousel && showVideo && (
@@ -238,18 +255,7 @@ function Modal({ card, activeTab, setActiveTab, onClose }) {
           {isCombo && card.description && (
             <p className="mc-article-desc" style={{ marginTop: 14 }}>{card.description}</p>
           )}
-          {isCombo && card.links && card.links.length > 0 && (
-            <div className="mc-article-links" style={{ marginTop: 14 }}>
-              <p className="mc-article-links-title">כיסוי תקשורתי:</p>
-              <ul>
-                {card.links.map((l) => (
-                  <li key={l.url}>
-                    <a href={l.url} target="_blank" rel="noopener noreferrer">{l.label}</a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
+          {isCombo && <ArticleLinks links={card.links} style={{ marginTop: 14 }} />}
           {showArticle && (
             card.thumbKind === 'image' && card.thumbnail ? (
               <div className="mc-article-real">
@@ -260,18 +266,7 @@ function Modal({ card, activeTab, setActiveTab, onClose }) {
                   onClick={() => setZoomSrc(card.articleImage || card.thumbnail)}
                 />
                 {card.description && <p className="mc-article-desc">{card.description}</p>}
-                {card.links && card.links.length > 0 && (
-                  <div className="mc-article-links">
-                    <p className="mc-article-links-title">כיסוי תקשורתי:</p>
-                    <ul>
-                      {card.links.map((l) => (
-                        <li key={l.url}>
-                          <a href={l.url} target="_blank" rel="noopener noreferrer">{l.label}</a>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
+                <ArticleLinks links={card.links} />
                 {card.primaryLink && (
                   <a href={card.primaryLink.url} target="_blank" rel="noopener noreferrer" className="mc-article-cta">{card.primaryLink.label}</a>
                 )}
@@ -282,18 +277,7 @@ function Modal({ card, activeTab, setActiveTab, onClose }) {
                 {card.primaryLink && (
                   <a href={card.primaryLink.url} target="_blank" rel="noopener noreferrer" className="mc-article-cta">{card.primaryLink.label}</a>
                 )}
-                {card.links && card.links.length > 0 && (
-                  <div className="mc-article-links">
-                    <p className="mc-article-links-title">כיסוי תקשורתי:</p>
-                    <ul>
-                      {card.links.map((l) => (
-                        <li key={l.url}>
-                          <a href={l.url} target="_blank" rel="noopener noreferrer">{l.label}</a>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
+                <ArticleLinks links={card.links} />
               </div>
             )
           )}
