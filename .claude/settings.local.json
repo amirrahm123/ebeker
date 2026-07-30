@@ -1,9 +1,21 @@
 {
   "permissions": {
     "allow": [
+      "Read",
+      "Grep",
+      "Glob",
+      "Edit",
+      "Write",
       "Bash(npx vite:*)",
-      "Bash(grep -l \"className=\\\\\"hero\\\\\"\" src/pages/*.jsx)",
-      "Bash(npm run:*)"
+      "Bash(npm run:*)",
+      "Bash(git status)",
+      "Bash(git diff*)",
+      "Bash(git add*)",
+      "Bash(git commit*)"
+    ],
+    "deny": [
+      "Bash(git push*)",
+      "Bash(rm -rf*)"
     ]
   }
 }

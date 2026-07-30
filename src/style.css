@@ -174,23 +174,21 @@ nav#navbar.scrolled {
   justify-content: flex-start;
   gap: 12px;
 }
-/* DUNS 100 badge. The artwork's tagline is black, so it needs a light plate to
-   sit on — a white card with a gold hairline, which reads as a credential badge
-   against the navy rather than as a hole punched in the bar. */
+/* DUNS 100 badge — white-tagline artwork on transparency, so it sits directly
+   on the navy with no plate behind it. */
 .nav-row-right.nav-duns {
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  /* The artwork is opaque to all four edges of its canvas, so with no inset it
+     reads as glued to the bar's edge, while the CTA opposite reads as inset by
+     its own 20px button padding. This matches that optical edge. */
+  padding-left: 20px;
 }
 .nav-duns img {
-  height: 44px;
+  height: 68px;
   width: auto;
   display: block;
-  background: #fff;
-  border: 1px solid rgba(201,168,76,0.35);
-  border-radius: 6px;
-  padding: 6px 10px;
-  box-sizing: content-box;
 }
 
 /* Hide the old standalone fixed trust bar — content moved into navbar */
@@ -1386,10 +1384,14 @@ footer > * { position: relative; z-index: 1; width: 100%; }
   .attorney-card-featured .attorney-divider { margin: 0 auto 18px; }
 }
 @media (max-width: 900px) {
-  /* Row 1 gets tight once the firm logo and the CTA block stop leaving slack —
-     step the badge down so it keeps clearing them all the way to the 680px
-     breakpoint, where this slot hides entirely. */
-  .nav-duns img { height: 34px; padding: 5px 8px; }
+  /* Row 1's fixed content (contact block + firm logo + badge) exceeds the
+     viewport below ~810px, and the grid's 1fr tracks can't shrink past their
+     content, so the badge would be clipped at the left. Step all three down
+     together, keeping the badge/firm-logo ratio at ~0.75 as on desktop. */
+  .nav-row-inner { padding: 0 24px; }
+  .nav-logo-img { height: 64px; }
+  .nav-duns img { height: 48px; }
+  .nav-row-right.nav-duns { padding-left: 14px; }
   .about-grid { grid-template-columns: 1fr; gap: 40px; }
   /* Single column makes this full-width, and a fixed 420px height against that
      width cropped the portrait by ~50% and grew worse as the viewport widened.
