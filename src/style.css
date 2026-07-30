@@ -1535,8 +1535,9 @@ footer > * { position: relative; z-index: 1; width: 100%; }
 
   /* WhatsApp & Scroll buttons */
   #scrollTop { bottom: 70px; }
-  .whatsapp-float { bottom: 70px; }
-  .fb-float { bottom: 100px; left: 28px; }
+  .wa-float { bottom: 70px; }
+  /* 136px = wa-float's 70px + its 58px height + an 8px gap. */
+  .fb-float { bottom: 136px; left: 28px; }
   .a11y-float { bottom: 128px; right: 18px; width: 50px; height: 50px; }
   .a11y-panel { width: calc(100vw - 40px); max-width: 320px; }
 
@@ -2840,7 +2841,10 @@ img { max-width: 100%; height: auto; }
   /* Not enough width to sit beside the copy — stack instead. */
   .hero-framed {
     min-height: 560px;
-    padding: var(--top-offset) 24px 40px;
+    /* 72px bottom, not 40: the dots are the last thing in the banner, and
+       #stickyCta is fixed full-width across the bottom ~59px of the viewport.
+       This keeps them clear of it when the banner's base meets the fold. */
+    padding: var(--top-offset) 24px 72px;
   }
   .hero-framed-content {
     position: relative;
@@ -2857,13 +2861,28 @@ img { max-width: 100%; height: auto; }
     background: linear-gradient(to bottom, rgba(6,14,30,0.55) 0%, rgba(6,14,30,0.92) 60%, rgba(6,14,30,0.97) 100%);
   }
   .mc-in-hero {
-    position: static;
+    /* relative, not static: z-index only applies to positioned elements, and
+       without it the whole carousel paints under .hero-framed-overlay (z-index
+       2) — a near-opaque veil in the same colour as the card background, which
+       erases the card box and the text. left/top must be reset or the desktop
+       offsets would drag the stacked layout sideways. */
+    position: relative;
+    left: auto;
+    top: auto;
     padding-bottom: 8px;
   }
   .mc-in-hero .mc-slider-wrap { width: 100%; max-width: 420px; }
-  .mc-in-hero .mc-arr-prev { right: -12px; }
-  .mc-in-hero .mc-arr-next { left: -12px; }
+  /* One card at this width, so the wrap is ~500px tall and a 50% offset put the
+     arrows over the body text. Pin them inside the wrap, centred on the 200px
+     thumbnail — clear of the source badge, type badge and play circle. */
+  .mc-in-hero .mc-arr-btn { top: 106px; }
+  .mc-in-hero .mc-arr-prev { right: 8px; }
+  .mc-in-hero .mc-arr-next { left: 8px; }
   .mc-in-hero .mc-card-desc { -webkit-line-clamp: 5; }
+  /* Stacked, the banner runs ~925px tall, so its bottom corners land in the
+     fixed floating-button zone. They're decorative — drop them. */
+  .hf-corner-bl,
+  .hf-corner-br { display: none; }
 }
 @media (max-width: 768px) {
   .hero-framed { min-height: 520px; }
@@ -3056,13 +3075,17 @@ img { max-width: 100%; height: auto; }
   transform-origin: center;
   transition: transform .35s ease;
 }
-.mc-card:hover {
-  transform: translateY(-6px);
-  border-color: rgba(201,168,76,0.55);
-  box-shadow: 0 14px 34px rgba(0,0,0,0.4);
-}
-.mc-card:hover::after {
-  transform: scaleX(1);
+/* Gated on a real hover device — iOS latches :hover after a tap, so a card
+   would stay lifted 6px with its gold underline showing once the modal closes. */
+@media (hover: hover) {
+  .mc-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(201,168,76,0.55);
+    box-shadow: 0 14px 34px rgba(0,0,0,0.4);
+  }
+  .mc-card:hover::after {
+    transform: scaleX(1);
+  }
 }
 
 .mc-thumb {
@@ -3382,10 +3405,14 @@ img { max-width: 100%; height: auto; }
   font-family: inherit;
   line-height: 1;
 }
-.mc-arr-btn:hover {
-  background: #c9a84c;
-  color: #060e1e;
-  transform: translateY(-50%) scale(1.08);
+/* Gated on a real hover device — iOS latches :hover after a tap, leaving the
+   last-tapped arrow stuck gold. */
+@media (hover: hover) {
+  .mc-arr-btn:hover {
+    background: #c9a84c;
+    color: #060e1e;
+    transform: translateY(-50%) scale(1.08);
+  }
 }
 .mc-arr-prev { right: -18px; }
 .mc-arr-next { left: -18px; }
