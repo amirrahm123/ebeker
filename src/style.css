@@ -174,36 +174,23 @@ nav#navbar.scrolled {
   justify-content: flex-start;
   gap: 12px;
 }
-.nav-row-right.nav-trust-items {
+/* DUNS 100 badge. The artwork's tagline is black, so it needs a light plate to
+   sit on — a white card with a gold hairline, which reads as a credential badge
+   against the navy rather than as a hole punched in the bar. */
+.nav-row-right.nav-duns {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  gap: 0;
 }
-.nav-trust-item {
-  padding: 0 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-  text-align: center;
-  line-height: 1.2;
-}
-.nav-trust-item:not(:last-child) {
-  border-left: 1px solid rgba(201,168,76,0.2);
-}
-.nav-trust-num {
-  font-size: 0.82rem;
-  font-weight: 900;
-  color: var(--color-accent-light);
-  letter-spacing: 0.3px;
-  line-height: 1;
-}
-.nav-trust-label {
-  font-size: 0.68rem;
-  color: rgba(255,255,255,.6);
-  font-weight: 500;
-  white-space: nowrap;
-  line-height: 1;
+.nav-duns img {
+  height: 44px;
+  width: auto;
+  display: block;
+  background: #fff;
+  border: 1px solid rgba(201,168,76,0.35);
+  border-radius: 6px;
+  padding: 6px 10px;
+  box-sizing: content-box;
 }
 
 /* Hide the old standalone fixed trust bar — content moved into navbar */
@@ -1399,6 +1386,10 @@ footer > * { position: relative; z-index: 1; width: 100%; }
   .attorney-card-featured .attorney-divider { margin: 0 auto 18px; }
 }
 @media (max-width: 900px) {
+  /* Row 1 gets tight once the firm logo and the CTA block stop leaving slack —
+     step the badge down so it keeps clearing them all the way to the 680px
+     breakpoint, where this slot hides entirely. */
+  .nav-duns img { height: 34px; padding: 5px 8px; }
   .about-grid { grid-template-columns: 1fr; gap: 40px; }
   /* Single column makes this full-width, and a fixed 420px height against that
      width cropped the portrait by ~50% and grew worse as the viewport widened.
@@ -1423,7 +1414,7 @@ footer > * { position: relative; z-index: 1; width: 100%; }
     justify-content: center;
   }
   .nav-row-left,
-  .nav-row-right.nav-trust-items { display: none; }
+  .nav-row-right.nav-duns { display: none; }
   .nav-row-links { display: none; }
   .nav-logo-img { height: 44px; }
   .nav-row-inner { padding: 0 18px; }

@@ -73,19 +73,8 @@ export default function Navbar() {
             <Link to="/" className="nav-logo">
               <img src="/pics/logo.avif" alt="ערן בקר - חברת עורכי דין" className="nav-logo-img" />
             </Link>
-            <div className="nav-row-right nav-trust-items">
-              <div className="nav-trust-item">
-                <span className="nav-trust-num">DUNS 100</span>
-                <span className="nav-trust-label">מדורג מוביל</span>
-              </div>
-              <div className="nav-trust-item">
-                <span className="nav-trust-num">BDi CODE</span>
-                <span className="nav-trust-label">מצוינות משפטית</span>
-              </div>
-              <div className="nav-trust-item">
-                <span className="nav-trust-num" data-target="25">0</span>
-                <span className="nav-trust-label">שנות ניסיון</span>
-              </div>
+            <div className="nav-row-right nav-duns">
+              <img src="/pics/duns100-logo.webp" alt="DUNS 100 — מדורג בין המשרדים המובילים בישראל" />
             </div>
             <button className={`hamburger ${mobileOpen ? 'open' : ''}`} onClick={toggleMobile} aria-label="תפריט">
               <span></span><span></span><span></span>
