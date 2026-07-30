@@ -21,6 +21,7 @@ import CarAccidents from './pages/CarAccidents'
 import WorkAccidents from './pages/WorkAccidents'
 import OccupationalDiseases from './pages/OccupationalDiseases'
 import Disabilities from './pages/Disabilities'
+import UnusualWorkEvents from './pages/UnusualWorkEvents'
 import IdfDisabilities from './pages/IdfDisabilities'
 import Recommendations from './pages/Recommendations'
 import EransTip from './pages/EransTip'
@@ -68,6 +69,7 @@ export default function App() {
         <Route path="work-accidents" element={<WorkAccidents />} />
         <Route path="occupational-diseases" element={<OccupationalDiseases />} />
         <Route path="disabilities" element={<Disabilities />} />
+        <Route path="unusual-work-events" element={<UnusualWorkEvents />} />
         <Route path="idf-disabilities" element={<IdfDisabilities />} />
         <Route path="press-car-accidents" element={<PressCarAccidents />} />
         <Route path="recommendations" element={<Recommendations />} />

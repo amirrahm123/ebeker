@@ -9,6 +9,7 @@ const practiceAreas = [
   { to: '/work-accidents', label: 'ביטוח לאומי - תאונות עבודה' },
   { to: '/occupational-diseases', label: 'ביטוח לאומי - מחלת מקצוע ומיקרוטראומה' },
   { to: '/disabilities', label: 'ביטוח לאומי - נכות כללית וניידות' },
+  { to: '/unusual-work-events', label: 'ביטוח לאומי - אירועים חריגים בעבודה' },
   { to: '/car-accidents', label: 'תאונות דרכים' },
   { to: '/marine-accidents', label: 'תאונות ימיות' },
   { to: '/student-accidents', label: 'תאונות תלמידים' },
