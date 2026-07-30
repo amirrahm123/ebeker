@@ -3269,6 +3269,10 @@ img { max-width: 100%; height: auto; }
   background: #091530;
   display: block;
 }
+/* A lone image — typically a tall newspaper page — gets the full modal width
+   and its natural height, so nothing is cropped and no empty cell is left. */
+.mc-photos-row:has(> :only-child) { grid-template-columns: 1fr; }
+.mc-photos-row > :only-child { height: auto; }
 .mc-article-image-zoom {
   cursor: zoom-in;
   transition: filter .2s ease, transform .2s ease;

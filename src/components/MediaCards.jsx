@@ -31,6 +31,21 @@ const cards = [
     ],
   },
   {
+    id: 10,
+    cat: 'נזיקין · אסון מירון',
+    title: 'הסכם פיצויים למשפחות נספי אסון מירון: כ-3 מיליון ש"ח לכל משפחה',
+    source: 'מהעיתונות',
+    type: 'videoCarousel',
+    thumbnail: '/pics/meron-compensation-agreement.webp',
+    thumbKind: 'image',
+    videos: [
+      { src: '/videos/meron-compensation-agreement-report.mp4', label: 'כתבה — הסכם הפיצויים' },
+    ],
+    images: [
+      '/pics/meron-compensation-agreement-article.webp',
+    ],
+  },
+  {
     id: 1,
     cat: 'נזיקין · אוקטובר השחור',
     title: 'ייצוג משפחות חטופים בכנסת',
