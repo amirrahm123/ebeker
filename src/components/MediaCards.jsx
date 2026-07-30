@@ -193,14 +193,25 @@ function VideoCarousel({ videos }) {
   const goPrev = () => setI((n) => (n === 0 ? videos.length - 1 : n - 1))
   const goNext = () => setI((n) => (n === videos.length - 1 ? 0 : n + 1))
 
+  // A single video has nowhere to page to — the arrows would be dead controls
+  // and the counter would always read (1/1).
+  const multiple = videos.length > 1
+
   return (
     <div className="mc-vc">
       <div className="mc-vc-stage">
-        <button type="button" className="mc-arr-btn mc-arr-prev" onClick={goPrev} aria-label="הקודם">&#8594;</button>
-        <button type="button" className="mc-arr-btn mc-arr-next" onClick={goNext} aria-label="הבא">&#8592;</button>
+        {multiple && (
+          <>
+            <button type="button" className="mc-arr-btn mc-arr-prev" onClick={goPrev} aria-label="הקודם">&#8594;</button>
+            <button type="button" className="mc-arr-btn mc-arr-next" onClick={goNext} aria-label="הבא">&#8592;</button>
+          </>
+        )}
         <video ref={videoRef} key={current.src} src={current.src} controls autoPlay playsInline className="mc-vplayer-real" />
       </div>
-      <p className="mc-vc-label">{current.label} <span className="mc-vc-count">({i + 1}/{videos.length})</span></p>
+      <p className="mc-vc-label">
+        {current.label}
+        {multiple && <span className="mc-vc-count"> ({i + 1}/{videos.length})</span>}
+      </p>
     </div>
   )
 }
