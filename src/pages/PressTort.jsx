@@ -5,6 +5,7 @@ import CTASection from '../components/CTASection'
 import ZoomViewer from '../components/ZoomViewer'
 
 const images = [
+  { file: 'meron-compensation-agreement.webp', title: 'משפחות נספי אסון מירון: הסכם פיצויים והכרה באחריות' },
 { file: 'eran-medical-negligence-case.webp', title: 'אבחון מאוחר עולה ביוקר: פיצוי של 5.6 מיליון ש"ח' },
   { file: '22a.webp', title: '250,000 ש"ח לנערה שננשכה ע"י כלב ונותרה עם צלקת' },
   { file: 'סייעת בגן ילדים נפלה מכיסא ותפוצה בכ-190 אלף שקלים.webp', title: 'סייעת בגן ילדים נפלה מכיסא ותפוצה בכ-190 אלף שקלים' },
