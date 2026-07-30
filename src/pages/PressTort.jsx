@@ -5,7 +5,7 @@ import CTASection from '../components/CTASection'
 import ZoomViewer from '../components/ZoomViewer'
 
 const images = [
-  { file: '21a.webp', title: '318,000 ש"ח לבחורה שמעדה במסעדה' },
+{ file: 'eran-medical-negligence-case.webp', title: 'אבחון מאוחר עולה ביוקר: פיצוי של 5.6 מיליון ש"ח' },
   { file: '22a.webp', title: '250,000 ש"ח לנערה שננשכה ע"י כלב ונותרה עם צלקת' },
   { file: 'סייעת בגן ילדים נפלה מכיסא ותפוצה בכ-190 אלף שקלים.webp', title: 'סייעת בגן ילדים נפלה מכיסא ותפוצה בכ-190 אלף שקלים' },
   { file: 'כ-6.5 מיליון שקלים פיצויים לתושב הצפון שנפגע באורח קשה.webp', title: 'כ-6.5 מיליון שקלים פיצויים לתושב הצפון שנפגע באורח קשה' },
@@ -67,6 +67,7 @@ export default function PressTort() {
                 <div className="press-card-body">
                   <span className="press-card-tag">נזיקין וביטוח</span>
                   <div className="press-card-title">{img.title}</div>
+                  {img.desc && <p className="press-card-desc">{img.desc}</p>}
                   <span className="press-card-link">צפה בכתבה &#8592;</span>
                 </div>
               </div>

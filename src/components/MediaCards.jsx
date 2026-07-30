@@ -12,6 +12,14 @@ const cards = [
     thumbnail: '/pics/WhatsApp_Image_2026-04-10_at_11_10_25.webp',
     thumbKind: 'image',
     description: 'עו״ד ערן בקר מייצג משפחות נפגעי אסון מירון — ראיונות בערוץ 12 על מסקנות ועדת החקירה הממלכתית, והצהרות לעיתונות מחוץ לבית המשפט',
+    links: [
+  { label: 'ynet', url: 'https://www.ynet.co.il/judaism/article/hk3kwebhxl' },
+  { label: 'כיכר השבת', url: 'הכתובת המלאה' },
+  { label: 'וואלה', url: 'הכתובת המלאה' },
+  { label: 'כאן חדשות', url: 'https://www.kan.org.il/content/kan-news/local/926965/' },
+  { label: 'מעריב', url: 'https://www.maariv.co.il/breaking-news/article-1210540' },
+  { label: 'Bizzness', url: 'הכתובת המלאה' },
+],
     videos: [
       { src: '/videos/ראיון_ערן_בערוץ_12_ועדת_חקירה_אסון_מירון.mp4', label: 'ראיון ערוץ 12 — ועדת חקירה' },
       { src: '/videos/ראיון_ערן_ערוץ_14_אסון_מירון.mp4', label: 'ראיון ערוץ 14' },
@@ -36,6 +44,7 @@ const cards = [
     badges: ['וידאו'],
     links: [
       { label: 'וואלה', url: 'https://mekomi.walla.co.il/item/3652184' },
+      { label: 'אתר הכנסת', url: 'https://m.knesset.gov.il/APPS/committees/4196/news/11461' },
     ],
   },
   {
