@@ -1,10 +1,17 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { createPortal } from 'react-dom'
 import useRevealOnScroll from '../hooks/useRevealOnScroll'
 import PageBanner from '../components/PageBanner'
 import CTASection from '../components/CTASection'
 import ZoomViewer from '../components/ZoomViewer'
 
 const images = [
+  {
+    file: 'bean-pod-slip-compensation.webp',
+    title: 'בת 70 שהחליקה על תרמיל פול תפוצה ב-165 אלף שקלים',
+    desc: 'כתבה שהתפרסמה באתר החדשות וואלה, לאור הצלחתנו בניהול תביעה מאתגרת נגד חברת הביטוח. במקרים רבים המטופלים ע"י משרדנו בכלל ובהובלה וייצוג תאונות קלות או קטלניות השליחות היא כפולה. אנו חותרים למקסם את הפיצוי המגיע ללקוחותינו, אך גם פועלים להביא את המזיק להכרה ברשלנותו ומחדליו ובכך מקווים למנוע פגיעה באנשים נוספים בעתיד.',
+    link: { label: 'וואלה', url: 'https://news.walla.co.il/item/3560494' },
+  },
   { file: 'meron-compensation-agreement.webp', title: 'משפחות נספי אסון מירון: הסכם פיצויים והכרה באחריות' },
 { file: 'eran-medical-negligence-case.webp', title: 'אבחון מאוחר עולה ביוקר: פיצוי של 5.6 מיליון ש"ח' },
   { file: '22a.webp', title: '250,000 ש"ח לנערה שננשכה ע"י כלב ונותרה עם צלקת' },
@@ -45,9 +52,49 @@ const images = [
 
 const BASE = '/pics/04_מהעיתונות_נזיקין_וביטוח/'
 
+// Text-led popup for items that carry desc + link. Reuses the carousel modal's
+// markup and classes wholesale — no styling of its own beyond capping the image
+// width so the copy, not the clipping, leads.
+function ArticleModal({ item, onClose }) {
+  useEffect(() => {
+    const onKey = (e) => { if (e.key === 'Escape') onClose() }
+    document.addEventListener('keydown', onKey)
+    document.body.style.overflow = 'hidden'
+    return () => {
+      document.removeEventListener('keydown', onKey)
+      document.body.style.overflow = ''
+    }
+  }, [onClose])
+
+  return createPortal(
+    <div className="mc-modal-overlay" onClick={(e) => { if (e.target === e.currentTarget) onClose() }}>
+      <div className="mc-modal" role="dialog" aria-modal="true">
+        <div className="mc-modal-header">
+          <div>
+            <p className="mc-modal-cat">נזיקין וביטוח</p>
+            <h3 className="mc-modal-title">{item.title}</h3>
+          </div>
+          <button className="mc-modal-close" onClick={onClose} aria-label="סגור">&times;</button>
+        </div>
+        <div className="mc-modal-body">
+          <div className="mc-article-real">
+            <img src={BASE + item.file} alt={item.title} className="mc-article-image" style={{ maxWidth: 300 }} />
+            <p className="mc-article-desc">{item.desc}</p>
+            <a href={item.link.url} target="_blank" rel="noopener noreferrer" className="mc-article-cta">
+              לכתבה המלאה באתר {item.link.label} &#8592;
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>,
+    document.body
+  )
+}
+
 export default function PressTort() {
   useRevealOnScroll()
   const [lightbox, setLightbox] = useState(null)
+  const [article, setArticle] = useState(null)
 
   return (
     <>
@@ -61,7 +108,11 @@ export default function PressTort() {
         <div className="content-container">
           <div className="press-grid reveal">
             {images.map((img, i) => (
-              <div className="press-clipping" key={i} onClick={() => setLightbox(BASE + img.file)}>
+              <div
+                className="press-clipping"
+                key={i}
+                onClick={() => (img.desc && img.link ? setArticle(img) : setLightbox(BASE + img.file))}
+              >
                 <div className="press-img-wrap">
                   <img src={BASE + img.file} alt={img.title} loading="lazy" />
                 </div>
@@ -80,6 +131,7 @@ export default function PressTort() {
       <CTASection title="רוצים לדבר עם עורך דין?" subtitle="ייעוץ ראשוני חינם — ללא עלות וללא התחייבות" />
 
       {lightbox && <ZoomViewer src={lightbox} onClose={() => setLightbox(null)} />}
+      {article && <ArticleModal item={article} onClose={() => setArticle(null)} />}
     </>
   )
 }
