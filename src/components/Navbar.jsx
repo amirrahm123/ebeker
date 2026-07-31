@@ -67,10 +67,6 @@ export default function Navbar() {
       <nav id="navbar" className={scrolled ? 'scrolled' : ''}>
         <div className="nav-row nav-row-logo">
           <div className="nav-row-inner">
-            <div className="nav-row-left">
-              <a href={contactLink} className="nav-cta">ייעוץ חינם</a>
-              <a href="tel:049001056" className="nav-phone-link">04-9001056</a>
-            </div>
             <Link to="/" className="nav-logo">
               <img src="/pics/logo.avif" alt="ערן בקר - חברת עורכי דין" className="nav-logo-img" />
             </Link>
@@ -116,8 +112,6 @@ export default function Navbar() {
           <Link key={a.to} to={a.to} onClick={closeMobile} className="mob-sub">{a.label}</Link>
         ))}
         <a href="/#contact" onClick={closeMobile}>צור קשר</a>
-        <a href="tel:049001056" onClick={closeMobile}>📞 04-9001056</a>
-        <a href="/#contact" onClick={closeMobile} className="mob-cta">ייעוץ חינם</a>
       </div>
     </>
   )

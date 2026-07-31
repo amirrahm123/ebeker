@@ -168,12 +168,13 @@ nav#navbar.scrolled {
   justify-content: center;
   align-items: center;
 }
-.nav-row-left {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 12px;
-}
+/* Explicit placement: the CTA block that used to fill column 1 is gone, and
+   without this the two remaining children would auto-flow into columns 1 and 2 —
+   logo jammed to the inline-start edge, badge stranded in the middle. Column 1
+   is now an empty counterweight to the badge's column, which is what keeps the
+   logo optically centred in the bar. */
+.nav-row-logo .nav-logo { grid-column: 2; }
+.nav-row-logo .nav-row-right { grid-column: 3; }
 /* DUNS 100 badge — white-tagline artwork on transparency, so it sits directly
    on the navy with no plate behind it. */
 .nav-row-right.nav-duns {
@@ -181,8 +182,7 @@ nav#navbar.scrolled {
   align-items: center;
   justify-content: flex-end;
   /* The artwork is opaque to all four edges of its canvas, so with no inset it
-     reads as glued to the bar's edge, while the CTA opposite reads as inset by
-     its own 20px button padding. This matches that optical edge. */
+     reads as glued to the bar's edge. 20px matches the row's optical margin. */
   padding-left: 20px;
 }
 .nav-duns img {
@@ -280,22 +280,6 @@ nav#navbar.scrolled {
 .nav-dropdown-wide a:last-child { border-bottom: 1px solid var(--color-border); }
 
 .nav-right { display: flex; align-items: center; gap: 16px; }
-.nav-phone-link {
-  color: var(--color-nav-text); font-weight: 800; font-size: 0.85rem;
-  text-decoration: none; transition: color .2s;
-}
-.nav-phone-link:hover { color: var(--color-accent); }
-.nav-cta {
-  background: var(--color-btn-bg);
-  color: var(--color-btn-text);
-  padding: 9px 20px; border-radius: 6px;
-  font-weight: 900; font-size: 0.82rem;
-  text-decoration: none;
-  position: relative; overflow: hidden;
-  transition: transform .3s, box-shadow .3s;
-}
-.nav-cta:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,.15); }
-
 /* Hamburger */
 .hamburger {
   display: none; flex-direction: column; gap: 5px;
@@ -329,12 +313,6 @@ nav#navbar.scrolled {
   transition: background .2s, color .2s, padding-right .3s;
 }
 .mobile-menu a:hover { background: rgba(255,255,255,.08); color: var(--color-accent); padding-right: 36px; }
-.mobile-menu .mob-cta {
-  background: var(--color-btn-bg);
-  color: var(--color-btn-text) !important;
-  text-align: center; font-weight: 900; margin: 20px 24px;
-  border-radius: 6px; border-bottom: none;
-}
 .mob-section-title {
   font-size: 0.65rem; font-weight: 800; color: var(--color-accent);
   letter-spacing: 3px; text-transform: uppercase;
@@ -1415,7 +1393,6 @@ footer > * { position: relative; z-index: 1; width: 100%; }
     display: flex;
     justify-content: center;
   }
-  .nav-row-left,
   .nav-row-right.nav-duns { display: none; }
   .nav-row-links { display: none; }
   .nav-logo-img { height: 44px; }
