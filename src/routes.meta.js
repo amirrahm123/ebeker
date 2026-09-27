@@ -95,6 +95,9 @@ export const routesMeta = [
   { path: 'accessibility', page: 'AccessibilityStatement', priority: 0.4,
     title: 'הצהרת נגישות',
     description: 'הצהרת הנגישות של אתר חברת עורכי הדין ערן בקר — התאמות נגישות, מגבלות ידועות ופרטי רכז הנגישות.' },
+  { path: '*', page: 'NotFound', noindex: true,
+    title: 'הדף לא נמצא',
+    description: 'הדף שחיפשתם אינו קיים באתר חברת עורכי הדין ערן בקר.' },
 ]
 
 /** Lookup by pathname ('/about' → entry). Falls back to the '*' entry. */

@@ -10,9 +10,11 @@ import AccessibilityWidget from './AccessibilityWidget'
 import StickyCTA from './StickyCTA'
 import ProgressBar from './ProgressBar'
 import useCounterAnimation from '../hooks/useCounterAnimation'
+import usePageMeta from '../hooks/usePageMeta'
 
 export default function Layout() {
   useCounterAnimation()
+  usePageMeta()
   const { pathname, hash } = useLocation()
 
   useEffect(() => {
