@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback, useRef } from 'react'
 import { createPortal } from 'react-dom'
 import ZoomViewer from './ZoomViewer'
+import Video from './Video'
 
 const cards = [
   {
@@ -207,7 +208,7 @@ function VideoCarousel({ videos }) {
             <button type="button" className="mc-arr-btn mc-arr-next" onClick={goNext} aria-label="הבא">&#8592;</button>
           </>
         )}
-        <video ref={videoRef} key={current.src} src={current.src} controls autoPlay playsInline className="mc-vplayer-real" />
+        <Video ref={videoRef} key={current.src} src={current.src} transcript={current.transcript} controls autoPlay playsInline className="mc-vplayer-real" />
       </div>
       <p className="mc-vc-label">
         {current.label}
@@ -285,7 +286,7 @@ function Modal({ card, activeTab, setActiveTab, onClose }) {
           )}
           {!isCarousel && showVideo && (
             card.thumbKind === 'video' && card.thumbnail ? (
-              <video src={card.thumbnail} controls autoPlay playsInline className="mc-vplayer-real" />
+              <Video src={card.thumbnail} transcript={card.transcript} controls autoPlay playsInline className="mc-vplayer-real" />
             ) : (
               <div className="mc-vplayer">
                 <div className="mc-vplayer-play" aria-hidden="true">▶</div>
@@ -432,6 +433,7 @@ export default function MediaCards() {
 
   return (
     <div className="mc-in-hero" dir="rtl">
+      <h2 className="visually-hidden">מהתקשורת</h2>
       {/* onFocus/onBlur are React's focusin/focusout — they bubble, so tabbing
           to any arrow, dot or card inside pauses the auto-advance. */}
       <div
@@ -452,7 +454,14 @@ export default function MediaCards() {
         <div className="mc-viewport">
           <div className="mc-track" style={trackStyle}>
             {cards.map((c) => (
-              <button type="button" key={c.id} className={`mc-card mc-card-${c.type}`} style={cardStyle} onClick={() => openCard(c)}>
+              <button
+                type="button"
+                key={c.id}
+                className={`mc-card mc-card-${c.type}`}
+                style={cardStyle}
+                onClick={() => openCard(c)}
+                aria-label={`${c.title} — פתיחת ${c.type === 'article' ? 'כתבה' : 'וידאו'}`}
+              >
                 <div className={`mc-thumb${c.thumbBg ? ' mc-thumb--light' : ''}`} style={c.thumbBg ? { background: c.thumbBg } : undefined}>
                   {c.thumbKind === 'image' ? (
                     <img src={c.thumbnail} alt={c.title} className={`mc-thumb-media${c.thumbBg ? ' mc-thumb-media--contain' : ''}`} />
@@ -500,6 +509,7 @@ export default function MediaCards() {
                 className={`mc-dot${i === index ? ' active' : ''}`}
                 onClick={() => goTo(i)}
                 aria-label={`עבור לשקף ${i + 1}`}
+                aria-current={i === index ? 'true' : undefined}
               />
             ))}
           </div>

@@ -1,8 +1,10 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import { createPortal } from 'react-dom'
 import { Link } from 'react-router-dom'
 
 const STORAGE_KEY = 'ebeker-a11y'
+const PANEL_ID = 'a11y-panel'
+const TITLE_ID = 'a11y-panel-title'
 
 const fontSizes = [
   { cls: 'a11y-font-75', label: '75%' },
@@ -23,6 +25,8 @@ const toggles = [
   { key: 'cursor', cls: 'a11y-cursor', label: 'סמן גדול', icon: '🖱' },
 ]
 
+const FOCUSABLE = 'button:not([disabled]), a[href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+
 function loadSettings() {
   try {
     return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}
@@ -30,7 +34,7 @@ function loadSettings() {
 }
 
 function saveSettings(s) {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(s))
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(s)) } catch { /* storage blocked */ }
 }
 
 function applyToDOM(settings) {
@@ -44,16 +48,36 @@ function applyToDOM(settings) {
 export default function AccessibilityWidget() {
   const [open, setOpen] = useState(false)
   const [settings, setSettings] = useState(loadSettings)
+  const triggerRef = useRef(null)
+  const panelRef = useRef(null)
 
   useEffect(() => { applyToDOM(settings) }, [settings])
 
   const close = useCallback(() => setOpen(false), [])
 
+  // Dialog behaviour: Escape closes, Tab is trapped inside, focus moves in on
+  // open and back to the trigger button on close.
   useEffect(() => {
     if (!open) return
-    const onKey = (e) => { if (e.key === 'Escape') close() }
+    const panel = panelRef.current
+    const first = panel?.querySelector(FOCUSABLE)
+    first?.focus()
+
+    const onKey = (e) => {
+      if (e.key === 'Escape') { close(); return }
+      if (e.key !== 'Tab' || !panel) return
+      const items = Array.from(panel.querySelectorAll(FOCUSABLE))
+      if (items.length === 0) return
+      const firstEl = items[0]
+      const lastEl = items[items.length - 1]
+      if (e.shiftKey && document.activeElement === firstEl) { e.preventDefault(); lastEl.focus() }
+      else if (!e.shiftKey && document.activeElement === lastEl) { e.preventDefault(); firstEl.focus() }
+    }
     document.addEventListener('keydown', onKey)
-    return () => document.removeEventListener('keydown', onKey)
+    return () => {
+      document.removeEventListener('keydown', onKey)
+      triggerRef.current?.focus()
+    }
   }, [open, close])
 
   const update = (next) => {
@@ -75,9 +99,13 @@ export default function AccessibilityWidget() {
   return (
     <>
       <button
+        ref={triggerRef}
         className="a11y-float"
         onClick={() => setOpen(o => !o)}
-        aria-label="נגישות"
+        aria-label="הגדרות נגישות"
+        aria-haspopup="dialog"
+        aria-expanded={open}
+        aria-controls={PANEL_ID}
         title="נגישות"
       >
         <svg viewBox="0 0 24 24" width="28" height="28" fill="white" aria-hidden="true">
@@ -88,19 +116,28 @@ export default function AccessibilityWidget() {
 
       {open && createPortal(
         <div className="a11y-overlay" onClick={(e) => { if (e.target === e.currentTarget) close() }}>
-          <div className="a11y-panel" dir="rtl">
+          <div
+            className="a11y-panel"
+            dir="rtl"
+            id={PANEL_ID}
+            ref={panelRef}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby={TITLE_ID}
+          >
             <div className="a11y-panel-header">
-              <h3>הגדרות נגישות</h3>
+              <h3 id={TITLE_ID}>הגדרות נגישות</h3>
               <button className="a11y-panel-close" onClick={close} aria-label="סגור">&times;</button>
             </div>
 
             <div className="a11y-panel-body">
-              <div className="a11y-section-label">גודל טקסט</div>
-              <div className="a11y-font-row">
+              <div className="a11y-section-label" id="a11y-font-label">גודל טקסט</div>
+              <div className="a11y-font-row" role="group" aria-labelledby="a11y-font-label">
                 {fontSizes.map((f, i) => (
                   <button
                     key={f.label}
                     className={`a11y-font-btn${i === currentFontIdx ? ' active' : ''}`}
+                    aria-pressed={i === currentFontIdx}
                     onClick={() => setFontSize(f.cls)}
                   >
                     {f.label}
@@ -108,15 +145,16 @@ export default function AccessibilityWidget() {
                 ))}
               </div>
 
-              <div className="a11y-section-label">תצוגה</div>
-              <div className="a11y-toggles">
+              <div className="a11y-section-label" id="a11y-display-label">תצוגה</div>
+              <div className="a11y-toggles" role="group" aria-labelledby="a11y-display-label">
                 {toggles.map(t => (
                   <button
                     key={t.key}
                     className={`a11y-option-btn${settings[t.key] ? ' active' : ''}`}
+                    aria-pressed={!!settings[t.key]}
                     onClick={() => toggle(t.key)}
                   >
-                    <span className="a11y-option-icon">{t.icon}</span>
+                    <span className="a11y-option-icon" aria-hidden="true">{t.icon}</span>
                     <span>{t.label}</span>
                   </button>
                 ))}

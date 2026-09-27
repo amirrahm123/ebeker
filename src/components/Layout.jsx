@@ -1,6 +1,5 @@
-import { Outlet } from 'react-router-dom'
-import { useEffect, Suspense } from 'react'
-import { useLocation } from 'react-router-dom'
+import { Outlet, useLocation } from 'react-router-dom'
+import { useEffect, useRef, Suspense } from 'react'
 import Navbar from './Navbar'
 import Footer from './Footer'
 import WhatsAppFloat from './WhatsAppFloat'
@@ -17,6 +16,8 @@ export default function Layout() {
   useCounterAnimation()
   usePageMeta()
   const { pathname, hash } = useLocation()
+  const mainRef = useRef(null)
+  const isFirstRender = useRef(true)
 
   useEffect(() => {
     if (hash) {
@@ -27,14 +28,25 @@ export default function Layout() {
     }
   }, [pathname, hash])
 
+  // On client-side navigation move focus to <main> so screen readers announce
+  // the new page. Skipped on first load so the skip link stays first in tab order.
+  useEffect(() => {
+    if (isFirstRender.current) { isFirstRender.current = false; return }
+    if (hash) return
+    mainRef.current?.focus({ preventScroll: true })
+  }, [pathname, hash])
+
   useEffect(() => {
     document.body.classList.add('page-loaded')
   }, [])
 
   return (
     <>
+      <a href="#main-content" className="skip-link">דלג לתוכן המרכזי</a>
       <ProgressBar />
-      <Navbar />
+      <header>
+        <Navbar />
+      </header>
       <section className="trust-section">
         <div className="trust-strip">
           <div className="trust-strip-item">
@@ -60,9 +72,11 @@ export default function Layout() {
           </div>
         </div>
       </section>
-      <Suspense fallback={<div className="route-loading" aria-busy="true" />}>
-        <Outlet />
-      </Suspense>
+      <main id="main-content" tabIndex={-1} ref={mainRef}>
+        <Suspense fallback={<div className="route-loading" aria-busy="true" />}>
+          <Outlet />
+        </Suspense>
+      </main>
       <Footer />
       <StickyCTA />
       <CookieBanner />

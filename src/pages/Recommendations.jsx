@@ -3,6 +3,7 @@ import useRevealOnScroll from '../hooks/useRevealOnScroll'
 import PageBanner from '../components/PageBanner'
 import CTASection from '../components/CTASection'
 import ZoomViewer from '../components/ZoomViewer'
+import Video from '../components/Video'
 
 /* White posts — Facebook text-based recommendations (white background) */
 const whitePosts = [
@@ -79,7 +80,7 @@ export default function Recommendations() {
             {videos.map((v) => (
               <div className="press-clipping rec-video" key={v.src}>
                 <div className="press-img-wrap">
-                  <video src={v.src} poster={v.poster} controls preload="metadata" playsInline />
+                  <Video src={v.src} poster={v.poster} transcript={v.transcript} controls preload="metadata" playsInline />
                 </div>
               </div>
             ))}

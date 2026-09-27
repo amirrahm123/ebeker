@@ -3,6 +3,7 @@ import { createPortal } from 'react-dom'
 import useRevealOnScroll from '../hooks/useRevealOnScroll'
 import PageBanner from '../components/PageBanner'
 import CTASection from '../components/CTASection'
+import Video from '../components/Video'
 
 const videos = [
   { type: 'mp4', file: 'meron-channel-12-interview.mp4', poster: 'ראיון_ערן_ערוץ_12-thumb.webp', title: 'ראיון ערוץ 12 — ועדת חקירה אסון מירון' },
@@ -36,7 +37,7 @@ function MediaModal({ item, onClose }) {
       <div className="lec-video-modal">
         <button className="lec-video-close" onClick={onClose} aria-label="סגור">&times;</button>
         {item.type === 'mp4' ? (
-          <video src={encodeURI('/videos/' + item.file)} controls autoPlay playsInline className="lec-video-player" />
+          <Video src={encodeURI('/videos/' + item.file)} transcript={item.transcript} controls autoPlay playsInline className="lec-video-player" />
         ) : (
           <iframe
             src={item.src + '?autoplay=1'}

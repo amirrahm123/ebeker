@@ -1,9 +1,8 @@
-import { useEffect, useState, useCallback, useRef } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import useRevealOnScroll from '../hooks/useRevealOnScroll'
 import TestimonialsCarousel from '../components/TestimonialsCarousel'
 import ContactForm from '../components/ContactForm'
-import ZoomViewer from '../components/ZoomViewer'
 import MediaCards from '../components/MediaCards'
 import { site, whatsappLink } from '../config/site'
 
@@ -281,39 +280,10 @@ const practiceAreas = [
   },
 ]
 
-const newsItems = [
-  {
-    img: '/pics/surf-instructor-stroke-work-injury.webp',
-    tag: 'ביטוח לאומי · תאונות עבודה',
-    title: 'מדריך גלישה לקה באירוע מוחי בים — הוכר כנפגע עבודה',
-    text: 'בית הדין לעבודה קבע כי יש להכיר באירוע מוחי שנגרם למדריך גלישה כתאונת עבודה. ועדה רפואית קבעה נכות רפואית צמיתה בשיעור 64% המזכה אותו בקצבה חודשית.',
-  },
-  {
-    img: '/pics/supreme-court-electric-bikes.webp',
-    tag: 'פסק דין תקדימי · בית המשפט העליון',
-    title: 'אופניים חשמליים אינם רכב מנועי — הלכה חדשה!',
-    text: 'בית המשפט העליון קיבל את טענותינו וקבע הלכה חדשה: רוכבים שנפגעו מרכב יוכלו לתבוע פיצויים ישירות מחברות הביטוח של הרכב הפוגע. פורסם בישראל היום.',
-  },
-  {
-    img: '/pics/01_דף_הבית/03_dcd181_1b2acefdc90d4a6baa839e1f40abbae4~mv2.webp',
-    tag: 'הרצאה · לשכת עורכי הדין חיפה',
-    title: 'עו"ד ערן בקר מרצה בנושא רשלנות רפואית בפני 200 עו"ד',
-    text: 'עו"ד בקר הרצה בהשתלמות "תביעות נזיקין — רשלנות רפואית בחדרי מיון" בלשכת עורכי הדין בחיפה, בריכוזו כיו"ר פורום נזיקין, ביטוח וביטוח לאומי.',
-  },
-  {
-    img: '/pics/northern-resident-6-5-million.webp',
-    tag: 'פיצויים · תאונות עבודה',
-    title: 'כ-6.5 מיליון ₪ לתושב הצפון שנפגע במהלך עבודתו',
-    text: 'בית המשפט המחוזי קיבל את דרישתנו לחשוף את כל חומר החקירה שנאסף על ידי אגף הפיקוח על העבודה — בניגוד לעמדת המדינה — ופסק פיצויים חריגים.',
-  },
-]
-
 export default function Home() {
   useRevealOnScroll()
 
   const [areaPopup, setAreaPopup] = useState(null)
-  const [articleIndex, setArticleIndex] = useState(null)
-  const [zoomImg, setZoomImg] = useState(null)
   const heroCanvasRef = useRef(null)
   const { search } = useLocation()
 
@@ -366,28 +336,17 @@ export default function Home() {
   // Escape key closes modals
   useEffect(() => {
     const handler = (e) => {
-      if (e.key === 'Escape') {
-        if (zoomImg) setZoomImg(null)
-        else if (areaPopup) setAreaPopup(null)
-        else setArticleIndex(null)
-      }
+      if (e.key === 'Escape' && areaPopup) setAreaPopup(null)
     }
     document.addEventListener('keydown', handler)
     return () => document.removeEventListener('keydown', handler)
-  }, [])
+  }, [areaPopup])
 
   // Lock body scroll when modal open
   useEffect(() => {
-    document.body.style.overflow = (areaPopup !== null || articleIndex !== null || zoomImg !== null) ? 'hidden' : ''
+    document.body.style.overflow = areaPopup !== null ? 'hidden' : ''
     return () => { document.body.style.overflow = '' }
-  }, [areaPopup, articleIndex])
-
-  const openArticle = useCallback((i) => setArticleIndex(i), [])
-  const closeArticle = useCallback(() => setArticleIndex(null), [])
-  const prevArticle = useCallback(() => setArticleIndex(prev => prev > 0 ? prev - 1 : newsItems.length - 1), [])
-  const nextArticle = useCallback(() => setArticleIndex(prev => prev < newsItems.length - 1 ? prev + 1 : 0), [])
-
-  const currentArticle = articleIndex !== null ? newsItems[articleIndex] : null
+  }, [areaPopup])
 
   return (
     <>
@@ -414,28 +373,6 @@ export default function Home() {
 
         {/* חדשות ועדכונים — sits in the space the scales used to occupy */}
         <MediaCards />
-      </section>
-
-      {/* NEWS — directly below hero */}
-      <section className="section section-alt news-section" id="news">
-        <div className="container">
-          <div className="reveal">
-            <div className="teal-rule"></div>
-          </div>
-          <div className="news-grid">
-            {newsItems.map((item, i) => (
-              <div className="news-card reveal" key={i} style={{ transitionDelay: `${i * 0.1}s`, cursor: 'pointer' }} onClick={() => openArticle(i)}>
-                <div className="news-img"><img src={item.img} alt={item.title} /></div>
-                <div className="news-body">
-                  <p className="news-tag">{item.tag}</p>
-                  <h3 className="news-title">{item.title}</h3>
-                  <p className="news-text">{item.text}</p>
-                  <span className="news-link">צפה בכתבה &#8592;</span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
       </section>
 
       {/* PRACTICE AREAS */}
@@ -498,31 +435,6 @@ export default function Home() {
         </div>
       )}
 
-      {/* ARTICLE POPUP */}
-      {currentArticle && (
-        <div className="article-popup-overlay" onClick={(e) => { if (e.target === e.currentTarget) closeArticle() }}>
-          <div className="article-popup">
-            <button className="article-popup-close" onClick={closeArticle} aria-label="סגור">&times;</button>
-            <div className="article-popup-image-wrap">
-              <img src={currentArticle.img} alt={currentArticle.title} className="article-popup-img" onClick={() => setZoomImg(currentArticle.img)} />
-            </div>
-            <div className="article-popup-footer">
-              <div className="article-popup-info">
-                <span className="article-popup-tag">{currentArticle.tag}</span>
-                <h3 className="article-popup-title">{currentArticle.title}</h3>
-              </div>
-              <div className="article-popup-nav">
-                <button className="article-nav-btn" onClick={nextArticle}>&#8594;</button>
-                <span className="article-popup-counter">{articleIndex + 1} / {newsItems.length}</span>
-                <button className="article-nav-btn" onClick={prevArticle}>&#8592;</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* ZOOM VIEWER */}
-      {zoomImg && <ZoomViewer src={zoomImg} onClose={() => setZoomImg(null)} />}
 
       {/* TESTIMONIALS */}
       <TestimonialsCarousel />
