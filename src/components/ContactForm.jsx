@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import emailjs from '@emailjs/browser'
+import { site, whatsappLink } from '../config/site'
 
 export default function ContactForm() {
   const [submitted, setSubmitted] = useState(false)
@@ -18,10 +19,10 @@ export default function ContactForm() {
 
     try {
       await emailjs.send(
-        'service_4gtlju6',
-        'template_dpweehy',
+        site.emailjs.serviceId,
+        site.emailjs.templateId,
         { fname, lname, phone, email, message },
-        { publicKey: 'rkpi4VhBWiyvwO6t0' }
+        { publicKey: site.emailjs.publicKey }
       )
     } catch (err) {
       console.error('EmailJS send failed:', err?.status, err?.text || err?.message, err)
@@ -36,7 +37,7 @@ export default function ContactForm() {
 💬 הודעה:
 ${message}`
 
-    window.open(`https://wa.me/9720522611850?text=${encodeURIComponent(waText)}`, '_blank')
+    window.open(whatsappLink(waText), '_blank')
     setSending(false)
     setSubmitted(true)
   }
@@ -50,7 +51,7 @@ ${message}`
       <div className="form-success" style={{ display: 'block' }}>
         <div className="check">✅</div>
         <h4>ההודעה התקבלה!</h4>
-        <p>נחזור אליכם בהקדם האפשרי.<br />ניתן גם להתקשר ישירות ל-04-9001056.</p>
+        <p>נחזור אליכם בהקדם האפשרי.<br />ניתן גם להתקשר ישירות ל-{site.phones.office.display}.</p>
         <button className="form-submit" onClick={reset} style={{ marginTop: 18 }}>בקשה נוספת ←</button>
       </div>
     )

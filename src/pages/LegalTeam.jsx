@@ -4,6 +4,7 @@ import useRevealOnScroll from '../hooks/useRevealOnScroll'
 import PageBanner from '../components/PageBanner'
 import CTASection from '../components/CTASection'
 import Modal from '../components/Modal'
+import { site } from '../config/site'
 
 const attorneys = [
   {
@@ -59,7 +60,7 @@ const attorneys = [
       'הכשרה בדיני הביטוח הלאומי - לשכת עורכי הדין',
       'הכשרה ברשלנות רפואית - לשכת עורכי הדין',
     ],
-    contact: { email: 'moran@ebeker.co.il', phone: '04-9001056', fax: '04-9001057' },
+    contact: { email: 'moran@ebeker.co.il', phone: site.phones.office.display, fax: site.phones.fax.display },
   },
   {
     name: 'עו"ד בלאר חיימוב',
@@ -76,7 +77,7 @@ const attorneys = [
       'חברת לשכת עורכי הדין בישראל',
       'הכשרה בדיני נזיקין וביטוח - לשכת עורכי הדין',
     ],
-    contact: { email: 'bellar@ebeker.co.il', phone: '04-9001056', fax: '04-9001057' },
+    contact: { email: 'bellar@ebeker.co.il', phone: site.phones.office.display, fax: site.phones.fax.display },
   },
   {
     name: 'עו"ד קארן יעקב',
@@ -94,7 +95,7 @@ const attorneys = [
       'חברת לשכת עורכי הדין בישראל',
       'הכשרה בדיני נזיקין וביטוח - לשכת עורכי הדין',
     ],
-    contact: { email: 'karen@ebeker.co.il', phone: '04-9001056', fax: '04-9001057' },
+    contact: { email: 'karen@ebeker.co.il', phone: site.phones.office.display, fax: site.phones.fax.display },
   },
   {
     name: 'עו"ד ריצ\'רד פרדגיים',
@@ -111,7 +112,7 @@ const attorneys = [
       'חבר לשכת עורכי הדין בישראל',
       'הכשרה בדיני נזיקין וביטוח - לשכת עורכי הדין',
     ],
-    contact: { email: 'richard@ebeker.co.il', phone: '04-9001056', fax: '04-9001057' },
+    contact: { email: 'richard@ebeker.co.il', phone: site.phones.office.display, fax: site.phones.fax.display },
   },
 ]
 
@@ -221,7 +222,7 @@ export default function LegalTeam() {
 
             <div className="modal-actions">
               <Link to="/#contact" className="btn-teal" onClick={closePopup}>קבעו ייעוץ &#8592;</Link>
-              <a href="tel:049001056" className="btn-outline-dark">&#128222; 04-9001056</a>
+              <a href={site.phones.office.href} className="btn-outline-dark">&#128222; {site.phones.office.display}</a>
             </div>
           </div>
         )}

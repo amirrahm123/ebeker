@@ -1,5 +1,5 @@
 import { Outlet } from 'react-router-dom'
-import { useEffect } from 'react'
+import { useEffect, Suspense } from 'react'
 import { useLocation } from 'react-router-dom'
 import Navbar from './Navbar'
 import Footer from './Footer'
@@ -57,7 +57,9 @@ export default function Layout() {
           </div>
         </div>
       </section>
-      <Outlet />
+      <Suspense fallback={<div className="route-loading" aria-busy="true" />}>
+        <Outlet />
+      </Suspense>
       <Footer />
       <StickyCTA />
       <WhatsAppFloat />

@@ -5,6 +5,7 @@ import TestimonialsCarousel from '../components/TestimonialsCarousel'
 import ContactForm from '../components/ContactForm'
 import ZoomViewer from '../components/ZoomViewer'
 import MediaCards from '../components/MediaCards'
+import { site, whatsappLink } from '../config/site'
 
 // Inline SVG icon content per practice area — uses currentColor so card hover
 // restyles it from gold to white. Common viewBox of 0 0 40 40.
@@ -477,7 +478,7 @@ export default function Home() {
             <div className="area-popup-actions">
               <Link to={areaPopup.to} className="btn-teal" onClick={() => setAreaPopup(null)}>למידע המלא &#8592;</Link>
               <a
-                href={`https://wa.me/9720522611850?text=${encodeURIComponent('שלום, אני מעוניין/ת בייעוץ בנושא ' + areaPopup.label)}`}
+                href={whatsappLink('שלום, אני מעוניין/ת בייעוץ בנושא ' + areaPopup.label)}
                 target="_blank" rel="noopener noreferrer"
                 className="btn-outline-white"
                 style={{ background: 'var(--color-surface)', border: '2px solid var(--color-border)', color: 'var(--color-text)' }}
@@ -559,35 +560,35 @@ export default function Home() {
                 <div className="contact-icon">&#128205;</div>
                 <div className="contact-detail">
                   <span className="clabel">כתובת</span>
-                  <span className="cvalue">הגעתון 26, נהריה 2240117</span>
+                  <span className="cvalue">{site.address.full}</span>
                 </div>
               </div>
               <div className="contact-item">
                 <div className="contact-icon">&#128222;</div>
                 <div className="contact-detail">
                   <span className="clabel">טלפון רב קווי</span>
-                  <a href="tel:049001056" className="cvalue">04-9001056</a>
+                  <a href={site.phones.office.href} className="cvalue">{site.phones.office.display}</a>
                 </div>
               </div>
               <div className="contact-item">
                 <div className="contact-icon">&#128172;</div>
                 <div className="contact-detail">
                   <span className="clabel">וואטסאפ</span>
-                  <a href="https://wa.me/9720522611850" target="_blank" rel="noopener noreferrer" className="cvalue">052-2611850</a>
+                  <a href={whatsappLink('')} target="_blank" rel="noopener noreferrer" className="cvalue">{site.phones.whatsapp.display}</a>
                 </div>
               </div>
               <div className="contact-item">
                 <div className="contact-icon">&#128224;</div>
                 <div className="contact-detail">
                   <span className="clabel">פקס</span>
-                  <span className="cvalue">04-9001057</span>
+                  <span className="cvalue">{site.phones.fax.display}</span>
                 </div>
               </div>
               <div className="contact-item">
                 <div className="contact-icon">&#9993;&#65039;</div>
                 <div className="contact-detail">
                   <span className="clabel">דוא"ל</span>
-                  <a href="mailto:office@ebeker.co.il" className="cvalue">office@ebeker.co.il</a>
+                  <a href={`mailto:${site.email}`} className="cvalue">{site.email}</a>
                 </div>
               </div>
             </div>
@@ -601,9 +602,9 @@ export default function Home() {
             <h3 style={{ textAlign: 'center', marginBottom: 20, fontSize: '1.5rem', color: '#fff', fontWeight: 800 }}>המשרד שלנו</h3>
             <div style={{ width: 60, height: 3, background: '#4A90D9', borderRadius: 2, margin: '0 auto 24px' }}></div>
             <div className="map-container">
-              <iframe src="https://www.google.com/maps?q=%D7%94%D7%92%D7%A2%D7%AA%D7%95%D7%9F+26,+%D7%A0%D7%94%D7%A8%D7%99%D7%94&output=embed" width="100%" height="350" style={{ border: 0, borderRadius: 12 }} allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade" title="מפת המשרד"></iframe>
+              <iframe src={site.mapsEmbedUrl} width="100%" height="350" style={{ border: 0, borderRadius: 12 }} allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade" title="מפת המשרד"></iframe>
             </div>
-            <p style={{ textAlign: 'center', marginTop: 16, color: '#94a3b8', fontSize: '0.95rem' }}>&#128205; הגעתון 26, נהריה 2240117</p>
+            <p style={{ textAlign: 'center', marginTop: 16, color: '#94a3b8', fontSize: '0.95rem' }}>&#128205; {site.address.full}</p>
           </div>
         </div>
       </section>

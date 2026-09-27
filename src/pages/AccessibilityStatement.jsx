@@ -1,6 +1,7 @@
 import useRevealOnScroll from '../hooks/useRevealOnScroll'
 import PageBanner from '../components/PageBanner'
 import CTASection from '../components/CTASection'
+import { site } from '../config/site'
 
 export default function AccessibilityStatement() {
   useRevealOnScroll()
@@ -43,10 +44,10 @@ export default function AccessibilityStatement() {
           <div className="highlight-box reveal">
             <h3>יצירת קשר בנושא נגישות</h3>
             <p>בכל שאלה, בעיה או הצעה בנוגע לנגישות האתר, ניתן לפנות לרכז הנגישות של המשרד:</p>
-            <p><strong>שם הרכז/ת:</strong> עו"ד ערן בקר</p>
-            <p><strong>טלפון:</strong> <a href="tel:049001056">04-9001056</a></p>
-            <p><strong>מייל:</strong> <a href="mailto:office@ebeker.co.il">office@ebeker.co.il</a></p>
-            <p><strong>כתובת:</strong> הגעתון 26, נהריה</p>
+            <p><strong>שם הרכז/ת:</strong> {site.accessibility.coordinatorName}</p>
+            <p><strong>טלפון:</strong> <a href={site.accessibility.phone.href}>{site.accessibility.phone.display}</a></p>
+            <p><strong>מייל:</strong> <a href={`mailto:${site.accessibility.email}`}>{site.accessibility.email}</a></p>
+            <p><strong>כתובת:</strong> {site.address.short}</p>
             <p>נשתדל לטפל בכל פנייה בהקדם האפשרי.</p>
           </div>
 

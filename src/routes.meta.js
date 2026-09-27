@@ -1,0 +1,104 @@
+/**
+ * Route metadata — plain data, no JSX, so Node scripts (sitemap generator)
+ * can import it as well as the app.
+ *
+ * To add a page: create src/pages/<Page>.jsx and add one entry here.
+ *   path        URL path without a leading slash ('*' is the 404 catch-all)
+ *   page        file name under src/pages (without .jsx)
+ *   title       Hebrew <title> — the site name is appended automatically
+ *   description meta description (about 150 characters)
+ *   noindex     true → robots noindex + excluded from the sitemap
+ *   priority    sitemap priority (default 0.6)
+ */
+export const routesMeta = [
+  { path: '', page: 'Home', priority: 1.0,
+    title: 'עורך דין נזיקין, ביטוח ורשלנות רפואית בנהריה',
+    description: 'משרד עורכי דין ערן בקר — מומחים בנזיקין, ביטוח, רשלנות רפואית וביטוח לאומי. מדורגים DUNS 100 ו-BDi CODE. ייעוץ ראשון חינם.' },
+  { path: 'about', page: 'About', priority: 0.8,
+    title: 'אודות המשרד',
+    description: 'חברת עורכי הדין ערן בקר — משרד בוטיק מוביל מאז 2003 בתחומי הנזיקין, הביטוח, הרשלנות הרפואית והביטוח הלאומי. הכירו את המשרד ואת דרכו.' },
+  { path: 'legal-team', page: 'LegalTeam', priority: 0.8,
+    title: 'הצוות המשפטי',
+    description: 'הכירו את עורכי הדין של חברת עורכי הדין ערן בקר — צוות מנוסה בתביעות נזיקין, ביטוח, רשלנות רפואית וביטוח לאומי.' },
+  { path: 'damages', page: 'Damages', priority: 0.8,
+    title: 'נזיקין כללי — תביעות פיצויים לנפגעי גוף',
+    description: 'ייצוג נפגעי גוף בתביעות נזיקין: נפילות, תאונות, רשלנות ותביעות חבות. ניסיון של כ-25 שנים במיצוי זכויות מול חברות ביטוח.' },
+  { path: 'medical-malpractice', page: 'MedicalMalpractice', priority: 0.8,
+    title: 'רשלנות רפואית — עורך דין לתביעות פיצויים',
+    description: 'תביעות רשלנות רפואית: אבחון שגוי, טיפול לקוי, רשלנות בלידה ובניתוחים. ליווי אישי ומומחים רפואיים לצדכם. ייעוץ ראשוני חינם.' },
+  { path: 'insurance', page: 'Insurance', priority: 0.8,
+    title: 'תביעות ביטוח — אובדן כושר עבודה, סיעוד ותאונות אישיות',
+    description: 'ייצוג מבוטחים מול חברות הביטוח: דחיית תביעות, אובדן כושר עבודה, נכות מתאונה, ביטוח סיעודי וביטוח חיים.' },
+  { path: 'marine-accidents', page: 'MarineAccidents', priority: 0.7,
+    title: 'תאונות ימיות — פיצויים לנפגעים בים',
+    description: 'תאונות שיט, צלילה, ספורט ימי ותאונות בנמלים — ייצוג נפגעים ומשפחות בתביעות פיצויים בדין הימי והנזיקי.' },
+  { path: 'student-accidents', page: 'StudentAccidents', priority: 0.7,
+    title: 'תאונות תלמידים — ביטוח תאונות אישיות לתלמידים',
+    description: 'ילדכם נפגע בבית הספר, בטיול או בחופשה? זכויות במסגרת ביטוח תאונות אישיות לתלמידים ותביעות נזיקין נגד המוסד החינוכי.' },
+  { path: 'wills', page: 'Wills', priority: 0.7,
+    title: 'צוואות וירושות',
+    description: 'עריכת צוואות, צווי ירושה וצווי קיום צוואה, התנגדויות וסכסוכי ירושה — ליווי משפטי מקצועי ורגיש.' },
+  { path: 'tax-exemption', page: 'TaxExemption', priority: 0.7,
+    title: 'פטור ממס הכנסה לנכים',
+    description: 'זכאות לפטור ממס הכנסה לפי סעיף 9(5) לפקודת מס הכנסה — ועדות רפואיות, נכות 90% ומעלה, והחזרי מס רטרואקטיביים.' },
+  { path: 'power-of-attorney', page: 'PowerOfAttorney', priority: 0.7,
+    title: 'ייפוי כוח מתמשך',
+    description: 'עריכת ייפוי כוח מתמשך על ידי עורך דין מוסמך — תכנון מראש של עניינים אישיים, רפואיים ורכושיים.' },
+  { path: 'causes-of-death', page: 'CausesOfDeath', priority: 0.7,
+    title: 'תאונות קטלניות — ייצוג משפחות',
+    description: 'ייצוג משפחות שאיבדו יקיריהם בתאונות קטלניות ובאסונות: תביעות תלויים ועיזבון, חקירות סיבות מוות ומיצוי זכויות.' },
+  { path: 'press-tort', page: 'PressTort', priority: 0.6,
+    title: 'מהעיתונות — נזיקין וביטוח',
+    description: 'כתבות ופרסומים בתקשורת על תיקי נזיקין וביטוח שניהל המשרד — פסקי דין, פיצויים ותקדימים.' },
+  { path: 'press-insurance', page: 'PressInsurance', priority: 0.6,
+    title: 'מהעיתונות — ביטוח לאומי',
+    description: 'סיקור תקשורתי של תיקי ביטוח לאומי: הכרה בתאונות עבודה, מחלות מקצוע ונכות כללית.' },
+  { path: 'press-defense', page: 'PressDefense', priority: 0.6,
+    title: 'מהעיתונות — משרד הביטחון',
+    description: 'כתבות על ייצוג נכי צה"ל ומשפחות שכולות מול משרד הביטחון וקצין התגמולים.' },
+  { path: 'press-car-accidents', page: 'PressCarAccidents', priority: 0.6,
+    title: 'מהעיתונות — תאונות דרכים',
+    description: 'סיקור תקשורתי של תיקי תאונות דרכים שניהל המשרד — פיצויים לנפגעים ופסיקה חשובה.' },
+  { path: 'car-accidents', page: 'CarAccidents', priority: 0.8,
+    title: 'תאונות דרכים — פיצויים לנפגעים',
+    description: 'נפגעתם בתאונת דרכים? זכאות לפיצוי ללא קשר לאשם. ליווי מלא מול חברת הביטוח, ועדות רפואיות ובית המשפט. ייעוץ ראשוני חינם.' },
+  { path: 'work-accidents', page: 'WorkAccidents', priority: 0.8,
+    title: 'תאונות עבודה — ביטוח לאומי ותביעות נזיקין',
+    description: 'הכרה בתאונת עבודה בביטוח הלאומי, דמי פגיעה, קצבת נכות מעבודה ותביעת נזיקין נגד המעסיק — כל הזכויות במקום אחד.' },
+  { path: 'occupational-diseases', page: 'OccupationalDiseases', priority: 0.7,
+    title: 'מחלות מקצוע ומיקרוטראומה',
+    description: 'הכרה במחלת מקצוע או בפגיעה על דרך המיקרוטראומה בביטוח הלאומי — ליקויי שמיעה, פגיעות גב, מחלות עור ונשימה.' },
+  { path: 'disabilities', page: 'Disabilities', priority: 0.7,
+    title: 'נכות כללית וניידות — ביטוח לאומי',
+    description: 'תביעות נכות כללית, שירותים מיוחדים וגמלת ניידות בביטוח הלאומי — הכנה לוועדות רפואיות וערעורים.' },
+  { path: 'unusual-work-events', page: 'UnusualWorkEvents', priority: 0.7,
+    title: 'אירועים חריגים בעבודה — אוטם שריר הלב ואירוע מוחי',
+    description: 'הכרה באוטם שריר הלב, אירוע מוחי או אירוע נפשי כתאונת עבודה בעקבות אירוע חריג בעבודה — ייצוג מול הביטוח הלאומי.' },
+  { path: 'idf-disabilities', page: 'IdfDisabilities', priority: 0.7,
+    title: 'נכי צה"ל ומשרד הביטחון',
+    description: 'ייצוג חיילים, אנשי קבע ומשפחות מול קצין התגמולים ומשרד הביטחון — הכרה בנכות, ועדות רפואיות וערעורים.' },
+  { path: 'recommendations', page: 'Recommendations', priority: 0.6,
+    title: 'ממליצים עלינו',
+    description: 'מכתבי תודה, המלצות לקוחות וסרטוני המלצה על חברת עורכי הדין ערן בקר.' },
+  { path: 'eranstip', page: 'EransTip', priority: 0.6,
+    title: 'הטיפ של ערן — טיפים משפטיים',
+    description: 'טיפים משפטיים מעו"ד ערן בקר: הכנה לוועדות רפואיות, מיצוי זכויות ומה חשוב לדעת לפני שפונים לביטוח הלאומי.' },
+  { path: 'media/tv', page: 'MediaTV', priority: 0.6,
+    title: 'כתבות בטלוויזיה',
+    description: 'ראיונות והצהרות של עו"ד ערן בקר בערוץ 12, ערוץ 14 ובכנסת — אסון מירון, משפחות החטופים ותיקים מרכזיים.' },
+  { path: 'media/radio', page: 'MediaRadio', priority: 0.6,
+    title: 'ראיונות ברדיו',
+    description: 'ראיונות רדיו עם עו"ד ערן בקר בתכניות אקטואליה ומשפט — רשלנות רפואית, תאונות עבודה וזכויות נפגעים.' },
+  { path: 'media/lectures', page: 'MediaLectures', priority: 0.6,
+    title: 'הרצאות וכנסים',
+    description: 'הרצאות של עו"ד ערן בקר בלשכת עורכי הדין ובכנסים מקצועיים בתחומי הנזיקין, הביטוח והביטוח הלאומי.' },
+  { path: 'accessibility', page: 'AccessibilityStatement', priority: 0.4,
+    title: 'הצהרת נגישות',
+    description: 'הצהרת הנגישות של אתר חברת עורכי הדין ערן בקר — התאמות נגישות, מגבלות ידועות ופרטי רכז הנגישות.' },
+]
+
+/** Lookup by pathname ('/about' → entry). Falls back to the '*' entry. */
+export function findRouteMeta(pathname) {
+  const clean = pathname.replace(/^\/+|\/+$/g, '')
+  return routesMeta.find(r => r.path === clean) || routesMeta.find(r => r.path === '*')
+}

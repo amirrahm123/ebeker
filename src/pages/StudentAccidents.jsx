@@ -1,6 +1,7 @@
 import useRevealOnScroll from '../hooks/useRevealOnScroll'
 import PageBanner from '../components/PageBanner'
 import CTASection from '../components/CTASection'
+import { site } from '../config/site'
 
 const sectionDark = {
   background: '#0d1b3e',
@@ -153,7 +154,7 @@ export default function StudentAccidents() {
           </p>
           <p style={ctaPhoneLine}>
             בכדי לברר מהן זכויותיכם התקשרו וקבעו שיחת ייעוץ או פגישה ללא עלות וללא התחייבות{' '}
-            <a href="tel:049001056" style={phoneLink}>04-9001056</a>
+            <a href={site.phones.office.href} style={phoneLink}>{site.phones.office.display}</a>
           </p>
         </div>
       </section>

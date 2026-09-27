@@ -1,12 +1,13 @@
 import { Link } from 'react-router-dom'
+import { site, whatsappLink } from '../config/site'
 
 export default function Footer() {
   return (
     <footer>
       <div className="footer-inner">
         <div className="footer-brand">
-          <div className="fl">ערן בקר — חברת עורכי דין</div>
-          <p>הגעתון 26, נהריה 2240117<br />מדורג DUNS 100 ו-BDi CODE — ממשרדי עורכי הדין המובילים בישראל.</p>
+          <div className="fl">{site.legalName}</div>
+          <p>{site.address.full}<br />מדורג DUNS 100 ו-BDi CODE — ממשרדי עורכי הדין המובילים בישראל.</p>
         </div>
         <div className="footer-col">
           <h4>תחומים</h4>
@@ -20,15 +21,15 @@ export default function Footer() {
         </div>
         <div className="footer-col">
           <h4>צור קשר</h4>
-          <a href="tel:049001056">04-9001056</a>
-          <a href="https://wa.me/9720522611850" target="_blank" rel="noopener">052-2611850 (וואטסאפ)</a>
-          <a href="mailto:office@ebeker.co.il">office@ebeker.co.il</a>
-          <p>פקס: 04-9001057</p>
+          <a href={site.phones.office.href}>{site.phones.office.display}</a>
+          <a href={whatsappLink('')} target="_blank" rel="noopener">{site.phones.whatsapp.display} (וואטסאפ)</a>
+          <a href={`mailto:${site.email}`}>{site.email}</a>
+          <p>פקס: {site.phones.fax.display}</p>
         </div>
       </div>
       <hr className="footer-divider" />
       <div className="footer-bottom">
-        <p>© 2026 ערן בקר חברת עורכי דין. כל הזכויות שמורות.</p>
+        <p>© {new Date().getFullYear()} {site.legalName}. כל הזכויות שמורות.</p>
         <p><Link to="/accessibility" style={{ color: 'rgba(255,255,255,0.6)', textDecoration: 'none', fontSize: '0.78rem' }}>הצהרת נגישות</Link></p>
         <p><span>DUNS 100 · BDi CODE</span></p>
       </div>
