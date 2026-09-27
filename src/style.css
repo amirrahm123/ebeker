@@ -3700,3 +3700,72 @@ body.cookie-banner-open #stickyCta { transform: translateY(100%); } /* hidden wh
 #about { overflow-x: clip; }
 /* Safety net only — the real fix is above. body already has overflow-x:hidden. */
 html { overflow-x: clip; }
+
+/* ── Skip link (§7) ── */
+.skip-link {
+  position: absolute; top: -100px; right: 12px; z-index: 10050;
+  background: var(--color-accent); color: var(--color-btn-text);
+  padding: 12px 22px; border-radius: 0 0 8px 8px;
+  font-weight: 800; font-size: 0.95rem; text-decoration: none;
+  transition: top .2s ease;
+}
+.skip-link:focus { top: 0; }
+main#main-content:focus { outline: none; }
+
+/* ── Global focus ring (§7) — visible on both dark and light sections ── */
+:focus-visible {
+  outline: 3px solid var(--color-accent-light, var(--color-accent));
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+.section-light :focus-visible,
+.form-group input:focus-visible,
+.form-group textarea:focus-visible {
+  outline-color: #8a6a1f;
+}
+
+/* ── Reduced motion (§7): kill animation/transition/smooth-scroll site-wide ── */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ── Minimum text size (§7): nothing below 12px ──
+   Carousel tags/categories, trust-strip labels and similar small UI text
+   raised to at least 0.75rem (12px). Decorative glyph-only pseudo-elements
+   (bullets, arrows) are left alone — they carry no reader-facing text. */
+.mc-tbadge { font-size: 0.75rem; }
+.mc-source-badge { font-size: 0.75rem; }
+.mc-card-cat { font-size: 0.75rem; }
+.mc-modal-cat { font-size: 0.75rem; }
+.mc-vplayer-info p { font-size: 0.75rem; }
+.mc-modal-source { font-size: 0.75rem; }
+.testi-eyebrow { font-size: 0.75rem; }
+.press-clipping .press-card-tag { font-size: 0.75rem; }
+.section-eyebrow { font-size: 0.75rem; }
+@media (max-width: 600px) {
+  .trust-strip-label { font-size: 0.75rem; }
+}
+@media (max-width: 900px) {
+  .section-eyebrow { font-size: 0.75rem; }
+}
+
+/* ── Contrast fixes (§7) ──
+   Gold-on-white text fell below 4.5:1; a darker gold on light backgrounds
+   keeps the brand look while passing. Sticky-CTA WhatsApp button gets a
+   darker green background under its white text for the same reason. */
+.section-light .area-link { color: #8a6a1f; }
+.sticky-wa { background: #1c8c4a; }
+.sticky-wa:hover { background: #167a3f; }
+
+/* ── Carousel dot hit areas (§7): keep the small visual dot, add a ≥24×24
+   invisible hit area via a pseudo-element so the button itself stays tiny. ── */
+.mc-dot, .testi-dot { position: relative; }
+.mc-dot::before, .testi-dot::before {
+  content: ''; position: absolute; inset: -9px; /* 6px dot + 9px*2 ≈ 24px */
+}

@@ -37,6 +37,7 @@ export default function TestimonialsCarousel() {
 
   const startAuto = useCallback(() => {
     clearInterval(autoRef.current)
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
     autoRef.current = setInterval(() => {
       setCurrent(prev => (prev + 1) % total)
     }, 5000)
@@ -118,6 +119,7 @@ export default function TestimonialsCarousel() {
             className={`testi-dot${i === current ? ' active' : ''}`}
             onClick={() => { goTo(i); startAuto() }}
             aria-label={`המלצה ${i + 1}`}
+            aria-current={i === current ? 'true' : undefined}
           />
         ))}
       </div>

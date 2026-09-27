@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import emailjs from '@emailjs/browser'
 import { site, whatsappLink } from '../config/site'
@@ -28,6 +28,11 @@ export default function ContactForm() {
   const [errors, setErrors] = useState({})
   const [status, setStatus] = useState('idle') // idle | sending | success | error
   const refs = useRef({})
+  const successHeadingRef = useRef(null)
+
+  useEffect(() => {
+    if (status === 'success') successHeadingRef.current?.focus()
+  }, [status])
 
   const onChange = (e) => {
     const { name, value } = e.target
@@ -82,7 +87,7 @@ ${values.message}`
     return (
       <div className="form-success form-success--shown" aria-live="polite" role="status">
         <div className="check" aria-hidden="true">✅</div>
-        <h4>ההודעה התקבלה!</h4>
+        <h4 ref={successHeadingRef} tabIndex={-1}>ההודעה התקבלה!</h4>
         <p>נחזור אליכם בהקדם האפשרי.<br />ניתן גם להתקשר ישירות ל-<a href={site.phones.office.href}>{site.phones.office.display}</a>.</p>
         <a href={whatsappLink(waText)} target="_blank" rel="noopener noreferrer" className="form-wa-btn">
           רוצים מענה מהיר? שלחו גם בוואטסאפ
