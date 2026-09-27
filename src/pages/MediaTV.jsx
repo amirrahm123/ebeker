@@ -10,10 +10,10 @@ const videos = [
   { type: 'mp4', file: 'יצוג_משפחות_חטופים_בכנסת.mp4', poster: 'ייצוג_משפחות_חטופים_בכנסת-thumb.webp', title: 'ייצוג משפחות חטופים בכנסת' },
   { type: 'mp4', file: 'הצהרה_אסון_מירון_מסיבת_עיתונאים.mp4', poster: 'הצהרה_מסיבת_עיתונאים-thumb.webp', title: 'מסיבת עיתונאים — הצהרה בנושא אסון מירון' },
   { type: 'mp4', file: 'הצהרה_באנדלית_אסון_מירון.mp4', poster: 'הצהרה_באנגלית_מירון-thumb.webp', title: 'הצהרה באנגלית — אסון מירון' },
-  { type: 'youtube', src: 'https://www.youtube.com/embed/N5AAJ29ir4c', title: 'תחקיר מותו של הנער יפתח ספיר בטיול שנתי של בית הספר בערבה' },
-  { type: 'youtube', src: 'https://www.youtube.com/embed/8CbYTSP0Y7A', title: '2.3 מיליון ש״ח פיצויים להורי הנער שנהרג בטיול שנתי' },
-  { type: 'youtube', src: 'https://www.youtube.com/embed/JSB1z-yH85A', title: 'אבחון שגוי וכריתת שד מיותרת (רשלנות רפואית)' },
-  { type: 'youtube', src: 'https://www.youtube.com/embed/-cUeFROaKK0', title: 'תביעת נזיקין נגד הרשויות בגין רשלנות מותם של אזרחים במערת המוות באכזיב' },
+  { type: 'youtube', src: 'https://www.youtube-nocookie.com/embed/N5AAJ29ir4c', title: 'תחקיר מותו של הנער יפתח ספיר בטיול שנתי של בית הספר בערבה' },
+  { type: 'youtube', src: 'https://www.youtube-nocookie.com/embed/8CbYTSP0Y7A', title: '2.3 מיליון ש״ח פיצויים להורי הנער שנהרג בטיול שנתי' },
+  { type: 'youtube', src: 'https://www.youtube-nocookie.com/embed/JSB1z-yH85A', title: 'אבחון שגוי וכריתת שד מיותרת (רשלנות רפואית)' },
+  { type: 'youtube', src: 'https://www.youtube-nocookie.com/embed/-cUeFROaKK0', title: 'תביעת נזיקין נגד הרשויות בגין רשלנות מותם של אזרחים במערת המוות באכזיב' },
 ]
 
 function getYouTubeId(embedUrl) {

@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { site, whatsappLink } from '../config/site'
+import { openCookieSettings } from '../lib/consent'
 
 export default function Footer() {
   return (
@@ -30,7 +31,11 @@ export default function Footer() {
       <hr className="footer-divider" />
       <div className="footer-bottom">
         <p>© {new Date().getFullYear()} {site.legalName}. כל הזכויות שמורות.</p>
-        <p><Link to="/accessibility" style={{ color: 'rgba(255,255,255,0.6)', textDecoration: 'none', fontSize: '0.78rem' }}>הצהרת נגישות</Link></p>
+        <p className="footer-legal">
+          <Link to="/accessibility">הצהרת נגישות</Link>
+          <span className="footer-legal-sep" aria-hidden="true">·</span>
+          <button type="button" className="footer-legal-btn" onClick={openCookieSettings}>הגדרות עוגיות</button>
+        </p>
         <p><span>DUNS 100 · BDi CODE</span></p>
       </div>
     </footer>

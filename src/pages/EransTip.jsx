@@ -22,7 +22,7 @@ export default function EransTip() {
 
           <div className="reveal" style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden', borderRadius: 12, margin: '32px 0' }}>
             <iframe
-              src="https://www.youtube.com/embed/YFQZ1wW_cl0"
+              src="https://www.youtube-nocookie.com/embed/YFQZ1wW_cl0"
               title='עו"ד ערן בקר מראיין בנושא חזרה לשגרה בוועדות הרפואיות בעידן הפוסט קורונה'
               style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 'none', borderRadius: 12 }}
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

@@ -9,6 +9,7 @@ import ScrollTopButton from './ScrollTopButton'
 import AccessibilityWidget from './AccessibilityWidget'
 import StickyCTA from './StickyCTA'
 import ProgressBar from './ProgressBar'
+import CookieBanner from './CookieBanner'
 import useCounterAnimation from '../hooks/useCounterAnimation'
 import usePageMeta from '../hooks/usePageMeta'
 
@@ -64,6 +65,7 @@ export default function Layout() {
       </Suspense>
       <Footer />
       <StickyCTA />
+      <CookieBanner />
       <WhatsAppFloat />
       <FacebookFloat />
       <AccessibilityWidget />
