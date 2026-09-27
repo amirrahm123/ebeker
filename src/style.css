@@ -713,9 +713,11 @@ nav#navbar.scrolled {
 .info-card h3 { margin-top: 0; color: var(--color-text); font-size: 1.1rem; }
 
 /* ── TEAM ── */
+/* Two columns, not three: with five attorneys under the featured card a 3-wide
+   grid left a lone card hanging in the last row. */
 .team-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 18px;
 }
 /* Featured (Eran) card spans full row */
@@ -770,6 +772,9 @@ nav#navbar.scrolled {
 /* Regular cards */
 .attorney-card {
   max-width: 320px;
+  /* The 1fr tracks are far wider than the card's cap, so without this the card
+     pins to the track's inline-start and trails a wide gap on the outer side. */
+  justify-self: center;
   background: var(--color-card-bg);
   border: 1px solid var(--color-card-border);
   border-radius: 14px;
@@ -1355,7 +1360,6 @@ footer > * { position: relative; z-index: 1; width: 100%; }
   .areas-grid { grid-template-columns: repeat(2, 1fr); }
   .footer-inner { grid-template-columns: 1fr 1fr; }
   .footer-brand { grid-column: 1 / -1; }
-  .team-grid { grid-template-columns: 1fr 1fr; }
   .attorney-card-featured { flex-direction: column; }
   .attorney-card-featured .attorney-card-photo { width: 100%; min-height: 280px; }
   .attorney-card-featured .attorney-card-body { text-align: center; padding: 28px 24px; }
