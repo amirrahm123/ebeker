@@ -34,6 +34,10 @@ export default function Footer() {
         <p className="footer-legal">
           <Link to="/accessibility">הצהרת נגישות</Link>
           <span className="footer-legal-sep" aria-hidden="true">·</span>
+          <Link to="/privacy">מדיניות פרטיות</Link>
+          <span className="footer-legal-sep" aria-hidden="true">·</span>
+          <Link to="/terms">תנאי שימוש</Link>
+          <span className="footer-legal-sep" aria-hidden="true">·</span>
           <button type="button" className="footer-legal-btn" onClick={openCookieSettings}>הגדרות עוגיות</button>
         </p>
         <p><span>DUNS 100 · BDi CODE</span></p>
