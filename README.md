@@ -67,7 +67,7 @@ What I'd refine before/after handover (being straight about it):
 - **SEO metadata is the main gap.** Because it's a single-page React app, every route currently shares one `<title>` and meta description, and there's no Open Graph, schema.org `LegalService`/`Attorney` markup, or sitemap. For a firm that depends on search visibility, adding per-page titles + structured data is the highest-value next step.
 - **Favicon** is still the framework default — a quick swap to the firm's logo.
 - **The form has no spam protection** (captcha/honeypot) — fine at current volume, worth adding if it gets scraped.
-- There's an older local-only admin/database backend in the repo that isn't connected to the live site; the production form runs entirely on EmailJS. I'd either wire it up properly or remove it to keep things clean.
+- The `server/` folder is an older local-only backend (Express + SQLite). **It is not deployed** and nothing in the site calls it; the production form runs entirely on EmailJS. The `/admin` page that talked to it was removed in the audit branch (it pointed at `http://localhost:3002` and had no authentication).
 
 I'd rather list these than pretend a shipped site is flawless — knowing what to polish next is part of the job.
 
