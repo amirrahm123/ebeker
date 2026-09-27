@@ -3689,3 +3689,14 @@ body.cookie-banner-open #stickyCta { transform: translateY(100%); } /* hidden wh
 }
 .footer-legal a:hover, .footer-legal-btn:hover { color: var(--color-accent); }
 .footer-legal-sep { color: rgba(255,255,255,0.4); }
+
+/* ── Mobile horizontal overflow (§8) ──
+   Root cause: .reveal-left / .reveal-right start at translateX(±40px) while
+   hidden. Transforms count as scrollable overflow, so on the home page the
+   about-section columns stuck 24px past the viewport edge and widened the
+   layout viewport (nav row at -24px, hamburger half off-screen). Clip the
+   horizontal overflow where those reveals live; `clip` doesn't create a
+   scroll container so sticky/absolute children are unaffected. */
+#about { overflow-x: clip; }
+/* Safety net only — the real fix is above. body already has overflow-x:hidden. */
+html { overflow-x: clip; }
