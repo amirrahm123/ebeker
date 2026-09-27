@@ -73,6 +73,21 @@ I'd rather list these than pretend a shipped site is flawless — knowing what t
 
 ---
 
+## Deployment notes (Vercel)
+
+`vercel.json` holds redirects from old Wix URLs, security headers and cache headers.
+
+**Content-Security-Policy** is currently sent as `Content-Security-Policy-Report-Only`, so a
+mistake can't break production. To switch to enforcing:
+
+1. Deploy, then browse the site with DevTools open (home page with the form submitted, `/media/tv`
+   with a YouTube video, `/media/radio` playing an MP3, the map) and check the console for
+   `[Report Only]` CSP violations.
+2. Add any missing origin to the matching directive in `vercel.json`.
+3. Rename the header key to `Content-Security-Policy` and redeploy.
+
+`music.wixstatic.com` is in `media-src` only until the radio MP3s are self-hosted under `public/audio/`.
+
 ## Running it
 
 ​```bash

@@ -1,5 +1,5 @@
 import { useEffect, useState, useCallback, useRef } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import useRevealOnScroll from '../hooks/useRevealOnScroll'
 import TestimonialsCarousel from '../components/TestimonialsCarousel'
 import ContactForm from '../components/ContactForm'
@@ -315,6 +315,16 @@ export default function Home() {
   const [articleIndex, setArticleIndex] = useState(null)
   const [zoomImg, setZoomImg] = useState(null)
   const heroCanvasRef = useRef(null)
+  const { search } = useLocation()
+
+  // /contact-us (old Wix URL) is 301-redirected by vercel.json to /?section=contact
+  // because a server redirect can't carry a #hash. Scroll to the section here.
+  useEffect(() => {
+    const section = new URLSearchParams(search).get('section')
+    if (!section) return
+    const el = document.getElementById(section)
+    if (el) requestAnimationFrame(() => el.scrollIntoView({ behavior: 'smooth' }))
+  }, [search])
 
   // Hero background — diagonal gold lines on canvas, redrawn on resize
   useEffect(() => {
