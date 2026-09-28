@@ -1,6 +1,4 @@
 {
-  "$comment": "Redirects (old Wix URLs) — add more entries to `redirects`. Static files (anything with a dot, /sitemap.xml, /robots.txt) are served as-is; everything else falls through to index.html for the SPA router. CSP is Report-Only for now — see README 'Content-Security-Policy' for switching to enforcing.",
-
   "redirects": [
     { "source": "/contact-us", "destination": "/?section=contact", "permanent": true },
     { "source": "/fatal-accidents", "destination": "/causes-of-death", "permanent": true },
