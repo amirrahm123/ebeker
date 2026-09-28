@@ -4125,3 +4125,24 @@ a.team-modal-contact-line:hover { color: #C9A84C; }
   .team-cards { gap: 20px; }
   .team-card { flex: 0 1 100%; max-width: 360px; }
 }
+
+/* === Legal Team: living navy background === */
+.team-dark-section {
+  position: relative; overflow: hidden; isolation: isolate;
+  background:
+    radial-gradient(ellipse 65% 60% at 50% 42%, rgba(56,96,172,.6) 0%, rgba(56,96,172,0) 72%),
+    repeating-linear-gradient(35deg, transparent 0 34px, rgba(201,168,76,.06) 34px 35px),
+    linear-gradient(180deg, #1B3666 0%, #162E59 100%);
+}
+.team-dark-section::before, .team-dark-section::after {
+  content: ''; position: absolute; width: 56px; height: 56px; pointer-events: none; z-index: 0;
+}
+.team-dark-section::before { top: 32px; right: 32px; border-top: 1.5px solid rgba(201,168,76,.5); border-right: 1.5px solid rgba(201,168,76,.5); }
+.team-dark-section::after { bottom: 32px; left: 32px; border-bottom: 1.5px solid rgba(201,168,76,.5); border-left: 1.5px solid rgba(201,168,76,.5); }
+.team-dark-section > * { position: relative; z-index: 1; }
+.team-dark-section .team-card { background: #102449; box-shadow: 0 18px 40px rgba(4,12,30,.4); }
+@media (max-width: 640px) {
+  .team-dark-section::before, .team-dark-section::after { width: 32px; height: 32px; }
+  .team-dark-section::before { top: 16px; right: 16px; }
+  .team-dark-section::after { bottom: 16px; left: 16px; }
+}
