@@ -5,6 +5,17 @@ import { openCookieSettings } from '../lib/consent'
 export default function Footer() {
   return (
     <footer>
+      <nav className="footer-linkbar" aria-label="קישורים מהירים">
+        <Link to="/about">אודות</Link>
+        <span className="footer-linkbar-sep" aria-hidden="true">·</span>
+        <Link to="/legal-team">הצוות המשפטי</Link>
+        <span className="footer-linkbar-sep" aria-hidden="true">·</span>
+        <a href="/#areas">תחומי עיסוק</a>
+        <span className="footer-linkbar-sep" aria-hidden="true">·</span>
+        <Link to="/privacy">מדיניות פרטיות</Link>
+        <span className="footer-linkbar-sep" aria-hidden="true">·</span>
+        <Link to="/accessibility">נגישות האתר</Link>
+      </nav>
       <div className="footer-inner">
         <div className="footer-brand">
           <div className="fl">{site.legalName}</div>
