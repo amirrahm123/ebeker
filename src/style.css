@@ -3965,3 +3965,166 @@ a.about-chip:focus-visible { outline: 3px solid var(--about-gold); outline-offse
   .footer-linkbar { gap: 10px 22px; margin-bottom: 28px; padding-bottom: 18px; }
   .footer-linkbar-sep { display: none; }
 }
+
+/* === Legal Team page ===
+   Scoped to LegalTeam.jsx only — all classes prefixed `team-`. The old
+   `attorney-*` rules above stay as-is (unused now, but shared history). */
+.team-section { padding: 88px 24px; display: flex; flex-direction: column; align-items: center; }
+.team-founder-section { background: #F8F6F1; }
+.team-dark-section { background: #0D1B3E; }
+.team-cream-section { background: #F8F6F1; }
+
+.team-rule { display: block; width: 56px; height: 3px; background: #C9A84C; border: none; }
+
+/* Founder */
+.team-founder {
+  width: 100%; max-width: 1040px;
+  display: grid; grid-template-columns: 380px 1fr; gap: 64px; align-items: center;
+}
+.team-founder-photo-col { display: flex; justify-content: center; }
+.team-founder-photo-frame {
+  position: relative; width: 380px; aspect-ratio: 4 / 5;
+}
+.team-founder-photo-frame::before {
+  content: ''; position: absolute; inset: 18px -18px -18px 18px;
+  border: 2px solid #C9A84C; border-radius: 18px; z-index: 0;
+}
+.team-founder-photo {
+  position: relative; z-index: 1; display: block;
+  width: 100%; height: 100%; object-fit: cover; object-position: center top;
+  border-radius: 18px; box-shadow: 0 18px 44px rgba(13,27,62,.22);
+}
+.team-founder-info { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; text-align: right; }
+.team-eyebrow { font-size: 15px; font-weight: 700; letter-spacing: .5px; color: #7A5C1E; }
+.team-founder-name { margin: 0; font-size: clamp(1.7rem, 3vw, 2.3rem); font-weight: 800; color: #0D1B3E; line-height: 1.25; }
+.team-founder-title { font-size: 17px; font-weight: 600; color: #1A2A4A; }
+.team-founder-bio { margin: 0; font-size: 18px; line-height: 1.85; color: #1A2A4A; }
+.team-founder-roles { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; width: 100%; }
+.team-founder-roles li {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 16px; line-height: 1.5; color: #1A2A4A;
+}
+.team-founder-roles .team-bullet { color: #C9A84C; flex-shrink: 0; }
+
+/* Team heading */
+.team-heading { display: flex; flex-direction: column; align-items: center; gap: 18px; text-align: center; margin-bottom: 48px; }
+.team-heading h2 { margin: 0; font-size: clamp(1.9rem, 3vw, 2.375rem); font-weight: 800; color: #fff; }
+.team-subhead { margin: 0; font-size: 16px; color: rgba(255,255,255,.75); max-width: 560px; }
+
+/* Cards */
+.team-cards {
+  width: 100%; max-width: 1040px;
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 28px;
+}
+.team-card {
+  box-sizing: border-box; flex: 0 1 calc((100% - 56px) / 3); max-width: calc((100% - 56px) / 3);
+  display: flex; flex-direction: column;
+  background: #13264F; border: 1px solid rgba(201,168,76,.28); border-radius: 16px; overflow: hidden;
+  cursor: pointer; text-align: right; padding: 0; font: inherit; color: inherit;
+  transition: border-color .3s, box-shadow .3s, transform .3s;
+}
+.team-card:hover { border-color: #C9A84C; box-shadow: 0 16px 40px rgba(0,0,0,.28); transform: translateY(-4px); }
+.team-card:focus-visible { outline: 3px solid #C9A84C; outline-offset: 3px; }
+.team-card-photo-wrap {
+  width: 100%; aspect-ratio: 4 / 5;
+  background: linear-gradient(180deg,#EEF0F4,#DDE2EA);
+}
+.team-card-photo { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
+.team-card-body {
+  flex: 1; display: flex; flex-direction: column; align-items: center; text-align: center;
+  padding: 24px 22px 22px;
+}
+.team-card-name { font-size: 23px; font-weight: 800; color: #fff; }
+.team-card-title { font-size: 14px; font-weight: 700; color: #C9A84C; margin-top: 4px; }
+.team-card-body .team-rule { margin: 14px 0; }
+.team-card-bio {
+  margin: 0 0 20px; font-size: 15px; line-height: 1.7; color: rgba(255,255,255,.8);
+  display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical; overflow: hidden;
+  height: calc(15px * 1.7 * 5);
+}
+.team-card-more {
+  margin-top: auto; width: 100%; box-sizing: border-box;
+  padding: 12px 18px; border: 1.5px solid #C9A84C; border-radius: 10px;
+  font-size: 15px; font-weight: 700; color: #C9A84C; text-align: center;
+}
+
+/* Buttons (founder button, CTA buttons, modal actions) */
+.team-btn-navy, .team-btn-navy-outline {
+  display: inline-block; padding: 14px 28px; border-radius: 10px; font-size: 16px; font-weight: 700;
+  text-decoration: none; cursor: pointer; transition: background-color .2s, color .2s, border-color .2s;
+  border: 1.5px solid #0D1B3E;
+}
+.team-btn-navy { background: #0D1B3E; color: #fff; }
+.team-btn-navy:hover { background: #1A3060; border-color: #1A3060; color: #fff; }
+.team-btn-navy-outline { background: transparent; color: #0D1B3E; }
+.team-btn-navy-outline:hover { background: #0D1B3E; color: #fff; }
+.team-dark-section .team-btn-navy-outline { color: #fff; border-color: rgba(255,255,255,.7); }
+.team-dark-section .team-btn-navy-outline:hover { background: rgba(255,255,255,.12); border-color: #C9A84C; }
+
+/* Closing CTA */
+.team-cta {
+  width: 100%; max-width: 1040px; box-sizing: border-box;
+  background: #fff; border: 1.5px solid #C9A84C; border-radius: 20px;
+  padding: 48px 56px; display: flex; flex-direction: column; align-items: center; gap: 14px; text-align: center;
+}
+.team-cta h2 { margin: 0; font-size: clamp(1.6rem, 2.8vw, 2.125rem); font-weight: 800; color: #0D1B3E; }
+.team-cta p { margin: 0; font-size: 19px; line-height: 1.7; color: #1A2A4A; }
+.team-cta-buttons { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; margin-top: 10px; }
+
+/* Modal */
+.modal-overlay .modal-content.team-modal {
+  max-width: 1000px; width: 100%; padding: 0; border-radius: 22px; overflow: hidden; background: #fff;
+}
+.team-modal-layout { display: flex; align-items: stretch; max-height: 85vh; }
+.team-modal-side {
+  flex: 0 0 360px; background: #0D1B3E; padding: 32px 28px; display: flex; flex-direction: column; gap: 24px;
+  overflow-y: auto;
+}
+.team-modal-photo-wrap {
+  width: 100%; aspect-ratio: 4 / 5; border-radius: 14px; overflow: hidden;
+  background: linear-gradient(180deg,#EEF0F4,#DDE2EA);
+}
+.team-modal-photo { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
+.team-modal-contact { display: flex; flex-direction: column; gap: 12px; }
+.team-modal-contact-title { font-size: 15px; font-weight: 800; color: #C9A84C; margin-bottom: 4px; }
+.team-modal-contact-line {
+  display: flex; align-items: center; gap: 10px; color: #fff; font-size: 15px; text-decoration: none;
+}
+.team-modal-contact-line svg { color: #C9A84C; flex-shrink: 0; }
+a.team-modal-contact-line:hover { color: #C9A84C; }
+.team-modal-main { flex: 1; min-width: 0; padding: 40px 44px; overflow-y: auto; text-align: right; }
+.team-modal-name { margin: 0; font-size: clamp(1.5rem, 2.6vw, 1.9rem); font-weight: 800; color: #0D1B3E; }
+.team-modal-title { font-size: 16px; font-weight: 600; color: #7A5C1E; margin: 4px 0 14px; }
+.team-modal-main .team-rule { margin-bottom: 18px; }
+.team-modal-bio { font-size: 16px; line-height: 1.85; color: #1A2A4A; margin: 0 0 14px; }
+.team-modal-section { font-size: 16px; font-weight: 800; color: #0D1B3E; margin: 22px 0 12px; }
+.team-pills { display: flex; flex-wrap: wrap; gap: 10px; }
+.team-pill { padding: 8px 16px; background: #0D1B3E; color: #fff; border-radius: 999px; font-size: 14px; font-weight: 600; }
+.team-modal-points { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.team-modal-points li { display: flex; align-items: flex-start; gap: 10px; font-size: 15px; line-height: 1.6; color: #1A2A4A; }
+.team-modal-points .team-bullet { color: #C9A84C; margin-top: 6px; flex-shrink: 0; }
+.team-modal-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+
+@media (max-width: 1024px) {
+  .team-card { flex: 0 1 calc((100% - 28px) / 2); max-width: calc((100% - 28px) / 2); }
+}
+@media (max-width: 900px) {
+  .team-founder { grid-template-columns: 1fr; gap: 36px; text-align: center; }
+  .team-founder-info { align-items: center; text-align: center; }
+  .team-founder-photo-frame { margin: 0 auto; }
+  .team-founder-roles li { justify-content: center; }
+}
+@media (max-width: 767px) {
+  .team-section { padding: 56px 16px; }
+  .team-founder-photo-frame { width: 300px; }
+  .team-cta { padding: 32px 20px; }
+  .team-cta-buttons { flex-direction: column; align-self: stretch; }
+  .team-btn-navy, .team-btn-navy-outline { text-align: center; }
+  .team-modal-layout { flex-direction: column; max-height: 90vh; overflow-y: auto; }
+  .team-modal-side { flex: 0 0 auto; }
+  .team-modal-main { padding: 28px 20px; }
+}
+@media (max-width: 640px) {
+  .team-cards { gap: 20px; }
+  .team-card { flex: 0 1 100%; max-width: 360px; }
+}

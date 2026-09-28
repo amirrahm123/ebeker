@@ -1,8 +1,8 @@
+/* eslint-disable react/prop-types -- this codebase does not use PropTypes anywhere */
 import { useState, useCallback } from 'react'
 import { Link } from 'react-router-dom'
 import useRevealOnScroll from '../hooks/useRevealOnScroll'
 import PageBanner from '../components/PageBanner'
-import CTASection from '../components/CTASection'
 import Modal from '../components/Modal'
 import { site } from '../config/site'
 
@@ -98,6 +98,29 @@ const attorneys = [
     contact: { email: 'karen@ebeker.co.il', phone: site.phones.office.display, fax: site.phones.fax.display },
   },
   {
+    name: 'עו"ד דפנה סודרי',
+    title: 'עורכת דין',
+    photo: '/pics/03_הצוות_המשפטי/dafna.jpg',
+    shortBio: 'עורכת הדין סודרי התמחתה בבית משפט השלום עכו בתחום האזרחי. בהמשך עבדה בבית משפט השלום בקריות כעוזרת משפטית ומגשרת בתחום האזרחי לרבות נזקי גוף ותביעות ביטוח בטרם הצטרפה לחברת עורכי הדין בקר. בשנים האחרונות עובדת כעו"ד בחברת עורכי הדין בקר ועוסקת בתחום נזקי הגוף בעיקר - תאונות דרכים וביטוח לאומי.',
+    shortRoles: ['נזקי גוף ותביעות ביטוח', 'תאונות דרכים', 'ביטוח לאומי'],
+    fullBio: [
+      'עורכת הדין סודרי התמחתה בבית משפט השלום עכו בתחום האזרחי.',
+      'בהמשך עבדה בבית משפט השלום בקריות כעוזרת משפטית ומגשרת בתחום האזרחי לרבות נזקי גוף ותביעות ביטוח בטרם הצטרפה לחברת עורכי הדין בקר.',
+      'בשנים האחרונות עובדת כעו"ד בחברת עורכי הדין בקר ועוסקת בתחום נזקי הגוף בעיקר - תאונות דרכים וביטוח לאומי.',
+    ],
+    education: [
+      'תואר ראשון L.L.B במשפטים- אוניברסיטת רייכמן (הבינתחומי הרצליה)',
+      'תואר ראשון B.A במנהל עסקים (התמחות בשיווק)- אוניברסיטת רייכמן (הבינתחומי הרצליה)',
+      'תואר שני M.A בלימודי מגדר- אוניברסיטת חיפה.',
+      'חברת לשכת עורכי הדין בישראל',
+      'קורס גישור בלשכת עורכי הדין בישראל.',
+      'הסמכה מטעם משרד המשפטים- האפוטרופוס הכללי - עריכת ייפוי כוח מתמשך, הנחיות מקדימות לצורך מינוי אפוטרופוס ומסמך הבעת רצון על פי חוק.',
+      'הכשרה בדיני נזיקין וביטוח - לשכת עורכי הדין',
+    ],
+    // TODO: Dafna's email – waiting for the client
+    contact: { email: '', phone: site.phones.office.display, fax: site.phones.fax.display },
+  },
+  {
     name: 'עו"ד ריצ\'רד פרדגיים',
     title: 'עורך דין',
     photo: '/pics/03_הצוות_המשפטי/richard-fardgaim.jpg',
@@ -116,6 +139,59 @@ const attorneys = [
   },
 ]
 
+/** Small inline gold diamond used as a bullet, instead of an emoji glyph. */
+function GoldDiamond() {
+  return (
+    <svg className="team-bullet" width="8" height="8" viewBox="0 0 8 8" aria-hidden="true">
+      <rect x="4" y="0" width="5.6" height="5.6" transform="rotate(45 4 4)" fill="currentColor" />
+    </svg>
+  )
+}
+
+function MailIcon() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
+      <rect x="3" y="5" width="18" height="14" rx="2" />
+      <path d="M3 7l9 6 9-6" />
+    </svg>
+  )
+}
+
+function PhoneIcon() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
+      <path d="M4 4h4l2 5-2.5 1.5a11 11 0 005 5L14 13l5 2v4a1 1 0 01-1 1C9.5 20 4 14.5 4 5a1 1 0 011-1z" />
+    </svg>
+  )
+}
+
+function FaxIcon() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
+      <path d="M6 3h9l3 3v4H6z" />
+      <rect x="4" y="10" width="16" height="8" rx="1.5" />
+      <path d="M8 14h4M8 21h8v-3H8z" />
+    </svg>
+  )
+}
+
+function TeamCard({ attorney, onOpen }) {
+  return (
+    <button type="button" className="team-card reveal" onClick={() => onOpen(attorney)}>
+      <div className="team-card-photo-wrap">
+        <img src={attorney.photo} alt={attorney.name} className="team-card-photo" />
+      </div>
+      <div className="team-card-body">
+        <div className="team-card-name">{attorney.name}</div>
+        <div className="team-card-title">{attorney.title}</div>
+        <span className="team-rule" aria-hidden="true" />
+        <p className="team-card-bio">{attorney.shortBio}</p>
+        <span className="team-card-more">לפרופיל המלא ←</span>
+      </div>
+    </button>
+  )
+}
+
 export default function LegalTeam() {
   useRevealOnScroll()
   const [popup, setPopup] = useState(null)
@@ -132,103 +208,131 @@ export default function LegalTeam() {
         accent="שנלחמים בשבילכם"
       />
 
-      <section className="section">
-        <div className="container">
-          <div className="team-grid">
-            {/* Featured — Eran Beker */}
-            <div className="attorney-card-featured reveal" onClick={() => setPopup(eran)}>
-              <img src={eran.photo} alt={eran.name} className="attorney-card-photo" />
-              <div className="attorney-card-body">
-                <div className="attorney-name">{eran.name}</div>
-                <div className="attorney-title">{eran.title}</div>
-                <div className="attorney-divider"></div>
-                <p className="attorney-bio">{eran.shortBio}</p>
-                <div className="attorney-roles">
-                  {eran.shortRoles.map((r, i) => <div className="role" key={i}>{r}</div>)}
-                </div>
-                <div className="attorney-card-more">&#8592; לחצו לפרופיל המלא</div>
-              </div>
+      {/* Founder */}
+      <section className="team-section team-founder-section">
+        <div className="team-founder reveal">
+          <div className="team-founder-photo-col">
+            <div className="team-founder-photo-frame">
+              <img src={eran.photo} alt={eran.name} className="team-founder-photo" />
             </div>
-
-            {/* Team members */}
-            {team.map((a, i) => (
-              <div className="attorney-card reveal" key={i} onClick={() => setPopup(a)}>
-                <img src={a.photo} alt={a.name} className="attorney-card-photo" />
-                <div className="attorney-card-body">
-                  <div className="attorney-name">{a.name}</div>
-                  <div className="attorney-title">{a.title}</div>
-                  <div className="attorney-divider"></div>
-                  <p className="attorney-bio">{a.shortBio}</p>
-                  <div className="attorney-card-more">&#8592; לפרופיל המלא</div>
-                </div>
-              </div>
-            ))}
+          </div>
+          <div className="team-founder-info">
+            <span className="team-eyebrow">מייסד המשרד</span>
+            <h2 className="team-founder-name">{eran.name}</h2>
+            <div className="team-founder-title">{eran.title}</div>
+            <span className="team-rule" aria-hidden="true" />
+            <p className="team-founder-bio">{eran.shortBio}</p>
+            <ul className="team-founder-roles">
+              {eran.shortRoles.map((r, i) => (
+                <li key={i}><GoldDiamond />{r}</li>
+              ))}
+            </ul>
+            <button type="button" className="team-btn-navy" onClick={() => setPopup(eran)}>
+              לפרופיל המלא ←
+            </button>
           </div>
         </div>
       </section>
 
+      {/* Team */}
+      <section className="team-section team-dark-section">
+        <div className="team-heading reveal">
+          <h2>צוות עורכי הדין</h2>
+          <span className="team-rule" aria-hidden="true" />
+          <p className="team-subhead">לחצו על כרטיס כדי לקרוא את הפרופיל המלא, ההשכלה ופרטי הקשר</p>
+        </div>
+        <div className="team-cards">
+          {team.map((a, i) => (
+            <TeamCard key={i} attorney={a} onOpen={setPopup} />
+          ))}
+        </div>
+      </section>
+
       {/* Attorney Popup */}
-      <Modal isOpen={popup !== null} onClose={closePopup} className={popup?.featured ? 'attorney-modal-wide' : ''}>
+      <Modal isOpen={popup !== null} onClose={closePopup} className="team-modal">
         {popup && (
-          <div>
-            <div className="attorney-popup-layout">
-              <img src={popup.photo} alt={popup.name} className="attorney-popup-photo" />
-              <div className="attorney-popup-info">
-                <div className="attorney-name">{popup.name}</div>
-                <div className="attorney-title">{popup.title}</div>
-                <div className="attorney-divider" style={{ margin: '0 0 14px' }}></div>
-                {popup.fullBio.map((p, i) => (
-                  <p key={i} className="team-modal-bio">{p}</p>
-                ))}
+          <div className="team-modal-layout">
+            <div className="team-modal-side">
+              <div className="team-modal-photo-wrap">
+                <img src={popup.photo} alt={popup.name} className="team-modal-photo" />
+              </div>
+              <div className="team-modal-contact">
+                <div className="team-modal-contact-title">פרטי קשר</div>
+                {popup.contact?.email && (
+                  <a className="team-modal-contact-line" href={`mailto:${popup.contact.email}`}>
+                    <MailIcon />{popup.contact.email}
+                  </a>
+                )}
+                {popup.contact?.phone && (
+                  <a className="team-modal-contact-line" href={site.phones.office.href}>
+                    <PhoneIcon />{popup.contact.phone}
+                  </a>
+                )}
+                {popup.contact?.fax && (
+                  <span className="team-modal-contact-line">
+                    <FaxIcon />{popup.contact.fax}
+                  </span>
+                )}
               </div>
             </div>
 
-            {popup.education && (
-              <>
-                <div className="attorney-popup-section">השכלה וניסיון מקצועי</div>
-                <ul className="modal-points">
-                  {popup.education.map((item, i) => <li key={i}>{item}</li>)}
-                </ul>
-              </>
-            )}
+            <div className="team-modal-main">
+              <h2 className="team-modal-name">{popup.name}</h2>
+              <div className="team-modal-title">{popup.title}</div>
+              <span className="team-rule" aria-hidden="true" />
 
-            {popup.publicRoles && (
-              <>
-                <div className="attorney-popup-section">פעילות ציבורית</div>
-                <ul className="modal-points">
-                  {popup.publicRoles.map((item, i) => <li key={i}>{item}</li>)}
-                </ul>
-              </>
-            )}
+              {popup.fullBio.map((p, i) => (
+                <p key={i} className="team-modal-bio">{p}</p>
+              ))}
 
-            {popup.shortRoles && !popup.featured && (
-              <>
-                <div className="attorney-popup-section">תחומי התמחות</div>
-                <ul className="modal-points">
-                  {popup.shortRoles.map((item, i) => <li key={i}>{item}</li>)}
-                </ul>
-              </>
-            )}
+              {popup.shortRoles && (
+                <>
+                  <div className="team-modal-section">תחומי התמחות</div>
+                  <div className="team-pills">
+                    {popup.shortRoles.map((item, i) => <span className="team-pill" key={i}>{item}</span>)}
+                  </div>
+                </>
+              )}
 
-            {popup.contact && (
-              <div className="attorney-contact-line">
-                <span>מייל: <a href={`mailto:${popup.contact.email}`}>{popup.contact.email}</a></span>
-                <span className="attorney-contact-sep">|</span>
-                <span>טל: {popup.contact.phone}</span>
-                <span className="attorney-contact-sep">|</span>
-                <span>פקס: {popup.contact.fax}</span>
+              {popup.publicRoles && (
+                <>
+                  <div className="team-modal-section">פעילות ציבורית</div>
+                  <ul className="team-modal-points">
+                    {popup.publicRoles.map((item, i) => <li key={i}><GoldDiamond />{item}</li>)}
+                  </ul>
+                </>
+              )}
+
+              {popup.education && (
+                <>
+                  <div className="team-modal-section">השכלה וניסיון מקצועי</div>
+                  <ul className="team-modal-points">
+                    {popup.education.map((item, i) => <li key={i}><GoldDiamond />{item}</li>)}
+                  </ul>
+                </>
+              )}
+
+              <div className="team-modal-actions">
+                <Link to="/#contact" className="team-btn-navy" onClick={closePopup}>קבעו ייעוץ ←</Link>
+                <a href={site.phones.office.href} className="team-btn-navy-outline">{site.phones.office.display}</a>
               </div>
-            )}
-
-            <div className="modal-actions">
-              <Link to="/#contact" className="btn-teal" onClick={closePopup}>קבעו ייעוץ &#8592;</Link>
-              <a href={site.phones.office.href} className="btn-outline-dark">&#128222; {site.phones.office.display}</a>
             </div>
           </div>
         )}
       </Modal>
 
-      <CTASection title="רוצים לדבר עם עורך דין?" subtitle="ייעוץ ראשוני חינם — ללא עלות וללא התחייבות" />
+      {/* Closing CTA */}
+      <section className="team-section team-cream-section">
+        <div className="team-cta reveal">
+          <h2>ייעוץ ראשוני אישי ללא התחייבות</h2>
+          <span className="team-rule" aria-hidden="true" />
+          <p>צרו עימנו קשר עוד היום ונשמח לסייע לכם לקבל את הפיצוי המקסימלי מהגורמים הרלוונטיים.</p>
+          <div className="team-cta-buttons">
+            <a className="team-btn-navy" href={site.phones.office.href} dir="ltr">{site.phones.office.display}</a>
+            <a className="team-btn-navy-outline" href="/#contact">פנו אלינו עכשיו ←</a>
+          </div>
+        </div>
+      </section>
     </>
   )
 }
