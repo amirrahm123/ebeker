@@ -2889,7 +2889,7 @@ img { max-width: 100%; height: auto; }
   overflow: hidden;
   background: #060e1e;
   padding: calc(var(--top-offset) + 50px) 40px 44px;
-  text-align: right;
+  text-align: center;
   direction: rtl;
 }
 .page-banner::before {
@@ -2952,15 +2952,15 @@ img { max-width: 100%; height: auto; }
   position: relative;
   z-index: 2;
   max-width: 700px;
-  margin-left: auto;
-  text-align: right;
+  margin: 0 auto;
+  text-align: center;
 }
 .page-banner-breadcrumb {
   color: rgba(201,168,76,0.6);
   font-size: 0.78rem;
   margin-bottom: 14px;
   letter-spacing: 0.3px;
-  text-align: right;
+  text-align: center;
 }
 .page-banner-breadcrumb a {
   color: rgba(201,168,76,0.6);
@@ -2990,10 +2990,10 @@ img { max-width: 100%; height: auto; }
   color: var(--color-accent);
 }
 .page-banner-divider {
-  width: 48px;
-  height: 2px;
-  background: rgba(201,168,76,0.45);
-  margin-top: 12px;
+  width: 64px;
+  height: 3px;
+  background: var(--color-accent);
+  margin: 14px auto 0;
 }
 
 @media (max-width: 640px) {
@@ -3785,11 +3785,8 @@ main#main-content:focus { outline: none; }
   --about-line-sand: #DCCFB2;
 }
 
-/* Banner: centered title on this page, pill index directly beneath it */
-.about-page .page-banner { text-align: center; padding-bottom: 20px; }
-.about-page .page-banner-content { margin: 0 auto; text-align: center; }
-.about-page .page-banner-breadcrumb { text-align: center; }
-.about-page .page-banner-divider { margin: 14px auto 0; width: 64px; height: 3px; background: var(--about-gold); }
+/* Banner: pill index directly beneath it */
+.about-page .page-banner { padding-bottom: 20px; }
 .about-page .page-banner-corner-bl,
 .about-page .page-banner-corner-br { display: none; }
 
