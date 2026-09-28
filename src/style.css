@@ -3769,3 +3769,179 @@ main#main-content:focus { outline: none; }
 .mc-dot::before, .testi-dot::before {
   content: ''; position: absolute; inset: -9px; /* 6px dot + 9px*2 ≈ 24px */
 }
+
+/* === About page ===
+   Full-width sections alternating dark navy / cream / sand.
+   Scoped to .about-page so the shared PageBanner is only adjusted here. */
+.about-page {
+  --about-navy: #0D1B3E;
+  --about-ink: #1A2A4A;
+  --about-cream: #F8F6F1;
+  --about-sand: #EFE7D6;
+  --about-card-dark: #13264F;
+  --about-gold: #C9A84C;
+  --about-gold-light: #E2C97E;
+  --about-line: #E6DDC8;
+  --about-line-sand: #DCCFB2;
+}
+
+/* Banner: centered title on this page, pill index directly beneath it */
+.about-page .page-banner { text-align: center; padding-bottom: 20px; }
+.about-page .page-banner-content { margin: 0 auto; text-align: center; }
+.about-page .page-banner-breadcrumb { text-align: center; }
+.about-page .page-banner-divider { margin: 14px auto 0; width: 64px; height: 3px; background: var(--about-gold); }
+.about-page .page-banner-corner-bl,
+.about-page .page-banner-corner-br { display: none; }
+
+.about-pills {
+  background: #060e1e repeating-linear-gradient(35deg, transparent, transparent 34px, rgba(201,168,76,0.06) 34px, rgba(201,168,76,0.06) 35px);
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;
+  padding: 18px 24px 52px;
+}
+.about-pills a {
+  padding: 9px 18px; border: 1px solid rgba(201,168,76,.45); border-radius: 999px;
+  font-size: 15px; color: #fff; text-decoration: none; white-space: nowrap;
+  transition: background-color .2s, border-color .2s, color .2s;
+}
+.about-pills a:hover, .about-pills a:focus-visible {
+  border-color: var(--about-gold); background: rgba(201,168,76,.12); color: var(--about-gold-light);
+}
+
+/* Sections */
+.about-section {
+  padding: 88px 24px;
+  display: flex; flex-direction: column; align-items: center; gap: 24px;
+  scroll-margin-top: calc(var(--top-offset) + 8px);
+}
+.about-section p { margin: 0; }
+.about-dark  { background: var(--about-navy); color: #fff; }
+.about-cream { background: var(--about-cream); color: var(--about-ink); }
+.about-sand  { background: var(--about-sand); color: var(--about-ink); padding-top: 80px; padding-bottom: 80px; }
+
+.about-heading { display: flex; flex-direction: column; align-items: center; gap: 24px; text-align: center; }
+.about-heading h2 { margin: 0; font-size: clamp(1.9rem, 3vw, 2.375rem); font-weight: 800; line-height: 1.25; }
+.about-dark .about-heading h2 { color: #fff; }
+.about-cream .about-heading h2, .about-sand .about-heading h2 { color: var(--about-navy); }
+.about-rule { display: block; width: 56px; height: 3px; background: var(--about-gold); }
+
+/* Columns */
+.about-col { width: 100%; max-width: 880px; display: flex; flex-direction: column; gap: 22px; text-align: right; }
+.about-col p { font-size: 18px; line-height: 1.9; }
+.about-dark .about-col p { color: rgba(255,255,255,.86); }
+.about-cream .about-col p { color: var(--about-ink); }
+.about-col .about-lead { font-size: 20px; color: #fff; }
+.about-col.about-center, .about-center { text-align: center; }
+.about-wide { width: 100%; max-width: 1040px; }
+.about-stack { display: flex; flex-direction: column; gap: 28px; }
+.about-gold { color: var(--about-gold-light); }
+.about-dark .about-col .about-roles-intro { color: var(--about-gold-light); font-weight: 500; }
+
+/* Grids */
+.about-grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+.about-grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+
+/* White cards on light backgrounds */
+.about-card {
+  background: #fff; border: 1px solid var(--about-line); border-radius: 14px; padding: 32px 34px;
+}
+.about-card p { font-size: 17px; line-height: 1.85; color: var(--about-ink); }
+.about-card-navy-top { border-top: 3px solid var(--about-navy); }
+.about-card-gold-top { border-color: var(--about-line-sand); border-top: 3px solid var(--about-gold); }
+
+.about-rating-box {
+  background: #fff; border: 1.5px solid var(--about-gold); border-radius: 16px;
+  padding: 30px 40px; text-align: center;
+}
+.about-rating-box p { font-size: 20px; line-height: 1.8; color: var(--about-navy); }
+
+/* Statement quote */
+.about-quote { padding-top: 80px; padding-bottom: 80px; gap: 22px; }
+.about-quote-icon { color: var(--about-gold); }
+.about-quote p {
+  max-width: 980px; text-align: center;
+  font-family: "Frank Ruhl Libre", "Heebo", serif; font-weight: 500;
+  font-size: 25px; line-height: 1.7; color: #fff;
+}
+
+/* Specialty chips */
+.about-chips { list-style: none; margin: 10px 0 0; padding: 0; width: 100%; max-width: 1040px; gap: 14px; }
+.about-chips li {
+  display: flex; align-items: center; justify-content: center; text-align: center;
+  padding: 18px 22px; background: var(--about-navy); border-radius: 10px;
+  font-size: 17px; font-weight: 500; line-height: 1.5; color: #fff;
+}
+
+/* Public roles: 3 cards on the first row, 2 on the second */
+.about-roles {
+  list-style: none; margin: 0; padding: 0; width: 100%; max-width: 1040px;
+  display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 16px;
+}
+.about-roles li {
+  grid-column: span 2;
+  padding: 24px; background: var(--about-card-dark); border-top: 3px solid var(--about-gold);
+  border-radius: 10px; font-size: 17px; line-height: 1.6; color: #fff; text-align: right;
+}
+.about-roles li:nth-child(n+4) { grid-column: span 3; }
+
+/* Navy boxes on light backgrounds */
+.about-navy-box { background: var(--about-navy); border-radius: 12px; padding: 22px 28px; }
+.about-cream .about-col .about-navy-box p, .about-navy-box p { color: #fff; font-size: 18px; line-height: 1.7; }
+.about-closing-box { border-radius: 14px; padding: 30px 36px; margin-top: 8px; }
+.about-closing-box p { line-height: 1.85; }
+
+/* Flagship case cards */
+.about-stack .about-case { border-color: var(--about-line-sand); border-right: 4px solid var(--about-gold); padding: 30px 36px; }
+.about-case strong { color: var(--about-navy); font-size: 19px; font-weight: 700; }
+
+/* Values */
+.about-value {
+  background: var(--about-card-dark); border-radius: 14px; padding: 30px;
+  display: flex; flex-direction: column; gap: 12px;
+}
+.about-value h3 { margin: 0; font-size: 21px; font-weight: 700; color: var(--about-gold-light); }
+.about-value p { font-size: 17px; line-height: 1.8; color: rgba(255,255,255,.88); }
+.about-value-highlight { background: var(--about-gold); }
+.about-value-highlight h3 { color: var(--about-navy); font-weight: 800; }
+.about-value-highlight p { color: var(--about-navy); }
+
+/* Closing call to action */
+.about-cta {
+  width: 100%; max-width: 1040px; box-sizing: border-box;
+  background: #fff; border: 1.5px solid var(--about-gold); border-radius: 20px;
+  padding: 48px 56px; display: flex; flex-direction: column; align-items: center; gap: 14px; text-align: center;
+}
+.about-cta h2 { margin: 0; font-size: clamp(1.6rem, 2.8vw, 2.125rem); font-weight: 800; line-height: 1.3; color: var(--about-navy); }
+.about-cta p { font-size: 19px; line-height: 1.7; color: var(--about-ink); }
+.about-cta-buttons { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; margin-top: 10px; }
+.about-btn {
+  display: inline-block; padding: 16px 30px; border-radius: 10px; font-size: 18px; text-decoration: none;
+  transition: background-color .2s, color .2s, border-color .2s;
+}
+.about-btn-solid { background: var(--about-navy); color: #fff; font-weight: 800; border: 1.5px solid var(--about-navy); }
+.about-btn-solid:hover { background: #1A3060; border-color: #1A3060; color: #fff; }
+.about-btn-outline { border: 1.5px solid var(--about-navy); color: var(--about-navy); font-weight: 700; }
+.about-btn-outline:hover { background: var(--about-navy); color: #fff; }
+
+@media (max-width: 1100px) {
+  .about-grid-3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 767px) {
+  .about-pills { padding: 14px 16px 36px; gap: 8px; }
+  .about-pills a { font-size: 14px; padding: 8px 14px; }
+  .about-section { padding: 56px 16px; gap: 20px; }
+  .about-sand, .about-quote { padding-top: 52px; padding-bottom: 52px; }
+  .about-grid-2, .about-grid-3, .about-roles { grid-template-columns: 1fr; }
+  .about-roles li, .about-roles li:nth-child(n+4) { grid-column: auto; }
+  .about-col p { font-size: 17px; }
+  .about-col .about-lead { font-size: 18px; }
+  .about-quote p { font-size: 21px; }
+  .about-rating-box { padding: 24px 20px; }
+  .about-rating-box p { font-size: 18px; }
+  .about-card, .about-stack .about-case, .about-closing-box { padding: 24px 20px; }
+  .about-navy-box { padding: 20px; }
+  .about-value { padding: 24px 20px; }
+  .about-cta { padding: 36px 20px; }
+  .about-cta p { font-size: 17px; }
+  .about-cta-buttons { flex-direction: column; align-self: stretch; }
+  .about-btn { text-align: center; }
+}
