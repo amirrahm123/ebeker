@@ -3865,11 +3865,15 @@ main#main-content:focus { outline: none; }
 
 /* Specialty chips */
 .about-chips { list-style: none; margin: 10px 0 0; padding: 0; width: 100%; max-width: 1040px; gap: 14px; }
-.about-chips li {
-  display: flex; align-items: center; justify-content: center; text-align: center;
-  padding: 18px 22px; background: var(--about-navy); border-radius: 10px;
-  font-size: 17px; font-weight: 500; line-height: 1.5; color: #fff;
+.about-chips li { display: flex; }
+.about-chip {
+  flex: 1; display: flex; align-items: center; justify-content: center; text-align: center;
+  padding: 18px 22px; background: var(--about-navy); border: 1.5px solid var(--about-navy); border-radius: 10px;
+  font-size: 17px; font-weight: 500; line-height: 1.5; color: #fff; text-decoration: none;
+  transition: background-color .2s, border-color .2s, color .2s;
 }
+a.about-chip:hover { background: #1A3060; border-color: var(--about-gold); color: var(--about-gold-light); }
+a.about-chip:focus-visible { outline: 3px solid var(--about-gold); outline-offset: 3px; }
 
 /* Public roles: 3 cards on the first row, 2 on the second */
 .about-roles {

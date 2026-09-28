@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types -- this codebase does not use PropTypes anywhere */
 import { useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import useRevealOnScroll from '../hooks/useRevealOnScroll'
 import PageBanner from '../components/PageBanner'
 import { site } from '../config/site'
@@ -18,19 +19,21 @@ const SECTION_LINKS = [
   ['values', 'ערכים וחזון'],
 ]
 
+/** Specialty chips. `to` links the chip to its practice page (paths from
+    src/routes.meta.js); chips without `to` render as plain chips. */
 const SPECIALTIES = [
-  'נזיקין וביטוח',
-  'רשלנות רפואית',
-  'תאונות דרכים',
-  'ביטוח לאומי',
-  'תאונות קטלניות',
-  'אסונות המוניים ורבי נפגעים',
-  'תביעות ביטוח',
-  'תאונות עבודה',
-  'נפגעי צבא וכוחות הביטחון',
-  'תביעות נגד רשויות וגופים ציבוריים',
-  'נזקי גוף מורכבים',
-  'ייפוי כוח מתמשך ואפוטרופסות',
+  { label: 'נזיקין וביטוח', to: '/damages' },
+  { label: 'רשלנות רפואית', to: '/medical-malpractice' },
+  { label: 'תאונות דרכים', to: '/car-accidents' },
+  { label: 'ביטוח לאומי' },
+  { label: 'תאונות קטלניות' },
+  { label: 'אסונות המוניים ורבי נפגעים' },
+  { label: 'תביעות ביטוח' },
+  { label: 'תאונות עבודה', to: '/work-accidents' },
+  { label: 'נפגעי צבא וכוחות הביטחון' },
+  { label: 'תביעות נגד רשויות וגופים ציבוריים' },
+  { label: 'נזקי גוף מורכבים' },
+  { label: 'ייפוי כוח מתמשך ואפוטרופסות', to: '/power-of-attorney' },
 ]
 
 /** Public roles: the first three fill row one, the rest fill row two. */
@@ -166,7 +169,11 @@ export default function About() {
       <section id="specialties" className="about-section about-cream">
         <SectionHeading>תחומי התמחות</SectionHeading>
         <ul className="about-chips about-grid-3 reveal">
-          {SPECIALTIES.map(item => <li key={item}>{item}</li>)}
+          {SPECIALTIES.map(({ label, to }) => (
+            <li key={label}>
+              {to ? <Link to={to} className="about-chip">{label}</Link> : <span className="about-chip">{label}</span>}
+            </li>
+          ))}
         </ul>
       </section>
 
