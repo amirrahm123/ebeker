@@ -206,7 +206,7 @@ export default function Wills() {
         </div>
       </section>
 
-      <CTASection title="יש לכם שאלה בנושא צוואה?" />
+      <CTASection />
     </>
   )
 }

@@ -270,7 +270,7 @@ export default function MarineAccidents() {
         </div>
       </section>
 
-      <CTASection title="נפגעתם בתאונה ימית?" />
+      <CTASection />
     </>
   )
 }

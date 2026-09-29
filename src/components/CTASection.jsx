@@ -1,22 +1,17 @@
 import { site, CONSULT_PHRASE } from '../config/site'
 
-/* Bottom CTA. The consultation line is fixed here so pages can't drift.
-   With a topic title: title + consultation line. Without: the consultation
-   line alone is the heading. */
-export default function CTASection({ title }) {
+/* Bottom CTA — boxed card on a light section, identical on every page. */
+export default function CTASection() {
   return (
     <section className="cta-section">
-      {title ? (
-        <>
-          <h2>{title}</h2>
-          <p>{CONSULT_PHRASE}</p>
-        </>
-      ) : (
-        <h2 className="cta-title-solo">{CONSULT_PHRASE}</h2>
-      )}
-      <div className="cta-btns">
-        <a href="/#contact" className="btn-dark">פנו אלינו עכשיו ←</a>
-        <a href={site.phones.office.href} className="btn-outline-dark">📞 {site.phones.office.display}</a>
+      <div className="cta-card reveal">
+        <h2 className="cta-card-heading">{CONSULT_PHRASE}</h2>
+        <div className="cta-card-rule" aria-hidden="true"></div>
+        <p className="cta-card-text">צרו עימנו קשר עוד היום ונשמח לסייע לכם לקבל את הפיצוי המקסימלי מהגורמים הרלוונטיים.</p>
+        <div className="cta-card-btns">
+          <a href="/#contact" className="cta-card-btn cta-card-btn-outline">פנו אלינו עכשיו ←</a>
+          <a href={site.phones.office.href} className="cta-card-btn cta-card-btn-solid">📞 {site.phones.office.display}</a>
+        </div>
       </div>
     </section>
   )

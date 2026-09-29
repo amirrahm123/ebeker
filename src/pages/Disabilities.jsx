@@ -187,7 +187,7 @@ export default function Disabilities() {
         </div>
       </section>
 
-      <CTASection title="זקוקים לעזרה במיצוי זכויות?" />
+      <CTASection />
     </>
   )
 }

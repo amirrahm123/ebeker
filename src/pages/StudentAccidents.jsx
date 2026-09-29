@@ -219,7 +219,7 @@ export default function StudentAccidents() {
         </div>
       </section>
 
-      <CTASection title="ילדכם נפגע? אנחנו לצידכם" />
+      <CTASection />
     </>
   )
 }

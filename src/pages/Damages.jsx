@@ -260,7 +260,7 @@ export default function Damages() {
         </div>
       </section>
 
-      <CTASection title="נפגעתם? תנו לנו להילחם בשבילכם" />
+      <CTASection />
     </>
   )
 }

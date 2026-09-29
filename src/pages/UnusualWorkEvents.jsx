@@ -154,7 +154,7 @@ export default function UnusualWorkEvents() {
         </div>
       </section>
 
-      <CTASection title="נפגעתם באירוע חריג בעבודה?" />
+      <CTASection />
     </>
   )
 }

@@ -232,7 +232,7 @@ export default function CarAccidents() {
         </div>
       </section>
 
-      <CTASection title="נפגעת בתאונת דרכים?" />
+      <CTASection />
     </>
   )
 }

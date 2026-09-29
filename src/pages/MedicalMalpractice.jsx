@@ -213,7 +213,7 @@ export default function MedicalMalpractice() {
         </div>
       </section>
 
-      <CTASection title="נפגעתם מרשלנות רפואית?" />
+      <CTASection />
     </>
   )
 }

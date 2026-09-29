@@ -199,7 +199,7 @@ export default function OccupationalDiseases() {
         </div>
       </section>
 
-      <CTASection title="חולה במחלת מקצוע?" />
+      <CTASection />
     </>
   )
 }

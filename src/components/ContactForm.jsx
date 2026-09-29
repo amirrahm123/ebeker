@@ -9,7 +9,7 @@ const EMPTY = { fname: '', lname: '', phone: '', email: '', message: '', company
 const PHONE_RE = /^(\+?972[-\s]?|0)?[1-9]\d{0,1}[-\s]?\d{3}[-\s]?\d{4}$/
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/
 
-function validate(values) {
+function validate(values, consent) {
   const errors = {}
   if (!values.fname.trim()) errors.fname = 'נא למלא שם פרטי'
   if (!values.lname.trim()) errors.lname = 'נא למלא שם משפחה'
@@ -18,13 +18,15 @@ function validate(values) {
   else if (digits.length < 9 || digits.length > 12 || !PHONE_RE.test(values.phone.trim())) errors.phone = 'נא להזין מספר טלפון ישראלי תקין (9–10 ספרות)'
   if (values.email.trim() && !EMAIL_RE.test(values.email.trim())) errors.email = 'כתובת הדוא"ל אינה תקינה'
   if (!values.message.trim()) errors.message = 'נא לכתוב הודעה קצרה'
+  if (!consent) errors.consent = 'יש לאשר את תנאי איסוף המידע כדי לשלוח את הטופס'
   return errors
 }
 
-const FIELD_ORDER = ['fname', 'lname', 'phone', 'email', 'message']
+const FIELD_ORDER = ['fname', 'lname', 'phone', 'email', 'message', 'consent']
 
 export default function ContactForm() {
   const [values, setValues] = useState(EMPTY)
+  const [consent, setConsent] = useState(false)
   const [errors, setErrors] = useState({})
   const [status, setStatus] = useState('idle') // idle | sending | success | error
   const refs = useRef({})
@@ -40,9 +42,14 @@ export default function ContactForm() {
     if (errors[name]) setErrors(er => { const n = { ...er }; delete n[name]; return n })
   }
 
+  const onConsentChange = (e) => {
+    setConsent(e.target.checked)
+    if (errors.consent) setErrors(er => { const n = { ...er }; delete n.consent; return n })
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault()
-    const nextErrors = validate(values)
+    const nextErrors = validate(values, consent)
     setErrors(nextErrors)
     const firstInvalid = FIELD_ORDER.find(f => nextErrors[f])
     if (firstInvalid) {
@@ -74,6 +81,7 @@ export default function ContactForm() {
 
   const reset = () => {
     setValues(EMPTY)
+    setConsent(false)
     setErrors({})
     setStatus('idle')
   }
@@ -144,6 +152,26 @@ ${values.message}`
             או לשלוח <a href={whatsappLink(waText)} target="_blank" rel="noopener noreferrer">הודעת וואטסאפ</a>.
           </div>
         )}
+      </div>
+
+      <div className={`form-group form-consent-check${errors.consent ? ' has-error' : ''}`}>
+        <label htmlFor="consent" className="form-consent-check-label">
+          <input
+            type="checkbox"
+            id="consent"
+            name="consent"
+            checked={consent}
+            onChange={onConsentChange}
+            ref={el => { refs.current.consent = el }}
+            required
+            aria-invalid={errors.consent ? 'true' : undefined}
+            aria-describedby={errors.consent ? 'consent-error' : undefined}
+          />
+          <span>
+            אני מצהיר/ה כי אני מודע/ת לכך שהמידע שמסרתי ייאסף ויישמר במאגר מידע, ויעובד בהתאם להוראות חוק הגנת הפרטיות, התשמ&quot;א–1981, לרבות תיקון 13, ולצרכים המפורטים ב<Link to="/privacy">מדיניות הפרטיות</Link> של האתר. אני מאשר/ת כי מסירת המידע נעשתה ביוזמתי ובהסכמתי המלאה, וכי ידוע לי על זכויותיי המלאות לפי החוק.
+          </span>
+        </label>
+        {errors.consent && <p id="consent-error" className="form-error">{errors.consent}</p>}
       </div>
 
       <button type="submit" className="form-submit" disabled={status === 'sending'}>

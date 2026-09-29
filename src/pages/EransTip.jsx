@@ -52,7 +52,7 @@ export default function EransTip() {
         </div>
       </section>
 
-      <CTASection title="רוצים לשמוע עוד טיפים?" />
+      <CTASection />
     </>
   )
 }

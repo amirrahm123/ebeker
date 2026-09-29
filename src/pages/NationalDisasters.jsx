@@ -116,7 +116,7 @@ export default function NationalDisasters() {
         </div>
       </section>
 
-      <CTASection title="נפגעתם באסון?" />
+      <CTASection />
     </>
   )
 }

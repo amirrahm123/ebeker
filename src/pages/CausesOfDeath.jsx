@@ -159,7 +159,7 @@ export default function CausesOfDeath() {
         </div>
       </section>
 
-      <CTASection title="רוצים לדעת את האמת?" />
+      <CTASection />
     </>
   )
 }

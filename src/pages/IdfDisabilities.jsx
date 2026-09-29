@@ -200,7 +200,7 @@ export default function IdfDisabilities() {
         </div>
       </section>
 
-      <CTASection title='נכי צה"ל ומשרד הביטחון' />
+      <CTASection />
     </>
   )
 }

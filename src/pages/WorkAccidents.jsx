@@ -214,7 +214,7 @@ export default function WorkAccidents() {
         </div>
       </section>
 
-      <CTASection title="נפגעת בתאונת עבודה?" />
+      <CTASection />
     </>
   )
 }

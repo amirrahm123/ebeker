@@ -164,7 +164,7 @@ export default function PowerOfAttorney() {
         </div>
       </section>
 
-      <CTASection title="רוצים להכין ייפוי כוח מתמשך?" />
+      <CTASection />
     </>
   )
 }

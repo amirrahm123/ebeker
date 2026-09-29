@@ -177,7 +177,7 @@ export default function Insurance() {
         </div>
       </section>
 
-      <CTASection title="חברת הביטוח לא משלמת?" />
+      <CTASection />
     </>
   )
 }
