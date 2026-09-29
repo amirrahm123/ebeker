@@ -185,6 +185,7 @@ nav#navbar.scrolled {
      reads as glued to the bar's edge. 20px matches the row's optical margin. */
   padding-left: 20px;
 }
+.nav-duns a { display: block; line-height: 0; text-decoration: none; }
 .nav-duns img {
   height: 68px;
   width: auto;
@@ -965,7 +966,7 @@ nav#navbar.scrolled {
 .about-visual .big-text { font-size: 1rem; font-weight: 700; color: var(--color-text-muted); }
 
 /* ── CONTACT — light/cream section, matching the practice-area pages ── */
-#contact { background: #f8f6f1; }
+#contact { background: #f8f6f1; padding-bottom: 48px; }
 #contact .section-title { color: #1a2a4a; }
 #contact .section-sub { color: #4a5568; }
 .contact-wrap {
@@ -1472,6 +1473,7 @@ footer > * { position: relative; z-index: 1; width: 100%; }
 
   /* Sections */
   .section { padding: 52px 16px; }
+  #contact { padding-bottom: 32px; }
   .content-section { padding: 48px 16px; }
   .cta-section { padding: 44px 16px 32px; }
   .container { padding: 0; }
@@ -3906,7 +3908,6 @@ main#main-content:focus { outline: none; }
 
 /* Statement quote */
 .about-quote { padding-top: 80px; padding-bottom: 80px; gap: 22px; }
-.about-quote-icon { color: var(--about-gold); }
 .about-quote p {
   max-width: 980px; text-align: center;
   font-family: "Frank Ruhl Libre", "Heebo", serif; font-weight: 500;

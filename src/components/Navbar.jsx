@@ -72,7 +72,14 @@ export default function Navbar() {
               <img src="/pics/logo.avif" alt="ערן בקר - חברת עורכי דין" className="nav-logo-img" />
             </Link>
             <div className="nav-row-right nav-duns">
-              <img src="/pics/duns100-logo.webp" alt="DUNS 100 — מדורג בין המשרדים המובילים בישראל" />
+              <a
+                href="https://www.duns100.co.il/%D7%A2%D7%A8%D7%9F_%D7%91%D7%A7%D7%A8__%D7%97%D7%91%D7%A8%D7%AA_%D7%A2%D7%95%D7%A8%D7%9B%D7%99_%D7%93%D7%99%D7%9F"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="דירוג Dun's 100 של ערן בקר חברת עורכי דין"
+              >
+                <img src="/pics/duns100-logo.webp" alt="DUNS 100 — מדורג בין המשרדים המובילים בישראל" />
+              </a>
             </div>
             <button className={`hamburger ${mobileOpen ? 'open' : ''}`} onClick={toggleMobile} aria-label="תפריט">
               <span></span><span></span><span></span>

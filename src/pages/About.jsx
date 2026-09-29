@@ -158,10 +158,6 @@ export default function About() {
 
       {/* Statement quote */}
       <section className="about-section about-dark about-quote">
-        <svg className="about-quote-icon reveal" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" aria-hidden="true">
-          <path d="M10 7H6a2 2 0 00-2 2v4h5v5H4" />
-          <path d="M20 7h-4a2 2 0 00-2 2v4h5v5h-5" />
-        </svg>
         <p className="reveal">בשנים האחרונות בלט עו&quot;ד בקר גם בייצוג נפגעים ומשפחות הנספים באירועים בעלי משמעות לאומית וציבורית, בהם <span className="about-gold">אסון מירון</span> ואירועי <span className="about-gold">7 באוקטובר</span> מול המדינה והמוסד לביטוח לאומי. פעילות זו מציבה אותו בחזית המאבק למיצוי זכויותיהם של נפגעי אסונות המוניים ומשפחותיהם ומחזקת את מעמדו כאחד מעורכי הדין הבולטים בישראל בתחום נזקי הגוף והאחריות הציבורית.</p>
       </section>
 
