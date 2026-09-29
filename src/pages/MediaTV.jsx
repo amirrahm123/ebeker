@@ -93,7 +93,7 @@ export default function MediaTV() {
         </div>
       </section>
 
-      <CTASection title="רוצים לדבר עם עורך דין?" subtitle="ייעוץ ראשוני חינם — ללא עלות וללא התחייבות" />
+      <CTASection />
 
       {openVideo && <MediaModal item={openVideo} onClose={() => setOpenVideo(null)} />}
     </>

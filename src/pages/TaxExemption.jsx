@@ -187,7 +187,7 @@ export default function TaxExemption() {
         </div>
       </section>
 
-      <CTASection title="האם אתם זכאים לפטור ממס?" subtitle="ייעוץ ראשוני ללא עלות וללא התחייבות" />
+      <CTASection title="האם אתם זכאים לפטור ממס?" />
     </>
   )
 }

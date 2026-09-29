@@ -147,7 +147,7 @@ export default function Disabilities() {
             למשרדנו ניסיון משפטי עשיר ומוכח של כ-25 שנים בייצוג לקוחות בהצלחה כנגד המוסד לביטוח לאומי!
           </p>
           <p style={ctaPhoneLine}>
-            בכדי לברר מהן זכויותיכם התקשרו וקבעו שיחת ייעוץ או פגישה ללא עלות וללא התחייבות{' '}
+            בכדי לברר מהן זכויותיכם התקשרו וקבעו שיחת ייעוץ או פגישה ללא התחייבות{' '}
             <a href={site.phones.office.href} style={phoneLink}>{site.phones.office.display}</a>
           </p>
         </div>
@@ -187,7 +187,7 @@ export default function Disabilities() {
         </div>
       </section>
 
-      <CTASection title="זקוקים לעזרה במיצוי זכויות?" subtitle="ייעוץ ראשוני ללא עלות וללא התחייבות — פנו אלינו היום" />
+      <CTASection title="זקוקים לעזרה במיצוי זכויות?" />
     </>
   )
 }

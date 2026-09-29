@@ -73,7 +73,7 @@ export default function MediaRadio() {
         </div>
       </section>
 
-      <CTASection title="מעוניינים להתייעץ?" subtitle="פנו אלינו לייעוץ ראשוני ללא עלות — נשמח לעזור." />
+      <CTASection />
     </>
   )
 }

@@ -187,7 +187,7 @@ export default function Damages() {
             לעו״ד ערן בקר ניסיון משפטי של כ-25 שנים בהצלחה בתביעות נזיקין!
           </p>
           <p style={ctaPhoneLine}>
-            בכדי לברר מהן זכויותיכם התקשרו וקבעו שיחת ייעוץ או פגישה ללא עלות וללא התחייבות{' '}
+            בכדי לברר מהן זכויותיכם התקשרו וקבעו שיחת ייעוץ או פגישה ללא התחייבות{' '}
             <a href={site.phones.office.href} style={phoneLink}>{site.phones.office.display}</a>
           </p>
         </div>
@@ -260,7 +260,7 @@ export default function Damages() {
         </div>
       </section>
 
-      <CTASection title="נפגעתם? תנו לנו להילחם בשבילכם" subtitle="ייעוץ ראשוני ללא עלות וללא התחייבות" />
+      <CTASection title="נפגעתם? תנו לנו להילחם בשבילכם" />
     </>
   )
 }

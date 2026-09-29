@@ -1058,6 +1058,7 @@ nav#navbar.scrolled {
 .cta-section h2 { font-size: clamp(1.8rem, 3vw, 2.5rem); font-weight: 900; color: #ffffff; margin-bottom: 14px; text-shadow: 0 2px 8px rgba(0,0,0,0.7); }
 .cta-section h2::after { display: none; }
 .cta-section p { font-size: 1rem; color: #ffffff; opacity: .95; margin-bottom: 36px; max-width: 500px; margin-left: auto; margin-right: auto; text-shadow: 0 2px 8px rgba(0,0,0,0.7); }
+.cta-section h2.cta-title-solo { margin-bottom: 36px; }
 .cta-section .btn-outline-dark { color: #ffffff; border-color: rgba(255,255,255,0.8); }
 .cta-section .btn-outline-dark:hover { border-color: var(--color-accent); background: rgba(255,255,255,0.12); color: #ffffff; }
 .cta-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }

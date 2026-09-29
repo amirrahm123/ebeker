@@ -127,7 +127,7 @@ export default function PressTort() {
         </div>
       </section>
 
-      <CTASection title="רוצים לדבר עם עורך דין?" subtitle="ייעוץ ראשוני חינם — ללא עלות וללא התחייבות" />
+      <CTASection />
 
       {lightbox && <ZoomViewer src={lightbox} onClose={() => setLightbox(null)} />}
       {article && <ArticleModal item={article} onClose={() => setArticle(null)} />}

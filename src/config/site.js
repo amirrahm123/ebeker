@@ -61,6 +61,9 @@ export const site = {
 }
 
 /** Default message pre-filled in WhatsApp links. */
+/* The one approved consultation phrase. Used by every CTA; do not add cost wording. */
+export const CONSULT_PHRASE = 'ייעוץ ראשוני אישי ללא התחייבות'
+
 export const WHATSAPP_DEFAULT_TEXT = 'שלום, אני מעוניין/ת בייעוץ משפטי'
 
 /** Build a wa.me link to the office WhatsApp, optionally with pre-filled text. */

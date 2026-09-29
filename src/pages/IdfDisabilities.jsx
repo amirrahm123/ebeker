@@ -140,7 +140,7 @@ export default function IdfDisabilities() {
             מי שנפגע החל מיום 5.2.1988 בהיותו בחופשה מאושרת מהשירות יהיה זכאי לקבל את הזכויות האמורות בחוק, אם הפגיעה ארעה במסגרת 14 הימים הראשונים של החופשה ובעקבות הפגיעה נגרמה דרגת נכות בשיעור של 20% ומעלה.
           </p>
           <p style={ctaPhoneLine}>
-            לברור מהן זכויותיכם התקשרו וקבעו שיחת ייעוץ או פגישה ללא עלות וללא התחייבות{' '}
+            לברר מהן זכויותיכם התקשרו וקבעו שיחת ייעוץ או פגישה ללא התחייבות{' '}
             <a href={site.phones.office.href} style={phoneLink}>{site.phones.office.display}</a>
           </p>
         </div>
@@ -200,7 +200,7 @@ export default function IdfDisabilities() {
         </div>
       </section>
 
-      <CTASection title='נכי צה"ל ומשרד הביטחון' subtitle="ייעוץ ראשוני ללא עלות וללא התחייבות — פנו אלינו היום" />
+      <CTASection title='נכי צה"ל ומשרד הביטחון' />
     </>
   )
 }

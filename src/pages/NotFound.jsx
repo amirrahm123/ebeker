@@ -26,7 +26,7 @@ export default function NotFound() {
         </div>
       </section>
 
-      <CTASection title="רוצים לדבר עם עורך דין?" subtitle="ייעוץ ראשוני חינם — ללא עלות וללא התחייבות" />
+      <CTASection />
     </>
   )
 }

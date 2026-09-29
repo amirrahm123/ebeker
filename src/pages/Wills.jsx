@@ -138,7 +138,7 @@ export default function Wills() {
             לעו״ד ערן בקר ניסיון משפטי של כ-25 שנים בעריכת צוואות וצוו ירושה וקיום צוואה.
           </p>
           <p style={ctaPhoneLine}>
-            לברור מהן האופציות העומדות בפניכם התקשרו וקבעו שיחת ייעוץ או פגישה ללא עלות וללא התחייבות{' '}
+            לברר מהן האופציות העומדות בפניכם התקשרו וקבעו שיחת ייעוץ או פגישה ללא התחייבות{' '}
             <a href={site.phones.office.href} style={phoneLink}>{site.phones.office.display}</a>
           </p>
         </div>
@@ -206,7 +206,7 @@ export default function Wills() {
         </div>
       </section>
 
-      <CTASection title="יש לכם שאלה בנושא צוואה?" subtitle="ייעוץ ראשוני ללא עלות וללא התחייבות" />
+      <CTASection title="יש לכם שאלה בנושא צוואה?" />
     </>
   )
 }

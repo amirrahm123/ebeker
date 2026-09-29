@@ -137,7 +137,7 @@ export default function MediaLectures() {
         </div>
       </section>
 
-      <CTASection title="רוצים לדבר עם עורך דין?" subtitle="ייעוץ ראשוני חינם — ללא עלות וללא התחייבות" />
+      <CTASection />
 
       {zoomItem && <ZoomViewer src={encodeURI(BASE + zoomItem.file)} caption={zoomItem.desc} onClose={() => setZoomItem(null)} />}
       {videoSrc && <VideoModal src={videoSrc} onClose={() => setVideoSrc(null)} />}

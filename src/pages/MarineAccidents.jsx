@@ -196,7 +196,7 @@ export default function MarineAccidents() {
             לעו״ד ערן בקר ניסיון משפטי של כ-25 שנים בהצלחה בניהול תיקים של נפגעים מתאונות בים כתוצאה מכלי שייט.
           </div>
           <p style={ctaPhoneLine}>
-            לברור מהן זכויותיכם התקשרו וקבעו שיחת ייעוץ או פגישה ללא עלות וללא התחייבות{' '}
+            לברר מהן זכויותיכם התקשרו וקבעו שיחת ייעוץ או פגישה ללא התחייבות{' '}
             <a href={site.phones.office.href} style={phoneLink}>{site.phones.office.display}</a>
           </p>
         </div>
@@ -270,7 +270,7 @@ export default function MarineAccidents() {
         </div>
       </section>
 
-      <CTASection title="נפגעתם בתאונה ימית?" subtitle="ייעוץ ראשוני ללא עלות וללא התחייבות — פנו אלינו היום." />
+      <CTASection title="נפגעתם בתאונה ימית?" />
     </>
   )
 }

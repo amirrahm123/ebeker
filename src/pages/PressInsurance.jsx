@@ -58,7 +58,7 @@ export default function PressInsurance() {
         </div>
       </section>
 
-      <CTASection title="רוצים לדבר עם עורך דין?" subtitle="ייעוץ ראשוני חינם — ללא עלות וללא התחייבות" />
+      <CTASection />
 
       {lightbox && <ZoomViewer src={lightbox} onClose={() => setLightbox(null)} />}
     </>

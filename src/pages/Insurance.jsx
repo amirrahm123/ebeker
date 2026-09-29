@@ -101,7 +101,7 @@ export default function Insurance() {
             לעו״ד ערן בקר ניסיון משפטי של כ-25 שנים בהצלחה במימוש זכויות מכוח פוליסות ביטוח מול חברות הביטוח!
           </div>
           <p style={ctaPhoneLine}>
-            בכדי לברר מהן זכויותיכם התקשרו וקבעו שיחת ייעוץ או פגישה ללא עלות וללא התחייבות{' '}
+            בכדי לברר מהן זכויותיכם התקשרו וקבעו שיחת ייעוץ או פגישה ללא התחייבות{' '}
             <a href={site.phones.office.href} style={phoneLink}>{site.phones.office.display}</a>
           </p>
         </div>
@@ -177,7 +177,7 @@ export default function Insurance() {
         </div>
       </section>
 
-      <CTASection title="חברת הביטוח לא משלמת?" subtitle="ייעוץ ראשוני ללא עלות וללא התחייבות — פנו אלינו היום" />
+      <CTASection title="חברת הביטוח לא משלמת?" />
     </>
   )
 }

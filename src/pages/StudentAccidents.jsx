@@ -153,7 +153,7 @@ export default function StudentAccidents() {
             לעו״ד ערן בקר ניסיון משפטי של כ-25 שנים בהצלחה בתביעות מכוח פוליסת תלמידים כנגד חברות הביטוח!
           </p>
           <p style={ctaPhoneLine}>
-            בכדי לברר מהן זכויותיכם התקשרו וקבעו שיחת ייעוץ או פגישה ללא עלות וללא התחייבות{' '}
+            בכדי לברר מהן זכויותיכם התקשרו וקבעו שיחת ייעוץ או פגישה ללא התחייבות{' '}
             <a href={site.phones.office.href} style={phoneLink}>{site.phones.office.display}</a>
           </p>
         </div>
@@ -219,7 +219,7 @@ export default function StudentAccidents() {
         </div>
       </section>
 
-      <CTASection title="ילדכם נפגע? אנחנו לצידכם" subtitle="ייעוץ ראשוני ללא עלות וללא התחייבות" />
+      <CTASection title="ילדכם נפגע? אנחנו לצידכם" />
     </>
   )
 }

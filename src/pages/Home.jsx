@@ -4,7 +4,7 @@ import useRevealOnScroll from '../hooks/useRevealOnScroll'
 import TestimonialsCarousel from '../components/TestimonialsCarousel'
 import ContactForm from '../components/ContactForm'
 import MediaCards from '../components/MediaCards'
-import { site, whatsappLink } from '../config/site'
+import { site, whatsappLink, CONSULT_PHRASE } from '../config/site'
 
 // Inline SVG icon content per practice area — uses currentColor so card hover
 // restyles it from gold to white. Common viewBox of 0 0 40 40.
@@ -384,7 +384,7 @@ export default function Home() {
               <p className="section-sub">כיסוי משפטי מקיף לכל נפגע גוף — אנחנו כאן בכל שלב של הדרך.</p>
               <div className="teal-rule"></div>
             </div>
-            <a href="#contact" className="areas-intro-cta">לייעוץ ראשוני חינם &#8592;</a>
+            <a href="#contact" className="areas-intro-cta">ל{CONSULT_PHRASE} &#8592;</a>
           </div>
           <div className="areas-grid stagger-reveal">
             {practiceAreas.map((area, i) => (
@@ -471,7 +471,7 @@ export default function Home() {
       <section className="section section-alt" id="contact">
         <div className="container">
           <div className="reveal">
-            <h2 className="section-title">צרו קשר — הייעוץ הראשון חינם</h2>
+            <h2 className="section-title">צרו קשר — {CONSULT_PHRASE}</h2>
             <p className="section-sub">מלאו את הטופס ונחזור אליכם בהקדם, או התקשרו ישירות.</p>
             <div className="teal-rule"></div>
           </div>

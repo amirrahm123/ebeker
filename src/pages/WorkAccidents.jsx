@@ -136,7 +136,7 @@ export default function WorkAccidents() {
             לעו״ד ערן בקר ניסיון משפטי של כ-25 שנים בהצלחה בתביעות ביטוח לאומי!
           </div>
           <p style={ctaPhoneLine}>
-            בכדי לברר מהן זכויותיכם התקשרו וקבעו שיחת ייעוץ או פגישה ללא עלות וללא התחייבות{' '}
+            בכדי לברר מהן זכויותיכם התקשרו וקבעו שיחת ייעוץ או פגישה ללא התחייבות{' '}
             <a href={site.phones.office.href} style={phoneLink}>{site.phones.office.display}</a>
           </p>
         </div>
@@ -214,7 +214,7 @@ export default function WorkAccidents() {
         </div>
       </section>
 
-      <CTASection title="נפגעת בתאונת עבודה?" subtitle="ייעוץ ראשוני ללא עלות וללא התחייבות — פנו אלינו היום" />
+      <CTASection title="נפגעת בתאונת עבודה?" />
     </>
   )
 }

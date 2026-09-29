@@ -124,7 +124,7 @@ export default function CausesOfDeath() {
             לעו״ד ערן בקר ניסיון משפטי של כ-25 שנים בהצלחה בניהול תיקי תלויים או עזבון עקב תאונות קטלניות.
           </div>
           <p style={ctaPhoneLine}>
-            לברור מהן זכויותיכם התקשרו וקבעו שיחת ייעוץ או פגישה ללא עלות וללא התחייבות{' '}
+            לברר מהן זכויותיכם התקשרו וקבעו שיחת ייעוץ או פגישה ללא התחייבות{' '}
             <a href={site.phones.office.href} style={phoneLink}>{site.phones.office.display}</a>
           </p>
           <p style={bodyDark}>
@@ -153,13 +153,13 @@ export default function CausesOfDeath() {
             אם חלילה איבדתם את יקירכם — אל תהססו לפנות לייעוץ משפטי במשרדנו.
           </div>
           <p style={ctaPhoneLine}>
-            לקביעת שיחת ייעוץ או פגישה ללא עלות וללא התחייבות{' '}
+            לקביעת שיחת ייעוץ או פגישה ללא התחייבות{' '}
             <a href={site.phones.office.href} style={phoneLink}>{site.phones.office.display}</a>
           </p>
         </div>
       </section>
 
-      <CTASection title="רוצים לדעת את האמת?" subtitle="אנחנו לצידכם בהליך הקשה הזה — ייעוץ ראשוני חינם" />
+      <CTASection title="רוצים לדעת את האמת?" />
     </>
   )
 }

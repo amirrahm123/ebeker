@@ -104,7 +104,7 @@ export default function PowerOfAttorney() {
             לעו״ד ערן בקר ניסיון של כ-25 שנים בהצלחה בניהול בקשות למינוי אפוטרופוס מול בית המשפט המוסמך, וכן למשרדנו ניסיון בעריכת ייפוי כוח מתמשך — מאז שאפשרות זו חוקקה בחוק.
           </div>
           <p style={ctaPhoneLine}>
-            לברור מהן האופציות העומדות בפניכם התקשרו וקבעו שיחת ייעוץ או פגישה ללא עלות וללא התחייבות{' '}
+            לברר מהן האופציות העומדות בפניכם התקשרו וקבעו שיחת ייעוץ או פגישה ללא התחייבות{' '}
             <a href={site.phones.office.href} style={phoneLink}>{site.phones.office.display}</a>
           </p>
         </div>
@@ -164,7 +164,7 @@ export default function PowerOfAttorney() {
         </div>
       </section>
 
-      <CTASection title="רוצים להכין ייפוי כוח מתמשך?" subtitle="ייעוץ ראשוני ללא עלות וללא התחייבות" />
+      <CTASection title="רוצים להכין ייפוי כוח מתמשך?" />
     </>
   )
 }

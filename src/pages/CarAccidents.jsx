@@ -150,7 +150,7 @@ export default function CarAccidents() {
             לעו״ד ערן בקר ניסיון משפטי של כ-25 שנים בהצלחה בתביעות פיצויים לנפגעי תאונות דרכים כנגד חברות הביטוח!
           </p>
           <p style={ctaPhoneLine}>
-            בכדי לברר מהן זכויותיכם התקשרו וקבעו שיחת ייעוץ או פגישה ללא עלות וללא התחייבות{' '}
+            בכדי לברר מהן זכויותיכם התקשרו וקבעו שיחת ייעוץ או פגישה ללא התחייבות{' '}
             <a href={site.phones.office.href} style={phoneLink}>{site.phones.office.display}</a>
           </p>
         </div>
@@ -224,12 +224,12 @@ export default function CarAccidents() {
       <section style={sectionDark}>
         <div style={container} className="reveal">
           <div style={goldCalloutDark}>
-            אם נפגעת בתאונת דרכים, אתה מוזמן לפנות לפגישת ייעוץ ראשוני במשרדנו, ללא עלות, על מנת שנוכל להעריך את מלוא הזכויות העומדות בפניך.
+            אם נפגעת בתאונת דרכים, אתה מוזמן לפנות לפגישת ייעוץ ראשוני במשרדנו על מנת שנוכל להעריך את מלוא הזכויות העומדות בפניך.
           </div>
         </div>
       </section>
 
-      <CTASection title="נפגעת בתאונת דרכים?" subtitle="ייעוץ ראשוני ללא עלות וללא התחייבות — פנו אלינו היום" />
+      <CTASection title="נפגעת בתאונת דרכים?" />
     </>
   )
 }
