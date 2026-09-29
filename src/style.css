@@ -1333,14 +1333,31 @@ footer::before {
 footer > * { position: relative; z-index: 1; width: 100%; }
 .footer-inner {
   max-width: 1240px; margin: 0 auto;
-  display: grid; grid-template-columns: 2fr 1fr 1fr;
+  display: grid; grid-template-columns: 1fr 1fr;
+  align-items: start;
   gap: 48px; margin-bottom: 44px;
 }
 .footer-brand .fl { font-size: 1.2rem; font-weight: 900; color: #ffffff; margin-bottom: 10px; text-shadow: 0 1px 4px rgba(0,0,0,0.8); }
-.footer-brand p { font-size: 0.85rem; color: #ffffff; opacity: .92; line-height: 1.75; margin-top: 10px; text-shadow: 0 1px 4px rgba(0,0,0,0.8); }
-.footer-col h4 { font-size: 0.7rem; font-weight: 800; color: var(--color-accent); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 16px; text-shadow: 0 1px 4px rgba(0,0,0,0.8); }
+.footer-brand p { font-size: 0.85rem; color: #ffffff; opacity: .92; line-height: 1.75; margin-bottom: 9px; text-shadow: 0 1px 4px rgba(0,0,0,0.8); }
+.footer-navigate {
+  display: inline-block; font-size: 0.85rem; font-weight: 700; color: var(--color-accent);
+  text-decoration: underline; text-underline-offset: 3px; margin-bottom: 9px;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.8); transition: color .2s;
+}
+.footer-navigate:hover { color: #ffffff; }
+.footer-hours { margin-top: 18px; }
+.footer-hours h4, .footer-col h4 { font-size: 0.7rem; font-weight: 800; color: var(--color-accent); text-transform: uppercase; margin-bottom: 12px; text-shadow: 0 1px 4px rgba(0,0,0,0.8); }
+.footer-hours p { font-size: 0.85rem; color: #ffffff; opacity: .92; line-height: 1.75; margin-bottom: 4px; text-shadow: 0 1px 4px rgba(0,0,0,0.8); }
 .footer-col a, .footer-col p { display: block; font-size: 0.88rem; color: #ffffff; opacity: .92; text-decoration: none; margin-bottom: 9px; line-height: 1.6; transition: color .2s, opacity .2s, padding-right .3s; text-shadow: 0 1px 4px rgba(0,0,0,0.8); }
 .footer-col a:hover { color: var(--color-accent); opacity: 1; padding-right: 4px; }
+.footer-social { display: flex; gap: 10px; margin-top: 14px; }
+.footer-social-btn {
+  width: 34px; height: 34px; border-radius: 50%;
+  background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.2);
+  color: #ffffff; display: flex; align-items: center; justify-content: center;
+  transition: background .2s, border-color .2s, color .2s;
+}
+.footer-social-btn:hover { background: rgba(201,168,76,.15); border-color: var(--color-accent); color: var(--color-accent); }
 .footer-divider { border: none; border-top: 1px solid rgba(255,255,255,.22); margin: 0 0 22px; }
 .footer-bottom { max-width: 1240px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
 .footer-bottom p { font-size: 0.78rem; color: #ffffff; opacity: .85; text-shadow: 0 1px 4px rgba(0,0,0,0.8); }
@@ -1400,8 +1417,6 @@ footer > * { position: relative; z-index: 1; width: 100%; }
 }
 @media (max-width: 1000px) {
   .areas-grid { grid-template-columns: repeat(2, 1fr); }
-  .footer-inner { grid-template-columns: 1fr 1fr; }
-  .footer-brand { grid-column: 1 / -1; }
   .attorney-card-featured { flex-direction: column; }
   .attorney-card-featured .attorney-card-photo { width: 100%; min-height: 280px; }
   .attorney-card-featured .attorney-card-body { text-align: center; padding: 28px 24px; }
@@ -3999,25 +4014,6 @@ a.about-chip:focus-visible { outline: 3px solid var(--about-gold); outline-offse
   .about-cta p { font-size: 17px; }
   .about-cta-buttons { flex-direction: column; align-self: stretch; }
   .about-btn { text-align: center; }
-}
-
-/* === Footer link bar ===
-   First row inside the shared footer. Uses the footer's own background and
-   the same 1240px content width as .footer-inner / .footer-bottom. */
-.footer-linkbar {
-  max-width: 1240px; margin: 0 auto 40px; padding: 0 0 22px;
-  display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 10px 18px;
-  border-bottom: 1px solid rgba(201,168,76,.45);
-}
-.footer-linkbar a {
-  font-size: 16px; font-weight: 500; color: #fff; text-decoration: none;
-  text-shadow: 0 1px 4px rgba(0,0,0,0.8); transition: color .2s;
-}
-.footer-linkbar a:hover, .footer-linkbar a:focus-visible { color: var(--color-accent); }
-.footer-linkbar-sep { color: rgba(201,168,76,.7); }
-@media (max-width: 768px) {
-  .footer-linkbar { gap: 10px 22px; margin-bottom: 28px; padding-bottom: 18px; }
-  .footer-linkbar-sep { display: none; }
 }
 
 /* === Legal Team page ===
