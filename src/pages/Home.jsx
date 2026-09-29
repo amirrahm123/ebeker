@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types -- this codebase does not use PropTypes anywhere */
 import { useEffect, useState, useRef } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import useRevealOnScroll from '../hooks/useRevealOnScroll'
@@ -216,6 +217,37 @@ function BlSymbol() {
     </svg>
   )
 }
+
+// Line icons for the "פרטי המשרד" contact rows — 24×24, shared stroke width.
+const contactIconPaths = {
+  pin: <><path d="M12 21.5S5.5 14.1 5.5 9.4A6.5 6.5 0 0 1 18.5 9.4c0 4.7-6.5 12.1-6.5 12.1Z" /><circle cx="12" cy="9.4" r="2.4" /></>,
+  phone: <path d="M6.7 10.9c1.3 2.7 3.6 5 6.3 6.3l2-2c.3-.3.7-.4 1.1-.2 1.1.4 2.3.6 3.5.6.6 0 1 .5 1 1.1v3.2c0 .6-.4 1.1-1 1.1C10.5 21 3 13.5 3 4.4c0-.6.5-1 1.1-1h3.2c.6 0 1.1.4 1.1 1 0 1.2.2 2.4.6 3.5.2.4.1.8-.2 1.1l-2.1 2Z" />,
+  chat: <path d="M20.5 11.6c0 4.4-3.8 8-8.5 8-1.2 0-2.4-.2-3.4-.7L4 20.5l1.6-4.4c-.6-1.1-1-2.4-1-3.7 0-4.4 3.8-8 8.5-8s8.5 3.5 8.5 8.2Z" />,
+  fax: <><rect x="4.5" y="9.5" width="15" height="9" rx="1.4" /><path d="M7 9.5V5h10v4.5" /><path d="M8 14.8h3.2" /><rect x="14.7" y="13.8" width="3" height="4" /></>,
+  mail: <><rect x="3.5" y="5.5" width="17" height="13" rx="1.8" /><path d="m4 7 8 6.2L20 7" /></>,
+}
+function ContactIcon({ type }) {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      {contactIconPaths[type]}
+    </svg>
+  )
+}
+function ChevronIcon() {
+  return (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M15 6l-6 6 6 6" />
+    </svg>
+  )
+}
+
+const contactRows = [
+  { type: 'pin', label: 'כתובת', value: site.address.full },
+  { type: 'phone', label: 'טלפון רב קווי', value: site.phones.office.display, href: site.phones.office.href },
+  { type: 'chat', label: 'וואטסאפ', value: site.phones.whatsapp.display, href: whatsappLink(''), external: true },
+  { type: 'fax', label: 'פקס', value: site.phones.fax.display },
+  { type: 'mail', label: 'דוא"ל', value: site.email, href: `mailto:${site.email}` },
+]
 
 const practiceAreas = [
   {
@@ -478,40 +510,36 @@ export default function Home() {
           <div className="contact-wrap">
             <div className="contact-info-box reveal">
               <h3>פרטי המשרד</h3>
-              <div className="contact-item">
-                <div className="contact-icon">&#128205;</div>
-                <div className="contact-detail">
-                  <span className="clabel">כתובת</span>
-                  <span className="cvalue">{site.address.full}</span>
-                </div>
-              </div>
-              <div className="contact-item">
-                <div className="contact-icon">&#128222;</div>
-                <div className="contact-detail">
-                  <span className="clabel">טלפון רב קווי</span>
-                  <a href={site.phones.office.href} className="cvalue">{site.phones.office.display}</a>
-                </div>
-              </div>
-              <div className="contact-item">
-                <div className="contact-icon">&#128172;</div>
-                <div className="contact-detail">
-                  <span className="clabel">וואטסאפ</span>
-                  <a href={whatsappLink('')} target="_blank" rel="noopener noreferrer" className="cvalue">{site.phones.whatsapp.display}</a>
-                </div>
-              </div>
-              <div className="contact-item">
-                <div className="contact-icon">&#128224;</div>
-                <div className="contact-detail">
-                  <span className="clabel">פקס</span>
-                  <span className="cvalue">{site.phones.fax.display}</span>
-                </div>
-              </div>
-              <div className="contact-item">
-                <div className="contact-icon">&#9993;&#65039;</div>
-                <div className="contact-detail">
-                  <span className="clabel">דוא"ל</span>
-                  <a href={`mailto:${site.email}`} className="cvalue">{site.email}</a>
-                </div>
+              <div className="info-list">
+                {contactRows.map(row => {
+                  const icon = <span className="info-row-icon"><ContactIcon type={row.type} /></span>
+                  const body = (
+                    <span className="info-row-body">
+                      <span className="info-row-label">{row.label}</span>
+                      <span className="info-row-value">{row.value}</span>
+                    </span>
+                  )
+                  if (row.href) {
+                    return (
+                      <a
+                        key={row.type}
+                        href={row.href}
+                        className="info-row info-row-link"
+                        {...(row.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                      >
+                        {icon}
+                        {body}
+                        <span className="info-row-chevron"><ChevronIcon /></span>
+                      </a>
+                    )
+                  }
+                  return (
+                    <div key={row.type} className="info-row">
+                      {icon}
+                      {body}
+                    </div>
+                  )
+                })}
               </div>
             </div>
             <div className="contact-form-box reveal" style={{ transitionDelay: '.15s' }}>
