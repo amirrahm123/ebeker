@@ -24,6 +24,7 @@ export default function Footer() {
         <div className="footer-col">
           <h4>תחומים</h4>
           <Link to="/damages">נזיקין כללי</Link>
+          <Link to="/national-disasters">אסונות לאומיים</Link>
           <Link to="/medical-malpractice">רשלנות רפואית</Link>
           <Link to="/insurance">ביטוח</Link>
           <Link to="/marine-accidents">תאונות ימיות</Link>
