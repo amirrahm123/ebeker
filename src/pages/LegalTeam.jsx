@@ -117,8 +117,7 @@ const attorneys = [
       'הסמכה מטעם משרד המשפטים- האפוטרופוס הכללי - עריכת ייפוי כוח מתמשך, הנחיות מקדימות לצורך מינוי אפוטרופוס ומסמך הבעת רצון על פי חוק.',
       'הכשרה בדיני נזיקין וביטוח - לשכת עורכי הדין',
     ],
-    // TODO: Dafna's email – waiting for the client
-    contact: { email: '', phone: site.phones.office.display, fax: site.phones.fax.display },
+    contact: { email: 'dafna@ebeker.co.il', phone: site.phones.office.display, fax: site.phones.fax.display },
   },
   {
     name: 'עו"ד ריצ\'רד פרדגיים',
