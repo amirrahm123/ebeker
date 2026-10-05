@@ -1,3 +1,39 @@
+/* Heebo, self-hosted (variable, weights 300-900). Subsets match Google's unicode-range split.
+   "Heebo Fallback" is Arial scaled to Heebo's metrics (measured from the font files), so the
+   swap from fallback to Heebo doesn't reflow the page (CLS). */
+@font-face {
+  font-family: 'Heebo';
+  font-style: normal;
+  font-weight: 300 900;
+  font-display: swap;
+  src: url('/fonts/heebo-hebrew.woff2') format('woff2');
+  unicode-range: U+0307-0308, U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F;
+}
+@font-face {
+  font-family: 'Heebo';
+  font-style: normal;
+  font-weight: 300 900;
+  font-display: swap;
+  src: url('/fonts/heebo-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Heebo';
+  font-style: normal;
+  font-weight: 300 900;
+  font-display: swap;
+  src: url('/fonts/heebo-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Heebo Fallback';
+  src: local('Arial'), local('Arimo'), local('Liberation Sans'), local('Helvetica');
+  size-adjust: 106.6%;
+  ascent-override: 98.3%;
+  descent-override: 39.5%;
+  line-gap-override: 0%;
+}
+
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
 /* ══════════════════════════════════════
@@ -32,7 +68,7 @@
 
 html { scroll-behavior: smooth; }
 body {
-  font-family: 'Heebo', sans-serif;
+  font-family: 'Heebo', 'Heebo Fallback', sans-serif;
   background: var(--color-bg);
   color: var(--color-text);
   overflow-x: hidden;
@@ -1028,7 +1064,7 @@ nav#navbar.scrolled {
 .form-group input, .form-group textarea {
   width: 100%; padding: 12px 16px;
   border: 1.5px solid rgba(26,42,74,.2); border-radius: 6px;
-  font-family: 'Heebo', sans-serif; font-size: 0.93rem;
+  font-family: 'Heebo', 'Heebo Fallback', sans-serif; font-size: 0.93rem;
   color: #1a2a4a; background: #ffffff;
   transition: border-color .3s, box-shadow .3s; direction: rtl;
 }
@@ -1042,7 +1078,7 @@ nav#navbar.scrolled {
   width: 100%; padding: 10px 24px;
   background: var(--color-btn-bg);
   color: var(--color-btn-text);
-  font-family: 'Heebo', sans-serif; font-size: 1rem; font-weight: 900;
+  font-family: 'Heebo', 'Heebo Fallback', sans-serif; font-size: 1rem; font-weight: 900;
   border: none; border-radius: 6px; cursor: pointer; margin-top: 6px;
   transition: transform .3s, box-shadow .3s;
 }
