@@ -348,10 +348,20 @@ const CARD_W = 287.7
 const GAP = 16
 const AUTOPLAY_MS = 4500
 
+/* clientWidth, not innerWidth: innerWidth counts the scrollbar, but the
+   hero copy is offset by right: 5% of the narrower layout width. Using
+   innerWidth overestimates the room and the carousel overflows. */
+function measureLayout() {
+  const w = typeof document === 'undefined' ? 1920 : document.documentElement.clientWidth
+  return { slidesPerView: w >= 1520 ? 3 : w >= 1185 ? 2 : 1, stacked: w < 901 }
+}
+
 export default function MediaCards() {
   const [index, setIndex] = useState(0)
-  const [slidesPerView, setSlidesPerView] = useState(3)
-  const [stacked, setStacked] = useState(false)
+  // Seeded from the real viewport so the first paint already has the final
+  // layout — starting from desktop defaults made the mobile hero jump (CLS).
+  const [slidesPerView, setSlidesPerView] = useState(() => measureLayout().slidesPerView)
+  const [stacked, setStacked] = useState(() => measureLayout().stacked)
   const [selected, setSelected] = useState(null)
   const [activeTab, setActiveTab] = useState('video')
   const [hovered, setHovered] = useState(false)
@@ -362,12 +372,9 @@ export default function MediaCards() {
 
   useEffect(() => {
     const update = () => {
-      // clientWidth, not innerWidth: innerWidth counts the scrollbar, but the
-      // hero copy is offset by right: 5% of the narrower layout width. Using
-      // innerWidth overestimates the room and the carousel overflows.
-      const w = document.documentElement.clientWidth
-      setSlidesPerView(w >= 1520 ? 3 : w >= 1185 ? 2 : 1)
-      setStacked(w < 901)
+      const m = measureLayout()
+      setSlidesPerView(m.slidesPerView)
+      setStacked(m.stacked)
     }
     update()
     window.addEventListener('resize', update)
@@ -453,7 +460,7 @@ export default function MediaCards() {
 
         <div className="mc-viewport">
           <div className="mc-track" style={trackStyle}>
-            {cards.map((c) => (
+            {cards.map((c, ci) => (
               <button
                 type="button"
                 key={c.id}
@@ -464,7 +471,7 @@ export default function MediaCards() {
               >
                 <div className={`mc-thumb${c.thumbBg ? ' mc-thumb--light' : ''}`} style={c.thumbBg ? { background: c.thumbBg } : undefined}>
                   {c.thumbKind === 'image' ? (
-                    <img src={c.thumbnail} alt={c.title} className={`mc-thumb-media${c.thumbBg ? ' mc-thumb-media--contain' : ''}`} />
+                    <img src={c.thumbnail} alt={c.title} loading={ci === 0 ? 'eager' : 'lazy'} fetchpriority={ci === 0 ? 'high' : undefined} className={`mc-thumb-media${c.thumbBg ? ' mc-thumb-media--contain' : ''}`} />
                   ) : c.thumbKind === 'video' ? (
                     <video src={c.thumbnail} poster={c.poster} className="mc-thumb-media" muted playsInline preload="metadata" />
                   ) : (

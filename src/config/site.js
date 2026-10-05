@@ -36,7 +36,7 @@ export const site = {
   /** Logo path (under /public). Also used for JSON-LD. */
   logo: '/pics/logo.avif',
   /** Default Open Graph image (under /public). */
-  ogImage: '/pics/eran-becker-about.webp',
+  ogImage: '/pics/og-image.jpg',
 
   mapsEmbedUrl: 'https://www.google.com/maps?q=%D7%94%D7%92%D7%A2%D7%AA%D7%95%D7%9F+26,+%D7%A0%D7%94%D7%A8%D7%99%D7%94&output=embed',
 

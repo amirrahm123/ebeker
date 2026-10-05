@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useLayoutEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { getConsent, setConsent, onConsentChange, OPEN_COOKIE_SETTINGS_EVENT } from '../lib/consent'
 
@@ -18,7 +18,9 @@ export default function CookieBanner() {
     return () => { window.removeEventListener(OPEN_COOKIE_SETTINGS_EVENT, show); off() }
   }, [])
 
-  useEffect(() => {
+  // Layout effect: the floating buttons must already be offset on first paint,
+  // or they jump when the banner opens (CLS).
+  useLayoutEffect(() => {
     document.body.classList.toggle('cookie-banner-open', open)
     if (!open) { document.body.style.removeProperty('--cookie-banner-h'); return }
     const el = document.querySelector('.cookie-banner')
