@@ -1850,25 +1850,34 @@ footer > * { position: relative; z-index: 1; width: 100%; }
 .testi-arr-next { left: -8px; }
 
 /* Dots */
+/* Dots are 24x24 buttons (WCAG 2.2 target size) that draw the small visible dot
+   via background-clip: content-box; the negative margin keeps the old layout. */
 .testi-dots {
   display: flex;
-  gap: 10px;
+  gap: 0;
   justify-content: center;
-  margin-top: 28px;
+  margin-top: 20px;
+  margin-bottom: -8px;
 }
 .testi-dot {
+  box-sizing: content-box;
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  padding: 0;
+  padding: 8px;
   background: rgba(201,168,76,0.25);
+  background-clip: content-box;
   border: none;
   cursor: pointer;
   transition: all 0.3s ease;
 }
 .testi-dot.active {
   background: #c9a84c;
-  transform: scale(1.45);
+  background-clip: content-box;
+  /* 11.6px dot + 2*6.2px padding = 24px; no transform, so neighbours' hit areas don't overlap */
+  width: 11.6px;
+  height: 11.6px;
+  padding: 6.2px;
 }
 
 @media (max-width: 900px) {
@@ -2878,7 +2887,7 @@ img { max-width: 100%; height: auto; }
   direction: rtl;
 }
 .mc-in-hero .mc-viewport { padding: 6px 0 10px; }
-.mc-in-hero .mc-dots { margin-top: 14px; }
+.mc-in-hero .mc-dots { margin-top: 5px; }
 /* 3 lines instead of 5 — keeps the card short enough to clear the nav
    at the top and the banner edge at the bottom. */
 .mc-in-hero .mc-card-desc { -webkit-line-clamp: 3; }
@@ -3471,22 +3480,26 @@ img { max-width: 100%; height: auto; }
 .mc-dots {
   display: flex;
   justify-content: center;
-  gap: 6px;
-  margin-top: 20px;
+  gap: 0;
+  margin-top: 11px;
+  margin-bottom: -9px;
 }
 .mc-dot {
+  box-sizing: content-box;
   width: 6px;
   height: 6px;
   border-radius: 50%;
   background: rgba(255,255,255,0.2);
+  background-clip: content-box;
   border: none;
-  padding: 0;
+  padding: 9px;
   cursor: pointer;
   transition: background .3s ease, width .3s ease, border-radius .3s ease;
 }
-.mc-dot:hover { background: rgba(255,255,255,0.4); }
+.mc-dot:hover { background-color: rgba(255,255,255,0.4); }
 .mc-dot.active {
   background: #c9a84c;
+  background-clip: content-box;
   width: 18px;
   border-radius: 3px;
 }
@@ -3842,10 +3855,7 @@ main#main-content:focus { outline: none; }
 
 /* ── Carousel dot hit areas (§7): keep the small visual dot, add a ≥24×24
    invisible hit area via a pseudo-element so the button itself stays tiny. ── */
-.mc-dot, .testi-dot { position: relative; }
-.mc-dot::before, .testi-dot::before {
-  content: ''; position: absolute; inset: -9px; /* 6px dot + 9px*2 ≈ 24px */
-}
+/* (the dot buttons are themselves 24px tall — see .mc-dot / .testi-dot) */
 
 /* === About page ===
    Full-width sections alternating dark navy / cream / sand.

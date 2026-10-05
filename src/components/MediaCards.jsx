@@ -467,7 +467,6 @@ export default function MediaCards() {
                 className={`mc-card mc-card-${c.type}`}
                 style={cardStyle}
                 onClick={() => openCard(c)}
-                aria-label={`${c.title} — פתיחת ${c.type === 'article' ? 'כתבה' : 'וידאו'}`}
               >
                 <div className={`mc-thumb${c.thumbBg ? ' mc-thumb--light' : ''}`} style={c.thumbBg ? { background: c.thumbBg } : undefined}>
                   {c.thumbKind === 'image' ? (
