@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import emailjs from '@emailjs/browser'
 import { site, whatsappLink } from '../config/site'
+import { trackEvent } from '../lib/analytics'
 
 const EMPTY = { fname: '', lname: '', phone: '', email: '', message: '', company: '' }
 
@@ -73,6 +74,7 @@ export default function ContactForm() {
         { publicKey: site.emailjs.publicKey }
       )
       setStatus('success')
+      trackEvent('generate_lead', { form_name: 'contact' })
     } catch (err) {
       console.error('EmailJS send failed:', err?.status, err?.text || err?.message)
       setStatus('error')
