@@ -100,7 +100,7 @@ const attorneys = [
   {
     name: 'עו"ד דפנה סודרי',
     title: 'עורכת דין',
-    photo: '/pics/03_הצוות_המשפטי/dafna.jpg',
+    photo: '/pics/03_הצוות_המשפטי/dafna.webp',
     shortBio: 'עורכת הדין סודרי התמחתה בבית משפט השלום עכו בתחום האזרחי. בהמשך עבדה בבית משפט השלום בקריות כעוזרת משפטית ומגשרת בתחום האזרחי לרבות נזקי גוף ותביעות ביטוח בטרם הצטרפה לחברת עורכי הדין בקר. בשנים האחרונות עובדת כעו"ד בחברת עורכי הדין בקר ועוסקת בתחום נזקי הגוף בעיקר - תאונות דרכים וביטוח לאומי.',
     shortRoles: ['נזקי גוף ותביעות ביטוח', 'תאונות דרכים', 'ביטוח לאומי'],
     fullBio: [
@@ -122,7 +122,7 @@ const attorneys = [
   {
     name: 'עו"ד ריצ\'רד פרדגיים',
     title: 'עורך דין',
-    photo: '/pics/03_הצוות_המשפטי/richard-fardgaim.jpg',
+    photo: '/pics/03_הצוות_המשפטי/richard-fardgaim.webp',
     shortBio: 'עורך הדין ריצ\'רד התמחה במשרד פרטי בתחום האזרחי לרבות נזקי גוף ותביעות ביטוח בטרם הצטרף לחברת עורכי הדין בקר. בשנה האחרונה עובד כעו"ד בחברת עורכי הדין בקר ועוסק בתחום נזקי הגוף בעיקר - תאונות דרכים וביטוח לאומי.',
     shortRoles: ['נזקי גוף ותביעות ביטוח', 'תאונות דרכים', 'ביטוח לאומי'],
     fullBio: [
@@ -178,7 +178,7 @@ function TeamCard({ attorney, onOpen }) {
   return (
     <button type="button" className="team-card reveal" onClick={() => onOpen(attorney)}>
       <div className="team-card-photo-wrap">
-        <img src={attorney.photo} alt={attorney.name} className="team-card-photo" />
+        <img src={attorney.photo} alt={attorney.name} className="team-card-photo" loading="lazy" decoding="async" />
       </div>
       <div className="team-card-body">
         <div className="team-card-name">{attorney.name}</div>
