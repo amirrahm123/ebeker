@@ -26,7 +26,7 @@ export const site = {
 
   phones: {
     office: { display: '04-9001056', href: 'tel:049001056', e164: '+97249001056' },
-    whatsapp: { display: '052-2611850', number: '9720522611850' },
+    whatsapp: { display: '050-363-6922', number: '972503636922' },
     fax: { display: '04-9001057', e164: '+97249001057' },
   },
 

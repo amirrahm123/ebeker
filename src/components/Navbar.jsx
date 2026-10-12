@@ -93,9 +93,9 @@ export default function Navbar() {
               <li><Link to="/legal-team">הצוות המשפטי</Link></li>
               <NavDropdown label="תחומי עיסוק" href="/#areas" items={practiceAreas} wide />
               <NavDropdown label="מהעיתונות" href="#" items={pressLinks} />
+              <NavDropdown label="מרכז מדיה" href="#" items={mediaLinks} />
               <li><Link to="/recommendations">ממליצים</Link></li>
               <li><Link to="/eranstip">הטיפ של ערן</Link></li>
-              <NavDropdown label="מרכז מדיה" href="#" items={mediaLinks} />
               <li><a href={contactLink}>צור קשר</a></li>
             </ul>
           </div>
@@ -113,12 +113,12 @@ export default function Navbar() {
         {pressLinks.map(a => (
           <Link key={a.to} to={a.to} onClick={closeMobile} className="mob-sub">{a.label}</Link>
         ))}
-        <Link to="/recommendations" onClick={closeMobile}>ממליצים</Link>
-        <Link to="/eranstip" onClick={closeMobile}>הטיפ של ערן</Link>
         <span className="mob-section-title">מרכז מדיה</span>
         {mediaLinks.map(a => (
           <Link key={a.to} to={a.to} onClick={closeMobile} className="mob-sub">{a.label}</Link>
         ))}
+        <Link to="/recommendations" onClick={closeMobile}>ממליצים</Link>
+        <Link to="/eranstip" onClick={closeMobile}>הטיפ של ערן</Link>
         <a href="/#contact" onClick={closeMobile}>צור קשר</a>
       </div>
     </>
