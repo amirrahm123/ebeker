@@ -4088,12 +4088,12 @@ main#main-content:focus { outline: none; }
 }
 .about-rating-box p { font-size: 20px; line-height: 1.8; color: var(--about-navy); }
 
-/* Statement quote */
+/* Statement paragraph: centred and set apart by its section, but in the same
+   type as the page's other body paragraphs (.about-col p), not a display serif. */
 .about-quote { padding-top: 80px; padding-bottom: 80px; gap: 22px; }
 .about-quote p {
   max-width: 980px; text-align: center;
-  font-family: "Frank Ruhl Libre", "Heebo", serif; font-weight: 500;
-  font-size: 25px; line-height: 1.7; color: #fff;
+  font-size: 18px; line-height: 1.9; color: #fff;
 }
 
 /* Specialty chips */
@@ -4184,7 +4184,7 @@ span.about-chip { cursor: default; }
   .about-grid-2, .about-grid-3 { grid-template-columns: 1fr; }
   .about-col p { font-size: 17px; }
   .about-col .about-lead { font-size: 18px; }
-  .about-quote p { font-size: 21px; }
+  .about-quote p { font-size: 17px; }
   .about-rating-box { padding: 24px 20px; }
   .about-rating-box p { font-size: 18px; }
   .about-card, .about-stack .about-case, .about-closing-box { padding: 24px 20px; }

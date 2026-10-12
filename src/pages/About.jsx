@@ -1,5 +1,4 @@
 /* eslint-disable react/prop-types -- this codebase does not use PropTypes anywhere */
-import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import useRevealOnScroll from '../hooks/useRevealOnScroll'
 import PageBanner from '../components/PageBanner'
@@ -89,22 +88,6 @@ const VALUES = [
   },
 ]
 
-/* Frank Ruhl Libre is used only by the quote on this page, so it is loaded
-   here rather than site-wide in index.html. */
-const QUOTE_FONT_ID = 'about-quote-font'
-const QUOTE_FONT_HREF = 'https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@500&display=swap'
-
-function useQuoteFont() {
-  useEffect(() => {
-    if (document.getElementById(QUOTE_FONT_ID)) return
-    const link = document.createElement('link')
-    link.id = QUOTE_FONT_ID
-    link.rel = 'stylesheet'
-    link.href = QUOTE_FONT_HREF
-    document.head.appendChild(link)
-  }, [])
-}
-
 function SectionHeading({ children }) {
   return (
     <div className="about-heading reveal">
@@ -116,7 +99,6 @@ function SectionHeading({ children }) {
 
 export default function About() {
   useRevealOnScroll()
-  useQuoteFont()
 
   return (
     <div className="about-page" dir="rtl">
@@ -218,7 +200,7 @@ export default function About() {
           <p>לצד פעילותו המשפטית השוטפת, עו&quot;ד בקר עוסק בהכשרת עורכי דין ובהעברת ידע מקצועי בתחומי הנזיקין, הביטוח והרשלנות הרפואית.</p>
           <p>במשך השנים ריכז, הוביל והרצה במאות השתלמויות מקצועיות, ימי עיון וכנסים ארציים לעורכי דין במסגרת לשכת עורכי הדין ופורומים מקצועיים נוספים. פעילות זו נועדה לקדם סטנדרטים מקצועיים גבוהים ולהנגיש ידע עדכני בתחומי התמחותו.</p>
           <div className="about-navy-box about-center">
-            <p>כן עו&quot;ד בקר מרצה במוסדות אקדמיים כגון: <strong className="about-gold">הטכניון</strong> ו<strong className="about-gold">אוניברסיטת חיפה</strong>.</p>
+            <p>עו&quot;ד ערן בקר מרצה במוסדות אקדמיים כגון: <strong className="about-gold">הטכניון</strong> ו<strong className="about-gold">אוניברסיטת חיפה</strong>.</p>
           </div>
         </div>
       </section>
@@ -227,7 +209,7 @@ export default function About() {
       <section id="achievements" className="about-section about-dark">
         <SectionHeading>הישגים בולטים</SectionHeading>
         <div className="about-col reveal">
-          <p>במהלך הקריירה שלו היה עו&quot;ד בקר מעורב באלפי תיקים והליכים משפטיים בעלי חשיבות ציבורית רחבה, אשר השפיעו על מיצוי זכויותיהם של נפגעים ומשפחותיהם ועל השיח הציבורי סביב אחריות המדינה, גופים ציבוריים וחברות הביטוח. במסגרת עשייתו הענפה, הוביל המשרד שורה של תיקים תקדימיים אשר שינו את המציאות המשפטית והחברתית בישראל. פעילות זו כוללת הליכים מכוננים בבתי המשפט השלום, בתי המשפט המחוזיים ובבית המשפט העליון, אשר קבעו הלכות חדשות, בין היתר בנושא פרשנות המונח <span className="about-gold">&quot;תאונת דרכים&quot;</span> בהקשר של כניסה ויציאה מרכב, ובנושא <span className="about-gold">סיווג אופניים חשמליים כרכב מנועי</span>. תיקי דגל והלכות חדשות בתחום תאונות הדרכים בביהמ&quot;ש העליון. לצד אלו, המשרד עומד בחזית המאבקים המשפטיים הציבוריים המשמעותיים ביותר בישראל בעשורים האחרונים, תוך התמחות בתיקי תאונות קטלניות ואסונות מורכבים:</p>
+          <p>במהלך הקריירה שלו היה עו&quot;ד בקר מעורב באלפי תיקים והליכים משפטיים בעלי חשיבות ציבורית רחבה, אשר השפיעו על מיצוי זכויותיהם של נפגעים ומשפחותיהם ועל השיח הציבורי סביב אחריות המדינה, גופים ציבוריים וחברות הביטוח. במסגרת עשייתו הענפה, הוביל המשרד שורה של תיקים תקדימיים אשר שינו את המציאות המשפטית והחברתית בישראל. פעילות זו כוללת הליכים מכוננים בבתי המשפט השלום, בתי המשפט המחוזיים ובבית המשפט העליון, אשר קבעו הלכות חדשות, בין היתר בנושא פרשנות המונח <span className="about-gold">&quot;תאונת דרכים&quot;</span> בהקשר של כניסה ויציאה מרכב, ובנושא <span className="about-gold">סיווג אופניים חשמליים כרכב מנועי</span>. תיקי דגל והלכות חדשות בתחום תאונות הדרכים בביהמ&quot;ש העליון. לצד אלו, המשרד עומד בחזית המאבקים המשפטיים הציבוריים המשמעותיים ביותר בישראל בעשורים האחרונים, תוך התמחות בתיקי תאונות קטלניות ואסונות מורכבים.</p>
         </div>
       </section>
 
