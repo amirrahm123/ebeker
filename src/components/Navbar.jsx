@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom'
 
 const practiceAreas = [
   { to: '/damages', label: 'נזיקין כללי' },
-  { to: '/national-disasters', label: 'אסונות לאומיים' },
+  { to: '/national-disasters', label: 'אסונות לאומיים ואירועים רבי נפגעים' },
   { to: '/causes-of-death', label: 'נזיקין · תאונות קטלניות' },
   { to: '/medical-malpractice', label: 'רשלנות רפואית' },
   { to: '/insurance', label: 'ביטוח' },

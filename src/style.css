@@ -1488,6 +1488,23 @@ footer > * { position: relative; z-index: 1; width: 100%; }
 @media (max-width: 768px) {
   .press-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
 }
+/* Tablet: hamburger instead of the desktop links row.
+   The 8-item links row is ~815px wide. With the row's 40px side padding it
+   needs ~895px, and 980px leaves ~40px of clear space beyond the padding on
+   each side. Below that, "אודות" and "צור קשר" crowd or run off the edges
+   (at 768px both were clipped). Scoped to 681px+ so the phone rules in the
+   680px block below stay exactly as they were. As on phones, the DUNS badge
+   is hidden and the hamburger sits on the left, so it is in the same place at
+   every width that shows it. */
+@media (min-width: 681px) and (max-width: 980px) {
+  :root {
+    --nav-row2-h: 0px;
+    --top-offset: var(--nav-row1-h);
+  }
+  .nav-row-links { display: none; }
+  .nav-row-right.nav-duns { display: none; }
+  .hamburger { display: flex; left: 14px; }
+}
 @media (max-width: 680px) {
   :root {
     --nav-row1-h: 64px;

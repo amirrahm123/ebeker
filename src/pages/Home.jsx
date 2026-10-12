@@ -393,18 +393,49 @@ export default function Home() {
         <span className="hf-corner hf-corner-br" aria-hidden="true" />
 
         <div className="hero-framed-content">
-          <p className="hero-framed-intro">נפגעתם? חליתם?</p>
           <h1 className="hero-framed-headline">
-            תנו לנו להילחם בנחישות
+            כשהפגיעה משנה חיים,
             <br />
-            <span className="accent">למיצוי כל זכויותיכם!</span>
+            <span className="accent">הניסיון והאסטרטגיה עושים את ההבדל.</span>
           </h1>
           <div className="hero-framed-divider" aria-hidden="true"></div>
-          <p className="hero-framed-sub">משרד בוטיק מוביל מאז 2003 &middot; נזיקין, ביטוח, רשלנות רפואית וביטוח לאומי &middot; ליווי אישי בכל תיק</p>
+          <p className="hero-framed-sub">
+            ייצוג משפטי בתיקי נזיקין, ביטוח וביטוח לאומי מורכבים, נכויות קשות, רשלנות רפואית ואסונות.
+            <br />
+            משרד בוטיק מוביל מאז 2003 &middot; ליווי אישי ומקצועי
+          </p>
         </div>
 
         {/* חדשות ועדכונים — sits in the space the scales used to occupy */}
         <MediaCards />
+      </section>
+
+      {/* ABOUT */}
+      <section className="section" id="about">
+        <div className="container">
+          <div className="about-grid">
+            <div className="about-text reveal-right">
+              <p className="section-eyebrow">אודות הפירמה</p>
+              <h2 className="section-title">כ-25 שנים של נחישות משפטית</h2>
+              <div className="teal-rule" style={{ marginBottom: 28 }}></div>
+              <p>ערן בקר חברת עורכי-דין הינו משרד בוטיק מוביל ומוכר שנוסד בשנת 2003, המתמחה במימוש זכויות נפגעי גוף — נזיקין, ביטוח, רשלנות רפואית וביטוח לאומי.</p>
+              <p>המשרד מלווה את לקוחותיו החל משלב בדיקת היתכנות הגשת התביעה, דרך מיצוי ומימוש זכויותיהם, ניהול משא ומתן מקצועי ועיקש, וכלה בייצוג בפני הערכאות המשפטיות.</p>
+              <p>לעו"ד ערן בקר תפקיד משמעותי כמרצה ורכז אקדמי בפיתוח תוכניות הכשרה לעורכי דין, כיו"ר פורום נזיקין, ביטוח וביטוח לאומי ומשנה ליו"ר לשכת עורכי הדין מחוז חיפה.</p>
+              <div className="badges-row">
+                <span className="badge-chip">DUNS 100</span>
+                <span className="badge-chip">BDi CODE</span>
+                <span className="badge-chip">מוביל בישראל</span>
+                <span className="badge-chip">משרד בוטיק</span>
+              </div>
+              <div style={{ marginTop: 28 }}>
+                <Link to="/about" className="btn-teal">קראו עוד אודות הפירמה &#8592;</Link>
+              </div>
+            </div>
+            <div className="about-visual reveal-left" style={{ transitionDelay: '.15s', overflow: 'hidden', padding: 0, margin: 0 }}>
+              <img src="/pics/eran-becker-about.webp" alt='עו"ד ערן בקר — מייסד ושותף בכיר' width="1582" height="1600" loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 15%', display: 'block' }} />
+            </div>
+          </div>
+        </div>
       </section>
 
       {/* PRACTICE AREAS */}
@@ -470,34 +501,6 @@ export default function Home() {
 
       {/* TESTIMONIALS */}
       <TestimonialsCarousel />
-
-      {/* ABOUT */}
-      <section className="section" id="about">
-        <div className="container">
-          <div className="about-grid">
-            <div className="about-text reveal-right">
-              <p className="section-eyebrow">אודות הפירמה</p>
-              <h2 className="section-title">כ-25 שנים של נחישות משפטית</h2>
-              <div className="teal-rule" style={{ marginBottom: 28 }}></div>
-              <p>ערן בקר חברת עורכי-דין הינו משרד בוטיק מוביל ומוכר שנוסד בשנת 2003, המתמחה במימוש זכויות נפגעי גוף — נזיקין, ביטוח, רשלנות רפואית וביטוח לאומי.</p>
-              <p>המשרד מלווה את לקוחותיו החל משלב בדיקת היתכנות הגשת התביעה, דרך מיצוי ומימוש זכויותיהם, ניהול משא ומתן מקצועי ועיקש, וכלה בייצוג בפני הערכאות המשפטיות.</p>
-              <p>לעו"ד ערן בקר תפקיד משמעותי כמרצה ורכז אקדמי בפיתוח תוכניות הכשרה לעורכי דין, כיו"ר פורום נזיקין, ביטוח וביטוח לאומי ומשנה ליו"ר לשכת עורכי הדין מחוז חיפה.</p>
-              <div className="badges-row">
-                <span className="badge-chip">DUNS 100</span>
-                <span className="badge-chip">BDi CODE</span>
-                <span className="badge-chip">מוביל בישראל</span>
-                <span className="badge-chip">משרד בוטיק</span>
-              </div>
-              <div style={{ marginTop: 28 }}>
-                <Link to="/about" className="btn-teal">קראו עוד אודות הפירמה &#8592;</Link>
-              </div>
-            </div>
-            <div className="about-visual reveal-left" style={{ transitionDelay: '.15s', overflow: 'hidden', padding: 0, margin: 0 }}>
-              <img src="/pics/eran-becker-about.webp" alt='עו"ד ערן בקר — מייסד ושותף בכיר' width="1582" height="1600" loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 15%', display: 'block' }} />
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* CONTACT */}
       <section className="section section-alt" id="contact">

@@ -70,10 +70,10 @@ export default function NationalDisasters() {
       <PageBanner
         crumbs={[
           { label: 'תחומי עיסוק', to: '/#areas' },
-          { label: 'אסונות לאומיים' }
+          { label: 'אסונות לאומיים ואירועים רבי נפגעים' }
         ]}
-        title="אסונות"
-        accent="לאומיים"
+        title="אסונות לאומיים"
+        accent="ואירועים רבי נפגעים"
       />
 
       {/* Section 1 — Intro */}
