@@ -72,6 +72,12 @@ export function whatsappLink(text = WHATSAPP_DEFAULT_TEXT) {
   return text ? `${base}?text=${encodeURIComponent(text)}` : base
 }
 
+/** "All reviews on Google" link used by the homepage reviews carousel.
+    Temporary Maps search URL; swap for the exact share link when available. */
+export const GOOGLE_REVIEWS_URL =
+  'https://www.google.com/maps/search/?api=1&query=' +
+  encodeURIComponent('ערן בקר - חברת עורכי דין, שדרות הגעתון 26, נהריה')
+
 /** Page title in the site-wide format. */
 export function pageTitle(title) {
   return title ? `${title} | ${site.name}` : site.name

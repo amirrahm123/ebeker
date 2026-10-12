@@ -1792,6 +1792,8 @@ footer > * { position: relative; z-index: 1; width: 100%; }
   overflow: hidden;
 }
 .testi-card {
+  display: flex;
+  flex-direction: column;
   background: #0d1b3e;
   border: 1px solid rgba(201,168,76,0.3);
   border-radius: 12px;
@@ -1874,6 +1876,91 @@ footer > * { position: relative; z-index: 1; width: 100%; }
   margin-top: 2px;
 }
 
+/* Google reviews additions */
+.testi-source {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin: 10px 0 0;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  color: rgba(255,255,255,0.8);
+  font-size: 12px;
+  font-weight: 600;
+}
+.testi-source svg { flex-shrink: 0; }
+.testi-card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+.testi-stars { display: flex; gap: 2px; color: #c9a84c; flex-shrink: 0; }
+.testi-stars svg { display: block; }
+/* Clamped to 5 lines, and always reserves 5 lines, so every collapsed card is
+   the same height and the arrows (centred on the slider) don't jump between
+   slides. Expanding releases both; the arrows re-centre on the taller card. */
+.testi-card .testi-quote-text {
+  margin: 0;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 5;
+  line-clamp: 5;
+  overflow: hidden;
+  min-height: calc(1.8em * 5);
+  overflow-wrap: anywhere;
+  white-space: pre-line;
+}
+.testi-card .testi-quote-text.is-expanded {
+  display: block;
+  -webkit-line-clamp: unset;
+  line-clamp: none;
+  overflow: visible;
+}
+/* Fixed-height row, present even when the toggle isn't, for the same reason. */
+.testi-toggle-row { min-height: 30px; margin: 4px 0 12px; display: flex; align-items: center; }
+.testi-toggle {
+  background: none;
+  border: none;
+  padding: 4px 0;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  color: #c9a84c;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.testi-toggle:hover { color: #e0c06a; }
+.testi-toggle:focus-visible { outline: 2px solid #c9a84c; outline-offset: 2px; border-radius: 3px; }
+.testi-google-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 28px;
+  padding: 11px 22px;
+  border-radius: 999px;
+  border: 1px solid rgba(201,168,76,0.55);
+  background: transparent;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background-color .2s, border-color .2s;
+}
+.testi-google-btn:hover { background: rgba(201,168,76,0.12); border-color: #c9a84c; }
+.testi-google-btn:focus-visible { outline: 2px solid #c9a84c; outline-offset: 3px; }
+.testi-google-btn svg { flex-shrink: 0; }
+.visually-hidden {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0);
+  white-space: nowrap; border: 0;
+}
+
 /* Arrows */
 .testi-arr {
   position: absolute;
@@ -1943,6 +2030,16 @@ footer > * { position: relative; z-index: 1; width: 100%; }
   .testi-section { padding: 56px 20px; }
   .testi-card { padding: 24px 20px; }
   .testi-arr { width: 36px; height: 36px; font-size: 0.95rem; }
+}
+/* Below ~680px the 520px card plus two 40px arrows no longer fit side by side,
+   so arrows centred on the card's edges covered the review. Drop them to the
+   dots row instead: 20px dot margin + half the 24px dot row = 32px, minus half
+   the arrow (20px; 18px at <=640 where it is 36px). */
+@media (max-width: 680px) {
+  .testi-arr { top: calc(100% + 12px); transform: none; }
+}
+@media (max-width: 640px) {
+  .testi-arr { top: calc(100% + 14px); }
 }
 
 /* ── ACCORDION ── */
@@ -4008,20 +4105,34 @@ main#main-content:focus { outline: none; }
   font-size: 17px; font-weight: 500; line-height: 1.5; color: #fff; text-decoration: none;
   transition: background-color .2s, border-color .2s, color .2s;
 }
-a.about-chip:hover { background: #1A3060; border-color: var(--about-gold); color: var(--about-gold-light); }
+/* Linked chips carry a gold arrow and react on hover; plain chips stay static. */
+a.about-chip { gap: 10px; cursor: pointer; transition: background-color .2s, border-color .2s, color .2s, transform .2s, box-shadow .2s; }
+.about-chip-arrow { color: var(--about-gold); font-size: 15px; line-height: 1; transition: transform .2s; }
+a.about-chip:hover {
+  background: #1A3060; border-color: var(--about-gold); color: var(--about-gold-light);
+  transform: translateY(-2px); box-shadow: 0 6px 18px rgba(13,27,62,.25);
+}
+a.about-chip:hover .about-chip-arrow { transform: translateX(-4px); }
 a.about-chip:focus-visible { outline: 3px solid var(--about-gold); outline-offset: 3px; }
+span.about-chip { cursor: default; }
+@media (prefers-reduced-motion: reduce) {
+  a.about-chip:hover { transform: none; }
+  a.about-chip:hover .about-chip-arrow { transform: none; }
+}
 
-/* Public roles: 3 cards on the first row, 2 on the second */
+/* Public roles: compact boxes stacked in one centred column. The list is
+   sized to its longest line (max-content), so every box shares that width and
+   each text fits on one line. When the viewport is narrower than that, the
+   100% cap kicks in and the text wraps inside the box instead of overflowing. */
 .about-roles {
-  list-style: none; margin: 0; padding: 0; width: 100%; max-width: 1040px;
-  display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 16px;
+  list-style: none; margin: 0 auto; padding: 0;
+  width: max-content; max-width: 100%; box-sizing: border-box;
+  display: flex; flex-direction: column; gap: 6px;
 }
 .about-roles li {
-  grid-column: span 2;
-  padding: 24px; background: var(--about-card-dark); border-top: 3px solid var(--about-gold);
-  border-radius: 10px; font-size: 17px; line-height: 1.6; color: #fff; text-align: right;
+  padding: 10px 20px; background: var(--about-card-dark); border-top: 3px solid var(--about-gold);
+  border-radius: 8px; font-size: 17px; line-height: 1.5; color: #fff; text-align: right;
 }
-.about-roles li:nth-child(n+4) { grid-column: span 3; }
 
 /* Navy boxes on light backgrounds */
 .about-navy-box { background: var(--about-navy); border-radius: 12px; padding: 22px 28px; }
@@ -4070,8 +4181,7 @@ a.about-chip:focus-visible { outline: 3px solid var(--about-gold); outline-offse
   .about-pills a { font-size: 14px; padding: 8px 14px; }
   .about-section { padding: 56px 16px; gap: 20px; }
   .about-sand, .about-quote { padding-top: 52px; padding-bottom: 52px; }
-  .about-grid-2, .about-grid-3, .about-roles { grid-template-columns: 1fr; }
-  .about-roles li, .about-roles li:nth-child(n+4) { grid-column: auto; }
+  .about-grid-2, .about-grid-3 { grid-template-columns: 1fr; }
   .about-col p { font-size: 17px; }
   .about-col .about-lead { font-size: 18px; }
   .about-quote p { font-size: 21px; }

@@ -23,20 +23,20 @@ const SECTION_LINKS = [
     src/routes.meta.js); chips without `to` render as plain chips. */
 const SPECIALTIES = [
   { label: 'נזיקין וביטוח', to: '/damages' },
+  { label: 'אסונות לאומיים ואירועים רבי נפגעים', to: '/national-disasters' },
   { label: 'רשלנות רפואית', to: '/medical-malpractice' },
   { label: 'תאונות דרכים', to: '/car-accidents' },
   { label: 'ביטוח לאומי' },
-  { label: 'תאונות קטלניות' },
-  { label: 'אסונות המוניים ורבי נפגעים' },
-  { label: 'תביעות ביטוח' },
+  { label: 'תאונות קטלניות', to: '/causes-of-death' },
+  { label: 'תביעות ביטוח', to: '/insurance' },
   { label: 'תאונות עבודה', to: '/work-accidents' },
-  { label: 'נפגעי צבא וכוחות הביטחון' },
+  { label: 'נפגעי צבא וכוחות הביטחון', to: '/idf-disabilities' },
   { label: 'תביעות נגד רשויות וגופים ציבוריים' },
   { label: 'נזקי גוף מורכבים' },
   { label: 'ייפוי כוח מתמשך ואפוטרופסות', to: '/power-of-attorney' },
 ]
 
-/** Public roles: the first three fill row one, the rest fill row two. */
+/** Public roles: compact boxes stacked in one centred column. */
 const PUBLIC_ROLES = [
   'יו"ר פורום נזיקין וביטוח הארצי בלשכת עורכי הדין',
   'יו"ר ועדת הנזיקין, הביטוח והביטוח הלאומי במחוז חיפה',
@@ -167,7 +167,9 @@ export default function About() {
         <ul className="about-chips about-grid-3 reveal">
           {SPECIALTIES.map(({ label, to }) => (
             <li key={label}>
-              {to ? <Link to={to} className="about-chip">{label}</Link> : <span className="about-chip">{label}</span>}
+              {to
+                ? <Link to={to} className="about-chip">{label}<span className="about-chip-arrow" aria-hidden="true">&#8592;</span></Link>
+                : <span className="about-chip">{label}</span>}
             </li>
           ))}
         </ul>
