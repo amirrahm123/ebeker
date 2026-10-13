@@ -246,7 +246,7 @@ export default function MarineAccidents() {
         <div style={container} className="reveal">
           <h2 style={headingGold}>דוגמאות לתיקים שטופלו בהצלחה</h2>
           {cases.map((c, i) => (
-            <div key={i} style={caseCard}>
+            <div key={i} className="practice-case-card" style={caseCard}>
               <h3 style={caseTitle}>{c.title}</h3>
               <p style={caseText}>{c.text}</p>
             </div>

@@ -159,7 +159,7 @@ export default function Wills() {
           </div>
           <h3 style={subHeadingGold}>מצבים שבהם חשוב במיוחד לערוך צוואה:</h3>
           {situations.map((s, i) => (
-            <div key={i} style={caseCard}>{s}</div>
+            <div key={i} className="practice-case-card" style={caseCard}>{s}</div>
           ))}
         </div>
       </section>

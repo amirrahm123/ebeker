@@ -160,7 +160,7 @@ export default function Disabilities() {
           <p style={bodyLight}>
             אדם שלא יכול לעבוד או שיכולתו לעבוד פחתה בגלל מצב בריאותי, עשוי להיות זכאי לקצבת נכות כללית. כדי שאדם יהיה זכאי לקצבה עליו לעמוד במספר תנאים מצטברים, להלן:
           </p>
-          <ol style={tipsList}>
+          <ol className="practice-tips-list" style={tipsList}>
             {conditions.map((cond, i) => (
               <li key={i} style={tipItem}>
                 <span style={tipNumber}>{i + 1}</span>

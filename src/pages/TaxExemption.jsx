@@ -122,7 +122,7 @@ export default function TaxExemption() {
           <p style={bodyDark}>
             פטור מתשלום מס הכנסה כתוצאה ממחלה או נכות — החל מה-1.7.2003 תוקן סעיף 9(5) לפקודה המקנה פטור ממס עבור הכנסות של אחד מהיחידים הבאים:
           </p>
-          <ol style={tipsList}>
+          <ol className="practice-tips-list" style={tipsList}>
             {eligibles.map((item, i) => (
               <li key={i} style={tipItem}>
                 <span style={tipNumber}>{i + 1}</span>

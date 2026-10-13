@@ -72,7 +72,7 @@ export default function Layout() {
           </div>
         </div>
       </section>
-      <main id="main-content" tabIndex={-1} ref={mainRef}>
+      <main id="main-content" tabIndex={-1} ref={mainRef} data-page={pathname}>
         <Suspense fallback={<div className="route-loading" aria-busy="true" />}>
           <Outlet />
         </Suspense>

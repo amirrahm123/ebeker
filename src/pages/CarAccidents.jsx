@@ -212,7 +212,7 @@ export default function CarAccidents() {
       <section style={sectionLight}>
         <div style={container} className="reveal">
           <h2 style={headingGold}>הנחיות חשובות לנפגעי תאונות דרכים</h2>
-          <ol style={tipsList}>
+          <ol className="practice-tips-list" style={tipsList}>
             {tips.map((tip, i) => (
               <li key={i} style={tipItem}>
                 <span style={tipNumber}>{i + 1}</span>

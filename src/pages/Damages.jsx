@@ -43,7 +43,8 @@ const introLeadDark = {
   ...bodyDark,
   fontSize: '1.15rem',
   lineHeight: 1.9,
-  textAlign: 'center',
+  textAlign: 'justify',
+  textAlignLast: 'center',
   maxWidth: 760,
   margin: '0 auto 28px',
 }
@@ -58,20 +59,23 @@ const goldCalloutDark = {
   fontWeight: 700,
   fontSize: '1.1rem',
   lineHeight: 1.7,
-  textAlign: 'center',
+  textAlign: 'justify',
+  textAlignLast: 'center',
 }
 const experienceLine = {
   color: 'var(--color-accent)',
   fontSize: '1.15rem',
   fontWeight: 800,
-  textAlign: 'center',
+  textAlign: 'justify',
+  textAlignLast: 'center',
   margin: '0 auto 18px',
   letterSpacing: '0.1px',
 }
 const ctaPhoneLine = {
   color: 'rgba(255,255,255,0.78)',
   fontSize: '1rem',
-  textAlign: 'center',
+  textAlign: 'justify',
+  textAlignLast: 'center',
   margin: 0,
   lineHeight: 1.8,
 }
@@ -133,7 +137,8 @@ const closingCallout = {
   ...bodyDark,
   fontSize: '1.08rem',
   lineHeight: 1.9,
-  textAlign: 'center',
+  textAlign: 'justify',
+  textAlignLast: 'center',
   maxWidth: 780,
   margin: '0 auto 32px',
 }
@@ -239,7 +244,7 @@ export default function Damages() {
         <div className="reveal">
           <div style={tipsBox}>
             <h3 style={tipsHeading}>העצות המומלצות לנפגע:</h3>
-            <ol style={tipsList}>
+            <ol className="practice-tips-list" style={tipsList}>
               {tips.map((tip, i) => (
                 <li key={i} style={tipItem}>
                   <span style={tipNumber}>{i + 1}</span>

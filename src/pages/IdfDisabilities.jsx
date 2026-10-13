@@ -192,7 +192,7 @@ export default function IdfDisabilities() {
         <div style={container} className="reveal">
           <h2 style={headingGold}>דרגות הנכות המזכות בפיצוי</h2>
           {levels.map((l, i) => (
-            <div key={i} style={caseCard}>
+            <div key={i} className="practice-case-card" style={caseCard}>
               <h3 style={caseTitle}>{l.title}</h3>
               <p style={caseText}>{l.text}</p>
             </div>

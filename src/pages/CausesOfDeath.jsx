@@ -138,7 +138,7 @@ export default function CausesOfDeath() {
         <div style={container} className="reveal">
           <h2 style={headingGold}>תחומי הטיפול שלנו בתביעות קטלניות</h2>
           {caseTypes.map((c, i) => (
-            <div key={i} style={caseCard}>
+            <div key={i} className="practice-case-card" style={caseCard}>
               <h3 style={caseTitle}>{c.title}</h3>
               <p style={caseText}>{c.text}</p>
             </div>

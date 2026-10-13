@@ -189,7 +189,7 @@ export default function StudentAccidents() {
             פוליסת ביטוח תאונות אישיות תלמידים קובעת סכומים וכללים לפיהם יפוצו הנפגעים, ובין היתר, קובעת סכום פיצוי למקרה מוות, סכום ביטוח בסיסי ממנו ייגזר גובה הפיצוי במקרה של נכות, פיצוי ע״ב יומי בתקופת ההיעדרות (כפוף למינימום ומקסימום של ימי היעדרות בפועל), וכן הסדר להחזר בגין הוצאות רפואיות.
           </p>
           <h3 style={subHeadingGold}>חריגים חשובים בפוליסה:</h3>
-          <ol style={tipsList}>
+          <ol className="practice-tips-list" style={tipsList}>
             {exceptions.map((exc, i) => (
               <li key={i} style={tipItem}>
                 <span style={tipNumber}>{i + 1}</span>

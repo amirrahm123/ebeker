@@ -2227,13 +2227,11 @@ footer > * { position: relative; z-index: 1; width: 100%; }
   opacity: 1;
 }
 
-/* Press cards that link straight to the article (new tab). */
-.press-clipping-linked .press-card-main {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  color: inherit;
-  text-decoration: none;
+/* Press cards that link straight to the article (new tab). The card itself is the <a>. */
+a.press-clipping-linked { color: inherit; text-decoration: none; }
+a.press-clipping-linked:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 3px;
 }
 .press-clipping-linked .press-card-title { -webkit-line-clamp: 3; }
 .press-clipping .press-card-meta {
@@ -2242,18 +2240,13 @@ footer > * { position: relative; z-index: 1; width: 100%; }
   opacity: .65;
   margin: -4px 0 12px;
 }
-.press-clipping .press-card-links { margin: 0 20px 20px; }
-.press-clipping .press-card-links ul { margin: 0; padding: 0; }
-.press-clipping .press-card-links li { list-style: none; margin: 0; line-height: normal; }
 /* Keep the text together at the top when the card is stretched by a taller row neighbour. */
 .press-clipping-linked .press-card-body { justify-content: flex-start; }
 .press-clipping-linked .press-card-link { margin-top: auto; }
-.press-clipping .press-card-links a {
-  color: var(--color-text);
-  background: transparent;
-  border-color: rgba(201,168,76,0.45);
-}
-.press-clipping .press-card-links a:hover { color: #060e1e; }
+/* Screenshot too wide for the box: show all of it on the card colour instead of cropping. */
+.press-clipping .press-img-wrap.press-img-contain { background: var(--color-card-bg); }
+.press-clipping .press-img-wrap.press-img-contain img { object-fit: contain; object-position: center; }
+
 /* The tablet/phone .press-grid rules near the top of the file come before the
    base rule above, so they never applied. Restate them after it. */
 @media (max-width: 768px) {
@@ -2262,14 +2255,22 @@ footer > * { position: relative; z-index: 1; width: 100%; }
 @media (max-width: 680px) {
   .press-grid { grid-template-columns: 1fr; }
 }
-/* Featured card spans two columns where the grid has them. */
-.press-clipping-featured { grid-column: span 2; }
-.press-clipping-featured .press-img-wrap { height: 320px; }
-.press-clipping-featured .press-card-title { font-size: 1.1rem; }
-@media (max-width: 680px) {
-  .press-clipping-featured { grid-column: auto; }
-  .press-clipping-featured .press-img-wrap { height: 220px; }
+
+/* Two equal cards (press-disasters): side by side while each can stay ≥320px,
+   otherwise one column. Images share one 4:3 box. */
+.press-grid.press-grid-pair {
+  grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
+  align-items: stretch;
+  max-width: 960px;
 }
+.press-grid-pair .press-clipping .press-img-wrap { height: auto; aspect-ratio: 4 / 3; }
+@media (max-width: 680px) {
+  .press-grid.press-grid-pair { grid-template-columns: 1fr; }
+}
+/* "More coverage" strip under the pair, same width as the grid. */
+.press-more-coverage { max-width: 960px; margin: 24px auto 0; }
+.press-more-coverage ul { margin: 0; padding: 0; }
+.press-more-coverage ul li { list-style: none; margin: 0; line-height: normal; }
 
 /* ── LECTURES GRID — crop from top to show speaker ── */
 .lectures-grid .press-img-wrap img,
@@ -4435,4 +4436,74 @@ a.team-modal-contact-line:hover { color: #C9A84C; }
 }
 @media (max-width: 480px) {
   .disaster-event { border-right-width: 3px; padding-right: 14px; margin-bottom: 34px; }
+}
+
+/* ── Justified body text (site-wide) ──────────────────────────────────
+   Every line of a paragraph ends at the same edge; only the last line may be
+   shorter. No text-justify/hyphens: Safari ignores text-justify and Hebrew
+   has no hyphenation. */
+html, body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+p { text-align: justify; text-align-last: start; }
+
+/* Centered sections: justified, last line centered. */
+.about-quote p,
+.about-center p,
+.about-rating-box p,
+.about-cta p,
+.team-heading p,
+.team-cta p,
+.cta-card-text,
+[style*="text-align: center"] > p { text-align: justify; text-align-last: center; }
+@media (max-width: 900px) {
+  .team-founder-info p { text-align: justify; text-align-last: center; }
+}
+@media (max-width: 680px) {
+  .areas-intro-text p { text-align: justify; text-align-last: center; }
+}
+
+/* Narrow card columns (about 250–330px wide even on desktop): justified lines
+   showed word gaps of 4–8 spaces, so these keep their previous alignment at
+   every width. */
+.about-value > p,
+.press-card-desc,
+.info-card p,
+.mc-card-desc,
+.testi-quote-text { text-align: start; text-align-last: auto; }
+.team-card-bio { text-align: center; text-align-last: auto; }
+/* Tablets: the paired About cards and the practice-page type cards narrow
+   enough to show 3–5 space gaps. */
+@media (max-width: 1024px) {
+  .about-card-gold-top p,
+  .about-card-navy-top p,
+  .practice-type-card p { text-align: start; text-align-last: auto; }
+}
+
+/* Not body text (labels, UI chrome, footer): keep their previous alignment.
+   p:where() has the same weight as the global p rule, so a component's own
+   class rule still wins. */
+p:where(footer *, .cookie-banner-text, .form-hint, .form-consent, .mc-card-cat, .section-eyebrow,
+        .mc-article-links-title, .testi-eyebrow, .testi-source, .map-wrap *) {
+  text-align: inherit;
+  text-align-last: auto;
+}
+
+/* Phones (≤480px): in the narrow column, justified lines in long body text
+   showed word gaps wider than ~3 spaces on nearly every page, so body text
+   falls back to its pre-justify alignment. Short passages measured without
+   wide gaps stay justified (the :where list). !important is needed to beat
+   the inline styles on the practice pages. */
+@media (max-width: 480px) {
+  main p:not(:where(.cta-card-text, .hero-framed-sub, .section-sub, .highlight-box p)),
+  .team-modal p {
+    text-align: start !important;
+    text-align-last: auto !important;
+  }
+  /* These were centered before justification; keep them centered. */
+  main :is(.about-quote, .about-center, .about-cta, .team-cta, .team-heading, .team-founder-info, .areas-intro-text) p,
+  main .team-card-bio,
+  main p[style*="text-align-last: center"],
+  main [style*="text-align: center"] > p {
+    text-align: center !important;
+    text-align-last: auto !important;
+  }
 }

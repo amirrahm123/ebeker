@@ -35,7 +35,8 @@ const introLeadDark = {
   ...bodyDark,
   fontSize: '1.15rem',
   lineHeight: 1.9,
-  textAlign: 'center',
+  textAlign: 'justify',
+  textAlignLast: 'center',
   maxWidth: 760,
   margin: '0 auto 28px',
 }
@@ -43,14 +44,16 @@ const experienceLine = {
   color: 'var(--color-accent)',
   fontSize: '1.15rem',
   fontWeight: 800,
-  textAlign: 'center',
+  textAlign: 'justify',
+  textAlignLast: 'center',
   margin: '0 auto 18px',
   letterSpacing: '0.1px',
 }
 const ctaPhoneLine = {
   color: 'rgba(255,255,255,0.78)',
   fontSize: '1rem',
-  textAlign: 'center',
+  textAlign: 'justify',
+  textAlignLast: 'center',
   margin: 0,
   lineHeight: 1.8,
 }

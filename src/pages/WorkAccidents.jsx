@@ -151,13 +151,13 @@ export default function WorkAccidents() {
           </p>
           <h3 style={subHeadingGold}>סוגי תאונות עבודה</h3>
           <div style={cardGrid}>
-            <div style={typeCard}>
+            <div className="practice-type-card" style={typeCard}>
               <h4 style={typeTitle}>תאונה ברורה להוכחה</h4>
               <p style={typeText}>
                 תאונה שעל פניה ניתן להגדירה כ׳תאונת עבודה׳ בשל התרחשותה המיידית הנצפית לעין כל (למשל פועל יצור שנפגע בכף ידו ממכונת חיתוך).
               </p>
             </div>
-            <div style={typeCard}>
+            <div className="practice-type-card" style={typeCard}>
               <h4 style={typeTitle}>תאונה קשה להוכחה</h4>
               <p style={typeText}>
                 תאונה שהאירוע אינו ברור מאליו או שאינו נצפה או שהגורם לו אינו נחזה מיידית ויש להוכיח אירועו של אירוע חריג בעבודה, וכן את הקשר הסיבתי הרפואי. בין התאונות הקשות להוכחה: אירוע מוחי, אוטם שריר הלב, אירוע נפשי, סוכרת, יתר לחץ דם.
