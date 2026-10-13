@@ -4,7 +4,9 @@ export default function ScrollTopButton() {
   const [visible, setVisible] = useState(false)
 
   useEffect(() => {
-    const onScroll = () => setVisible(window.scrollY > 400)
+    // Phones wait a little longer (600px) so the button doesn't crowd the reading area.
+    const mq = window.matchMedia('(max-width: 768px)')
+    const onScroll = () => setVisible(window.scrollY > (mq.matches ? 600 : 400))
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])

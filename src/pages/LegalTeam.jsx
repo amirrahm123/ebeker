@@ -11,6 +11,8 @@ const attorneys = [
     name: 'עו"ד ערן בקר',
     title: 'מייסד',
     photo: '/pics/03_הצוות_המשפטי/eran-beker-team.webp',
+    // No personal email for Eran in the data, so only office phone and fax.
+    contact: { phone: site.phones.office.display, fax: site.phones.fax.display },
     shortBio: [
       'עורך הדין ערן בקר התמחה ועבד כעו"ד במשרד פרטי שעסק בתחום נזקי גוף בטרם הקים את משרדו.',
       'בשנת 2003 הקים את משרדו שהתפתח וגדל בהתמדה.',
@@ -247,6 +249,7 @@ export default function LegalTeam() {
               <div className="team-modal-photo-wrap">
                 <img src={popup.photo} alt={popup.name} className="team-modal-photo" />
               </div>
+              {(popup.contact?.email || popup.contact?.phone || popup.contact?.fax) && (
               <div className="team-modal-contact">
                 <div className="team-modal-contact-title">פרטי קשר</div>
                 {popup.contact?.email && (
@@ -265,6 +268,7 @@ export default function LegalTeam() {
                   </span>
                 )}
               </div>
+              )}
             </div>
 
             <div className="team-modal-main">

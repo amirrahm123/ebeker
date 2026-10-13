@@ -27,6 +27,7 @@ const meronCoverage = [
   { label: 'וואלה', url: 'https://news.walla.co.il/item/3761722' },
   { label: 'כאן חדשות', url: 'https://www.kan.org.il/content/kan-news/local/926965/' },
   { label: 'מעריב', url: 'https://www.maariv.co.il/breaking-news/article-1210540' },
+  { label: 'Bizzness', url: 'https://bizzness.net/4-%D7%A9%D7%A0%D7%99%D7%9D-%D7%90%D7%97%D7%A8%D7%99-%D7%9E%D7%A9%D7%A4%D7%97%D7%95%D7%AA-%D7%94%D7%A0%D7%A1%D7%A4%D7%99%D7%9D-%D7%91%D7%90%D7%A1%D7%95%D7%9F-%D7%9E%D7%99%D7%A8%D7%95%D7%9F-%D7%99/' },
 ]
 
 export default function PressDisasters() {
