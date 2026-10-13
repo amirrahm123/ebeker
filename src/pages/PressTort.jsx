@@ -4,8 +4,16 @@ import useRevealOnScroll from '../hooks/useRevealOnScroll'
 import PageBanner from '../components/PageBanner'
 import CTASection from '../components/CTASection'
 import ZoomViewer from '../components/ZoomViewer'
+import LinkedPressCard from '../components/LinkedPressCard'
 
 const images = [
+  {
+    src: '/pics/press/press-n12-school-sports-day.webp',
+    title: 'תלמיד נפצע ביום ספורט בבית ספר - ויפוצה ב-3 מיליון שקלים',
+    outlet: 'N12',
+    date: '12.11.25',
+    url: 'https://www.mako.co.il/news-israel/2025_q4/Article-d2de7011f577a91026.htm',
+  },
   {
     file: 'bean-pod-slip-compensation.webp',
     title: 'בת 70 שהחליקה על תרמיל פול תפוצה ב-165 אלף שקלים',
@@ -106,7 +114,9 @@ export default function PressTort() {
       <section className="content-section">
         <div className="content-container">
           <div className="press-grid reveal">
-            {images.map((img, i) => (
+            {images.map((img, i) => (img.url ? (
+              <LinkedPressCard key={i} item={img} category="נזיקין וביטוח" />
+            ) : (
               <div
                 className="press-clipping"
                 key={i}
@@ -122,7 +132,7 @@ export default function PressTort() {
                   <span className="press-card-link">צפה בכתבה &#8592;</span>
                 </div>
               </div>
-            ))}
+            )))}
           </div>
         </div>
       </section>

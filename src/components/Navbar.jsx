@@ -21,10 +21,11 @@ const practiceAreas = [
 ]
 
 const pressLinks = [
+  { to: '/press-disasters', label: 'אסונות' },
   { to: '/press-tort', label: 'נזיקין וביטוח' },
+  { to: '/press-car-accidents', label: 'תאונות דרכים' },
   { to: '/press-insurance', label: 'ביטוח לאומי' },
   { to: '/press-defense', label: 'משרד הביטחון' },
-  { to: '/press-car-accidents', label: 'תאונות דרכים' },
 ]
 
 const mediaLinks = [

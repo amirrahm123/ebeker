@@ -2227,6 +2227,50 @@ footer > * { position: relative; z-index: 1; width: 100%; }
   opacity: 1;
 }
 
+/* Press cards that link straight to the article (new tab). */
+.press-clipping-linked .press-card-main {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  color: inherit;
+  text-decoration: none;
+}
+.press-clipping-linked .press-card-title { -webkit-line-clamp: 3; }
+.press-clipping .press-card-meta {
+  font-size: 0.8rem;
+  color: var(--color-text);
+  opacity: .65;
+  margin: -4px 0 12px;
+}
+.press-clipping .press-card-links { margin: 0 20px 20px; }
+.press-clipping .press-card-links ul { margin: 0; padding: 0; }
+.press-clipping .press-card-links li { list-style: none; margin: 0; line-height: normal; }
+/* Keep the text together at the top when the card is stretched by a taller row neighbour. */
+.press-clipping-linked .press-card-body { justify-content: flex-start; }
+.press-clipping-linked .press-card-link { margin-top: auto; }
+.press-clipping .press-card-links a {
+  color: var(--color-text);
+  background: transparent;
+  border-color: rgba(201,168,76,0.45);
+}
+.press-clipping .press-card-links a:hover { color: #060e1e; }
+/* The tablet/phone .press-grid rules near the top of the file come before the
+   base rule above, so they never applied. Restate them after it. */
+@media (max-width: 768px) {
+  .press-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+}
+@media (max-width: 680px) {
+  .press-grid { grid-template-columns: 1fr; }
+}
+/* Featured card spans two columns where the grid has them. */
+.press-clipping-featured { grid-column: span 2; }
+.press-clipping-featured .press-img-wrap { height: 320px; }
+.press-clipping-featured .press-card-title { font-size: 1.1rem; }
+@media (max-width: 680px) {
+  .press-clipping-featured { grid-column: auto; }
+  .press-clipping-featured .press-img-wrap { height: 220px; }
+}
+
 /* ── LECTURES GRID — crop from top to show speaker ── */
 .lectures-grid .press-img-wrap img,
 .lectures-grid .lec-video-thumb {
