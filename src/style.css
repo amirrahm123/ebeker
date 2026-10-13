@@ -4574,5 +4574,3 @@ p:where(footer *, .cookie-banner-text, .form-hint, .form-consent, .mc-card-cat, 
   .a11y-float { bottom: calc(var(--float-base) + var(--floating-bottom)); }
   #scrollTop { bottom: calc(var(--float-base) + 52px + var(--floating-bottom)); }
 }
-}
-
