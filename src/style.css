@@ -2243,9 +2243,6 @@ a.press-clipping-linked:focus-visible {
 /* Keep the text together at the top when the card is stretched by a taller row neighbour. */
 .press-clipping-linked .press-card-body { justify-content: flex-start; }
 .press-clipping-linked .press-card-link { margin-top: auto; }
-/* Screenshot too wide for the box: show all of it on the card colour instead of cropping. */
-.press-clipping .press-img-wrap.press-img-contain { background: var(--color-card-bg); }
-.press-clipping .press-img-wrap.press-img-contain img { object-fit: contain; object-position: center; }
 
 /* The tablet/phone .press-grid rules near the top of the file come before the
    base rule above, so they never applied. Restate them after it. */
@@ -2257,13 +2254,14 @@ a.press-clipping-linked:focus-visible {
 }
 
 /* Two equal cards (press-disasters): side by side while each can stay ≥320px,
-   otherwise one column. Images share one 4:3 box. */
+   otherwise one column. Both images fill one 2:1 box, cropped from the top. */
 .press-grid.press-grid-pair {
   grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
   align-items: stretch;
   max-width: 960px;
 }
-.press-grid-pair .press-clipping .press-img-wrap { height: auto; aspect-ratio: 4 / 3; }
+.press-grid-pair .press-clipping .press-img-wrap { height: auto; aspect-ratio: 2 / 1; }
+.press-grid-pair .press-clipping .press-img-wrap img { object-fit: cover; object-position: top center; }
 @media (max-width: 680px) {
   .press-grid.press-grid-pair { grid-template-columns: 1fr; }
 }

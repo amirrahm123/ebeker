@@ -1,8 +1,6 @@
 /* eslint-disable react/prop-types -- this codebase does not use PropTypes anywhere */
 /* Press-page card that links straight to the article in a new tab. Same look
-   as the other .press-clipping cards; the whole card is the link.
-   item.fit === 'contain' shows the full screenshot instead of a top crop,
-   for screenshots too wide for the card's image box. */
+   as the other .press-clipping cards; the whole card is the link. */
 export default function LinkedPressCard({ item, category }) {
   return (
     <a
@@ -11,7 +9,7 @@ export default function LinkedPressCard({ item, category }) {
       rel="noopener noreferrer"
       className="press-clipping press-clipping-linked"
     >
-      <div className={`press-img-wrap${item.fit === 'contain' ? ' press-img-contain' : ''}`}>
+      <div className="press-img-wrap">
         <img src={item.src} alt={item.title} loading="lazy" />
       </div>
       <div className="press-card-body">

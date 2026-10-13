@@ -19,8 +19,6 @@ const articles = [
     outlet: 'וואלה מקומי',
     date: '20.3.2024',
     url: 'https://mekomi.walla.co.il/item/3652184',
-    // Wide screenshot: a 4:3 crop would cut the headline's sides.
-    fit: 'contain',
   },
 ]
 
