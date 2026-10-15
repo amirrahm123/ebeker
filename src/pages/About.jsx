@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import useRevealOnScroll from '../hooks/useRevealOnScroll'
 import PageBanner from '../components/PageBanner'
 import { site } from '../config/site'
+import { practiceAreas } from '../data/practiceAreas'
 
 /* ── Editable content ─────────────────────────────────────────────
    Text for the repeated items lives here so it can be edited without
@@ -10,7 +11,7 @@ import { site } from '../config/site'
 
 /** Pill links under the banner: [section id, label]. */
 const SECTION_LINKS = [
-  ['specialties', 'תחומי התמחות'],
+  ['specialties', 'תחומי עיסוק'],
   ['experience', 'ניסיון מקצועי'],
   ['public-activity', 'פעילות ציבורית ומקצועית'],
   ['academic', 'פעילות אקדמית'],
@@ -18,22 +19,8 @@ const SECTION_LINKS = [
   ['values', 'ערכים וחזון'],
 ]
 
-/** Specialty chips. `to` links the chip to its practice page (paths from
-    src/routes.meta.js); chips without `to` render as plain chips. */
-const SPECIALTIES = [
-  { label: 'נזיקין וביטוח', to: '/damages' },
-  { label: 'אסונות לאומיים ואירועים רבי נפגעים', to: '/national-disasters' },
-  { label: 'רשלנות רפואית', to: '/medical-malpractice' },
-  { label: 'תאונות דרכים', to: '/car-accidents' },
-  { label: 'ביטוח לאומי' },
-  { label: 'תאונות קטלניות', to: '/causes-of-death' },
-  { label: 'תביעות ביטוח', to: '/insurance' },
-  { label: 'תאונות עבודה', to: '/work-accidents' },
-  { label: 'נפגעי צבא וכוחות הביטחון', to: '/idf-disabilities' },
-  { label: 'תביעות נגד רשויות וגופים ציבוריים' },
-  { label: 'נזקי גוף מורכבים' },
-  { label: 'ייפוי כוח מתמשך ואפוטרופסות', to: '/power-of-attorney' },
-]
+/** Practice-area tiles come from src/data/practiceAreas.jsx — the same list,
+    names and order as the Home page "תחומי עיסוק" section. */
 
 /** Public roles: compact boxes stacked in one centred column. */
 const PUBLIC_ROLES = [
@@ -143,15 +130,13 @@ export default function About() {
         <p className="reveal">בשנים האחרונות בלט עו&quot;ד בקר גם בייצוג נפגעים ומשפחות הנספים באירועים בעלי משמעות לאומית וציבורית, בהם <span className="about-gold">אסון מירון</span> ואירועי <span className="about-gold">7 באוקטובר</span> מול המדינה והמוסד לביטוח לאומי. פעילות זו מציבה אותו בחזית המאבק למיצוי זכויותיהם של נפגעי אסונות המוניים ומשפחותיהם ומחזקת את מעמדו כאחד מעורכי הדין הבולטים בישראל בתחום נזקי הגוף והאחריות הציבורית.</p>
       </section>
 
-      {/* Specialties */}
+      {/* Practice areas — same list as the Home page */}
       <section id="specialties" className="about-section about-cream">
-        <SectionHeading>תחומי התמחות</SectionHeading>
+        <SectionHeading>תחומי עיסוק</SectionHeading>
         <ul className="about-chips about-grid-3 reveal">
-          {SPECIALTIES.map(({ label, to }) => (
-            <li key={label}>
-              {to
-                ? <Link to={to} className="about-chip">{label}<span className="about-chip-arrow" aria-hidden="true">&#8592;</span></Link>
-                : <span className="about-chip">{label}</span>}
+          {practiceAreas.map(({ label, to }) => (
+            <li key={to}>
+              <Link to={to} className="about-chip">{label}</Link>
             </li>
           ))}
         </ul>

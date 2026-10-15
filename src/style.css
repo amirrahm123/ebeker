@@ -237,12 +237,22 @@ nav#navbar.scrolled {
   flex-shrink: 0;
 }
 .nav-logo:hover { transform: scale(1.03); }
+/* The logo is two crops of the same artwork: the round EB emblem and the
+   wordmark (Hebrew line + English line). --logo-h sizes the emblem; the
+   wordmark is scaled from it with --logo-text-ratio, so the text can be made
+   larger than it was in the original single image without touching the
+   emblem. In the original artwork the wordmark was ~0.47 of the emblem's
+   height; 0.66 is ~40% larger. */
+.nav-logo { --logo-h: 90px; --logo-text-ratio: 0.66; gap: 16px; }
 .nav-logo-img {
-  height: 90px; width: auto;
+  width: auto;
   object-fit: contain;
   filter: var(--logo-filter, brightness(0) invert(1));
   transition: filter .4s ease;
+  flex-shrink: 0;
 }
+.nav-logo-emblem { height: var(--logo-h); }
+.nav-logo-text { height: calc(var(--logo-h) * var(--logo-text-ratio)); }
 .nav-links { display: flex; align-items: center; gap: 6px; list-style: none; }
 .nav-links > li { position: relative; }
 .nav-links a {
@@ -1473,7 +1483,7 @@ footer > * { position: relative; z-index: 1; width: 100%; }
      content, so the badge would be clipped at the left. Step all three down
      together, keeping the badge/firm-logo ratio at ~0.75 as on desktop. */
   .nav-row-inner { padding: 0 24px; }
-  .nav-logo-img { height: 64px; }
+  .nav-logo { --logo-h: 64px; gap: 12px; }
   .nav-duns img { height: 48px; }
   .nav-row-right.nav-duns { padding-left: 14px; }
   .about-grid { grid-template-columns: 1fr; gap: 40px; }
@@ -1518,7 +1528,7 @@ footer > * { position: relative; z-index: 1; width: 100%; }
   }
   .nav-row-right.nav-duns { display: none; }
   .nav-row-links { display: none; }
-  .nav-logo-img { height: 44px; }
+  .nav-logo { --logo-h: 44px; gap: 10px; }
   .nav-row-inner { padding: 0 18px; }
   .nav-links, .nav-right { display: none; }
   .hamburger { display: flex; left: 14px; }
@@ -1660,7 +1670,7 @@ footer > * { position: relative; z-index: 1; width: 100%; }
   .btn-teal, .btn-outline-white { width: 100%; text-align: center; }
   .area-card { padding: 20px 16px 18px; }
   .contact-form-box { padding: 20px 14px; }
-  .nav-logo-img { height: 40px; }
+  .nav-logo { --logo-h: 40px; gap: 8px; }
 }
 
 /* ── MODAL SYSTEM ── */
@@ -4170,19 +4180,15 @@ main#main-content:focus { outline: none; }
   font-size: 17px; font-weight: 500; line-height: 1.5; color: #fff; text-decoration: none;
   transition: background-color .2s, border-color .2s, color .2s;
 }
-/* Linked chips carry a gold arrow and react on hover; plain chips stay static. */
-a.about-chip { gap: 10px; cursor: pointer; transition: background-color .2s, border-color .2s, color .2s, transform .2s, box-shadow .2s; }
-.about-chip-arrow { color: var(--about-gold); font-size: 15px; line-height: 1; transition: transform .2s; }
+/* Linked chips react on hover. */
+a.about-chip { cursor: pointer; transition: background-color .2s, border-color .2s, color .2s, transform .2s, box-shadow .2s; }
 a.about-chip:hover {
   background: #1A3060; border-color: var(--about-gold); color: var(--about-gold-light);
   transform: translateY(-2px); box-shadow: 0 6px 18px rgba(13,27,62,.25);
 }
-a.about-chip:hover .about-chip-arrow { transform: translateX(-4px); }
 a.about-chip:focus-visible { outline: 3px solid var(--about-gold); outline-offset: 3px; }
-span.about-chip { cursor: default; }
 @media (prefers-reduced-motion: reduce) {
   a.about-chip:hover { transform: none; }
-  a.about-chip:hover .about-chip-arrow { transform: none; }
 }
 
 /* Public roles: compact boxes stacked in one centred column. The list is

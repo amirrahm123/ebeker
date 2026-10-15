@@ -70,7 +70,8 @@ export default function Navbar() {
         <div className="nav-row nav-row-logo">
           <div className="nav-row-inner">
             <Link to="/" className="nav-logo">
-              <img src="/pics/logo.avif" alt="ערן בקר - חברת עורכי דין" className="nav-logo-img" width="494" height="130" />
+              <img src="/pics/logo-emblem.avif" alt="" aria-hidden="true" className="nav-logo-img nav-logo-emblem" width="130" height="130" />
+              <img src="/pics/logo-text.avif" alt="ערן בקר - חברת עורכי דין" className="nav-logo-img nav-logo-text" width="360" height="62" />
             </Link>
             <div className="nav-row-right nav-duns">
               <a
