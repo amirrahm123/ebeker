@@ -43,7 +43,7 @@ export default function PressDisasters() {
 
       <section className="content-section">
         <div className="content-container">
-          <div className="press-grid press-grid-pair reveal">
+          <div className="press-grid press-grid-pair">
             {articles.map((a) => (
               <LinkedPressCard key={a.url} item={a} category={CATEGORY} />
             ))}

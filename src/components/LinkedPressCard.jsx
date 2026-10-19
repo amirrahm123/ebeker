@@ -17,10 +17,10 @@ export default function LinkedPressCard({ item, category }) {
         href={item.url}
         target="_blank"
         rel="noopener noreferrer"
-        className="press-clipping press-clipping-linked"
+        className="press-clipping press-clipping-linked reveal"
       >
         <div className="press-img-wrap">
-          <img src={item.src} alt={item.title} loading="lazy" />
+          <img src={item.src} alt={item.title} loading="lazy" width="400" height="220" />
         </div>
         <div className="press-card-body">
           <span className="press-card-tag">{category}</span>
@@ -34,10 +34,10 @@ export default function LinkedPressCard({ item, category }) {
 
   const [first, ...rest] = item.excerpt
   return (
-    <div className="press-clipping press-clipping-linked press-clipping-excerpt">
+    <div className="press-clipping press-clipping-linked press-clipping-excerpt reveal">
       {/* Duplicate of the headline link below, so keep it out of the tab order. */}
       <a href={item.url} target="_blank" rel="noopener noreferrer" className="press-img-wrap" tabIndex={-1} aria-hidden="true">
-        <img src={item.src} alt="" loading="lazy" />
+        <img src={item.src} alt="" loading="lazy" width="400" height="220" />
       </a>
       <div className="press-card-body">
         <span className="press-card-tag">{category}</span>

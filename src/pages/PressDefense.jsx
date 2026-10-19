@@ -28,11 +28,11 @@ export default function PressDefense() {
 
       <section className="content-section">
         <div className="content-container">
-          <div className="press-grid reveal">
+          <div className="press-grid">
             {images.map((img, i) => (
-              <div className="press-clipping" key={i} onClick={() => setLightbox(BASE + img.file)}>
+              <div className="press-clipping reveal" key={i} onClick={() => setLightbox(BASE + img.file)}>
                 <div className="press-img-wrap">
-                  <img src={BASE + img.file} alt={img.title} loading="lazy" />
+                  <img src={BASE + img.file} alt={img.title} loading="lazy" width="400" height="220" />
                 </div>
                 <div className="press-card-body">
                   <span className="press-card-tag">משרד הביטחון</span>

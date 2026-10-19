@@ -117,17 +117,17 @@ export default function PressTort() {
 
       <section className="content-section">
         <div className="content-container">
-          <div className="press-grid reveal">
+          <div className="press-grid">
             {images.map((img, i) => (img.url ? (
               <LinkedPressCard key={i} item={img} category="נזיקין וביטוח" />
             ) : (
               <div
-                className="press-clipping"
+                className="press-clipping reveal"
                 key={i}
                 onClick={() => (img.desc && img.link ? setArticle(img) : setLightbox(BASE + img.file))}
               >
                 <div className="press-img-wrap">
-                  <img src={BASE + img.file} alt={img.title} loading="lazy" />
+                  <img src={BASE + img.file} alt={img.title} loading="lazy" width="400" height="220" />
                 </div>
                 <div className="press-card-body">
                   <span className="press-card-tag">נזיקין וביטוח</span>
