@@ -38,7 +38,7 @@ export const site = {
   /** Default Open Graph image (under /public). */
   ogImage: '/pics/og-image.jpg',
 
-  mapsEmbedUrl: 'https://www.google.com/maps?q=%D7%94%D7%92%D7%A2%D7%AA%D7%95%D7%9F+26,+%D7%A0%D7%94%D7%A8%D7%99%D7%94&output=embed',
+  mapsEmbedUrl: 'https://maps.google.com/maps?q=הגעתון+26+נהריה&output=embed',
 
   analytics: {
     gaMeasurementId: 'G-1VQ4L8M74D',
